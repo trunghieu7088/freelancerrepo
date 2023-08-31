@@ -1,0 +1,848 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: FrE Membership-v2.0.1\n"
+"Report-Msgid-Bugs-To: http://www.enginethemes.com/\n"
+"POT-Creation-Date: 2021-07-19 18:49+0700\n"
+"PO-Revision-Date: 2021-07-19 18:49+0700\n"
+"Last-Translator: dakachi <david87dang@gmail.com>\n"
+"Language-Team: Engine Themes <contact@enginethemes.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"X-Generator: Poedit 2.4.3\n"
+"X-Poedit-KeywordsList: _e;__;_n\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: stripe-php\n"
+"X-Poedit-SearchPathExcluded-1: assets\n"
+
+#: admin/admin.php:30
+msgid "Select page"
+msgstr ""
+
+#: admin/membership-list.php:28
+msgid "Membership "
+msgstr ""
+
+#: admin/membership-list.php:29 settings.php:298
+msgid "Membership"
+msgstr ""
+
+#: admin/membership-list.php:54
+msgid "Number of users per page"
+msgstr ""
+
+#: admin/membership-list.php:84
+#, php-format
+msgid "Search results for \"%s\""
+msgstr ""
+
+#: admin/membership-list.php:91
+msgid "Search Users"
+msgstr ""
+
+#: admin/membership_user.php:144
+#, php-format
+msgid "<a href=\"%s\" target=\"_blank\">View profile</a>"
+msgstr ""
+
+#: admin/membership_user.php:214
+msgid "Username"
+msgstr ""
+
+#: admin/membership_user.php:215
+msgid "Email"
+msgstr ""
+
+#: admin/membership_user.php:216
+msgid "Start Registered"
+msgstr ""
+
+#: admin/membership_user.php:217
+msgid "Expiration Date"
+msgstr ""
+
+#: admin/membership_user.php:218
+msgid "Subscription Info"
+msgstr ""
+
+#: admin/membership_user.php:219
+msgid "Subscription Status"
+msgstr ""
+
+#: admin/membership_user.php:220
+msgid "Auto Renew"
+msgstr ""
+
+#: admin/membership_user.php:271
+#, php-format
+msgid "All <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: admin/membership_user.php:280
+#, php-format
+msgid "%s <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: admin/membership_user.php:295
+msgid "No users found ."
+msgstr ""
+
+#: admin/setting_fields.php:6
+msgid "Admin's email who will receive the notification"
+msgstr ""
+
+#: admin/setting_fields.php:9 admin/setting_fields.php:15
+msgid ""
+"Set admin's emails who will receive the notification. Each email is "
+"separated by comma(s)."
+msgstr ""
+
+#: admin/setting_fields.php:17
+msgid "abc@example.com, cde@example.com "
+msgstr ""
+
+#: admin/setting_fields.php:26
+msgid "Membership Email Template"
+msgstr ""
+
+#: admin/setting_fields.php:35
+msgid "Mail description here"
+msgstr ""
+
+#: admin/setting_fields.php:36
+msgid "You can use placeholders to include some specific content."
+msgstr ""
+
+#: admin/setting_fields.php:37
+msgid "user's details you want to send mail"
+msgstr ""
+
+#: admin/setting_fields.php:38
+msgid " Plan info"
+msgstr ""
+
+#: admin/setting_fields.php:49
+msgid "New Subscriber."
+msgstr ""
+
+#: admin/setting_fields.php:53
+msgid "Send to buyers after they purchase successfully"
+msgstr ""
+
+#: admin/setting_fields.php:70
+msgid "Subscription will expire soon"
+msgstr ""
+
+#: admin/setting_fields.php:74
+msgid "Send to membership when subscription will expire soon in next time."
+msgstr ""
+
+#: admin/setting_fields.php:90
+msgid "Subscription plan has been renewed successfully"
+msgstr ""
+
+#: admin/setting_fields.php:94
+msgid ""
+"Send to members when their subscription plan has been renewed successfully."
+msgstr ""
+
+#: admin/setting_fields.php:101 admin/setting_fields.php:121
+msgid "Auto renew email template to"
+msgstr ""
+
+#: admin/setting_fields.php:110
+msgid "Unable to renew subscription plan"
+msgstr ""
+
+#: admin/setting_fields.php:114
+msgid ""
+"Send to membership when their subscription will expired today and [no enough "
+"credit to renew or inactive the fre_credit extension]."
+msgstr ""
+
+#: admin/setting_fields.php:130
+msgid "Notify admins when members cancel their subscriptions"
+msgstr ""
+
+#: admin/setting_fields.php:134
+msgid "Send to admin when a member cancels his/her subscriptions."
+msgstr ""
+
+#: admin/setting_fields.php:150
+msgid "Notify subscribers when they cancel their subscriptions"
+msgstr ""
+
+#: admin/setting_fields.php:154
+msgid "Send to members after they cancel their subscriptions"
+msgstr ""
+
+#: admin/setting_fields.php:177
+msgid "Payment Sanbox(Test Mode)"
+msgstr ""
+
+#: admin/setting_fields.php:186
+msgid "membership_mode"
+msgstr ""
+
+#: admin/setting_fields.php:194
+msgid "Enable Stripe Payment Gateway"
+msgstr ""
+
+#: admin/setting_fields.php:197
+msgid "Enabling this will allow checkout via stripe."
+msgstr ""
+
+#: admin/setting_fields.php:203
+msgid "Enable Stripe"
+msgstr ""
+
+#: admin/setting_fields.php:221
+msgid "Test Stripe Publishable key"
+msgstr ""
+
+#: admin/setting_fields.php:230
+msgid "Test Stripe Secret key"
+msgstr ""
+
+#: admin/setting_fields.php:239
+msgid "Test Signing secret"
+msgstr ""
+
+#: admin/setting_fields.php:241
+msgid ""
+"Visit <a href=\"https://dashboard.stripe.com/test/webhooks\">Webhook</a> to "
+"get Test Signing secret"
+msgstr ""
+
+#: admin/setting_fields.php:250
+msgid "Live Stripe Publishable key"
+msgstr ""
+
+#: admin/setting_fields.php:258
+msgid "Live Stripe Secret key"
+msgstr ""
+
+#: admin/setting_fields.php:267
+msgid "Live Signing secret"
+msgstr ""
+
+#: admin/setting_fields.php:269
+msgid ""
+"Visit <a href=\"https://dashboard.stripe.com/webhooks\">Webhook</a> to get "
+"Live Signing secret"
+msgstr ""
+
+#: admin/setting_fields.php:286
+msgid "Redirect URI"
+msgstr ""
+
+#: admin/setting_fields.php:289
+msgid "Endpoint URL in Webhook settings"
+msgstr ""
+
+#: admin/setting_fields.php:294
+msgid "Stripe API"
+msgstr ""
+
+#: admin/setting_fields.php:306
+msgid "Enable PayPal PayMent Gateway"
+msgstr ""
+
+#: admin/setting_fields.php:309
+msgid "Enabling this will allow checkout via PayPal."
+msgstr ""
+
+#: admin/setting_fields.php:315
+msgid "Enable PayPal"
+msgstr ""
+
+#: admin/setting_fields.php:335
+msgid "Sandbox PayPal Business Email"
+msgstr ""
+
+#: admin/setting_fields.php:344
+msgid "Sandbox Client ID"
+msgstr ""
+
+#: admin/setting_fields.php:353
+msgid "Sandbox Secret"
+msgstr ""
+
+#: admin/setting_fields.php:366
+msgid "Live PayPal Business Email"
+msgstr ""
+
+#: admin/setting_fields.php:375
+msgid "Live Client ID"
+msgstr ""
+
+#: admin/setting_fields.php:384
+msgid "Live Secret"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:8 admin/templates/bid-plan-form.php:5
+#: admin/templates/package-form-js.php:8 admin/templates/package-form.php:5
+msgid "SKU"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:16 admin/templates/bid-plan-form.php:13
+#: admin/templates/package-form-js.php:15 admin/templates/package-form.php:12
+msgid "Stripe Pricing ID"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:22
+msgid "Plan name"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:26 admin/templates/bid-plan-form.php:24
+#: admin/templates/package-form-js.php:26 admin/templates/package-form.php:24
+msgid "This text will appear below your plan name"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:32 admin/templates/bid-plan-form.php:29
+#: admin/templates/package-form-js.php:31 admin/templates/package-form.php:30
+msgid "Price"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:38 admin/templates/bid-plan-form.php:35
+#: admin/templates/package-form-js.php:37 admin/templates/package-form.php:35
+msgid "Subscription Type"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:48 admin/templates/bid-plan-form.php:44
+msgid " Number of bids"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:51 admin/templates/bid-plan-form.php:47
+msgid "bids"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:57 admin/templates/bid-plan-form.php:51
+#: admin/templates/package-form-js.php:79 admin/templates/package-form.php:81
+msgid "Short description about this plan"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:66
+#: admin/templates/package-form-js.php:84
+msgid "Save Package"
+msgstr ""
+
+#: admin/templates/bid-plan-form-js.php:68
+#: admin/templates/package-form-js.php:86
+#: includes/class_membership_front.php:397
+#: templates/modal-cancel-subscription.php:27
+#: templates/modal-subscriber-via-credit.php:57
+msgid "Cancel"
+msgstr ""
+
+#: admin/templates/bid-plan-form.php:20 admin/templates/package-form-js.php:22
+#: admin/templates/package-form.php:20
+msgid "Enter a name for your plan"
+msgstr ""
+
+#: admin/templates/bid-plan-form.php:60 admin/templates/package-form.php:87
+msgid "Save Plan"
+msgstr ""
+
+#: admin/templates/package-form-js.php:48
+msgid "Number of Projects"
+msgstr ""
+
+#: admin/templates/package-form-js.php:56 admin/templates/package-form.php:58
+msgid "Project availability time"
+msgstr ""
+
+#: admin/templates/package-form-js.php:57 admin/templates/package-form.php:60
+msgid "days"
+msgstr ""
+
+#: admin/templates/package-form-js.php:61 admin/templates/package-form.php:65
+msgid "Project type"
+msgstr ""
+
+#: admin/templates/package-form-js.php:67 admin/templates/package-form.php:71
+msgid "Select project type"
+msgstr ""
+
+#: admin/templates/package-form.php:47
+msgid "Number of Projects."
+msgstr ""
+
+#: admin/templates/package-form.php:51
+msgid "posts"
+msgstr ""
+
+#: includes/class_membership_front.php:81
+msgid "Select"
+msgstr ""
+
+#: includes/class_membership_front.php:83
+#, php-format
+msgid "%s<span>/Month</span>"
+msgstr ""
+
+#: includes/class_membership_front.php:85
+msgid "FREE"
+msgstr ""
+
+#: includes/class_membership_front.php:88
+#, php-format
+msgid "%s<span>/%d Months</span>"
+msgstr ""
+
+#: includes/class_membership_front.php:90
+#, php-format
+msgid "%s<span>/1 Year</span>"
+msgstr ""
+
+#: includes/class_membership_front.php:95
+msgid " Current plan"
+msgstr ""
+
+#: includes/class_membership_front.php:143
+msgid ""
+"This project requires at least one avaialble bid to take bid action. You can "
+"get available bids by subscribe to a plan."
+msgstr ""
+
+#: includes/class_membership_front.php:144
+#: templates/modal-subscriber-via-credit.php:55
+msgid "Subscribe"
+msgstr ""
+
+#: includes/class_membership_front.php:165
+msgid "Sorry. Please subscriber to get more more post."
+msgstr ""
+
+#: includes/class_membership_front.php:197
+#: includes/class_membership_front.php:237
+msgid "Select a plan"
+msgstr ""
+
+#: includes/class_membership_front.php:201
+#: includes/class_membership_front.php:250
+msgid "Change Plan"
+msgstr ""
+
+#: includes/class_membership_front.php:207
+#, php-format
+msgid ""
+"You are currently in the <b>%s</b> plan. You have <span><b>%d</b></span> "
+"available bid(s) left."
+msgstr ""
+
+#: includes/class_membership_front.php:209
+#, php-format
+msgid "You have <b>%d</b> available bid(s) left."
+msgstr ""
+
+#: includes/class_membership_front.php:214
+#: includes/class_membership_front.php:220
+#, php-format
+msgid ""
+"You have <b>%d</b> available bid(s) left. Subscribe to a plan to get more "
+"bids."
+msgstr ""
+
+#: includes/class_membership_front.php:252
+#, php-format
+msgid ""
+"You are currently in the <b>%s</b> plan. You have <span><b>%d</b></span> "
+"available post(s) left."
+msgstr ""
+
+#: includes/class_membership_front.php:256
+#, php-format
+msgid ""
+"You have <b>%d</b> available post(s) left. Subscribe to a plan to get more "
+"posts."
+msgstr ""
+
+#: includes/class_membership_front.php:262
+#, php-format
+msgid "You have <b>%d</b> post(s) left. Subscribe to a plan to get more posts."
+msgstr ""
+
+#: includes/class_membership_front.php:394
+msgid "Renewal Date"
+msgstr ""
+
+#: includes/class_membership_front.php:400
+msgid "Your subscription is available."
+msgstr ""
+
+#: includes/class_membership_front.php:406
+#, php-format
+msgid ""
+"Your subscription is expired. Your can check <a href=\"%s\">membership "
+"plans</a> and subscribe to a plan."
+msgstr ""
+
+#: includes/class_membership_front.php:407
+msgid "Expired At"
+msgstr ""
+
+#: includes/class_membership_front.php:411
+#, php-format
+msgid ""
+"You are currently not in any plan. Get started with one of our <a href=\"%s"
+"\">membership plans</a> here."
+msgstr ""
+
+#: includes/class_membership_front.php:420
+msgid "Subscription Details"
+msgstr ""
+
+#: includes/class_membership_front.php:434
+msgid "Plan Name"
+msgstr ""
+
+#: includes/class_membership_payment.php:50
+msgid "PayPal"
+msgstr ""
+
+#: includes/class_membership_payment.php:50
+msgid "Send your payment via PayPal."
+msgstr ""
+
+#: includes/class_membership_payment.php:59
+msgid "Stripe"
+msgstr ""
+
+#: includes/class_membership_payment.php:59
+msgid "Send your payment via Stripe."
+msgstr ""
+
+#: includes/class_membership_payment.php:60
+#: includes/class_membership_payment.php:168 includes/front.php:73
+msgid "SELECT"
+msgstr ""
+
+#: includes/class_membership_payment.php:161
+#: includes/class_membership_payment.php:167
+msgid "Credit"
+msgstr ""
+
+#: includes/class_membership_payment.php:161
+msgid "You don't have enough credit to check out. Please deposit first."
+msgstr ""
+
+#: includes/class_membership_payment.php:162
+msgid "DEPOSIT"
+msgstr ""
+
+#: includes/class_membership_payment.php:167
+#, php-format
+msgid "System auto deduct %s in your credit balance."
+msgstr ""
+
+#: includes/class_membership_payment.php:178
+msgid "There is no payment gateway available for subscribe at current time."
+msgstr ""
+
+#: includes/class_membership_payment.php:181
+msgid ""
+"Important: All remaining posts in your current plan will be lost when you "
+"change your subscription."
+msgstr ""
+
+#: includes/class_membership_payment.php:190
+msgid "Fail. There is something wrong."
+msgstr ""
+
+#: includes/class_membership_payment.php:198
+msgid "Please enter a valid secure code!"
+msgstr ""
+
+#: includes/class_membership_payment.php:209
+msgid "Your subscription has been updated"
+msgstr ""
+
+#: includes/class_membership_payment.php:211
+msgid "Fail.This plan is not availble."
+msgstr ""
+
+#: includes/class_membership_payment.php:222
+msgid "Your subscription has been updated."
+msgstr ""
+
+#: includes/class_membership_payment.php:229
+msgid ""
+"Your subscription are still available. Your can not re-subcribe this plan."
+msgstr ""
+
+#: includes/class_membership_payment.php:236
+msgid "Your balance is not enough. Please deposit first then subscribe again."
+msgstr ""
+
+#: includes/class_membership_payment.php:282
+msgid "Thankyou. Your subscription has been updated."
+msgstr ""
+
+#: includes/class_membership_payment.php:298
+msgid "Can not update your subscription."
+msgstr ""
+
+#: includes/class_membership_payment.php:307
+msgid "Your have disabled auto renewal your subscription."
+msgstr ""
+
+#: includes/class_schedules_cron.php:19
+msgid "Check and send expiring soon email for Membership."
+msgstr ""
+
+#: includes/class_schedules_cron.php:58 includes/functions.php:315
+#: includes/verify_stripe_response.php:168
+msgid "Your subscription will expire soon."
+msgstr ""
+
+#: includes/fre_membership_mailing.php:21
+msgid "Could not renew your subscriptoin."
+msgstr ""
+
+#: includes/fre_membership_mailing.php:36
+msgid "Your subscription has been renewed"
+msgstr ""
+
+#: includes/fre_membership_mailing.php:67
+msgid "Thank you for your subscribe"
+msgstr ""
+
+#: includes/fre_membership_mailing.php:69
+msgid "There is new subscriber on your website"
+msgstr ""
+
+#: includes/fre_membership_mailing.php:100
+msgid "Subscriber has disabled auto-renewal."
+msgstr ""
+
+#: includes/fre_membership_mailing.php:112
+msgid "Your subscription has been disable auto-renewal"
+msgstr ""
+
+#: includes/functions.php:274
+msgid "Your subscription will expire soon"
+msgstr ""
+
+#: includes/functions.php:278 includes/functions.php:287
+#: includes/functions.php:295
+#, php-format
+msgid "%s on %s"
+msgstr ""
+
+#: includes/functions.php:282
+msgid "Your subscription has been renewed successful"
+msgstr ""
+
+#: includes/functions.php:291 includes/functions.php:347
+msgid "Can not auto renew your subscription"
+msgstr ""
+
+#: includes/functions.php:332
+msgid "Your subscription has been renewed successful."
+msgstr ""
+
+#: settings.php:18
+msgid "Number days send notification before"
+msgstr ""
+
+#: settings.php:21
+msgid ""
+"Number day system check and send notification email to membership who will "
+"expired within this number days."
+msgstr ""
+
+#: settings.php:27 settings.php:46
+msgid "Set number day the system auto check and send notification."
+msgstr ""
+
+#: settings.php:29
+msgid "7"
+msgstr ""
+
+#: settings.php:37 settings.php:40
+msgid "Number of projects an Employer can post for free every month."
+msgstr ""
+
+#: settings.php:48
+msgid "0"
+msgstr ""
+
+#: settings.php:57
+msgid "Membership Page"
+msgstr ""
+
+#: settings.php:60
+msgid ""
+"Select a page for your users to show list membership plans. (Only pages "
+"having shortcode [fre_membership_plans] are displayed here.)"
+msgstr ""
+
+#: settings.php:78
+msgid "Membership Checkout Page"
+msgstr ""
+
+#: settings.php:81
+msgid ""
+"Select a page for your users to show the checkout form. (Only pages having "
+"shortcode [fre_membership_checkout] are displayed here.)"
+msgstr ""
+
+#: settings.php:89 settings.php:111
+msgid "eg:deposit"
+msgstr ""
+
+#: settings.php:101
+msgid "Successful Checkout Return Page"
+msgstr ""
+
+#: settings.php:104
+msgid ""
+"Select a page for your users to show the checkout form. (Only pages having "
+"shortcode [membership_successful_return] are displayed here.)"
+msgstr ""
+
+#: settings.php:124
+msgid "Debug Log File"
+msgstr ""
+
+#: settings.php:142
+msgid "Membership Settings"
+msgstr ""
+
+#: settings.php:153
+msgid "General Settings "
+msgstr ""
+
+#: settings.php:163
+msgid "Payment Gateway"
+msgstr ""
+
+#: settings.php:173
+msgid "Employer Membership Plans"
+msgstr ""
+
+#: settings.php:223 settings.php:244
+msgid "Freelancer Membership Plans"
+msgstr ""
+
+#: settings.php:265
+msgid "Membership Plans"
+msgstr ""
+
+#: settings.php:276
+msgid "Email Settings"
+msgstr ""
+
+#: settings.php:299
+msgid "MEMBERSHIP"
+msgstr ""
+
+#: settings.php:303
+msgid "Bridging the gap between Employers and Freelancers"
+msgstr ""
+
+#: templates/checkout-form.php:25
+msgid "Membership Plan Info"
+msgstr ""
+
+#: templates/checkout-form.php:27
+#, php-format
+msgid "<span>Name:</span> <strong>%s</strong>"
+msgstr ""
+
+#: templates/checkout-form.php:28
+#, php-format
+msgid "<span>Price: </span><strong>%s</strong>"
+msgstr ""
+
+#: templates/checkout-form.php:37
+msgid "Payment Method"
+msgstr ""
+
+#: templates/checkout-form.php:37
+msgid "Select your preferred payment method"
+msgstr ""
+
+#: templates/checkout-form.php:42
+msgid "You are subscribed this plan so can not subscribe again."
+msgstr ""
+
+#: templates/checkout-form.php:54
+msgid "There are something wrong"
+msgstr ""
+
+#: templates/checkout-form.php:55
+#, php-format
+msgid ""
+"This plan is not avaible. Select another plan and <a href=\"%s\">get "
+"started</a>."
+msgstr ""
+
+#: templates/modal-cancel-subscription.php:10
+msgid "Disable Auto Renewal"
+msgstr ""
+
+#: templates/modal-cancel-subscription.php:16
+#, php-format
+msgid ""
+"You subscription will be renewed at <strong>%s</strong>. Are you want to "
+"disable auto renewal?"
+msgstr ""
+
+#: templates/modal-cancel-subscription.php:25
+msgid "Confirm"
+msgstr ""
+
+#: templates/modal-subscriber-via-credit.php:15
+msgid "Checkout using Credit Wallet"
+msgstr ""
+
+#: templates/modal-subscriber-via-credit.php:23
+#, php-format
+msgid ""
+"Once you click Subscribe, your credit balance will be deducted <strong>%s</"
+"strong>."
+msgstr ""
+
+#: templates/modal-subscriber-via-credit.php:33
+#, php-format
+msgid ""
+"Warning: You currently have %d posts(bids) in your current plan. They will "
+"be lost when you change to another subscription plan."
+msgstr ""
+
+#: templates/modal-subscriber-via-credit.php:41
+msgid "Your secure code:"
+msgstr ""
+
+#: templates/thank-you.php:21
+msgid "Your subscription has been updated successfully."
+msgstr ""
+
+#: templates/thank-you.php:25
+msgid "Plan Name:"
+msgstr ""
+
+#: templates/thank-you.php:29
+msgid "Start Date:"
+msgstr ""
+
+#: templates/thank-you.php:33
+msgid "Expiration date:"
+msgstr ""
+
+#: templates/thank-you.php:37
+msgid "Total:"
+msgstr ""
+
+#: templates/thank-you.php:44
+msgid "Your subscription is now available in the system."
+msgstr ""
+
+#: templates/thank-you.php:46
+msgid "Home"
+msgstr ""

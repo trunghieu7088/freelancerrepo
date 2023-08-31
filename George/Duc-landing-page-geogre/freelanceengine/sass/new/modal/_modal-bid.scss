@@ -1,0 +1,110 @@
+.bid-commission-fee {
+	margin: 14px 0 10px;
+	font-size: $font_size_medium;
+	color: $color_text_2;
+	line-height: 1.45em;
+	b {
+		font-size: 18px;
+		font-weight: 600;
+	}
+}
+
+.bid-form {
+	.chosen-search {
+		display: none;
+	}
+}
+
+.not-bid-form {
+	h2 {
+		margin: 0 0 20px;
+		font-size: 20px;
+		font-weight: 600;
+		color: $color_text;
+		line-height: 1.45em;
+	}
+	p {
+		font-size: $font_size_medium;
+		color: $color_text;
+		line-height: 1.8em;
+	}
+}
+
+.fre-accept-bid-info {
+	color: $color_text;
+	p {
+		margin: 0;
+		font-size: $font_size_medium;
+		color: $color_text;
+		line-height: 1.8em;
+		&:last-child {
+			margin: 0;
+		}
+	}
+	.accept-bid-budget, .accept-bid-commision, .accept-bid-amount {
+		margin: 0;
+		padding: 20px 0 0;
+		color: $color_text;
+		&:after {
+			content: '';
+			display: table;
+			clear: both;
+		}
+		span {
+			display: block;
+			line-height: 1em;
+			&:first-child {
+				float: left;
+			}
+			&:last-child {
+				float: right;
+				font-weight: 600;
+			}
+		}
+	}
+
+	.accept-bid-amount {
+		margin: 26px 0 0;
+		padding: 26px 0 0;
+		border-top: 1px solid #dbdbdb;
+		span {
+			&:last-child {
+				color: $color_skin;
+			}
+		}
+	}
+
+	.notice_credit {
+		.error {
+			color: $color_valid;
+			i {
+				margin-right: 8px;
+			}
+		}
+	}
+}
+
+.info-credit-balance {
+	margin: 36px 0 0;
+}
+
+
+.secure-code-accept-bid {
+	margin: 20px 0 0 !important;
+}
+
+.fre-note-bid {
+	margin: 0;
+	font-size: $font_size_medium;
+	color: $color_text_2;
+	line-height: 1.8em;
+}
+
+.reject-project-form {
+	p {
+		margin: 0 0 20px;
+		font-size: $font_size_medium;
+		color: $color_text_2;
+		line-height: 1.8em;
+	}
+}

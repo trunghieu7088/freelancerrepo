@@ -1,0 +1,37 @@
+2021-06-06 18:07:21: Array
+(
+    [amount3] => 1.00
+    [address_status] => confirmed
+    [subscr_date] => 04:07:05 Jun 06, 2021 PDT
+    [payer_id] => VBBDUCHRXQXQL
+    [address_street] => 1 Main St
+    [mc_amount3] => 1.00
+    [charset] => UTF-8
+    [address_zip] => 95131
+    [first_name] => Dan
+    [reattempt] => 1
+    [address_country_code] => US
+    [address_name] => Dan  Nguyen\'s Test Store
+    [notify_version] => 3.9
+    [subscr_id] => I-35XRVHH1X28Y
+    [custom] => 4
+    [payer_status] => verified
+    [business] => lab@etlab.com
+    [address_country] => 
+    [address_city] => San Jose
+    [verify_sign] => AjrRH.KE40NaQ1W.aTeZXmVIcY6-A3uUnMQ1JpEs2bqrCMcoO7FjYsjZ
+    [payer_email] => danng@enginethemes.com
+    [payer_business_name] => Dan  Nguyen\'s Test Store
+    [last_name] => Nguyen
+    [address_state] => CA
+    [receiver_email] => lab@etlab.com
+    [recurring] => 1
+    [txn_type] => subscr_signup
+    [item_name] => Daily
+    [mc_currency] => USD
+    [item_number] => fre_daily
+    [residence_country] => US
+    [test_ipn] => 1
+    [period3] => 2 D
+    [ipn_track_id] => eaf318f540c38
+)

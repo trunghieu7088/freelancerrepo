@@ -1,0 +1,118 @@
+footer{
+    background: $white-base;
+    display: block;
+    position: relative;
+    padding: 60px 0 0;
+    margin-top: 100px;
+    .widget{
+        margin-bottom: 53px;
+        ul{
+            list-style:none;
+            padding:0;
+            margin:0;
+            li{
+                display:block;
+                margin-bottom:15px;
+                a{
+                    color: #737c85;
+                    font-size: 14px;
+                    font-weight: 300;
+                    &:hover{
+                        color: $blue-base;
+                    }
+                }
+            }
+        }
+    }
+    h2{
+        &.widgettitle{
+            font-size: $font-size-base;
+            color: #737c85;
+            margin: 0 0 30px;
+            font-weight: 600;
+        }
+    }
+    .textwidget{
+        line-height: 30px !important;
+        color: #737c85;
+        font-size: 14px;
+        font-weight: 300;
+    }
+}
+.home footer{
+    margin-top: 0;
+}
+.footer-copyright-wrapper {
+    margin-top: 100px;
+}
+.copyright-wrapper{
+    padding: 23px 0;
+    background-color: #525050;
+    .text-copyright{
+        display:block;
+        text-align:right;
+        // color: #a3acb5;
+        color: #FFF;
+        font-size: floor(($font-size-base * 0.89));
+        padding-top: 9px;
+        a{
+            // color: #a3acb5;
+            color: #FFF;
+        }
+    }
+    .logo-footer{
+        position: relative;
+        top: 5px;
+    }
+    .menu{
+        li{
+            display: inline-block;
+            margin-right: 10px;
+            a{
+                color: $white-base;
+            }
+        }
+    }
+}
+
+.fre-footer-logo {
+    height: 28px;
+    img {
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 991px) {
+    footer {
+        margin-top: 60px;
+    }
+    .footer-copyright-wrapper {
+        margin-top: 60px; 
+    }
+}
+
+@media (max-width: 767px) {
+    .copyright-wrapper {
+        .text-copyright{
+            margin: 10px 0 0;
+            text-align:left;
+        }
+    }
+    footer {
+        padding: 40px 0 0;
+        margin: 60px 0 0;
+        .widget {
+            margin-bottom: 33px;
+        }
+         h2{
+            &.widgettitle{
+                margin: 0 0 20px;
+            }
+        }
+    }
+    .footer-copyright-wrapper {
+        margin: 60px 0 0;
+    }
+}

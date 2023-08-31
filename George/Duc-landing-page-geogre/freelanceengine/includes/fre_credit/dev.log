@@ -1,0 +1,34 @@
+Struct:
+$history_id = get_post_meta($widthraw_id, 'charge_id', true);
+$draw_status = get_post_meta($history_id,'history_status', true);
+
+
+User meta field:
+fre_user_wallet_freezable : Frozen balance of user;
+fre_user_wallet:
+
+
+Method:
+getUserWallet($user_id, $type = 'available' )
+getUserWallet: get frozen or available of an user;
+
+action:
+1)fre-withdraw-sync : Employer/freelancer request withdraw via front-end.
+2)fre-admin-withdraw-sync: admin approve an withdraw item via back-end.
+Method processing: sync_withdraw
+
+
+Front-end:
+
+Frozen balance:
+$freezable = FRE_Credit_Users()->getUserWallet($user_ID, 'freezable');
+fre_price_format($freezable->balance);
+
+Credit balance:
+$total = fre_credit_get_user_total_balance($user_ID);
+$total->balance
+$available->balance = $available->balance + $freezable->balance;
+
+Available balance:
+$available = FRE_Credit_Users()->getUserWallet($user_ID);
+$available->balance

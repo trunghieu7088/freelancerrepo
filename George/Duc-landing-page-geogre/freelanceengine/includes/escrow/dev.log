@@ -1,0 +1,35 @@
+option: use_credit_escrow == check using credit escrow or not
+
+Void: use_paypal_to_escrow: check is using paypal escrow
+
+void: is_use_stripe_escrow check stripe is using.
+
+escrow_system_using: option meta @sinve version 1.8.16
+
+option: use_credit_escrow hide since version 1.8.16
+
+use_stripe_escrow
+
+
+Những options cũ như: use_credit_escrow , use_stripe_escrow để kiểm tra xem escorow đó có đang enable hay không, sẽ bị thay thế bằng option  escrow_system_using
+
+user_credit_system: old option meta
+
+is_use_credit_escrow() : use to check
+user_credit_system: check  option.
+
+Old version:isset($credit_api['use_credit_escrow'])  to check is_use_credit_escrow
+New version is_use_credit_escrow() to check;
+
+
+
+ae-employer-review : action  Employer Review + Finish project.
+
+Bid:
+
+Action: ae-sync-bid
+Stripe Not connect warning: Please connect with Stripe to bid a project -- Hook check: ae_pre_insert_bid
+
+Stripe Connect:
+
+ae_escrow_stripe_user_field : hook to show button connect or disconnect stripe account for freelancer

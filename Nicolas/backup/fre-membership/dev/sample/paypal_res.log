@@ -1,0 +1,138 @@
+2021-06-09 20:45:08: Array
+(
+    [amount3] => 1.00
+    [address_status] => confirmed
+    [subscr_date] => 06:44:51 Jun 09, 2021 PDT
+    [payer_id] => MFESFXF8A6TJW
+    [address_street] => 1 Main St
+    [mc_amount3] => 1.00
+    [charset] => UTF-8
+    [address_zip] => 95131
+    [first_name] => Freelancer
+    [reattempt] => 1
+    [address_country_code] => US
+    [address_name] => Freelancer Staff\'s Test Store
+    [notify_version] => 3.9
+    [subscr_id] => I-86MUJSSY2UEB
+    [custom] => 1
+    [payer_status] => verified
+    [business] => lab@etlab.com
+    [address_country] => 
+    [address_city] => San Jose
+    [verify_sign] => AqKg005KvkMCrP11Y4hYn7PtzKWxAJ99UL2Vw5w6tgv-TW.XDNYBS5NL
+    [payer_email] => freelancer@etteam.com
+    [payer_business_name] => Freelancer Staff\'s Test Store
+    [last_name] => Staff
+    [address_state] => CA
+    [receiver_email] => lab@etlab.com
+    [recurring] => 1
+    [txn_type] => subscr_signup
+    [item_name] => Daily
+    [mc_currency] => USD
+    [item_number] => em_daily
+    [residence_country] => US
+    [test_ipn] => 1
+    [period3] => 3 M
+    [ipn_track_id] => ad194a681c4ce
+)
+2021-06-09 20:45:10: txn_type ==  subscr_signup
+2021-06-09 20:45:10: args:
+2021-06-09 20:45:10: Array
+(
+    [user_id] => 1
+    [plan_sku] => em_daily
+    [price] => 1.00
+    [currency] => USD
+    [api_subscr_id] => I-86MUJSSY2UEB
+    [remain_posts] => 1
+    [expiry_time] => 1631195110
+    [payment_gw] => paypal
+    [payment_status] => null
+    [test_mode] => 1
+    [auto_renew] => active
+)
+2021-06-09 20:45:10: api_subscr_id = _POST[subscr_id]: I-86MUJSSY2UEB
+2021-06-09 20:45:10: result of check subscription exist
+2021-06-09 20:45:10: 
+2021-06-09 20:45:10: check_sub_pai I-86MUJSSY2UEB no exist. insert subscription
+2021-06-09 20:45:10: save subscription_id for user
+2021-06-09 20:45:16: Array
+(
+    [mc_gross] => 1.00
+    [protection_eligibility] => Eligible
+    [address_status] => confirmed
+    [payer_id] => MFESFXF8A6TJW
+    [address_street] => 1 Main St
+    [payment_date] => 06:44:52 Jun 09, 2021 PDT
+    [payment_status] => Completed
+    [charset] => UTF-8
+    [address_zip] => 95131
+    [first_name] => Freelancer
+    [mc_fee] => 0.33
+    [address_country_code] => US
+    [address_name] => Freelancer Staff\'s Test Store
+    [notify_version] => 3.9
+    [subscr_id] => I-86MUJSSY2UEB
+    [custom] => 1
+    [payer_status] => verified
+    [business] => lab@etlab.com
+    [address_country] => United States
+    [address_city] => San Jose
+    [verify_sign] => ASclrdXxEFK-doYpUFUdq4nJn-y7AjdxDoYk400zwmaFoByodDKKHSB0
+    [payer_email] => freelancer@etteam.com
+    [txn_id] => 40326458G6029502F
+    [payment_type] => instant
+    [payer_business_name] => Freelancer Staff\'s Test Store
+    [last_name] => Staff
+    [address_state] => CA
+    [receiver_email] => lab@etlab.com
+    [payment_fee] => 0.33
+    [receiver_id] => 32PPMSH9THXL6
+    [txn_type] => subscr_payment
+    [item_name] => Daily
+    [mc_currency] => USD
+    [item_number] => em_daily
+    [residence_country] => US
+    [test_ipn] => 1
+    [transaction_subject] => Daily
+    [payment_gross] => 1.00
+    [ipn_track_id] => ad194a681c4ce
+)
+2021-06-09 20:45:18: txn_type ==  subscr_payment
+2021-06-09 20:45:18: args:
+2021-06-09 20:45:18: Array
+(
+    [user_id] => 1
+    [plan_sku] => em_daily
+    [price] => 1.00
+    [currency] => USD
+    [api_subscr_id] => I-86MUJSSY2UEB
+    [remain_posts] => 1
+    [expiry_time] => 1631195118
+    [payment_gw] => paypal
+    [payment_status] => Completed
+    [test_mode] => 1
+    [auto_renew] => active
+)
+2021-06-09 20:45:18: api_subscr_id = _POST[subscr_id]: I-86MUJSSY2UEB
+2021-06-09 20:45:18: result of check subscription exist
+2021-06-09 20:45:18: stdClass Object
+(
+    [id] => 1
+    [user_id] => 1
+    [plan_sku] => em_daily
+    [pack_type] => pack
+    [api_subscr_id] => I-86MUJSSY2UEB
+    [price] => 1
+    [currency] => USD
+    [remain_posts] => 1
+    [start_date] => 2021-06-09 20:45:10
+    [expiry_time] => 1631195110
+    [expiration_date] => 2021-09-09 13:45:10
+    [payment_gw] => paypal
+    [payment_status] => completed
+    [auto_renew] => active
+    [is_sent_mail] => 0
+    [test_mode] => 1
+)
+2021-06-09 20:45:18: subscription exist. update subscription

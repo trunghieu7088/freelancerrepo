@@ -1,0 +1,38 @@
+.report-container {
+	border-right: 1px solid #f4f6f8;
+	padding-right: 0;
+	.list-chat-work-place-dispute {
+		> li{
+			padding:20px 30px;
+			border-top: 1px solid #ebebeb;
+			margin-bottom: 0;
+		}
+	}
+}
+
+.report-details {
+	.workplace-project-details {
+		padding: 15px 45px 15px 15px;
+	}
+}
+
+@media (max-width: 991px) {
+	.report-container {
+		padding-right: 15px;
+		border: none;
+	}
+	.report-details {
+		.workplace-project-details {
+			padding-left: 15px;
+			padding-right: 15px;
+			padding-bottom: 20px;
+			.content-require-project {
+				padding-right: 30px;
+			}
+		}
+		.project-report-quit {
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+	}
+}

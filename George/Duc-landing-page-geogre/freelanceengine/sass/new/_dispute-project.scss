@@ -1,0 +1,244 @@
+//=== Disputed Project
+//
+.fre-project-dispute-wrap {
+
+}
+
+.project-dispute-box {
+	padding: 40px;
+	background: #FFF;
+    border-top: 1px solid $color_top_shadow_base;
+	@include box-shadow-profile();
+	@media (max-width: 991px) {
+		padding: 24px 30px 30px;
+	}
+	@media (max-width: 767px) {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+
+.disputed-conversation {
+	position: relative;
+	overflow: hidden;
+	background: #FFF;
+    border-top: 1px solid $color_top_shadow_base;
+	@include box-shadow-profile();
+	@media (min-width: 992px) {
+		display: block !important; 
+	}
+	@media (max-width: 991px) {
+		box-shadow: none;border: none;
+		.disputed-title {
+				display: none;
+		}
+	}
+
+	&.fade {
+		/* @media (max-width: 991px) {
+			display: none;
+		} */
+	}
+	.fre-conversation-disputed-wrap {
+		padding: 20px 0;
+		@media (max-width: 991px) {
+			padding: 30px 0;
+		}
+	}
+}
+
+.disputed-title {
+	margin: 0;
+	padding: 40px 40px 30px;
+	font-size: $font_size_large;
+	font-weight: 600;
+	color: $color_text_2;
+	line-height: 1em;
+	border-bottom: 1px solid $color_top_shadow_base; 
+}
+
+.project-disputed-info-list {
+	margin: 0;
+	padding:0;
+	font-size: 0; 
+	> li {
+		list-style-type: none;
+		display: inline-block;
+		padding-right: 50px;
+		margin: 30px 0 0;
+		vertical-align: top;
+		&:last-child {
+			padding-right: 0;
+		}
+		a {
+			span:hover {
+				color: $color_text_2;
+			}
+		}
+		span {
+			display: block;
+			&:first-child {
+				font-size: $font_size_medium;
+				color: $color_text_2;
+			}
+			&:last-child {
+				font-size: $font_size_large;
+				font-weight: 600;
+				color: $color_skin;
+				margin: 4px 0 0;
+			}
+		}
+	}
+}
+
+.project-dispute-wrap {
+	margin: 22px 0 0;
+	@media (max-width: 991px) {
+		background: #FFF;
+	    border-top: 1px solid $color_top_shadow_base;
+		@include box-shadow-profile();
+	}
+	@media (max-width: 767px) {
+		> .row {
+			margin: 0;
+			> div {
+				padding: 0;
+			}
+		}
+	}
+}
+
+
+.disputed-info-wrap {
+	padding: 40px;
+	background: #FFF;
+    border-top: 1px solid $color_top_shadow_base;
+	@include box-shadow-profile();
+	@media (max-width: 991px) {
+		border: none;
+		box-shadow: none;
+		padding: 30px;
+	}
+	@media (max-width: 767px) {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	> p {
+		margin: 0;
+		font-size: $font_size_medium;
+		color: $color_text_2;
+		line-height: 1.8em;
+	}
+}
+
+
+.disputed-info-link {
+	border-top: 1px solid $color_top_shadow_base;
+	padding: 18px 0 0;
+	margin: 24px 0 0;
+	p {
+		margin: 0;
+		padding: 12px 0;
+		line-height: 1em;
+		&:last-child {
+			padding-bottom: 0;
+		}
+		a {
+			font-size: $font_size_medium;
+			color: $color_text_2;
+			i {
+				margin-right: 10px;
+				font-size: $font_size_base;
+				font-weight: 700;
+			}
+		}
+	}
+}
+
+
+.conversation-disputed-typing {
+	background: #f7f7f7;
+	padding: 20px 30px;
+	border-top: 1px solid $color_top_shadow_base;
+	@media (max-width: 991px) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	@media (max-width: 767px) {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	textarea {
+		padding: 12px 10px;
+		width: 100%;
+		max-width: 100%;
+		min-height: 120px;
+		font-size: $font_size_medium;
+		color: $color_text_2;
+	}
+	input[type="submit"] {
+		margin-top: 16px;
+		min-width: 110px;
+	}
+}
+
+.disputed-attached-typing {
+	.fre-attached-list {
+		> li {
+			&:first-child {
+				margin-top: 16px;
+				padding-top: 16px;
+				border-top: 1px solid #dbdbdb; 
+			}
+			&:last-child {
+				padding-bottom: 4px;
+			}
+		}
+	}
+}
+
+.disputed-attach-file {
+	margin: 0 0 0 30px;
+	font-size: $font_size_medium;
+	font-weight: 400;
+	color: $color_text_2;
+	&:hover, &:focus {
+		color: $color_text_2;
+	}
+	i {
+		margin-right: 5px;
+	}
+	input[type="file"] {
+		display: none;
+	}
+}
+
+
+.disputed-information {
+	&.fade {
+		@media (max-width: 991px) {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 991px) {
+	/* .project-detail-box {
+		padding: 24px 30px 30px
+	} */
+}
+
+
+@media (max-width: 767px) {
+	.project-disputed-info-list {
+		> li {
+			width: 50%;
+			padding: 0;
+			margin: 20px 0 0;
+			&:first-child {
+				width: 100%;
+			}
+		}
+	}
+}

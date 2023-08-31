@@ -1,0 +1,21 @@
+//===
+//
+.fre-arbitrate-form {
+	p {
+		font-size: $font_size_medium;
+		color: $color_text_2;
+		line-height: 1.8em;
+	}
+	.arbitrate-option {
+		margin: 14px 0;
+		> p {
+			margin: 0 0 15px;
+		}
+		> div {
+			padding: 5px 0;
+		}
+	}
+	.fre-form-btn {
+		margin-top: 33px;
+	}
+}

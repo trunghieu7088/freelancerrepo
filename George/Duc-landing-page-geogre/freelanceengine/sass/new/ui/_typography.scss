@@ -1,0 +1,20 @@
+* {
+	outline: none;
+}
+
+select {
+	background: #FFF;
+	border: 1px solid #dbdbdb;
+	min-height: 24px;
+	color: $color_text_2;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0 !important;
+}
+.no-padding {
+	padding: 0 !important;
+}
+.no-padding-left {
+	padding-left: 0 !important;
+}

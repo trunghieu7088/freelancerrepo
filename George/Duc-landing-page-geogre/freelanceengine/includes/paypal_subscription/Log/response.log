@@ -1,0 +1,96 @@
+2020-05-04 13:37:36: Array
+(
+    [payment_cycle] => Monthly
+    [txn_type] => recurring_payment_profile_created
+    [last_name] => Staff
+    [next_payment_date] => 06:37:22 May 04, 2020 PDT
+    [residence_country] => US
+    [initial_payment_amount] => 0.00
+    [currency_code] => USD
+    [time_created] => 06:36:42 May 04, 2020 PDT
+    [verify_sign] => ADpdj91OO8diUuipx7iKZMZ18kxtAj0uhr-Jvc6jOi6GGkOEDrptIvlF
+    [period_type] =>  Regular
+    [payer_status] => verified
+    [test_ipn] => 1
+    [tax] => 0.00
+    [payer_email] => freelancer@etteam.com
+    [first_name] => Freelancer
+    [receiver_email] => webowner@et.com
+    [payer_id] => MFESFXF8A6TJW
+    [product_type] => 1
+    [payer_business_name] => Freelancer Staff\'s Test Store
+    [shipping] => 0.00
+    [amount_per_cycle] => 30.00
+    [profile_status] => Active
+    [charset] => windows-1252
+    [notify_version] => 3.9
+    [amount] => 30.00
+    [outstanding_balance] => 0.00
+    [recurring_payment_id] => I-18LAYUM6940P
+    [product_name] => Monthly
+    [ipn_track_id] => 2d86856342a22
+)
+
+Array
+(
+    [mc_gross] => 30.00
+    [period_type] =>  Regular
+    [outstanding_balance] => 0.00
+    [next_payment_date] => 03:00:00 Jun 04, 2020 PDT
+    [protection_eligibility] => Eligible
+    [payment_cycle] => Monthly
+    [address_status] => confirmed
+    [tax] => 0.00
+    [payer_id] => MFESFXF8A6TJW
+    [address_street] => 1 Main St
+    [payment_date] => 06:37:23 May 04, 2020 PDT
+    [payment_status] => Completed
+    [product_name] => Monthly
+    [charset] => windows-1252
+    [recurring_payment_id] => I-18LAYUM6940P
+    [address_zip] => 95131
+    [first_name] => Freelancer
+    [mc_fee] => 1.17
+    [address_country_code] => US
+    [address_name] => Freelancer Staff\'s Test Store
+    [notify_version] => 3.9
+    [amount_per_cycle] => 30.00
+    [payer_status] => verified
+    [currency_code] => USD
+    [business] => webowner@et.com
+    [address_country] => United States
+    [address_city] => San Jose
+    [verify_sign] => A7BjbPUaJ9eOZT3JB.XfW-iNB27xA0Pst5i4h1Vwgz7PwEuBvvN-PmSO
+    [payer_email] => freelancer@etteam.com
+    [initial_payment_amount] => 0.00
+    [profile_status] => Active
+    [amount] => 30.00
+    [txn_id] => 3MR516226E124540D
+    [payment_type] => instant
+    [payer_business_name] => Freelancer Staff\'s Test Store
+    [last_name] => Staff
+    [address_state] => CA
+    [receiver_email] => webowner@et.com
+    [payment_fee] => 1.17
+    [receiver_id] => Z78VLBZT7FN6G
+    [txn_type] => recurring_payment
+    [mc_currency] => USD
+    [residence_country] => US
+    [test_ipn] => 1
+    [transaction_subject] => Monthly
+    [payment_gross] => 30.00
+    [shipping] => 0.00
+    [product_type] => 1
+    [time_created] => 06:36:42 May 04, 2020 PDT
+    [ipn_track_id] => 2d86856342a22
+)
+
+Đặt câu hỏi:
+Giải quyết được vấn đề gì?
+Rất hạn chế.
+
+Những hạn chế:
+
+- Không thật sự hữu íchs đối với người dùng.
+- Dễ conflic với flow hiện tại => phát sinh bug.
+- Dễ gây nhầm lẫn với fre membership.

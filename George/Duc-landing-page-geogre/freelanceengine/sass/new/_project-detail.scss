@@ -1,0 +1,656 @@
+//=== Project detail
+//
+
+.fre-project-detail-wrap {
+	margin: 50px 0 0;
+	@media (max-width: 991px) {
+		margin-top: 30px;
+	}
+}
+.project-detail-box {
+	background: #FFF;
+    padding: 34px 40px 30px;
+    border-top: 1px solid $color_top_shadow_base;
+	@include box-shadow-profile();
+	+ .project-detail-box {
+		margin: 22px 0 0;
+	}
+}
+
+
+.project-detail-title {
+	margin: 0;
+	font-size: 20px;
+	font-weight: 700;
+	color: $color_text_2;
+	line-height: 1.45em;
+	a {
+		color: $color_text_2;
+	}
+}
+
+.project-bid-info-list {
+	margin: 0;
+	padding:0;
+	font-size: 0;
+	> li {
+		list-style-type: none;
+		display: inline-block;
+		padding-right: 50px;
+		margin: 30px 0 0;
+		vertical-align: top;
+		&:last-child {
+			padding-right: 0;
+		}
+		a {
+			span:hover {
+				color: $color_text_2;
+			}
+		}
+		span {
+			display: block;
+			&:first-child {
+				font-size: $font_size_medium;
+				color: $color_text_2;
+			}
+			&:last-child {
+				font-size: $font_size_large;
+				font-weight: 600;
+				margin: 4px 0 0;
+			}
+		}
+	}
+}
+
+.project-detail-posted {
+	margin: 6px 0 0;
+	font-size: $font_size_medium;
+	color: $color_text_2;
+	text-align: right;
+	line-height: 1.3em;
+}
+
+.project-detail-status {
+	display: block;
+	margin: 12px 0 0;
+	font-size: $font_size_large;
+	font-weight: 600;
+	color: $color_skin;
+	text-align: right;
+	line-height: 1em;
+}
+.project-detail-status span{
+	font-size: $font_size_base;
+	font-weight:400;
+	color:$color_text_2;
+	text-indent: 10px;
+}
+.project-detail-action {
+	margin: 18px 0 0;
+	text-align: right;
+	.fre-action-btn {
+		+ .fre-action-btn {
+			margin-left: 7px;
+		}
+	}
+	.fre-normal-btn {
+		min-width: 108px;
+		+ .fre-normal-btn {
+			margin-left: 7px;
+		}
+	}
+}
+
+
+.project-detail-desc {
+	padding: 34px 40px 36px;
+	font-size: $font_size_medium;
+	line-height: 1.8em;
+	border-bottom: 1px solid $color_top_shadow_base;
+	> h4 {
+		margin: 0 0 12px;
+		font-size: $font_size_large;
+		font-weight: 600;
+		color: $color_text_2;
+		line-height: 1.45em;
+	}
+}
+
+.project-detail-extend {
+	padding: 34px 40px 36px;
+}
+
+.project-detail-skill {
+	h4 {
+		margin: 0 0 8px;
+		font-size: $font_size_large;
+		font-weight: 600;
+		color: $color_text_2;
+		line-height: 1.45em;
+	}
+	.fre-label {
+		font-size: $font_size_base;
+		color: $color_text_2;
+		margin-top: 10px;
+	}
+}
+
+.project-detail-category {
+	margin: 46px 0 0;
+	h4 {
+		margin: 0 0 10px;
+		font-size: $font_size_large;
+		font-weight: 600;
+		color: $color_text_2;
+		line-height: 1.45em;
+	}
+	> a {
+		font-size: $font_size_medium;
+
+		line-height: 1.8em;
+		&:hover {
+
+		}
+	}
+}
+
+.project-detail-milestone {
+	margin: 40px 0 0;
+	h4 {
+		margin: 0 0 14px;
+		font-size: $font_size_large;
+		font-weight: 600;
+		color: $color_text_2;
+		line-height: 1.45em;
+	}
+}
+
+.project-detail-about {
+	margin: 38px 0 0;
+	h4 {
+		margin: 0 0 8px;
+		font-size: $font_size_large;
+		font-weight: 600;
+		color: $color_text_2;
+		line-height: 1.45em;
+	}
+}
+
+
+.project-employer-rating {
+	span {
+		padding: 6px 0;
+		margin-right: 30px;
+		display: inline-block;
+		font-size: $font_size_medium;
+		color: $color_text_2;
+		line-height: 1em;
+		&.rate-it {
+			font-size: $font_size_base;
+		}
+	}
+}
+
+.project-employer-since {
+	font-size: $font_size_medium;
+	color: $color_text_2;
+	line-height: 1em;
+	margin: 12px 0 0;
+	span {
+
+	}
+}
+
+
+.project-detail-attach {
+	margin: 20px 0 0;
+	padding: 0;
+	> li {
+		margin: 12px 0 0;
+		list-style-type: none;
+		display: block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		line-height: 1.3em;
+		&:first-child {
+			margin: 0;
+		}
+		a {
+			display: inline-block;
+			font-size: $font_size_medium;
+			font-weight: 600;
+			color: $color_skin;
+			i {
+				margin-right: 10px;
+			}
+		}
+	}
+}
+
+
+.freelancer-bidding-head {
+	border-bottom: 1px solid $color_top_shadow_base;
+	.col-free-bidding {
+		padding: 20px 0 20px 40px;
+		font-size: $font_size_base;
+		font-weight: 700;
+		color: $color_text_2;
+		line-height: 1em;
+	}
+	.col-free-reputation {
+		padding: 20px 0;
+		font-size: $font_size_base;
+		font-weight: 700;
+		color: $color_text_2;
+		line-height: 1em;
+	}
+	.col-free-bid {
+		padding: 20px 40px 20px 0;
+		font-size: $font_size_base;
+		font-weight: 700;
+		color: $color_text_2;
+		line-height: 1em;
+	}
+}
+
+.freelancer-bidding {
+	> .row {
+		position: relative;
+		&:last-child {
+			&:before {
+				display: none;
+			}
+		}
+		&:before {
+			width: calc(100% - 110px);
+			height: 1px;
+			background: $color_top_shadow_base;
+			position: absolute;
+			left: 55px;
+			bottom: 0;
+		}
+	}
+	.col-free-bidding {
+		padding: 32px 0 0 120px;
+		float: left;
+		position: relative;
+	}
+	.col-free-reputation {
+		padding: 28px 0 0 0;
+	}
+	.msg-secret-bid{
+		padding-top:50px;
+		float:left;
+	}
+	.col-free-bid {
+		padding: 32px 40px 0 0;
+	}
+	/* .free-ribbon {
+		float: left;
+		margin-left: 36px;
+	} */
+}
+
+.col-free-bidding {
+	h2 {
+		margin: -5px 0 0;
+		font-size: $font_size_large;
+		font-weight: 700;
+		line-height: 1.45em;
+		a {
+			color: $color_text_2;
+
+		}
+		a:first-letter {
+		    text-transform: uppercase;
+		}
+	}
+	> p {
+		margin: 0;
+		font-size: $font_size_medium;
+		color: $color_text_2;
+		line-height:1.6em;
+	}
+	+ .free-ribbon {
+		float: left;
+		margin-left: 36px;
+	}
+}
+
+.free-bidding-avatar {
+    display: block;
+    position: absolute;
+    top: 32px;
+    left: 40px;
+    width: 60px;
+    height: 60px;
+    img {
+    	width: 100%;
+    	height: auto;
+    	border-radius: 50%;
+    }
+}
+
+.col-free-reputation {
+	.rate-it {
+		margin: 0 0 4px;
+	}
+	p {
+		margin: 0;
+		font-size: $font_size_medium;
+		color: $color_text_2;
+		line-height: 1.6em;
+	}
+}
+
+
+.col-free-bid {
+	> p {
+		margin: 0;
+		font-size: 16px;
+		color: $color_text_2;
+		line-height: 1.6em;
+		b {
+			font-size: 22px;
+			font-weight: 600;
+			@media (max-width: 767px) {
+				font-size: 20px;
+			}
+		}
+	}
+	+ .free-ribbon {
+		float: left;
+		margin-left: 20px;
+		margin-top: 18px;
+	}
+}
+
+.col-content-bid {
+	clear: both;
+	padding: 12px 30px 12px 120px;
+	p {
+		font-size: $font_size_medium;
+		color: $color_text_2;
+		line-height: 1.8em;
+	}
+	.fre-normal-btn {
+		min-width: 134px;
+		margin-right: 8px;
+		margin-top: 16px;
+		margin-bottom: 16px;
+	}
+	.fre-normal-btn-o {
+		min-width: 114px;
+		margin-top: 10px;
+		margin-bottom: 16px;
+	}
+}
+
+.col-content-more {
+	color: $color_skin
+}
+
+.freelancer-bidding-not-found {
+	padding: 30px 0;
+	p {
+		margin: 0;
+		padding-left: 40px;
+		font-size: $font_size_medium;
+		color: $color_text_2;
+		line-height: 1.8em;
+	}
+}
+
+.fre-money-transfered {
+	font-size: $font_size_medium;
+	font-style: italic;
+	font-weight: 300;
+	color: $color_text_2;
+}
+
+.fre-transfer-money-info {
+	font-size: $font_size_medium;
+	p {
+		margin: 0;
+		color: $color_text;
+		line-height: 1.8em;
+	}
+}
+
+.transfer-budget, .transfer-commision {
+	padding: 20px 0 0;
+	color: $color_text;
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+	span {
+		display: block;
+		line-height: 1em;
+		&:first-child {
+			float: left;
+		}
+		&:last-child {
+			float: right;
+			font-weight: 600;
+		}
+	}
+}
+
+.transfer-amount {
+	margin: 26px 0 0;
+	padding: 26px 0 0;
+	border-top: 1px solid #dbdbdb;
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+	span {
+		display: block;
+		line-height: 1em;
+		&:first-child {
+			float: left;
+		}
+		&:last-child {
+			float: right;
+			font-weight: 600;
+			color: $color_skin;
+		}
+	}
+}
+
+@media (max-width: 991px) {
+	.project-detail-box {
+		padding: 24px 30px 30px
+	}
+	.project-detail-posted {
+		margin: 30px 0 0;
+		text-align: left;
+	}
+	.project-detail-status {
+		text-align: left;
+	}
+	.project-detail-action {
+		text-align: left;
+	}
+
+	.project-detail-desc {
+		padding: 24px 30px 26px;
+	}
+
+	.project-detail-extend {
+		padding: 24px 30px 26px;
+	}
+
+	.freelancer-bidding-head {
+		.col-free-bidding {
+			padding-left: 30px;
+		}
+		.col-free-bid {
+			padding-right: 30px;
+		}
+	}
+
+	.freelancer-bidding {
+		> .row {
+			position: relative;
+			&:last-child {
+				&:before {
+					display: none;
+				}
+			}
+			&:before {
+				width: calc(100% - 90px);
+				height: 1px;
+				background: $color_top_shadow_base;
+				position: absolute;
+				left: 45px;
+				bottom: 0;
+			}
+		}
+		.col-free-bidding {
+			padding-left: 110px;
+		}
+		.col-free-reputation {
+			padding-top: 18px;
+			padding-left: 30px;
+		}
+		.col-free-bid {
+			padding-right: 30px;
+		}
+	}
+
+	.free-bidding-avatar {
+		left: 30px;
+	}
+
+	.col-content-bid {
+		padding-top: 24px;
+		padding-left: 30px;
+	}
+
+	.col-free-reputation {
+		.rate-it {
+			display: inline-block;
+			margin-right: 30px;
+		}
+		p {
+			display: inline-block;
+			margin-right: 30px;
+		}
+	}
+
+
+}
+
+@media (max-width: 767px) {
+	.fre-project-detail-wrap {
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	.project-detail-box {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+
+	.project-bid-info-list {
+		> li {
+			width: 50%;
+			padding: 0;
+			margin: 20px 0 0;
+		}
+	}
+
+	.project-detail-posted {
+		margin: 20px 0 0;
+	}
+
+	.project-detail-desc {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.project-detail-category {
+		margin-top: 30px;
+	}
+
+	.project-detail-about {
+		margin-top: 28px;
+	}
+
+	.project-detail-extend {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.freelancer-bidding-head {
+		> .row {
+			margin: 0;
+		}
+		.col-free-bidding {
+			padding-left: 0;
+		}
+	}
+	.freelancer-bidding {
+		> .row {
+			position: relative;
+			margin: 0;
+			&:last-child {
+				&:before {
+					display: none;
+				}
+			}
+			&:before {
+				width: calc(100% - 30px);
+				height: 1px;
+				background: $color_top_shadow_base;
+				position: absolute;
+				left: 15px;
+				bottom: 0;
+			}
+		}
+		.col-free-bidding {
+			padding-left: 80px;
+			float: none;
+		}
+		.col-free-reputation {
+			padding-left: 0;
+		}
+		.col-free-bid {
+			padding-top: 18px;
+			padding-right: 0;
+			float: left;
+			p {
+				display: inline-block;
+				margin-right: 3px;
+			}
+		}
+		.col-content-bid {
+			padding-top: 14px;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	.col-content-bid {
+		.fre-normal-btn {
+			min-width: auto;
+			width: calc(50% - 7px);
+			margin-right: 5px;
+		}
+		.fre-normal-btn-o {
+			min-width: auto;
+			width: calc(50% - 7px);
+			margin-left: 5px;
+		}
+	}
+
+
+	.free-bidding-avatar {
+		left: 0;
+	}
+}

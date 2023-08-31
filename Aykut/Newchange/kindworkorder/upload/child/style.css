@@ -1,0 +1,51 @@
+/*
+
+Theme Name:     MicrojobEngine Child
+
+Theme URI:      http://enginetheme.com/
+
+Description:    Child theme for the MicrojobEngine theme
+
+Author: 		EngineThemes Team
+
+Author URI: 	http://www.enginethemes.com
+
+Template:       microjobengine
+
+Version:        1.0.1
+
+*/
+
+#et-nav .megamenu
+{
+	text-align:center;
+}
+#et-nav .megamenu .collapse
+{
+display: inline-block;
+padding-top:5px;
+}
+
+
+.form-custom-order .customOrderModal .form-group
+{
+	margin-bottom:25px !important;
+}
+
+.form-custom-order .customOrderModal .form-group input
+{
+	height:30px !important;
+}
+
+.form-custom-order .customOrderModal .form-group textarea
+{
+	height:50px !important;
+}
+#customOrderModal
+{
+	padding-top:40px !important;
+}
+#customOrderModal .modal-header
+{
+	padding:20px 50px !important;
+}

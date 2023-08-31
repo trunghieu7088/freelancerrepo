@@ -1,0 +1,228 @@
+//=== Button
+//
+.fre-btn {
+	display: inline-block;
+	width: auto;
+	height: 48px;
+	background: $color_btn;
+	padding-left: 22px;
+	padding-right: 22px;
+	font-size: 14px;
+	font-weight: 700;
+	color: $color_text_btn;
+	text-align: center;
+	border-radius: $border_radius_btn;
+	border: 2px solid $color_btn;
+	box-shadow: none;
+	line-height: 44px;
+	transition: 0.2s ease-out;
+	outline: none;
+	cursor: pointer;
+	&:hover, &:focus, &:active {
+		background: $color_text_btn;
+		color: $color_btn;
+	}
+}
+
+.fre-normal-btn {
+	display: inline-block;
+	width: auto;
+	height: 44px;
+	background: $color_btn;
+	padding-left: 22px;
+	padding-right: 22px;
+	font-size: 14px;
+	font-weight: 700;
+	color: $color_text_btn;
+	text-align: center;
+	border-radius: $border_radius_btn;
+	border: 2px solid $color_btn;
+	box-shadow: none;
+	line-height: 40px;
+	transition: 0.2s ease-out;
+	outline: none;
+	cursor: pointer;
+	&:hover, &:focus, &:active {
+		background: $color_text_btn;
+		color: $color_btn;
+	}
+}
+
+.fre-normal-btn-o {
+	display: inline-block;
+	width: auto;
+	height: 44px;
+	background: $color_text_btn;
+	padding-left: 22px;
+	padding-right: 22px;
+	font-size: $font_size_base;
+	font-weight: 700;
+	color: $color_btn;
+	text-align: center;
+	border-radius: $border_radius_btn;
+	border: 2px solid $color_btn;
+	box-shadow: none;
+	line-height: 40px;
+	transition: 0.2s ease-out;
+	cursor: pointer;
+	&:hover, &:focus, &:active {
+		background: $color_btn;
+		color: $color_text_btn;
+	}
+}
+
+.fre-normal-btn-disable {
+	@extend .fre-normal-btn;
+	background: $color_btn_disable;
+	border: 2px solid $color_btn_disable;
+	&:hover, &:focus, &:active {
+		background: $color_btn_disable;
+		color: $color_text_btn;
+		cursor: default;
+	}
+}
+
+.fre-btn-disable {
+	@extend .fre-btn;
+	background: $color_btn_disable;
+	border: 2px solid $color_btn_disable;
+	&:hover, &:focus, &:active {
+		background: $color_btn_disable;
+		color: $color_text_btn;
+	}
+}
+
+.fre-small-btn {
+	display: inline-block;
+	width: auto;
+	height: 38px;
+	background: $color_btn;
+	padding-left: 32px;
+	padding-right: 32px;
+	font-size: 16px;
+	font-weight: 600;
+	color: $color_text_btn;
+	text-align: center;
+	border-radius: $border_radius_btn;
+	border: 2px solid $color_btn;
+	box-shadow: none;
+	line-height: 34px;
+	transition: 0.2s ease-out;
+	outline: none;
+	cursor: pointer;
+	&:hover, &:focus, &:active {
+		background: $color_text_btn;
+		color: $color_btn;
+	}
+}
+
+.fre-submit-btn {
+	display: inline-block;
+	width: auto;
+	height: 48px;
+	background: $color_btn;
+	padding-left: 22px;
+	padding-right: 22px;
+	font-size: 16px;
+	font-weight: 600;
+	color: $color_text_btn;
+	text-align: center;
+	border-radius: $border_radius_btn;
+	border: 2px solid $color_btn;
+	box-shadow: none;
+	line-height: 46px;
+	transition: 0.2s ease-out;
+	outline: none;
+	cursor: pointer;
+	&:hover, &:focus, &:active {
+		background: $color_text_btn;
+		color: $color_btn;
+	}
+}
+
+.fre-btn-o {
+	display: inline-block;
+	width: auto;
+	height: 50px;
+	background: $color_text_btn;
+	padding-left: 22px;
+	padding-right: 22px;
+	font-size: $font_size_base;
+	font-weight: 700;
+	color: $color_btn;
+	text-align: center;
+	border-radius: $border_radius_btn;
+	border: 2px solid $color_btn;
+	box-shadow: none;
+	line-height: 46px;
+	transition: 0.2s ease-out;
+	cursor: pointer;
+	&:hover, &:focus, &:active {
+		background: $color_btn;
+		color: $color_text_btn;
+	}
+}
+
+.fre-service-btn {
+	display: inline-block;
+	width: auto;
+	height: 40px;
+	background: #FFF;
+	padding-left: 22px;
+	padding-right: 22px;
+	font-size: $font_size_base;
+	font-weight: 700;
+	color: #647585;
+	text-align: center;
+	border-radius: $border_radius_btn;
+	border: 2px solid $color_border_base;
+	box-shadow: none;
+	line-height: 36px;
+	transition: 0.2s ease-out;
+	cursor: pointer;
+	&:hover, &:focus, &:active {
+		background: #647585;
+		color: #FFF;
+		border-color: #647585;
+	}
+}
+
+.fre-action-btn {
+	display: inline-block;
+	width: auto;
+	height: 44px;
+	background: #FFF;
+	padding-left: 12px;
+	padding-right: 12px;
+	font-size: $font_size_base;
+	font-weight: 700;
+	color: $color_text_1;
+	text-align: center;
+	border-radius: $border_radius_btn;
+	border: 2px solid #dbdbdb;
+	box-shadow: none;
+	line-height: 40px;
+	transition: 0.2s ease-out;
+	cursor: pointer;
+	min-width: 106px;
+	&:hover, &:focus, &:active {
+		background: $color_text_1;
+		border: 2px solid $color_text_1;
+		color: #FFF;
+	}
+}
+
+@media (max-width: 991px) {
+	.fre-btn {
+		height: 46px;
+		line-height: 42px;
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+	.fre-btn-o {
+		height: 46px;
+		line-height: 42px;
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+}

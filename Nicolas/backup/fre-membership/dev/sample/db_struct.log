@@ -1,0 +1,10 @@
+membership();
+membership_order();
+
+membership(id, user_id, user_email, pack_type, order_id, is_sent_mail);
+membership_order(id, user_id, pack_sku, price, remain_posts, since_date, expiry_time, payment_gw,order_status,  auto_renew);
+một số thông tin riêng sẽ lưu vào bảng user_meta.
+
+
+test_membership(id,user_id,user_email,pack_type,order_id,expiry_time,is_sent_mail)
+test_membership(id,user_id,pack_sku,subscription_id,price,currency,remain_posts,since_date,expiry_time,payment_gw,order_status,auto_renew,test_mode)

@@ -1,0 +1,29 @@
+PARENT :
+
+INCLUDES > fre_credit > class-credit-history.php
+
+includes > projects.php
+
+CHILD :
+
+
+template > post-project-step3.php
+
+template > project-item.php
+
+template > single-project-info.php
+
+template-js > project-item.php
+
+archive-project.php
+
+functions.php
+
+home-list-projects.php
+
+list-projects.php
+
+single-project.php
+
+extra_option_project.php
+

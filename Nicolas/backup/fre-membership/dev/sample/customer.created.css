@@ -1,0 +1,88 @@
+2021-06-11 11:08:03: Stripe\Customer Object
+(
+    [id] => cus_JeKJfzkXKcQb54
+    [object] => customer
+    [account_balance] => 0
+    [address] => 
+    [balance] => 0
+    [cards] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeKJfzkXKcQb54/cards
+        )
+
+    [created] => 1623384480
+    [currency] => 
+    [default_card] => 
+    [default_source] => 
+    [delinquent] => 
+    [description] => 
+    [discount] => 
+    [email] => danhoat@gmail.com
+    [invoice_prefix] => 65D0276B
+    [invoice_settings] => Stripe\StripeObject Object
+        (
+            [custom_fields] => 
+            [default_payment_method] => 
+            [footer] => 
+        )
+
+    [livemode] => 
+    [metadata] => Stripe\StripeObject Object
+        (
+        )
+
+    [name] => 4242
+    [next_invoice_sequence] => 1
+    [phone] => 
+    [preferred_locales] => Array
+        (
+        )
+
+    [shipping] => 
+    [sources] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeKJfzkXKcQb54/sources
+        )
+
+    [subscriptions] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeKJfzkXKcQb54/subscriptions
+        )
+
+    [tax_exempt] => none
+    [tax_ids] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeKJfzkXKcQb54/tax_ids
+        )
+
+    [tax_info] => 
+    [tax_info_verification] => 
+)

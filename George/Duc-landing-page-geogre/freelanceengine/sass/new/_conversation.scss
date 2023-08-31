@@ -1,0 +1,274 @@
+//===
+//
+//
+.fre-conversation-wrap {
+	padding: 20px 0;
+}
+
+.fre-conversation-list {
+	margin: 0;
+	padding-left: 30px;
+	padding-right: 33px;
+	color: $color_text_2;
+	> li {
+		margin: 0 0 15px; 
+		position: relative;	
+		list-style-type: none;
+		padding-left: 82px;
+		padding-right: 52px;
+		min-height: 36px;
+		@media (max-width: 767px) {
+			padding-left: 36px;
+		}
+		&:after {
+			content: '';
+			display: table;
+			clear: both;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+		&.partner-message {
+			padding-left: 52px;
+			padding-right: 82px;
+			@media (max-width: 767px) {
+				padding-right: 36px;
+			}
+			.message-avatar {
+				right: initial;
+				left: 0;
+			}
+			.message-item {
+				float: left;
+				background: #f5f8fa;
+				&:after {
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 4px 15px 10px 0;
+					border-color: transparent #f5f8fa transparent transparent;
+					right: initial;
+					left: -12px;
+				}
+			}
+		}
+		&.message-time {
+			padding: 0;
+			text-align: center;
+			p {
+				margin: 0;
+				padding: 20px 0;
+				font-size: $font_size_medium;
+				color: $color_text_2;
+			}
+		}
+		&.message-none {
+			padding: 6px 0 0;
+			font-size: $font_size_medium;
+			color: #7b8d96;
+			text-align: center;
+			font-style: italic;
+			@media (max-width: 767px) {
+				padding-top: 0;
+			}
+		}
+		.message-avatar {
+			display: block;
+			width: 36px;
+			height: 36px;
+			position: absolute;
+			top: 3px;
+			right: 0;
+			img {
+				width: 100%;
+				height: auto;
+				border-radius: 50%;
+			}
+		}
+		.message-item {
+			position: relative;
+			float: right;
+			padding: 10px 15px;
+			background: #c7edfc;
+			font-size: $font_size_medium;
+			color: $color_text_2;
+			line-height: 1.8em;
+			p {
+				margin: 0;
+				position: relative;
+				i {
+
+				}
+			}
+			&:after {
+				content: '';
+				display: block;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 4px 0 10px 15px;
+				border-color: transparent transparent transparent #c7edfc;
+				position: absolute;
+				top: 6px;
+				right: -12px;
+			}
+		}
+		.message-item-file {
+			p {
+				position: relative;
+				padding-left: 40px;
+				i {
+					font-size: 24px;
+					color: $color_text_1;
+					position: absolute;
+					top: 50%;
+					left: 0;
+					transform: translateY(-50%);
+				}
+				span {
+					display: block;
+					color: $color_text_1;
+				}
+			}
+		}
+		&.milestone-item-noti {
+			font-size: $font_size_medium;
+			font-style: italic;
+			padding-left: 0;
+			padding-right: 0;
+			text-align: center;
+		}
+	}
+}
+
+
+
+.fre-conversation-disputed-list {
+	margin: 0;
+	padding-left: 40px;
+	padding-right: 27px;
+	@media (max-width: 991px) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	@media (max-width:767px) {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	> li {
+		margin: 0 0 20px; 
+		position: relative;	
+		list-style-type: none;
+		padding-left: 52px;
+		min-height: 36px;
+		@media (max-width: 767px) {
+			padding-left: 36px;
+		}
+		&:after {
+			content: '';
+			display: table;
+			clear: both;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+		&.partner-message {
+			.message-item {
+				background: #c7edfc;
+				&:after {
+					border-color: transparent #c7edfc transparent transparent;
+				}
+			}
+		}
+		&.admin-message {
+			.message-item {
+				background: #fce5e5;
+				&:after {
+					border-color: transparent #fce5e5 transparent transparent;
+				}
+			}
+		}
+		.message-avatar {
+			display: block;
+			width: 36px;
+			height: 36px;
+			position: absolute;
+			top: 3px;
+			left: 0;
+			img {
+				width: 100%;
+				height: auto;
+				border-radius: 50%;
+			}
+		}
+		.message-item {
+			position: relative;
+			float: left;
+			padding: 10px 15px;
+			background: #f5f8fa;
+			font-size: $font_size_medium;
+			color: $color_text_2;
+			line-height: 1.8em;
+			.author-message {
+				margin: 4px 0;
+				font-size: $font_size_medium;
+				color: $color_text_2;
+				font-weight: 700;
+				line-height: 1.3em;
+			}
+			.message-time {
+				display: block;
+				margin: 4px 0 0;
+				font-size: $font_size_base;
+				color: #6c7e87;
+			}
+			.message-file {
+				margin: 15px 0 0;
+				a {
+					color: $color_text_2;
+					i {
+						margin-right: 5px;
+						font-size: $font_size_large;
+					}
+				}
+				+ .message-file {
+					margin: 2px 0 0; 
+				}
+			}
+			p {
+				margin: 0;
+				position: relative;
+				i {
+
+				}
+			}
+			&:after {
+				content: '';
+				display: block;
+				width: 0;
+				height: 0;
+				border-style: solid;
+				border-width: 4px 15px 10px 0;
+				border-color: transparent #f5f8fa transparent transparent;
+				position: absolute;
+				top: 6px;
+				left: -12px;
+			}
+		}
+	}
+}
+
+
+@media (max-width: 991px) {
+	.fre-conversation-list {
+		padding-left: 20px;
+		padding-right: 23px;
+	}
+}
+
+@media (max-width: 767px) {
+	.fre-conversation-list {
+		padding-left: 15px;
+		padding-right: 15px; 
+	}
+}

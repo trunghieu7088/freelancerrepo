@@ -1,0 +1,118 @@
+/*!
+ * Style Sass All Pages Freelancer EngineThemes (http://enginethemes.com)
+ * 
+*/
+@import "_bootstrap";
+/*---------------------------
+  2.CUSTOM CSS FOR ALL PAGES
+--------------------------------*/
+//========== REFACTOR RE-DESIGN ==========//
+
+@import 'new/variable';
+
+
+@import "_pages";
+/*---------------------------
+  3.CUSTOMIZED BOOTSTRAP FOR PAGE
+--------------------------------*/
+@import "_customized";
+
+
+
+//========== REFACTOR RE-DESIGN ==========//
+
+// @import 'new/variable';
+
+@import 'new/mixins';
+
+//=== Style UI
+@import 'new/ui/ui';
+
+//=== Common
+//
+@import 'new/common';
+
+//=== Style WP
+//
+@import 'new/style-wp';
+
+//=== Hamburger Menu
+//
+@import 'new/hamburgers/hamburgers';
+
+//=== Owl Carousel
+//
+@import 'new/owl-carousel/owl.carousel';
+
+//=== Homepage
+//
+@import 'new/homepage';
+
+//=== Notification page
+//
+@import 'new/page-notification';
+
+//=== Authentication page
+//
+@import 'new/page-authentication';
+
+//=== Post project
+//
+@import 'new/post-project';
+
+//=== Purchase Package
+//
+@import 'new/purchase-package';
+
+
+//=== Project List
+//
+@import 'new/project-list';
+
+//=== Profile List
+//
+@import 'new/profile-list';
+
+//=== Footer
+//
+@import 'new/footer';
+
+
+
+//======== MODAL ========
+//
+@import 'new/modal/modal-add-portfolio';
+
+@import 'new/modal/modal-view-portfolio';
+
+@import 'new/modal/modal-invite';
+
+@import 'new/modal/modal-bid';
+@import 'new/modal/modal-arbitrate';
+
+
+//====== MY PROFILE ======
+//
+@import 'new/profile/profile-account';
+
+@import 'new/profile/profile-author';
+
+@import 'new/profile/my-work';
+
+//======= PROJECT DETAIL ======
+//
+@import 'new/project-detail';
+
+@import 'new/workspace-project';
+
+@import 'new/conversation';
+
+@import 'new/dispute-project';
+
+//====== MY CREDIT ======
+//
+@import 'new/my-credit';
+
+//====== PRIVATE MESSSAGE =====
+//
+@import 'new/private-message';

@@ -1,0 +1,803 @@
+//=== MY WORK
+//
+//
+.my-work-employer-wrap {
+	.fre-tabs {
+		margin-bottom: 40px;
+	}
+}
+
+
+.fre-work-package-wrap {
+	@include box-shadow-profile();
+	padding: 37px 40px;
+	background: #FFF;
+	margin-bottom: 60px;
+	@media (max-width: 991px) {
+		padding: 27px 30px;
+	}
+	@media (max-width: 767px) {
+		padding: 27px 15px;
+		margin-bottom: 20px;
+	}
+}
+
+.fre-work-package {
+	position: relative;
+	padding-right: 260px;
+	min-height: 44px;
+	@media (max-width: 991px) {
+		padding-right: 0;
+	}
+	p {
+		margin: 0;
+		font-size: $font_size_medium;
+		line-height: 1.65em;
+		color: $color_text_2;
+		+ p {
+			margin-top: 10px;
+		}
+	}
+	.fre-normal-btn-o {
+		height: 44px;
+		min-width: 182px;
+		line-height: 42px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		@media (max-width: 991px) {
+			position: initial;
+			margin-top: 24px;
+		}
+		@media (max-width: 767px) {
+			width: 100%;
+		}
+	}
+}
+
+
+.fre-work-project-box {
+	@include box-shadow-profile();
+	background: #FFF;
+	+ .fre-work-project-box {
+		margin-top: 22px;
+	}
+}
+
+.work-project-filter {
+	padding: 27px 40px;
+	> .row {
+		margin-left: -10px;
+		margin-right: -10px;
+		> div {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+	.chosen-container-single .chosen-search {
+		display: none;
+	}
+}
+
+
+.work-project-filter-clear {
+	display: inline-block;
+	margin: 10px 0 0;
+	font-size: $font_size_medium;
+	font-weight: 600;
+
+	line-height: 1em;
+	@media (max-width: 767px) {
+		margin-top: 2px;
+	}
+
+}
+
+.fre-table-head {
+	.project-title-col,
+	.project-bids-col,
+	.project-bid-col,
+	.project-budget-col,
+	.project-open-col,
+	.project-average-col,
+	.project-earn-col,
+	.project-status-col,
+	.project-action-col,
+	.project-review-col,
+	.project-start-col {
+		text-transform: uppercase;
+	}
+}
+
+.project-title-col {
+	text-align: left;
+	max-width: 380px;
+	a {
+		font-size: $font_size_medium;
+		font-weight: 600;
+		line-height: 1.8em;
+	}
+}
+
+.project-bids-col {
+	min-width: 180px;
+	> span {
+		display: none;
+	}
+}
+.project-budget-col {
+	> span {
+		display: none;
+	}
+}
+.project-open-col {
+	> span {
+		display: none;
+	}
+}
+.project-average-col {
+	min-width: 180px;
+	> span {
+		display: none;
+	}
+}
+.project-earn-col {
+	> span {
+		display: none;
+	}
+}
+
+.fre-table-row  {
+	.project-action-col {
+		padding-left: 40px;
+		text-align: right;
+	}
+	.project-action-two{
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+}
+
+.project-action-col {
+	min-width: 110px;
+	padding-left: 40px;
+	a {
+		display: inline-block;
+		width: auto;
+		height: 44px;
+		background: #FFF;
+		padding-left: 12px;
+		padding-right: 12px;
+		font-size: $font_size_base;
+		font-weight: 700;
+		color: $color_text_1;
+		text-align: center;
+		border-radius: $border_radius_btn;
+		border: 2px solid #dbdbdb;
+		box-shadow: none;
+		line-height: 40px;
+		transition: 0.2s ease-out;
+		cursor: pointer;
+		min-width: 120px;
+		&:hover, &:focus, &:active {
+			background: $color_text_1;
+			border: 2px solid $color_text_1;
+			color: #FFF;
+		}
+		+ a {
+			margin-top: 10px;
+		}
+	}
+	> p {
+		text-align: center;
+	}
+}
+
+.project-action-two {
+	position: relative;
+	min-width: 180px;
+	> a {
+		position: absolute;
+		bottom: calc(50% + 5px);
+		right: 40px;
+		@media (max-width: 1199px) {
+			position: initial;
+		}	
+		+ a {
+			bottom: initial;
+			top: calc(50% + 5px);
+			margin-top: 0; 
+		}
+	}
+}
+
+
+.project-title-archive {
+	font-size: $font_size_medium;
+	font-weight: 600;
+	color: $color_text_1;
+}
+
+.project-status-archive {
+	font-size: $font_size_medium;
+	color: $color_valid;
+}
+
+
+//=== PAST EMPLOYER PROJECT
+//
+//
+
+.previous-employer-project {
+	.fre-table-row {
+		.fre-table-col {
+			padding-top: 28px;
+			padding-bottom: 28px;
+		}
+		.project-start-col {
+			min-width: 180px;
+		}
+	}
+}
+
+.project-bid-col {
+	min-width: 160px;
+	span {
+		&:first-child {
+			display: none;
+		}
+		&:last-child {
+			display: block;
+			margin-top: 5px;
+		}
+	}
+}
+
+.project-review-col {
+	max-width: 360px;
+	text-align: left;
+	.rate-it {
+		font-size: $font_size_base;
+	}
+	p {
+		margin: 5px 0 0;
+		line-height: 1.6em;
+	}
+}
+
+.project-no-results {
+	display: block;
+	padding: 30px 40px;
+	font-size: $font_size_medium;
+	color: $color_text_2;
+}
+
+@media (max-width: 1199px) {
+	.current-employer-project {
+		.fre-table-head {
+			display: none;
+		}
+		.fre-table-row {
+			position: relative;
+			display: block;
+			.fre-table-col {
+				padding: 0 16px;
+			}
+		}
+		.fre-table-col {
+			display: inline-block;
+			border: none;
+			&.project-title-col {
+				display: block;
+				max-width: 100%;
+				padding: 34px 160px 0 40px;
+			}
+			&.project-bids-col {
+				padding-left: 40px;
+				border-right: 1px solid $color_text_2;
+				line-height: 1em;
+				margin-top: 16px;
+			}
+			&.project-budget-col {
+				border-right: 1px solid $color_text_2;
+				line-height: 1em;
+				margin-top: 16px;
+			}
+			&.project-open-col {
+				line-height: 1em;
+				margin-top: 16px;
+			}
+
+			&.project-status-col {
+				position: absolute;
+				top: 34px;
+				right: 40px;
+				padding: 0;
+			}
+
+			&.project-action-col {
+				display: block;
+				min-width: 100%;
+				padding: 14px 40px 40px; 
+				border-bottom: 1px solid $color_top_shadow_base;
+				text-align: left;
+			}
+		}
+	}
+
+	.project-bids-col {
+		text-align: left;
+		min-width: inherit;
+		> span {
+			display: inline-block;
+			padding-left: 6px;
+		}
+	}
+	.project-budget-col {
+		> span {
+			display: inline-block;
+			padding-right: 6px;
+		}
+	}
+	.project-open-col {
+		> span {
+			display: inline-block;
+			padding-right: 6px;
+		}
+	}
+
+	.project-average-col {
+		> span {
+			display: inline-block;
+			margin-right: 6px;
+		}
+	}
+
+	.project-action-col {
+		a {
+			margin-top: 10px;
+			margin-right: 10px;
+		}
+	}
+	
+	.previous-employer-project {
+		.fre-table-head {
+			display: none;
+		}
+		.fre-table-row {
+			position: relative;
+			display: block;
+			.fre-table-col {
+				padding: 0 16px;
+			}
+		}
+		.fre-table-col {
+			display: inline-block;
+			border: none;
+			&.project-title-col {
+				display: block;
+				max-width: 100%;
+				padding: 34px 40px 0 40px;
+			}
+			&.project-start-col {
+				padding-left: 40px;
+				border-right: 1px solid $color_text_2;
+				line-height: 1em;
+				margin-top: 16px;
+			}
+			&.project-bid-col {
+				border-right: 1px solid $color_text_2;
+				line-height: 1em;
+				margin-top: 16px;
+				min-width: initial;
+			}
+
+			&.project-status-col {
+				line-height: 1em;
+				margin-top: 16px;
+			}
+
+			&.project-review-col {
+				display: block;
+				min-width: 100%;
+				padding: 16px 40px 40px; 
+				border-bottom: 1px solid $color_top_shadow_base;
+				text-align: left;
+			}
+		}
+	}
+
+	.project-bid-col {
+		span {
+			&:first-child {
+				display: inline-block;
+				margin-right: 6px;
+			}
+			&:last-child {
+				display: inline-block;
+				margin-left: 6px;
+				margin-top: 0;
+			}
+		}
+	}
+
+
+	.current-freelance-project {
+		.fre-table-head {
+			display: none;
+		}
+		.fre-table-row {
+			position: relative;
+			display: block;
+			.fre-table-col {
+				padding: 0 16px;
+			}
+		}
+		.fre-table-col {
+			display: inline-block;
+			border: none;
+			&.project-title-col {
+				display: block;
+				max-width: 100%;
+				padding: 34px 160px 0 40px;
+			}
+			&.project-bids-col {
+				padding-left: 40px;
+				border-right: 1px solid $color_text_2;
+				line-height: 1em;
+				margin-top: 16px;
+			}
+			&.project-bid-col {
+				border-right: 1px solid $color_text_2;
+				line-height: 1em;
+				margin-top: 16px;
+			}
+			&.project-average-col {
+				line-height: 1em;
+				margin-top: 16px;
+			}
+
+			&.project-status-col {
+				position: absolute;
+				top: 34px;
+				right: 40px;
+				padding: 0;
+			}
+
+			&.project-action-col {
+				display: block;
+				min-width: 100%;
+				padding: 14px 40px 40px; 
+				border-bottom: 1px solid $color_top_shadow_base;
+				text-align: left;
+			}
+		}
+	}
+
+	.previous-freelance-project {
+		.fre-table-head {
+			display: none;
+		}
+		.fre-table-row {
+			position: relative;
+			display: block;
+			.fre-table-col {
+				padding: 0 16px;
+			}
+		}
+		.fre-table-col {
+			display: inline-block;
+			border: none;
+			&.project-title-col {
+				display: block;
+				max-width: 100%;
+				padding: 34px 40px 0 40px;
+			}
+			&.project-start-col {
+				padding-left: 40px;
+				border-right: 1px solid $color_text_2;
+				line-height: 1em;
+				margin-top: 16px;
+			}
+			&.project-earn-col {
+				border-right: 1px solid $color_text_2;
+				line-height: 1em;
+				margin-top: 16px;
+			}
+
+			&.project-status-col {
+				line-height: 1em;
+				margin-top: 16px;
+			}
+
+			&.project-review-col {
+				display: block;
+				min-width: 100%;
+				padding: 16px 40px 40px; 
+				border-bottom: 1px solid $color_top_shadow_base;
+				text-align: left;
+			}
+		}
+	}
+
+}
+
+
+@media (max-width: 991px) {
+	.my-work-employer-wrap {
+		.fre-tabs {
+			margin-bottom: 30px;
+		}
+	}
+	.work-project-filter {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	
+	.current-employer-project {
+		.fre-table-col {
+			&.project-title-col {
+				padding-top: 24px;
+				padding-left: 30px; 
+			}
+			&.project-status-col {
+				top: 24px;
+				right: 30px;
+			}
+			&.project-bids-col {
+				padding-left: 30px;
+			}
+			&.project-action-col {
+				padding-left: 30px;
+				padding-right: 30px;
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+	.previous-employer-project {
+		.fre-table-col {
+			&.project-title-col {
+				padding-top: 24px;
+				padding-left: 30px; 
+			}
+			
+			&.project-start-col {
+				padding-left: 30px;
+			}
+			&.project-review-col {
+				padding-left: 30px;
+				padding-right: 30px;
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+	.current-freelance	-project {
+		.fre-table-col {
+			&.project-title-col {
+				padding-top: 24px;
+				padding-left: 30px; 
+			}
+			&.project-status-col {
+				top: 24px;
+				right: 30px;
+			}
+			&.project-bids-col {
+				padding-left: 30px;
+			}
+			&.project-action-col {
+				padding-left: 30px;
+				padding-right: 30px;
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+	.previous-freelance-project {
+		.fre-table-col {
+			&.project-title-col {
+				padding-top: 24px;
+				padding-left: 30px; 
+			}
+			
+			&.project-start-col {
+				padding-left: 30px;
+			}
+			&.project-review-col {
+				padding-left: 30px;
+				padding-right: 30px;
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+}
+
+@media (max-width: 767px) {
+	.my-work-employer-wrap {
+		margin-left: -15px;
+		margin-right: -15px;
+		.fre-tabs {
+			margin-top: 20px;
+			margin-bottom: 30px;
+		}
+		.nav-tabs-my-work {
+			position: relative;
+	        text-align: center;
+	        > li {
+	          	display: none;
+	         	&.active {
+		            display: inline-block;
+		            text-align: center;
+		            float: none;
+		            a {
+		            	&:after {
+		            		height: 2px;
+		            	}
+		            }
+	          	}
+	          	&.prev {
+		            display: inline-block;
+		            position: absolute;
+		            top: 0;
+		            left: 0;
+		            padding-left: 13px;
+		            padding-right: 18px;
+		            a {
+		              	padding-left: 0;
+		              	padding-right: 10px;
+		              	&:before {
+			                content: "\f104";
+			                font-family: 'FontAwesome';
+			                font-size: 30px;
+			                font-weight: 300;
+			                color: #919191;
+			                line-height: 0.8em;
+		              	}
+		              	span {
+		                	display: none;
+		              	}
+		              	&:hover {
+			                background: none;
+			                border-color: transparent;
+		              	}
+		            }
+	          	}
+	          	&.next {
+		            display: inline-block;
+		            position: absolute;
+		            top: 0;
+		            right: 0;
+		            padding-right: 13px;
+		            padding-left: 18px;
+	            	> a {
+		              	padding-right: 0;
+		              	padding-left: 10px;
+		              	&:before {
+			                content: "\f105";
+			                font-family: 'FontAwesome';
+			                font-size: 30px;
+			                font-weight: 300;
+			                color: #919191;
+			                line-height: 0.8em;
+		              	}
+		              	span {
+		                	display: none;
+		              	}
+		              	&:hover {
+			                background: none;
+			                border-color: transparent;
+		              	}
+		            }
+	          	}
+	          	> a {
+	          		margin: 0;
+	          		// font-size: 16px;
+	          		padding: 0 0 7px;
+	          	}
+	        }
+		}
+	}
+	.work-project-filter {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.current-employer-project {
+		.fre-table-col {
+			&.project-title-col {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+			&.project-status-col {
+				position: initial;
+				top: initial;
+				right: initial;
+				display: block;
+				text-align: left;
+				padding: 25px 15px 0;
+			}
+			&.project-bids-col {
+				padding-left: 15px;
+			}
+			&.project-action-col {
+				padding-left: 10px;
+				padding-right: 10px;
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+	.previous-employer-project {
+		.fre-table-col {
+			&.project-title-col {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+			&.project-start-col {
+				padding-left: 15px;
+				min-width: auto;
+			}
+			&.project-review-col {
+				padding-left: 15px;
+				padding-right: 15px;
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+	.project-action-col {
+		font-size: 0;
+		a {
+			margin-top: 10px;
+			margin-right: 5px;
+			margin-left: 5px;
+			min-width: auto;
+			width: calc(50% - 10px);
+		}
+	}
+
+
+	.current-freelance-project {
+		.fre-table-col {
+			&.project-title-col {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+			&.project-status-col {
+				position: initial;
+				top: initial;
+				right: initial;
+				display: block;
+				text-align: left;
+				padding: 25px 15px 0;
+			}
+			&.project-bids-col {
+				padding-left: 15px;
+			}
+			&.project-action-col {
+				padding-left: 10px;
+				padding-right: 10px;
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+	.previous-freelance-project {
+		.fre-table-col {
+			&.project-title-col {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+			&.project-start-col {
+				padding-left: 15px;
+			}
+			&.project-review-col {
+				padding-left: 15px;
+				padding-right: 15px;
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+}

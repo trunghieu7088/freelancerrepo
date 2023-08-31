@@ -1,0 +1,31 @@
+2021-06-06 17:41:09: has HTTP_STRIPE_SIGNATURE
+2021-06-06 17:41:09: stripe_subscription event___:checkout.session.completed
+2021-06-06 17:41:09: has HTTP_STRIPE_SIGNATURE
+2021-06-06 17:41:09: stripe_subscription event___:customer.created
+2021-06-06 17:41:10: has HTTP_STRIPE_SIGNATURE
+2021-06-06 17:41:10: stripe_subscription event___:customer.subscription.created
+2021-06-06 17:41:10: customer.subscription.created
+2021-06-06 17:41:10: Sub ID: sub_JcYWj7tAtLhRX1 - Customer: cus_JcYWBjGHfnmcv8 -  Status: incomplete
+2021-06-06 17:41:10: customer.subscription.updated
+2021-06-06 17:41:10: Sub ID: sub_JcYWj7tAtLhRX1 - customer: cus_JcYWBjGHfnmcv8 -  Status: incomplete
+2021-06-06 17:41:10: subscription_id :sub_JcYWj7tAtLhRX1
+2021-06-06 17:41:37: has HTTP_STRIPE_SIGNATURE
+2021-06-06 17:41:37: stripe_subscription event___:customer.subscription.updated
+2021-06-06 17:41:37: customer.subscription.updated
+2021-06-06 17:41:37: Sub ID: sub_JcYWj7tAtLhRX1 - customer: cus_JcYWBjGHfnmcv8 -  Status: active
+
+2021-06-07 12:40:00: has HTTP_STRIPE_SIGNATURE
+2021-06-07 12:40:00: stripe_subscription event___:checkout.session.completed
+2021-06-07 12:40:00: has HTTP_STRIPE_SIGNATURE
+2021-06-07 12:40:00: stripe_subscription event___:customer.subscription.created
+2021-06-07 12:40:00: customer.subscription.created
+2021-06-07 12:40:00: Sub ID: sub_Jcqt6qoAn9myT9 - Customer: cus_Jcqt3I9VgBptrw -  Status: incomplete
+2021-06-07 12:40:00: customer.subscription.updated
+2021-06-07 12:40:00: Sub ID: sub_Jcqt6qoAn9myT9 - customer: cus_Jcqt3I9VgBptrw -  Status: incomplete
+2021-06-07 12:40:00: has HTTP_STRIPE_SIGNATURE
+2021-06-07 12:40:00: stripe_subscription event___:customer.created
+2021-06-07 12:40:00: subscription_id :sub_Jcqt6qoAn9myT9
+2021-06-07 12:40:00: has HTTP_STRIPE_SIGNATURE
+2021-06-07 12:40:00: stripe_subscription event___:customer.subscription.updated
+2021-06-07 12:40:00: customer.subscription.updated
+2021-06-07 12:40:00: Sub ID: sub_Jcqt6qoAn9myT9 - customer: cus_Jcqt3I9VgBptrw -  Status: active

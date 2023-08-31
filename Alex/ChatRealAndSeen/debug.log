@@ -1,0 +1,48 @@
+[14-Jul-2023 00:33:19 UTC] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 02:33:19 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 00:33:27 UTC] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 02:33:27 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 02:33:30 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:30 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:30 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:30 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:30 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:30 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:30 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:30 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 00:33:38 UTC] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 02:33:38 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 00:33:42 UTC] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 02:33:42 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 02:33:43 Europe/Paris] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.3.0". You are running 7.2.34. in /home/voixofb/www/voixoffmaster.com/wp-content/themes/microjobengine-child/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 02:33:51 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:51 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:51 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:51 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:51 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:51 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:51 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:51 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:51 Europe/Paris] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.3.0". You are running 7.2.34. in /home/voixofb/www/voixoffmaster.com/wp-content/themes/microjobengine-child/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 00:33:52 UTC] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.3.0". You are running 7.2.34. in /home/voixofb/www/voixoffmaster.com/wp-content/themes/microjobengine-child/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 02:33:52 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 02:33:53 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:53 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:53 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:53 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:53 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:53 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:53 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 223
+[14-Jul-2023 02:33:53 Europe/Paris] PHP Warning:  preg_match(): Compilation failed: nothing to repeat at offset 1 in /home/voixofb/www/voixoffmaster.com/wp-includes/class-wp.php on line 224
+[14-Jul-2023 02:33:53 Europe/Paris] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.3.0". You are running 7.2.34. in /home/voixofb/www/voixoffmaster.com/wp-content/themes/microjobengine-child/vendor/composer/platform_check.php on line 24
+[14-Jul-2023 00:33:59 UTC] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139
+[14-Jul-2023 02:33:59 Europe/Paris] PHP Warning:  Cannot modify header information - headers already sent in /home/voixofb/www/voixoffmaster.com/wp-content/plugins/nitropack/functions.php on line 2139

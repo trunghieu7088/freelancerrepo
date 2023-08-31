@@ -1,0 +1,23 @@
+.custom-field-wrapper {
+	margin: 34px 0 0;
+	color: $color_text_2;
+	span {
+		font-size: $font_size_medium;
+		line-height: 1.8em;
+	}
+	.ae-field-title {
+	    margin: 0 0 10px;
+	    font-size: $font_size_large;
+	    font-weight: 600;
+	    color: #415161;
+	    line-height: 1.45em;
+	    &:after {
+	    	content: '';
+	    	display: table;
+	    	clear: both;
+	    }
+	}
+	ul.tax-wrapper {
+		padding-top: 8px;
+	}
+}

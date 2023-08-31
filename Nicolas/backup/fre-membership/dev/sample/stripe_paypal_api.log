@@ -1,0 +1,16 @@
+$config = array(
+		'publishable_key' => 'pk_test_5103cqF2X7QLsSrwxSnBQs9mFgxhPCF2a6OKer0SPbVE7IpSWpFSsjN3WmeWCigTCngve0BRdLwNWqz6WHoD65OXa00JeOBaFYk', //pk_test_5103cqF2X7QLsSrwxSnBQs9mFgxhPCF2a6OKer0SPbVE7IpSWpFSsjN3WmeWCigTCngve0BRdLwNWqz6WHoD65OXa00JeOBaFYk
+		'secret_key' =>'sk_test_5103cqF2X7QLsSrwxEvJHNDLWvsItvlNs6uau2Voo7NmDwLYBPYQbcO3mkZebzowQCgzglhAJ9lPNkwiMFc4QSIKq008vczHdPt', //sk_test_5103cqF2X7QLsSrwxEvJHNDLWvsItvlNs6uau2Voo7NmDwLYBPYQbcO3mkZebzowQCgzglhAJ9lPNkwiMFc4QSIKq008vczHdPt
+		'signing_secret' => 'whsec_uFzm7bohurdrGJLtsnNQXriKSh5M3bJS',
+	);
+
+Quản lý PayPal payment:
+https://www.sandbox.paypal.com/merchantapps/appcenter/acceptpayments/recurringpayments
+
+Đăng ký API: https://www.sandbox.paypal.com/businessmanage/credentials/apiaccess
+Chọn: REST API integration
+
+
+LIve PayPa: https://developer.paypal.com/developer/applications/ vào đây để tạo APP API Credentials
+
+justify-content: center --- consider

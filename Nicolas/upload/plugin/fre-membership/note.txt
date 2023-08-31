@@ -1,0 +1,42 @@
+Modified Files :
+
+Parent theme:
+
+includes > notification.php > Done
+
+Plugin files( fre membership):
+
+assets > js > custom_discount.js > Done
+
+assets > js > membership.js > Done
+
+
+templates > checkout-form.php
+
+template > modal-subscriber-via-credit.php
+
+    them id #custom_price3
+	them id #discount_code_id_credit
+
+includes > class_membership_payment.php
+
+	them id #custom_price2
+
+includes > verify_paypal_response.php
+
+includes > discount_functions.php
+
+includes > front.php
+
+includes > class_membership_front.php
+
+includes > class_membership_payment.php
+
+assets > js > custom_discount.js
+
+discount-template.php
+
+template > modal-renew-discount.php
+
+
+

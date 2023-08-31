@@ -1,0 +1,41 @@
+Purchase Bid => Successful -> save Bid ID, package ID and expiry time.
+
+How to get bid from member ship :
+=> Check package id => Check available time => get number bid available.
+
+Trường hợp khách hàng đã có bid và muốn mua thêm:
+
+Membership Order:
+User ID - Pack id  - Exprite Time - Total Bid -   Remain Bid
+
+Metthod get number bid available:
+Select count() from membership_order where expiry_time > now();
+
+
+Câu hỏi:
+
+1) Chỉ gửi email tới người nào là membership( Người đã mua bid or package to post project) (Y/N) ?
+
+2) Chỉ gửi tới member mà tháng trước có order hay gửi email tới tất cả membership?
+
+
+Membership: Là những freelancer đã mua bid or những employer đã mua package để post project từ sau khi active plugin Fre Membership.
+
+
+Order type: bid_plan & pack
+
+How to check this:
+
+In page-process-payment.php file,
+$product = current( $order_data['products'] );
+$type    = $product['TYPE'];
+
+get_user_credit_number($user_ID): dùng để kiểm tra số credit( số bid - k phải số tiền - hệ thống tự động convert số bid thành số credit. ) của user hiện tại. Nếu credit > 0 => can bid. Nếu == 0 => mua bid.
+
+fre_update_after_bidding: hook dùng để update số credit = số bid sau khi bid.
+1 credit_number = 1 bid.
+
+can_user_bid: dùng để kiểm tra xem user có thể bid hay không khi enable pay_to_bid.
+
+ttttrunghieu@gmail.com
+LLamtrunghieu123456

@@ -1,0 +1,23 @@
+//===
+//
+//
+.mCSB_scrollTools {
+	width: 3px;
+}
+.mCSB_inside > .mCSB_container {
+	margin-right: 0;
+}
+
+.mCSB_scrollTools .mCSB_draggerRail {
+	background: #FFF;
+	width: 3px;
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+	background: #cfd8dc;
+	border-radius: 0;
+}
+.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
+.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{
+	background: #cfd8dc;
+	opacity: 1; 
+}

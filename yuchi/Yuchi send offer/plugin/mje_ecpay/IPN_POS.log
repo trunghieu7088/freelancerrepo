@@ -1,0 +1,20 @@
+IPN Response Array
+(
+    [CustomField1] => 
+    [CustomField2] => 
+    [CustomField3] => 
+    [CustomField4] => 
+    [MerchantID] => 2000132
+    [MerchantTradeNo] => WC2280TS8069152461
+    [PaymentDate] => 0001/01/01 00:00:00
+    [PaymentType] => Credit_CreditCard
+    [PaymentTypeChargeFee] => 5
+    [RtnCode] => 10100058
+    [RtnMsg] => 付款失敗
+    [SimulatePaid] => 0
+    [StoreID] => 
+    [TradeAmt] => 5
+    [TradeDate] => 2022/01/18 23:26:49
+    [TradeNo] => 2201182326490386
+    [CheckMacValue] => 0C5F52DBCE9F52FFA629E5846882ED91
+)

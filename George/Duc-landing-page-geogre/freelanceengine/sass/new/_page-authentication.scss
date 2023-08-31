@@ -1,0 +1,514 @@
+//=== Authentication
+//
+.fre-authen-wrapper {
+	padding-top: 80px;
+}
+//=== Login Page
+//
+.fre-authen-login {
+	background: #FFF;
+	margin: 0 auto;
+	padding: 40px 40px 0;
+	width: 482px;
+	height: auto;
+	// box-shadow: 0 1px 1px 0 rgba(#b9b8b8, 0.75);
+	@include box-shadow-authentication();
+	> h2 {
+		margin: 0 0 40px;
+		font-size: 26px;
+		font-weight: 600;
+		color: $color_text;
+		line-height: 1em;
+		text-align: center;
+	}
+	.fre-submit-btn {
+		width: 100%;
+		margin-top: 10px;
+	}
+
+	.fre-authen-footer {
+		padding: 30px 40px;
+		margin-left: -40px;
+		margin-right: -40px;
+		border-top: 1px solid $color_border_base;
+		&:after {
+			content: '';
+			display: table;
+			clear: both;
+		}
+		.not-yet-register {
+			float: left;
+			a {
+				font-size: $font_size_medium;
+				color: $color_text_2;
+				line-height: 1em;
+			}
+		}
+		.forgot-password {
+			float: right;
+			a {
+				font-size: $font_size_medium;
+				color: $color_text_2;
+				line-height: 1em;
+			}
+		}
+	}
+}
+
+.fre-login-social {
+	> p {
+		margin: 0;
+		padding-top: 20px;
+		font-size: $font_size_medium;
+		font-weight: 400;
+		color: $color_text_2;
+		line-height: 1em;
+	}
+}
+.login-social-list {
+	margin: 6px 0 0;
+	padding: 0 0 40px;
+	> li {
+		list-style-type: none;
+		display: inline-block;
+		min-width: 90px;
+		margin-top: 12px;
+		margin-right: 10px;
+		padding: 4px 8px 4px 4px;
+		border-radius: 3px;
+		font-size: $font_size_small;
+		color: #FFF;
+		line-height: 1em;
+		text-align: left;
+		&:last-child {
+			margin-right: 0;
+		}
+		a {
+			display: inline-block;
+			color: #FFF;
+			span {
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+		i {
+			display: inline-block;
+			font-size: 16px;
+			color: #FFF;
+			line-height: 1em;
+			margin-right: 8px;
+			vertical-align: middle;
+		}
+		&#facebook {
+			background: #5d82d1;
+		}
+		&#google {
+			background: #eb5e4c;
+		}
+		&#twitter {
+			background: #40bff5;
+		}
+		&#linkedin {
+			background: #0369a0;
+		}
+	}
+}
+
+
+
+//=== Register page
+//
+
+.fre-register-default {
+	background: #FFF;
+	margin: 0 auto;
+	padding: 40px 0 0;
+	width: 750px;
+	height: auto;
+	@include box-shadow-authentication();
+	> h2 {
+		margin: 0 0 40px;
+		font-size: 26px;
+		font-weight: 600;
+		color: $color_text;
+		line-height: 1em;
+		text-align: center;
+	}
+	.fre-authen-footer {
+		padding-top: 30px;
+		// padding: 30px 0;
+		text-align: center;
+		// border-top: 1px solid $color_border_base;
+		> p {
+			margin: 0;
+			padding: 30px 0 0;
+			font-size: $font_size_medium;
+			color: $color_text_2;
+			line-height: 1em;
+			border-top: 1px solid $color_border_base;
+		}
+		.login-social-list {
+			display: inline-block;
+			margin: 2px 0 0;
+			padding-bottom: 30px
+		}
+	}
+}
+
+.fre-register-wrap {
+	position: relative;
+	padding-top: 36px;
+	padding-bottom: 60px;
+	&:before {
+		content: '';
+		display: block;
+		width: 2px;
+		height: 100%;
+		border-right: 1px solid $color_border_base;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	.register-employer {
+		text-align: center;
+		padding: 0 60px;
+		h3 {
+			margin: 0 0 20px;
+			font-size: 20px;
+			font-weight: 600;
+			color: $color_text_2;
+			line-height: 1.15em;
+		}
+		p {
+			margin: 0;
+			font-size: $font_size_medium;
+			color: $color_text_2;
+			line-height: 1.6em;
+		}
+		.fre-small-btn {
+			margin-top: 24px;
+		}
+	}
+
+	.register-freelancer {
+		text-align: center;
+		padding: 0 60px;
+		h3 {
+			margin: 0 0 20px;
+			font-size: 20px;
+			font-weight: 600;
+			color: $color_text_2;
+			line-height: 1.15em;
+		}
+		p {
+			margin: 0;
+			font-size: $font_size_medium;
+			color: $color_text_2;
+			line-height: 1.6em;
+		}
+		.fre-small-btn {
+			margin-top: 24px;
+		}
+	}
+}
+
+
+
+//=== Register Employer, Freelancer
+//
+.fre-authen-register {
+	background: #FFF;
+	margin: 0 auto;
+	padding: 40px 40px 0;
+	width: 482px;
+	height: auto;
+	// box-shadow: 0 1px 1px 0 rgba(#b9b8b8, 0.75);
+	@include box-shadow-authentication();
+	> h2 {
+		margin: 0 0 40px;
+		font-size: 26px;
+		font-weight: 600;
+		color: $color_text;
+		line-height: 1em;
+		text-align: center;
+	}
+	.fre-btn {
+		width: 100%;
+		margin-top: 20px;
+		margin-bottom: 10px;
+		font-size: $font_size_medium;
+		font-weight: 600;
+	}
+	> p {
+		padding: 0 20px;
+		margin: 0 0 54px;
+		font-size: $font_size_medium;
+		line-height: 1.6em;
+		text-align: center;
+		> a {
+			font-weight: 600;
+		}
+	}
+	.fre-authen-footer {
+		padding: 30px 40px;
+		margin-left: -40px;
+		margin-right: -40px;
+		text-align: center;
+		border-top: 1px solid $color_border_base;
+		p {
+			margin: 0;
+			font-size: $font_size_medium;
+			line-height: 1em;
+		}
+	}
+}
+
+
+//=== Lost password
+//
+.fre-authen-lost-pass {
+	background: #FFF;
+	margin: 0 auto;
+	padding: 34px 40px 0;
+	width: 482px;
+	height: auto;
+	// box-shadow: 0 1px 1px 0 rgba(#b9b8b8, 0.75);
+	@include box-shadow-authentication();
+	> h2 {
+		margin: 0 0 40px;
+		font-size: 26px;
+		font-weight: 600;
+		color: $color_text;
+		line-height: 1em;
+		text-align: center;
+	}
+	> p {
+		margin: 0 0 32px;
+		font-size: $font_size_medium;
+		color: $color_text_2;
+		line-height: 1.8em;
+		text-align: center;
+		+ .fre-validate-error {
+			margin-top: -10px;
+		}
+	}
+	.fre-submit-btn {
+		width: 100%;
+		margin-top: 10px;
+	}
+	.fre-authen-footer {
+		padding: 30px 40px;
+		margin-left: -40px;
+		margin-right: -40px;
+		border-top: 1px solid $color_border_base;
+		text-align: center;
+		> p {
+			margin: 0;
+			font-size: $font_size_medium;
+			color: $color_text_2;
+			line-height: 1em;
+		}
+	}
+}
+
+
+.fre-authen-reset-pass {
+	background: #FFF;
+	margin: 0 auto;
+	padding: 34px 40px 20px;
+	width: 482px;
+	height: auto;
+	// box-shadow: 0 1px 1px 0 rgba(#b9b8b8, 0.75);
+	@include box-shadow-authentication();
+	> h2 {
+		margin: 0 0 40px;
+		font-size: 26px;
+		font-weight: 600;
+		color: $color_text;
+		line-height: 1em;
+		text-align: center;
+	}
+	.fre-submit-btn {
+		width: 100%;
+		margin-top: 10px;
+	}
+}
+
+
+//=== Registe with social
+//
+.fre-authen-social {
+	background: #FFF;
+	margin: 0 auto;
+	padding: 40px 40px 20px;
+	width: 482px;
+	height: auto;
+	@include box-shadow-authentication();
+	> h2 {
+		margin: 0 0 40px;
+		font-size: 26px;
+		font-weight: 600;
+		color: $color_text;
+		line-height: 1em;
+		text-align: center;
+	}
+	.fre-submit-btn {
+		width: 100%;
+		margin-top: 20px;
+	}
+	.chosen-search {
+		display: none;
+	}
+}
+
+@media (max-width: 991px) {
+	.fre-authen-login {
+		> h2 {
+			font-size: 24px;
+		}
+	}
+	.fre-register-default {
+		width: 100%;
+		> h2 {
+			font-size: 24px;
+		}
+	}
+	.fre-authen-register {
+		> h2 {
+			font-size: 24px;
+		}
+	}
+	.fre-authen-lost-pass {
+		> h2 {
+			font-size: 24px;
+		}
+	}
+	.fre-authen-reset-pass {
+		> h2 {
+			font-size: 24px;
+		}
+	}
+	.fre-authen-social {
+		> h2 {
+			font-size: 24px;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.fre-authen-wrapper {
+		padding-top: 40px;
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	.fre-authen-login {
+		width: 100%;
+		padding-top: 30px;
+		padding-left: 15px;
+		padding-right: 15px;
+		> h2 {
+			margin-bottom: 30px;
+		}
+		.fre-authen-footer  {
+			margin-left: -15px;
+			margin-right: -15px;
+			padding: 20px 15px;
+			.not-yet-register {
+				float: none;
+			}
+			.forgot-password {
+				float: none;
+				margin-top: 15px;
+			}
+		}
+	}
+
+	.fre-register-wrap {
+		position: relative;
+		padding-top: 0;
+		padding: 0 60px;
+		margin-bottom: 70px;
+		&:before {
+			content: '';
+			display: none;
+		}
+		.register-employer {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.register-freelancer {
+			margin-top: 50px;
+			padding-top: 50px;
+			padding-left: 0;
+			padding-right: 0;
+			border-top: 1px solid $color_border_base;
+		}
+	}
+
+	.fre-register-default {
+		padding-top: 30px;
+		.fre-authen-footer {
+			padding: 16px 15px 20px 15px;
+			> p {
+				line-height: 1.4em;
+			}
+		}
+	}
+
+	.fre-authen-register {
+		width: 100%;
+		padding: 30px 15px 0 15px;
+		> h2 {
+			margin-bottom: 30px;
+		}
+		.fre-authen-footer {
+			padding: 20px 15px;
+			margin-left: -15px;
+			margin-right: -15px;
+		}
+	}
+
+	.fre-authen-lost-pass {
+		width: 100%;
+		padding-top: 30px;
+		padding-left: 15px;
+		padding-right: 15px;
+		> h2 {
+			margin-bottom: 30px;
+		}
+		.fre-authen-footer  {
+			margin-left: -15px;
+			margin-right: -15px;
+			padding: 20px 15px;
+			.not-yet-register {
+				float: none;
+			}
+			.forgot-password {
+				float: none;
+				margin-top: 15px;
+			}
+		}
+	}
+
+	.fre-authen-reset-pass {
+		width: 100%;
+		padding-top: 30px;
+		padding-left: 15px;
+		padding-right: 15px;
+		> h2 {
+			margin-bottom: 30px;
+		}
+	}
+
+	.fre-authen-social {
+		width: 100%;
+		padding-top: 30px;
+		padding-left: 15px;
+		padding-right: 15px;
+		> h2 {
+			margin-bottom: 30px;
+		}
+	}
+}

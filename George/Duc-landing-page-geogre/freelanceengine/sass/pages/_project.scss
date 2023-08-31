@@ -1,0 +1,1168 @@
+.info-project-item ul.info-item,
+.list-share-social,
+.single-profile-content .single-profile,
+.single-profile-content .list-skill-profile ul,
+.profile-history .list-history-profile,
+.list-work-history-profile, .list-work-history-profile .info-history,
+.list-history-profile .info-history,
+.list-detail-info,
+.list-item-portfolio,
+.btn-menu-call,
+.menu-footer .main-menu-footer,
+.social-footer,
+.list-link-footer{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.btn-purchase-project-item{
+	/* -moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #e74c3c;
+	-moz-box-shadow: 0 2px 0 #bf392b;
+	-webkit-box-shadow: 0 2px 0 #bf392b;
+	box-shadow: 0 2px 0 #bf392b;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 300;
+	padding: 5px 6px;
+	vertical-align: sub;
+	position: relative;
+	margin-right: 5px;
+	  	&:focus, &:hover{
+		color: #fff;
+		text-decoration: none;
+		opacity: 0.8;
+	  	}
+	  	@media (max-width:$screen-sm-max){
+		margin-right: 4px;
+		padding: 5px 5px;
+	  	} */
+}
+
+.btn-open-msg-modal {
+	padding-top: 11px;
+	padding-bottom: 11px;
+}
+.list-detail-info {
+  	li {
+		display:block;
+		padding:13px 30px;
+		border-top: 1px solid #f4f6f8;
+		color: #656e78;
+		span{
+			&.text{
+				display:inline-block;
+				font-weight: 300;
+				font-size: 15px;
+			}
+		}
+		.text-right{
+			color: $blue-base;
+			font-size: 16px;
+			font-weight: 700;
+			display: inline-block;
+			vertical-align: middle;
+			float: right;
+		}
+		i {
+			display: inline-block;
+			min-width: 20px;
+			margin-right: 5px;
+			color: #90969b;
+		}
+		.rate-it{
+		  	display:inline-block;
+		  	float:right;
+	  		i{
+				margin:0;
+				min-width:0;
+	  		}
+		}
+  	}
+}
+.tab-content-project{
+	margin:30px 0 15px 0;
+}
+.row.title-tab-project{
+	padding: 0 10px 0 20px;
+}
+.single-project{
+  	.visibility-hidden{
+		visibility: hidden;
+  	}
+  	.author-link-project-item{
+		display: inline-block;
+		padding-left: 12px;
+  	}
+  	.time-post-project-item{
+		padding-left:17px;
+		display:block;
+		padding-top: 1px;
+  	}
+}
+.padding-pagiantion .paginations{
+  	padding: 20px 0 !important;
+}
+.single-projects, .info-bidding-wrapper{
+	display:block;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: $white-base;
+	/* 
+	-moz-box-shadow:  0 1px 1px rgba($gray-light,.2);
+	-webkit-box-shadow:  0 1px 1px rgba($gray-light,.2);
+	box-shadow:  0 1px 1px rgba($gray-light,.2); */
+	border-top: 1px solid #ededed; 
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(#b9b8b8, 0.75);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(#b9b8b8, 0.75);
+	box-shadow: 0px 1px 1px 0px rgba(#b9b8b8, 0.75);
+}
+.single-projects {
+  	.project-item {
+		padding:15px 30px;
+		border-bottom: 1px solid #f4f6f8;
+  	}
+  	.avatar-author-project-item {
+		display: inline-block;
+		overflow: hidden;
+		float: left;
+		width:30px;
+		height:30px;
+		margin-right: 15px;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		border-radius: 50%;
+		img{
+		  	width:100%;
+		  	height: auto;
+		}
+  	}
+  	.content-title-project-item {
+		margin-top: 0;
+		margin-bottom: 0;
+		display: inline-block;
+		width: 85%;
+		width:calc(100% - 45px);
+		font-size: $font-size-medium;
+		color: #30363c;
+		font-weight: 400;
+		line-height: 30px;
+  	}
+  	.author-link-project-item, .time-post-project-item {
+		font-weight: 300;
+		line-height: 30px;
+		font-size: $font_size_medium;
+		a{
+	  		color: #656e78;
+	  		font-size: $font-size-medium;
+		}
+  	}
+  	.budget-project-item {
+		color: $blue-base;
+		font-size: $font-size-base;
+		font-weight: 700;
+		padding-left: 20px;
+		line-height: 30px;
+  	}
+  	.btn-project-status {
+		// padding: 5px 30px !important;
+  	}
+  	.btn-apply-project-item, .btn-refund-project,.btn-excecute-project{
+		/* padding:5px 8px !important;
+		margin-right: 10px;
+		vertical-align:sub;
+		font-weight: normal;
+		letter-spacing: 1px; */
+  	}
+  	.btn-apply-project-item{
+		/* padding: 5px 15px;
+		min-width: 48px;
+		overflow: hidden; */
+  	}
+
+  	.info-project-item{
+		border-bottom:1px solid #f4f6f8;
+		.info-item{
+	  		padding-left: 30px;
+	  		> li{
+				display:inline-block;
+				vertical-align:middle;
+				margin-right:15px;
+				padding:10px 20px 10px 0;
+				border-right:1px solid #f4f6f8;
+				&:last-child{
+		  			margin-right:0;
+				}
+				.number-blue{
+			  		color: #3397db;
+			  		font-size: 22px;
+				}
+				.text-normal{
+				  	color: #656f77 !important;
+				  	font-size: $font-size-base !important;
+				  	margin-left:5px;
+				}
+	 		}
+		}
+		.info-project-item-right {
+		  	display:block;
+		  	float: right;
+		  	line-height: 50px;
+	  		.link-clone {
+				i {
+				  	display:inline-block;
+				  	margin-right:15px;
+				}
+	  		}
+	  		.list-share-social{
+				li {
+				  	border-left: 1px solid rgba($gray-light,.1);
+				  	padding: 0 16px;
+		  			i {
+						position: relative;
+						top:2px;
+		  			}
+		  			a {
+						color: #656f77;
+						font-size: 14px;
+		  			}
+				}
+	  		}
+		}
+ 	}
+
+  	.work-place-wrapper {
+		.list-chat-work-place {
+		  	.author-name {
+				font-weight: bold;
+				text-transform: capitalize;
+		  	}
+		  	.status {
+				color: $blue-light-base;
+		  	}
+		  	.changelog-time {
+				position: absolute;
+				right: 0px;
+				color: #90a4ae;
+				font-size: 12px;
+		  	}
+		}
+  	}
+  	.info-project-item-details {
+		padding:10px 30px 0 30px;
+		.content-require-project {
+		  	h4{
+				color: $blue-base;
+				font-size: 18px;
+				font-weight: 700;
+				margin:0 0 15px;
+		  	}
+		}
+		.content-require-project{
+	  		padding: 30px 30px 20px 0;
+	  		p{
+				color: #656f77;
+				font-size: $font-size-medium;
+				font-weight: 400;
+				line-height: 25px;
+				text-align: justify;
+	  		}
+		}
+		.list-require-skill-project, .list-file-attack-report{
+	  		margin-bottom: 25px;
+		}
+		.list-require-skill-project{
+		  	.list-project_category{
+				ul{
+				  padding-bottom: 1px;
+				}
+		  	}
+		}
+  }
+  	.content-require-skill-project{
+		padding-top: 30px;
+		h3, .title-content{
+		  	color: $blue-base;
+		  	font-size: $font-size-large;
+		  	font-weight: 700;
+		  	margin:0 0 15px;
+		}
+		.cat-list-milestone{
+		  	margin-top: 30px;
+		}
+		.workspace-link {
+			/* display: inline-block;
+			margin-bottom: 25px;
+			padding: 10px 15px;
+			border-radius: 4px;
+			background-color: #5d9468;
+			color: #FFF;
+			-webkit-box-shadow: 0 2px 0 #497552;
+			-moz-box-shadow: 0 2px 0 #497552;
+			box-shadow: 0 2px 0 #497552; */
+		}
+		.fre-normal-btn {
+			margin-bottom: 28px;
+		}
+		p {
+			font-size: 16px;
+		}
+  	}
+}
+
+.workplace-project-details {
+	.content-require-project{
+		padding-right: 30px;
+		&:last-of-type {
+		  border: none;
+		}
+		&.active {
+			.list-file-attack, .cat-list-milestone, .workplace-project-description {
+				display: block;
+			}
+			.workplace-title-arrow {
+				> span {
+					&:before {
+						display: none;
+					}
+					&:after {
+						display: block;
+					}
+				}
+			}
+			.workplace-title-wrap {
+				padding-bottom: 0;
+			}
+			&.content-require-project-attachment {
+				padding-bottom: 20px;
+			}
+		}
+		&.content-require-project-attachment {
+			.workplace-title-wrap {
+				border: none;
+			}
+		}
+		.workplace-title-wrap {
+			border-top: 1px solid #f4f6f8;
+			padding-top: 20px;
+			padding-bottom: 30px;
+		}
+		.workplace-title {
+		  position: relative;
+		}
+		h4{
+			display: inline-block;
+			color: #2c3d4f;
+			font-size: 18px;
+			font-weight: 700;
+			margin:0;
+			cursor: pointer;
+			&.title-content-milestone {
+				display: none;
+			}
+		}
+		.workplace-title-arrow {
+			position: absolute;
+			top: 50%;
+			right: 0;
+			transform: translateY(-50%);
+			> span {
+				display: inline-block;
+				width: 18px;
+				cursor: pointer;
+				text-align: right;
+				&:before {
+				  content: '\f054';
+				  font-family: 'FontAwesome';
+				  font-size: 12px;
+				}
+				&:after {
+				  display: none;
+				  content: '\f078';
+				  font-family: 'FontAwesome';
+				  font-size: 12px;
+				}
+			}
+		}
+		.list-file-attack {
+			margin: 10px 0 0;
+			display: none;
+			padding: 0;
+			> li {
+				position: relative;
+				padding: 10px 20px 10px 0;
+				list-style-type: none;
+				line-height: 1.2em;
+				border-bottom: 1px solid #f4f6f8;
+				&:first-child {
+					margin-top: 10px;
+				}
+				.fa-times {
+					position: absolute;
+					top: 50%;
+					right: 0;
+					transform: translateY(-50%);
+					color: #666f78;
+				}
+				&:last-child {
+					border: none;
+				}
+				.file-attack-name {
+					display: block;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					line-height: 1.6em;
+				}
+				.file-attack-time {
+					display: block;
+					line-height: 1.6em;
+					color: #737c85;
+				}
+			}
+		}
+		.cat-list-milestone {
+			display: none;
+		}
+		.workplace-project-description {
+			display: none;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		> a {
+			display: inline-block;
+			margin-bottom: 25px;
+			padding: 10px 15px;
+			border-radius: 4px;
+			background-color: #5d9468;
+			color: #FFF;
+			-webkit-box-shadow: 0 2px 0 #497552;
+			-moz-box-shadow: 0 2px 0 #497552;
+			box-shadow: 0 2px 0 #497552;
+		}
+	}
+	.cat-list-milestone{
+		margin-top: 24px;
+		margin-bottom: 30px;
+	}
+}
+
+.report-details {
+	.workplace-project-details .content-require-project {
+		padding-right: 0;
+	}
+}
+
+.attachment-default-list {
+	margin: 0;
+	padding: 0;
+	> li {
+		display: block;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		list-style-type: none;
+		padding: 8px 0;
+		i {
+			margin-right: 5px;
+		}
+	}
+}
+
+.single-project-wrapper{
+  	.title-tab-project{
+		span{
+		  	padding-left: 10px;
+		}
+  	}
+}
+
+.info-bidding-wrapper {
+  	.paginations-wrapper {
+		padding: 0px 30px 0px 30px;
+  	}
+  	&.freelancer-bidding {
+		.list-bidding{
+		  	border-bottom: 1px solid #ededed;
+		  	margin: 0px;
+		}
+  	}
+  	.list-bidding {
+		padding-top: 20px;
+		&:last-child{
+		  	border-bottom: none;
+		}
+  	}
+  	.bid_win{
+		.number-price-project {
+		  	span.number-price {
+				color: #00b0ff !important;
+		  	}
+		}
+  	}
+  	.bid_unaccepted{
+		.number-price-project{
+		  	span.number-price{
+				color: #666f78 !important;
+		  	}
+		}
+  	}
+  	.bid_hide, .bid_win{
+		.comment-author-history{
+		  	display: none;
+		}
+		.name-profile{
+		  	font-weight: 400;
+		}
+		.show-info{
+		  	display: block;
+		  	top: 20px;
+		  	color: #666f78;
+		  	font-size: 4px;
+		  	cursor: pointer;
+		}
+  	}
+  	.icon-show-info{
+		.number-price-project{
+		  	span.number-price{
+				color: #666f78;
+		  	}
+		}
+		.show-info {
+		  	display: block;
+		  	top: 20px;
+		  	color: #666f78;
+		  	font-size: 4px;
+		  	cursor: pointer;
+		}
+  	}
+  	.show-info{
+		position: absolute;
+		right: 10px;
+		display: none;
+		i{
+		  	padding-right: 2px;
+		}
+  	}
+  	.info-bidding{
+		display:block;
+		clear:both;
+		padding:0 30px 20px;
+		.rate-exp-wrapper{
+		  	.rate-it{
+				display:inline-block;
+				vertical-align:middle;
+				margin-right: 6px;
+				margin-bottom: 15px;
+		  	}
+		  	.experience{
+				display: inline-block;
+				position: relative;
+				bottom: 8px;
+		  	}
+		  	span{
+				display:inline-block;
+		  	}
+		}
+		.number-price-project, .action-employer-bidden{
+		  	display: inline-block;
+		}
+		.action-employer-bidden{
+		  	float: right;
+		}
+		.number-price-project{
+			color: #656f77;
+			font-size: 14px;
+			display:block;
+			text-align:center;
+			position:relative;
+			font-weight: 500;
+			vertical-align: top;
+			float: left;
+		  	span{
+				&.number-price{
+				  display:block;
+				  color: $blue-light-base;
+				  font-size: 22px;
+				  font-weight: 500;
+				}
+		  	}
+		  	.confirm{
+				clear: both;
+				display: block;
+				button{
+				  	margin-bottom: 2px;
+				}
+		  	}
+		  	.btn-accept-bid{
+				background-color: $orange-base;
+				-moz-box-shadow: 0 2px 0 $orange-darker-base;
+				-webkit-box-shadow: 0 2px 0 $orange-darker-base;
+				box-shadow: 0 2px 0 $orange-darker-base;
+				padding: 5px 20px;
+				position:absolute;
+				display:block;
+				top: 5px;
+				left: 25%;
+				margin-left: -20px;
+		  	}
+		}
+  	}
+  	.avatar-freelancer-bidding, .info-profile-freelancer-bidding{
+		float: left;
+		overflow: hidden;
+  	}
+  	.avatar-freelancer-bidding .avatar-profile{
+		width: 50px;
+		height: 50px;
+		display:inline-block;
+		float:left;
+		margin-right:15px;
+		img{
+			width:100%;
+			height:auto;
+			-moz-border-radius: 50%;
+			-webkit-border-radius: 50%;
+			border-radius: 50%;
+		}
+  	}
+  	.info-profile-freelancer-bidding {
+		width: 75%;
+		width: calc(100% - 65px);
+		.name-profile{
+		  color: $blue-base;
+		  font-size: $font-size-large;
+		  font-weight: 600;
+		}
+		.position-profile {
+		  color: $green-base;
+		  font-size: $font-size-small;
+		}
+  	}
+}
+
+#project_comment{
+	border-top: 1px solid #f4f6f8;
+	margin: 0 30px 30px 0;
+}
+.no-bid-found{
+  	padding: 25px;
+  	.btn-apply-project-item{
+		// padding: 5px 13px !important;
+  	}
+}
+.action-bid{
+	margin-top: 30px;
+	.padding-title{
+		padding-left: 20px;
+	}
+	.content-bid-action{
+		padding: 0 20px 5px 20px;
+		border-bottom: 1px solid #f4f6f8;
+	}
+	.buy-bid-action{
+		padding: 25px 20px;
+	}
+	p{
+		margin-bottom: 20px;
+	}
+	.title-name{
+		font-size: 16px;
+		margin-bottom: 15px;
+	}
+	.number{
+		font-size: 16px;
+		font-weight: 700;
+	}
+	.text-bold{
+		font-size: 16px;
+		font-weight: 700;
+	}
+	.text-italic{
+		font-style: italic;
+		font-size: 12px;
+	}
+	.btn-buy-bid{
+		background: #2ecc71;
+		-webkit-box-shadow: 0 2px 0 #249b56;
+		-moz-box-shadow: 0 2px 0 #249b56;
+		box-shadow: 0 2px 0 #249b56;
+		padding: 7px 10px;
+		color: #fff;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		border-radius: 4px;
+		margin-top: 20px;
+		&:hover, &:focus {
+		  opacity: 0.8;
+		}
+	}
+}
+
+.info-company-wrapper{
+	display:block;
+	width:100%;
+	background: $white-base;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: $white-base;
+	/* -moz-box-shadow: 0 1px 1px rgba($gray-light,.2);
+	-webkit-box-shadow: 0 1px 1px rgba($gray-light,.2);
+	box-shadow: 0 1px 1px rgba($gray-light,.2); */
+	border-top: 1px solid #ededed; 
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(#b9b8b8, 0.75);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(#b9b8b8, 0.75);
+	box-shadow: 0px 1px 1px 0px rgba(#b9b8b8, 0.75);
+  	.info-company-avatar{
+		padding:30px;
+		display:block;
+		.info-avatar{
+			display:inline-block;
+			vertical-align:middle;
+			float:left;
+			overflow:hidden;
+			width: 35px;
+			height: 35px;
+			margin-right:20px;
+			-moz-border-radius: 50%;
+			-webkit-border-radius: 50%;
+			border-radius: 50%;
+		  	img{
+				width:100%;
+				height: auto;
+		  	}
+		}
+		.time-since{
+			color:#737c85;
+			font-size:$font-size-small;
+			font-weight: 300;
+		}
+		.info-company{
+		  	display:inline-block;
+		  	vertical-align:middle;
+		  	width: 80%;
+		  	width: calc(100% - 55px);
+		}
+		.info-company-name{
+		  	margin:0 0 5px;
+		  	color: $blue-base;
+		  	font-size: $font-size-large;
+		  	font-weight: 600;
+		}
+  	}
+  	.list-info-company-details{
+		list-style:none;
+		padding:0;
+		margin:0;
+		li{
+			border-top:1px solid #f4f6f8;
+			padding: 13px 30px;
+			color: #90959a;
+			font-size: 16px;
+			font-weight: 400;
+	  		.address {
+				overflow: hidden;
+				> i {
+		  			margin-top: 3px;
+				}
+	  		}
+		  	.member-since {
+				overflow: hidden;
+				span{
+			  		&.title-name{
+						width: 60%;
+			  		}
+				  	&.info.addr {
+						width: 38%;
+				  	}
+				}
+		  	}
+		  	span{
+				&.title-name{
+				  float: left;
+				  width: 40%;
+				}
+				&.info{
+					color: $blue-base;
+					font-size: 16px;
+					font-weight: 700;
+					display: inline-block;
+					vertical-align: middle;
+					float: right;
+					white-space:nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					line-height: 25px;
+					max-width: 190px;
+			 		 &.addr {
+						vertical-align: top;
+						margin-left: 3px;
+						white-space: normal;
+						display:initial;
+						text-align: right;
+						width: 59%;
+						float: right;
+			  		}
+				}
+		  	}
+		  	i{
+				display:inline-block;
+				min-width:20px;
+				margin-right: 15px;
+				color: #90969b;
+		  	}
+		}
+  	}
+}
+
+.link-clone{
+  	float: left;
+  	margin-right:20px;
+}
+.project-comments {
+  	.et-comments-title{
+		border: none;
+		padding-bottom: 10px;
+  	}
+	.et-comment{
+		padding: 5px 0;
+		border-bottom: none;
+	}
+}
+blockquote{
+	background: none;
+	border-left: none;
+	margin: 0;
+	padding: 0px;
+	quotes: "\201C""\201D""\2018""\2019";
+	font-size: 14px;
+	margin-left: 60px;
+	:before{
+		content: open-quote;
+		line-height: 0.1em;
+	}
+	:after{
+		content: close-quote;
+		line-height: 0.1em;
+	}
+	p{
+		display: inline;
+		line-height: 25px;
+		font-weight: 300;
+		font-size: $font-size-base;
+	}
+}
+.must-log-in{
+	margin-top: 20px;
+}
+.list-bidding-js .item-js:first-child{
+	padding-top:0px;
+	border-top:none 
+}
+.list-bidding-js .item-js{
+	padding:20px 15px;
+	margin-left: 15px;
+	margin-right: 15px;
+	border-top:1px solid #f4f6f8;
+}
+.bid-form{
+	.error{
+		/* i, .message{
+			position: absolute;
+			z-index: 9;
+		}
+		i{
+			right: 15px !important;
+			bottom: 17px !important;
+		}
+		.message{
+			right: 0;
+		} */
+	}
+	.deadline{
+		/* i{
+			right: 26px !important;
+			bottom: 48px !important;
+		} */
+		.message{
+			// right: 12px;
+			// bottom: 5px;
+		}
+		.chosen-search {
+			display: none;
+		}
+	}
+  .post_content{
+	.message{
+	  margin-top: 0 !important;
+	}
+  }
+}
+
+//=== Custom field
+//
+.custom-field-wrapper {
+	margin-bottom: 30px;
+}
+
+.money-transfered-btn {
+	display: inline-block;
+	color: #2ecc71;
+	line-height: 30px;
+	margin-right: 10px;
+	&:before {
+		display: inline-block;
+		margin-right: 4px;
+		content: '\f058';
+		font-family: 'FontAwesome';
+	}
+}
+
+
+@media (max-width: 1199px) {
+	.info-company-wrapper .list-info-company-details li .address .addr-wrap {
+		width: 85%;
+	}
+  	.info-company-wrapper .list-info-company-details li span.info, .info-company-wrapper .list-info-company-details li {
+		font-size: 14px;
+		line-height: 20px;
+  	}
+}
+
+.not-have-bid{
+	background: #c0bfbf !important;
+	border-radius: $border-radius-base !important;
+	border: 2px solid #c0bfbf !important;
+	cursor: default;
+	&:hover {
+		color: #FFF !important;
+	}
+}
+.btn-fre-bid, .project-publish{
+	.popover{
+		width: 320px;
+		border-top: 1px solid #f44336 !important;
+		border: 1px solid #e9ecee;
+		box-shadow: none;
+	}
+  	.popover-content{
+		font-size: 13px;
+		&:before{
+			content: "\f05a";
+			font-family: 'FontAwesome';
+			color: #f44336;
+			padding-right: 8px;
+		}
+  	}
+  	@media (max-width:$screen-sm-max){
+		.popover{
+			right: 0;
+			left: inherit !important;
+		  	&.top > .arrow{
+				right: 25px;
+				left: inherit;
+		  	}
+		}
+  	}
+}
+.budget-bid{
+  	margin-bottom: 30px;
+  	.input-group-addon{
+		background: #f2f5f7;
+		font-size: 12px;
+  	}
+	input[type='number']{
+		margin-bottom: 0 !important;
+	}
+	.error{
+		.message{
+		bottom: -21px;
+		}
+	}
+}
+.btn-accept-bid{
+	/* -moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: #e74c3c;
+	-moz-box-shadow: 0 2px 0 #bf392b;
+	-webkit-box-shadow: 0 2px 0 #bf392b;
+	box-shadow: 0 2px 0 #bf392b;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 300;
+	padding: 5px 20px !important;
+	letter-spacing: 1.1px;
+	display: block;
+	margin-bottom: 10px; */
+	&.fre-small-btn {
+		font-size: $font_size_base;
+		font-weight: 500;
+		display: block;
+		padding-left: 12px;
+		padding-right: 12px;
+		margin: 0 auto;
+		height: 36px;
+		line-height: 32px;
+		min-width: 100px;
+	}
+	
+}
+.review-link{
+	margin-top: 10px;
+	font-size: 13px;
+}
+
+//===================================
+//=== Refactor fre
+//
+.heading-project {
+	position: relative;
+	.btn-post-project {
+		top: 6px !important;
+	}
+}
+.nav-tabs-project .nav-tabs.project {
+	display: none;
+}
+
+.project-report-quit {
+	padding-bottom: 20px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #f4f6f8;
+  	p {
+		color: $blue-base;
+		line-height: 1.8em;
+		> i {
+		  	font-size: 18px;
+		  	color: #eb6367;
+		  	margin-right: 6px;
+		}
+  	}
+  	a {
+		color:#1d8bdf;
+		&:hover {
+		  color:#1d8bdf;
+		}
+  	}
+}
+
+.project-report-arbitrate {
+	padding-bottom: 20px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #f4f6f8;
+	p {
+		color: $blue-base;
+		line-height: 1.8em;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		> i {
+			font-size: 18px;
+			color: #00b0ff;
+			margin-right: 6px;
+		}
+	}
+}
+
+
+@media (max-width: $screen-sm-max) {
+	.list-chat-work-place > li .form-group-work-place {
+		padding-left: 70px;
+	}
+	.workplace-project-details {
+		.content-require-project {
+			padding-left: 30px;
+		}
+	}
+	.info-bidding-wrapper {
+		.info-bidding {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.single-projects .budget-project-item {
+		padding-left: 0;
+		font-size: $font_size_medium;
+		font-weight: 400;
+		color: #30363c;
+		line-height: 38px;
+		> span {
+			margin-right: 10px;
+		}
+	}
+	.single-projects .time-post-project-item {
+		padding-left: 0;
+		font-weight: 400;
+		color: #30363c;
+		line-height: 38px;
+		> span {
+			margin-right: 10px;
+		}
+	}
+	.single-projects .avatar-author-project-item {
+		display: none;
+	}
+	.btn-fre-bid {
+		padding-top: 20px !important;
+	}
+	#project_comment {
+		margin-right: 0;
+	}
+	#commentform textarea {
+		width: 100% !important;
+	}
+	.cat-list-milestone > li .icon-status-milestone {
+		width: 20px;
+	}
+	.info-bidding-wrapper .info-profile-freelancer-bidding {
+		width: 100%;
+	}
+	.info-bidding-wrapper .avatar-freelancer-bidding {
+		display: none;
+	}
+
+	.info-bidding-wrapper .info-bidding .number-price-project {
+		margin-top: 15px;
+	}
+	.info-bidding-wrapper .info-bidding .action-employer-bidden {
+		margin-top: 15px;
+	}
+
+	.info-bidding-wrapper .info-bidding .action-employer-bidden .ribbon {
+		top: 10px;
+	}
+	.project-item {
+		.text-right.btn-fre-bid {
+			text-align: left;
+			padding-left: 15px !important;
+			padding-right: 15px !important;
+		}
+	}
+
+	.project-report-arbitrate {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+}

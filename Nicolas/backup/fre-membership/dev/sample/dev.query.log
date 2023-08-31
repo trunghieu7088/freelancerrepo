@@ -1,0 +1,8 @@
+struct db:
+membership(ID, user_id, user_email, user_login, pack_sku, available_date, expired_date, expire_time, remain_posts, status);
+
+
+2) Làm sao để get current package of employer or freelancer.
+=> Do website chỉ cho phép 1 role với 1 user, nên chỉ cần
+3) Sau khi upgarde, những quyền lợi của package cũ còn giá trị?
+=> Không, sau khi upgrade, những quyền lợi của plan cũ k còn giá trị.

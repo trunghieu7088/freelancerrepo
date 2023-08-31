@@ -1,0 +1,354 @@
+#pricing-tables {
+    background-color1: #eeeeee;
+    padding: 0 0 30px 0;
+    overflow: hidden;
+}
+@media screen and (max-width: 768px) {
+  #pricing-tables{
+    margin: 0 -15px;
+  }
+
+}
+@media screen and (min-width: 650px) and (max-width: 768px) {
+  .col-cs-33{
+    width: 33.3333%;
+    height: auto;
+  }
+   .col-cs-50{
+    width: 50%;
+    height: auto;
+  }
+}
+.single-table {
+  background: #fff;
+  border:  1px solid #f7f7f7;
+  transition: all 0.2s linear;
+  /* Bounce To Right */
+}
+.single-table:hover {
+  box-shadow: 0px 3px 3px 0px #888888;
+  transition: all 0.2s linear;
+}
+.single-table .plan-header {
+  background: #34495E;
+  color: #fff;
+  text-transform: capitalize;
+  padding: 2px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.single-table .plan-header h3 {
+    margin: 0;
+    padding: 20px 15px 5px 15px;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    overflow: hidden;
+
+}
+.single-table .plan-price {
+  color: #fff;
+  padding: 10px 0;
+  margin: 0;
+  font-size: 30px;
+  border-top: 2px solid #587ca0;
+  font-weight: bold;
+}
+.single-table .plan-price span {
+  font-size: 18px;
+  font-weight: normal;
+}
+.single-table ul {
+  margin: 0;
+  padding: 20px 0;
+  list-style: none;
+}
+ul.plan-features{
+    min-height: 99px;
+    border-bottom: 1px solid #dae2ea;
+}
+.single-table ul li {
+  padding: 8px 0;
+  margin: 0 20px;
+  border-bottom1: 1px solid #dae2ea;
+  font-size: 16px;
+  color: #415161;
+}
+.single-table .redirect-checkout {
+  display: inline-block;
+  text-decoration: none;
+  margin: 20px 0 30px 0;
+  padding: 10px 40px;
+  border: 1px solid #34495E;
+  color: #34495E;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.single-table .hvr-bounce-to-right {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+.single-table .hvr-bounce-to-right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #34495E;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+.single-table .hvr-bounce-to-right:hover,
+.single-table .hvr-bounce-to-right:focus,
+.single-table .hvr-bounce-to-right:active {
+  color: white;
+}
+.single-table .hvr-bounce-to-right:hover:before,
+.single-table .hvr-bounce-to-right:focus:before,
+.single-table .hvr-bounce-to-right:active:before {
+  transform: scaleX(1);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+body.has-membership-plans .blog-content{
+background: none !important;
+}
+body.has-membership-plans .block-page{
+  margin-top: 25px !important;
+}
+body .fre-normal-btn, .primary-bg-color, .fre-small-btn, .fre-submit-btn, body .fre-payment-list>li>.btn, body .fre-btn, body.fre-btn-disable, body .fre-payment-list>li>.btn {
+    background-color: #1fbdbd;
+    border-color: #1fbdbd;
+    outline: none;
+}
+.fre-post-project-box1{
+  overflow: hidden;
+}
+
+
+.fre-verify-box {
+    background: #FFF;
+    padding: 40px;
+    margin-bottom: 12px;
+    border-top: 1px solid #ededed;
+    -webkit-box-shadow: 0px 1px 1px 0px rgb(185 184 184 / 75%);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(185, 184, 184, 0.75);
+    box-shadow: 0px 1px 1px 0px rgb(185 184 184 / 75%);
+}
+.fre-verify-box h2{
+    margin: 0px 0 20px 0;
+    padding: 0px 0 25px 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1em;
+    color: #2c3e50;
+    border-top: none !important;
+    border-bottom: 1px solid #ededed;
+
+}
+
+
+.col-left-verify h2{
+border-bottom: 1px solid #ededed;
+}
+.col-left-verify li span{
+  min-width: 100px;
+  display: inline-block;
+}
+.fre-verify-box h2>span {
+    font-size: 16px;
+    font-weight: 400;
+    display: block;
+    margin: 8px 0 0;
+}
+.col-left-verify ul{
+  margin: 0;
+  padding: 0;
+}
+.col-left-verify ul li{
+  list-style: none;
+  padding: 5px 0;
+}
+.col-left-verify{
+  font-size: 16px;
+  float: left;
+}
+.col-right-verify{
+  float: right;
+}
+.col-right-verify.box-can-not-resubscriber{
+  padding-bottom: 15px !important;
+}
+.col-right-verify.box-can-not-resubscriber li{
+  padding: 0;
+  min-height: 70px;
+}
+.col-right-verify.box-can-not-resubscriber li h5{
+  line-height: 60px;
+  display: block;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+
+}
+ul li.subscription-change-explain{
+  padding: 0;
+  margin: 0;
+}
+ul li.subscription-change-explain h5{
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  bottom: -20px;
+  }
+@media screen and (min-width: 700px) {
+ .col-right-verify{
+  width: 60%;
+ }
+ .col-left-verify{
+    width: 35%;
+  }
+  #modalSubscriberViaCredit .fre-input-secure-code input {
+    max-width: 250px;
+  }
+}
+
+ body .fre-payment-list>li>form>button.btn{
+    color: #fff;
+    min-width: 130px;
+    position: absolute;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 44px;
+    line-height: 42px;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background: #1fbdbd;
+    padding-left: 22px;
+    padding-right: 22px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 4px;
+    border: 2px solid #1fbdbd;
+    outline: none;
+ }
+  body .fre-payment-list>li>form>button.btn:focus,
+  body .fre-payment-list>li>form>button.btn:hover{
+    outline: none;
+  }
+   body .subscription-payments>li>form>button.btn:hover:focus:active,
+   body .subscription-payments>li>button.btn:hover:focus:active,
+   body .subscription-payments>li>button.btn:focus:active,
+   body .subscription-payments>li>form>button.btn:focus:active {
+    outline: none !important;
+   }
+ .fre-payment-list>li>form>.btn.collapsed{
+  display: inline-block;
+
+ }
+body .fre-payment-list>li>form>.btn:hover {
+    color: #1fbdbd;
+}
+.fre-payment-list>li>form>.btn:hover {
+    background: #FFFFFF;
+    color: #1fbdbd !important;
+}
+.fre-pack-not-available h3{
+  font-size: 16px;
+}
+.btnSubscriberViaCredit{
+  z-index: 1000 !important;
+}
+#modalSubscriberViaCredit .modal-body{
+  padding-top: 20px;
+}
+.fre-input-secure-code label{
+  line-height: 2.5em !important;
+}
+.show_overview_subscribered p{
+  line-height: 2.5em !important;
+}
+#modalSubscriberViaCredit{
+  top: 10% !Important;
+}
+form.subscriber_credit p{
+  line-height1: 20px;
+}
+p.waring-lost-posts{
+  line-height: 30px;
+}
+.fa.fa-exclamation-triangle{
+  color: red;
+  margin-right: 2px;
+}
+
+.subscription-info{
+      font-size: 16px;
+    }
+    .subscription-info span.membership-label{
+      display: inline-block;
+      min-width: 140px;
+      font-weight: 400;
+      font-style: italic;
+      color: #9da4a9;
+  }
+  .subscription-info span.member-value{
+
+  }
+  .subscription-info p{
+    margin: 0;
+    padding: 15px 0 20px 0;
+  }
+  .profile-freelance-wrap .fre-profile-box{
+    margin-bottom: 22px;
+  }
+  .fre-membership-block .freelance-portfolio-add{
+    min-height: 44px;
+  }
+  .fre-submit-cancelmembership{
+    background-color: red !important;
+    border-color:red !important;
+  }
+  .subscription-info i{
+    font-weight: bold;
+  }
+  .subscription-info .pack-name-line {
+      border-bottom: 1px solid #ededed;
+      margin-left: -40px;
+      margin-right: 40px;
+      padding: 10px 40px 18px 40px;
+  }
+  .subscription-info .pack-name-line .member-value{
+    font-weight: bold;
+  }
+  .subscription-info p.df-text-show{
+    padding: 15px 0;
+  }
+.home .list-membership-plans{
+  margin-top: 35px;
+  margin-bottom: 25px;
+}
+.subscription-payments p{
+  font-size: 16px;
+}
+.list-membership-plans .membership-plan{
+  margin-bottom: 45px;
+}

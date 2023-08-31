@@ -1,0 +1,3 @@
+git tag -a Fre-Credit-v1.2.6 -m  "Fre-Credit-v1.2.6"
+git push origin --tags
+git diff --name-only --diff-filter=AM Fre-Credit-v1.2.5  HEAD > changelog-v1.2.6.txt

@@ -1,0 +1,194 @@
+2021-06-11 10:43:14: Stripe\Customer Object
+(
+    [id] => cus_JeJuw1a8qaVVDD
+    [object] => customer
+    [account_balance] => 0
+    [address] => Stripe\StripeObject Object
+        (
+            [city] => 
+            [country] => VN
+            [line1] => 
+            [line2] => 
+            [postal_code] => 
+            [state] => 
+        )
+
+    [balance] => 0
+    [cards] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeJuw1a8qaVVDD/cards
+        )
+
+    [created] => 1623382990
+    [currency] => 
+    [default_card] => 
+    [default_source] => 
+    [delinquent] => 
+    [description] => 
+    [discount] => 
+    [email] => danhoat@gmail.com
+    [invoice_prefix] => 78668364
+    [invoice_settings] => Stripe\StripeObject Object
+        (
+            [custom_fields] => 
+            [default_payment_method] => 
+            [footer] => 
+        )
+
+    [livemode] => 
+    [metadata] => Stripe\StripeObject Object
+        (
+        )
+
+    [name] => 4242
+    [next_invoice_sequence] => 1
+    [phone] => 
+    [preferred_locales] => Array
+        (
+        )
+
+    [shipping] => 
+    [sources] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeJuw1a8qaVVDD/sources
+        )
+
+    [subscriptions] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeJuw1a8qaVVDD/subscriptions
+        )
+
+    [tax_exempt] => none
+    [tax_ids] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeJuw1a8qaVVDD/tax_ids
+        )
+
+    [tax_info] => 
+    [tax_info_verification] => 
+)
+2021-06-11 10:48:41: Stripe\Customer Object
+(
+    [id] => cus_JeK0Jlv7zuvF7D
+    [object] => customer
+    [account_balance] => 0
+    [address] => Stripe\StripeObject Object
+        (
+            [city] => 
+            [country] => VN
+            [line1] => 
+            [line2] => 
+            [postal_code] => 
+            [state] => 
+        )
+
+    [balance] => 0
+    [cards] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeK0Jlv7zuvF7D/cards
+        )
+
+    [created] => 1623383317
+    [currency] => 
+    [default_card] => 
+    [default_source] => 
+    [delinquent] => 
+    [description] => 
+    [discount] => 
+    [email] => danhoat@gmail.com
+    [invoice_prefix] => D2813CF1
+    [invoice_settings] => Stripe\StripeObject Object
+        (
+            [custom_fields] => 
+            [default_payment_method] => 
+            [footer] => 
+        )
+
+    [livemode] => 
+    [metadata] => Stripe\StripeObject Object
+        (
+        )
+
+    [name] => 4242
+    [next_invoice_sequence] => 1
+    [phone] => 
+    [preferred_locales] => Array
+        (
+        )
+
+    [shipping] => 
+    [sources] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeK0Jlv7zuvF7D/sources
+        )
+
+    [subscriptions] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeK0Jlv7zuvF7D/subscriptions
+        )
+
+    [tax_exempt] => none
+    [tax_ids] => Stripe\Collection Object
+        (
+            [object] => list
+            [data] => Array
+                (
+                )
+
+            [has_more] => 
+            [total_count] => 0
+            [url] => /v1/customers/cus_JeK0Jlv7zuvF7D/tax_ids
+        )
+
+    [tax_info] => 
+    [tax_info_verification] => 
+)

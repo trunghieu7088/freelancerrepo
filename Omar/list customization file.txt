@@ -1,0 +1,46 @@
+Add custom fields to sign up form :
+
+includes > aecore > class-ae-users.php
+
+includes > modules > AE_Authentication > template > form-authTemplate.php
+
+
+
+
+Add text description to mjob category page at the bottom :
+
+child theme :
+
+taxonomy-mjob_category.php
+
+
+
+realtime chat :
+
+parent theme :
+
+includes > modules > MJE_Conversation > vendor ( pusher lib )
+
+includes > modules > MJE_Conversation > class-mje-conversation-action.php
+
+child theme : 
+
+assets 
+
+template
+
+vendor 
+
+header.php co code cua rieng no can phai giu
+
+functions.php
+
+page-realtime.php
+
+realtime-functions.php
+
+single-ae-message.php
+
+
+
+

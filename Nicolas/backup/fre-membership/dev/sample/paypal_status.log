@@ -1,0 +1,9 @@
+
+			// subscr_cancel subscr_failed  subscr_payment  subscr_signup subscr_eot
+
+			// subscr_signup: subscription sign-up.
+			// subscr_cancel: subscription cancellation.
+			// subscr_failed: subscription payment failure.
+			// subscr_payment: subscription payment.
+			// subscr_eot: subscription’s end-of-term.
+			// subscr_modify: subscription modification.

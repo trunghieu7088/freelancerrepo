@@ -1,0 +1,16 @@
+.tooltip {
+	min-width: 200px;
+	font-family: $font_family_base;
+	&.in {
+		opacity: 1;
+	}
+	.tooltip-inner {
+		padding: 10px;
+		background: $color_text;
+		font-size: $font_size_base;
+		line-height: 1.45em;
+	}
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: $color_text;
+}

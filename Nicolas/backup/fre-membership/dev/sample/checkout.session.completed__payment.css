@@ -1,0 +1,110 @@
+2021-06-11 11:08:04: Stripe\Checkout\Session Object
+(
+    [id] => cs_test_a1zxGEsMC2lVnbyu8VPFSkW0Mo5UNrfko3JvG8ypKzhsLt4ZzP1DjEyHAP
+    [object] => checkout.session
+    [allow_promotion_codes] => 
+    [amount_subtotal] => 100
+    [amount_total] => 100
+    [billing_address_collection] => 
+    [cancel_url] => https://mje.thuexephanrang.net/cancel/
+    [client_reference_id] => 1||onetime
+    [currency] => usd
+    [customer] => cus_JeKJfzkXKcQb54
+    [customer_details] => Stripe\StripeObject Object
+        (
+            [email] => danhoat@gmail.com
+            [tax_exempt] => none
+            [tax_ids] => Array
+                (
+                )
+
+        )
+
+    [customer_email] => danhoat@gmail.com
+    [livemode] => 
+    [locale] => 
+    [metadata] => Stripe\StripeObject Object
+        (
+        )
+
+    [mode] => payment
+    [payment_intent] => pi_1J11ep2X7QLsSrwx8kjb6hOB
+    [payment_method_options] => Array
+        (
+        )
+
+    [payment_method_types] => Array
+        (
+            [0] => card
+        )
+
+    [payment_status] => paid
+    [setup_intent] => 
+    [shipping] => 
+    [shipping_address_collection] => 
+    [submit_type] => 
+    [subscription] => 
+    [success_url] => https://mje.thuexephanrang.net/thankyou/
+    [total_details] => Stripe\StripeObject Object
+        (
+            [amount_discount] => 0
+            [amount_shipping] => 0
+            [amount_tax] => 0
+        )
+
+)
+2021-06-11 11:08:04: Stripe\Checkout\Session Object
+(
+    [id] => cs_test_a1zxGEsMC2lVnbyu8VPFSkW0Mo5UNrfko3JvG8ypKzhsLt4ZzP1DjEyHAP
+    [object] => checkout.session
+    [allow_promotion_codes] => 
+    [amount_subtotal] => 100
+    [amount_total] => 100
+    [billing_address_collection] => 
+    [cancel_url] => https://mje.thuexephanrang.net/cancel/
+    [client_reference_id] => 1||onetime
+    [currency] => usd
+    [customer] => cus_JeKJfzkXKcQb54
+    [customer_details] => Stripe\StripeObject Object
+        (
+            [email] => danhoat@gmail.com
+            [tax_exempt] => none
+            [tax_ids] => Array
+                (
+                )
+
+        )
+
+    [customer_email] => danhoat@gmail.com
+    [livemode] => 
+    [locale] => 
+    [metadata] => Stripe\StripeObject Object
+        (
+        )
+
+    [mode] => payment
+    [payment_intent] => pi_1J11ep2X7QLsSrwx8kjb6hOB
+    [payment_method_options] => Array
+        (
+        )
+
+    [payment_method_types] => Array
+        (
+            [0] => card
+        )
+
+    [payment_status] => paid
+    [setup_intent] => 
+    [shipping] => 
+    [shipping_address_collection] => 
+    [submit_type] => 
+    [subscription] => 
+    [success_url] => https://mje.thuexephanrang.net/thankyou/
+    [total_details] => Stripe\StripeObject Object
+        (
+            [amount_discount] => 0
+            [amount_shipping] => 0
+            [amount_tax] => 0
+        )
+
+)

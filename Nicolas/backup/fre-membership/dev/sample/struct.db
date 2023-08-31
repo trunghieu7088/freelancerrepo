@@ -1,0 +1,23 @@
+
+membership{
+	id,
+	user_email,
+	user_login,
+	membership_plan_id,
+	membership_plan_status,
+	is_send_email,
+	auto_renew,
+}
+member_order{
+	id,
+	user_id,
+	order_date,
+	epxired_date,
+	pack_type,
+	pack_sku,
+	expired_time,
+	number_pos,
+	order_status,
+}
+
+kiểm tra số bid.

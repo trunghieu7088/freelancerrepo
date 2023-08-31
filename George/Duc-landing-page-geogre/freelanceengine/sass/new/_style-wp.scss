@@ -1,0 +1,37 @@
+//=== Style WP
+//
+.wp-editor-wrap {
+	width: 100%;
+	> .wp-editor-container {
+		> .mce-panel {
+			border: 1px solid $color_border_base;
+		}
+	}
+}
+
+.error {
+	.wp-editor-wrap {
+		> .wp-editor-container {
+			> .mce-panel {
+				border: 1px solid $color_valid;
+				.mce-toolbar-grp {
+					border-bottom: 1px solid $color_valid;
+				}
+				.mce-statusbar {
+					border-top: 1px solid $color_valid;	
+				}
+			}
+		}
+	}
+}
+
+.calendar_wrap {
+	background: #FFF;
+}
+
+.widget_calendar {
+	td {
+		padding: 5px;
+		text-align: center;
+	}
+}

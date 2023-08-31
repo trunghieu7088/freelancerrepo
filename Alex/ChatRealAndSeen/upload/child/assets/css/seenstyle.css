@@ -1,0 +1,37 @@
+.text-seen-custom
+{
+    color:#10a2ef;
+    margin-top:-15px;
+    font-weight:600;
+    margin-bottom:10px;
+    
+}
+   .single-seenlabel
+     {
+         color:#10a2ef;
+         padding-right:140px;
+         margin-top:-15px;
+         margin-bottom:10px;
+         font-weight:600;
+     }
+    
+@media (min-width: 1200px){
+    .text-seen-custom
+    {
+        margin-right:140px !important;
+    }
+}
+@media (max-width: 991px){
+        .text-seen-custom
+    {
+        margin-right:20% !important;
+    }
+          
+    }
+    @media (max-width: 767px){
+        .text-seen-custom
+    {
+        margin-right:5px !important;
+    }
+          
+    }

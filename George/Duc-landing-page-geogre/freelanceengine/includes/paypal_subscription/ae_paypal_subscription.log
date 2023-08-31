@@ -1,0 +1,12 @@
+có 2 cách để ẩn credit button.
+https://webmasters.stackexchange.com/questions/119007/how-can-i-disable-the-paypal-credit-button
+2) define funnding trong method: render
+style: {
+ layout: 'horizontal',
+ fundingicons: 'true',
+},
+funding: {
+ allowed: [ paypal.FUNDING.CARD ],
+ disallowed: [ paypal.FUNDING.CREDIT ]
+}
+tut: https://developers.bluesnap.com/v8976-JSON/docs/subscription-management

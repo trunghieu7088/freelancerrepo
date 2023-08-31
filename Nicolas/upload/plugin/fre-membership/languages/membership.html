@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FrE Membership</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+  <style>
+
+
+/*
+Based on Minimal CSS (minimalcss.com) under the MIT license.
+*/
+
+/* Reset */
+* { margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+/* Layout */
+body { background-color: #fff; color: #333;	font: 14px/20px -apple-system, "HelveticaNeue", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+
+header { width: 100%; margin: 0 auto; position: relative; padding: 20px 0; margin-bottom: 20px; }
+
+nav ul { margin: 0; }
+nav ul li { display: inline; margin-right: 20px; font-size: 16px; line-height: 28px; color: #333; }
+nav ul li a { color: #333; }
+
+.container { position: relative; max-width: 90%; margin: 0 auto; }
+
+footer { border-top:1px solid #ccc; font-size:11px; line-height:26px; color:#999; }
+footer a { color:#999999; }
+footer a:hover { color:#105CB6; }
+footer ul li { display:inline; list-style:none; padding-left:20px; }
+
+/* Typography */
+a { color: #105CB6; text-decoration: none; }
+a:hover, a:focus { color: #105CB6; text-decoration: underline; }
+a:active { color: #105CB6; }
+
+h1 { font-size: 24px; line-height: 20px; margin: 10px 0; }
+h2 { font-size: 20px; line-height: 20px; margin: 10px 0; }
+h3 { font-size: 16px; line-height: 20px; margin: 10px 0; }
+h4 { font-size: 14px; line-height: 20px; margin: 10px 0; }
+h5 { font-size: 12px; line-height: 20px; margin: 10px 0; }
+h5 { font-size: 10px; line-height: 20px; margin: 10px 0; }
+h1,h2,h3,h4,h5,h6 { color: #333; }
+
+p { margin-bottom: 10px; }
+
+.float-left     { float: left; }
+.float-right    { float: right; }
+img.float-left  { float: left; margin: 0 20px 20px 0; }
+img.float-right { float: right; margin: 0 0 20px 20px; }
+img.center      { margin: 0 auto; display: block; }
+
+.text-left    { text-align: left; }
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* Misc */
+hr { background-color: #ccc; border: 0px; color: #ccc; height: 1px; margin: 8px 0 20px 0; }
+pre, code { background:#E0ECF6; display:block; margin-bottom: 20px; padding:10px; }
+
+blockquote { margin: 10px 10px 20px; padding: 9px; background-color: #f8f8f8; color: #666; border-left: 5px solid #ddd; font: 14px/20px Georgia, Times, serif; quotes: "\201C" "\201D"; }
+blockquote p { margin: 0; }
+blockquote:before { content: open-quote; font-weight: bold; }
+blockquote:after  { content: close-quote; font-weight: bold; }
+
+/* List */
+ul { list-style-position:inside; }
+ol { list-style-position:inside; }
+
+/* Table */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th { font-weight: bold; }
+tfoot { font-style: italic; }
+
+/* Metadata part */
+
+.metadata {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 90%;
+}
+table.metadata td {
+  padding-right: 20px;
+}
+
+.stats {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+.graph {
+  width: 100%;
+}
+.graph div { float: left; }
+.graph div:first-child { border-top-left-radius: 3px; border-bottom-left-radius: 3px; }
+.graph div:last-child { border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.percent-done    { background-color: rgb(90, 228, 140); height: 10px; }
+.percent-fuzzy   { background-color: rgb(255, 167, 52); height: 10px; }
+.percent-untrans { background-color: #F1F1F1; height: 10px; }
+.legend {
+  font-size: smaller;
+  color: #aaa;
+  padding-top: 12px;
+  text-align: center;
+}
+
+/* Translations */
+table.translations {
+  width: 100%;
+  table-layout: fixed;
+}
+table.translations th, table.translations td {
+  padding: 5px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #E1E1E1;
+}
+table.translations th {
+  text-align: left;
+}
+table.translations th:first-child, table.translations td:first-child { padding-left: 0; }
+table.translations th:last-child, table.translations td:last-child { padding-right: 0; }
+
+.with-comments td {
+  border-bottom: none !important;
+}
+tr.comments div {
+  float: left;
+  max-width: 90%;
+  font-size: smaller;
+  color: #aaa;
+}
+tr.comments div p:last-child { margin-bottom: 0; }
+tr.comments td { padding-top: 0; }
+
+.fuzzy .tra {
+  color: rgb(218, 123, 0);
+}
+
+.msgctxt {
+  color: rgb(70, 109, 137);
+  font-size: smaller;
+  background-color: rgb(217, 232, 242);
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin-right: 4px;
+}
+
+
+  </style>
+</head>
+<body>
+<div class='container'>
+<table class='metadata'>
+<tr><td>Project:</td><td>FrE Membership</td></tr>
+<tr><td>Language:</td><td>English</td></tr>
+</table>
+<div class='stats'>
+  <div class='graph'>
+    <div class='percent-untrans' style='width: 100%'>&nbsp;</div>
+  </div>
+  <div class='legend'>Translated: 0 of 188 (0 %)  •  Remaining: 188  </div>
+</div>
+<table class='translations'>
+  <thead>
+    <tr>
+      <th>Source text — English</th>
+      <th>Translation — English</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Select page</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Membership </td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Membership</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Number of users per page</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Search results for "%s"</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Search Users</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+&lt;a href="%s" target="_blank"&gt;View profile&lt;/a&gt;</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Username</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Email</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Start Registered</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Expiration Date</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscription Info</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscription Status</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Auto Renew</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+All &lt;span class="count"&gt;(%s)&lt;/span&gt;</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+%s &lt;span class="count"&gt;(%s)&lt;/span&gt;</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+No users found .</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Admin's email who will receive the notification</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Set admin's emails who will receive the notification. Each email is separated by comma(s).</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+abc@example.com, cde@example.com </td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Membership Email Template</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Mail description here</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You can use placeholders to include some specific content.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+user's details you want to send mail</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+ Plan info</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+New Subscriber.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Send to buyer after subscriber successful.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscription will expire soon email.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Send to membership when subscription will expire soon in next time.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscription auto renew success</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Send to membership when their subscription has been auto renewed by auto deduct credit.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Auto renew email template to</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscription auto renew fail</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Send to membership when their subscription will expired today and [no enough credit to renew or inactive the fre_credit extension].</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Cancel subscription notify admin email</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Send to admin when member has canceled subscription.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Cancel subscription notify subscriber email</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Send to subscriber when member canceled subscription.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Payment Sanbox(Test Mode)</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+membership_mode</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Enable Stripe Payment Gateway</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Enabling this will allow checkout via stripe.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Enable Stripe</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Test Stripe Publishable key</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Test Stripe Secret key</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Test Signing secret</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Visit &lt;a href="https://dashboard.stripe.com/test/webhooks"&gt;Webhook&lt;/a&gt; to get Test Signing secret</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Live Stripe Publishable key</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Live Stripe Secret key</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Live Signing secret</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Visit &lt;a href="https://dashboard.stripe.com/webhooks"&gt;Webhook&lt;/a&gt; to get Live Signing secret</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Redirect URI</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Endpoint URL in Webhook settings</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Stripe API</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Enable PayPal PayMent Gateway</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Enabling this will allow checkout via PayPal.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Enable PayPal</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Sandbox PayPal Business Email</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Sandbox Client ID</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Sandbox Secret</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Live PayPal Business Email</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Live Client ID</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Live Secret</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+SKU</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Stripe Pricing ID</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Plan name</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Sub title plan</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Price</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscription time</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Acquired bids for this plan</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+bids</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Short description about this plan</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Save Package</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Cancel</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Enter a name for your plan</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Sub title</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscription Time</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Save Plan</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Number project can post.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Project duration</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+days</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Project type</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Select project type</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+posts</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+GET STATRTED</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+%s&lt;span&gt;/Month&lt;/span&gt;</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+FREE</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+%s&lt;span&gt;/%d Months&lt;/span&gt;</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+%s&lt;span&gt;/1 Year&lt;/span&gt;</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+ SUBSCRIBED</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+This project requires at least one avaialble bid to take bid action. You can get available bids by subscribe to a plan.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscribe</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Sorry. Please subscriber to get more more post.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You are subscribed &lt;b&gt;%s&lt;/b&gt; plan. You have &lt;span&gt;&lt;b&gt;%d&lt;/b&gt;&lt;/span&gt; available bid(s) left.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You have &lt;b&gt;%d&lt;/b&gt; bid(s) left. Subscribe to a plan to get more bids.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You are subscribed &lt;b&gt;%s&lt;/b&gt; plan. You have &lt;span&gt;&lt;b&gt;%d&lt;/b&gt;&lt;/span&gt; available post(s) left.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You have &lt;b&gt;%d&lt;/b&gt; post(s) left. Subscribe to a plan to get more posts.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You have &lt;b&gt;%d&lt;/b&gt; post(s) left. Subscribe to a plan to get more bids.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Renewal Date</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription is available.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription is expired. Your can check &lt;a href="%s"&gt;membership plans&lt;/a&gt; and subscribe to a plan.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Expired At</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You are not subscribed any plan. You can Check &lt;a href="%s"&gt;membership plans&lt;/a&gt; and subscribe to a plan.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscription Details</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Plan Name</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+PayPal</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Send your payment via PayPal.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Stripe</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Send your payment via Stripe.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+SELECT</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Credit</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You are not enought credit to subscribe this plan. Please deposit credit first.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+DEPOSIT</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+System auto deduct %s in your credit blance.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+There is no payment gateway available for subscribe at this time.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Note: All available post of your current subscription will be lost if you change your subscription.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Fail. There is something wrong.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Please enter a valid secure code!</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription has been updated</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Fail.This plan is not availble.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription has been updated.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription are still available. Your can not re-subcribe this plan.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your balance is not enough. Please deposit first then subscribe again.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Thankyou. Your subscription has been updated.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Can not update your subscription.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your have disabled auto renewal your subscription.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Check and send expiring soon email for Membership.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription will expire soon.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Could not renew your subscriptoin.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription has been renewed</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Thank you for your subscribe</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+There is new subscriber on your website</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscriber has disabled auto-renewal.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription has been disable auto-renewal</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription will expire soon</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+%s on %s</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription has been renewed successful</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Can not auto renew your subscription</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription has been renewed successful.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Number days send notification before</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Number day system check and send notification email to membership who will expired within this number days.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Set number day the system auto check and send notification.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+7</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Number free projects can post per month for Employer account</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Number free projects can post per month for Employer account.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+0</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Membership Page</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Select a page for your users to show list membership plans. (Only pages having shortcode [fre_membership_plans] are displayed here.)</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Membership Checkout Page</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Select a page for your users to show the checkout form. (Only pages having shortcode [fre_membership_checkout] are displayed here.)</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+eg:deposit</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Successful Checkout Return Page</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Select a page for your users to show the checkout form. (Only pages having shortcode [membership_successful_return] are displayed here.)</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Debug Log File</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Membership Settings</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+General Settings </td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Payment Gateway</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Employer Membership Plans</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Freelancer Membership Plans</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Membership Plans</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Email Settings</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+MEMBERSHIP</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Bridging the gap between Employers and Freelancers</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Membership Plan Info</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+&lt;span&gt;Name:&lt;/span&gt; &lt;strong&gt;%s&lt;/strong&gt;</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+&lt;span&gt;Price: &lt;/span&gt;&lt;strong&gt;%s&lt;/strong&gt;</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Payment Method</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Select your most appropriate payment method</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You are subscribed this plan so can not subscribe again.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+There are something wrong</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+This plan is not avaible. Select another plan and &lt;a href="%s"&gt;get started&lt;/a&gt;.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Disable Auto Renewal</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+You subscription will be renewed at &lt;strong&gt;%s&lt;/strong&gt;. Are you want to disable auto renewal?</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Confrim</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Skip</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Are you sure want to continue ?</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Subscribe By Using Credit Wallet.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Once you allow, System auto deduct &lt;strong&gt;%s&lt;/strong&gt; in your balance.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+important: %d posts(bids) of your current subscription %s  will be lost if you change your subscription.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your secure code:</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Thank you for your subscribe.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription has been updated successfully.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Plan Name:</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Start Date:</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Expiration date:</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Total:</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Your subscription is now available in the system.</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+<tr class='i untrans'>
+<td class='src'  lang='en'>
+Home</td>
+<td class='tra'  lang='en'>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

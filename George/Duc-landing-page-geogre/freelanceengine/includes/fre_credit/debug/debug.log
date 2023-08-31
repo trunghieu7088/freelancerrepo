@@ -1,0 +1,10 @@
+https://domain.com/index.php/process-payment/?paymentType=paypal&order-id=2169
+track_log
+https://domain.co/wp-content/et_track_payment.lock
+
+ae_process_payment
+PayPal:
+
+duocnv: check_ipn_response
+
+defautl: do_checkout_get_back

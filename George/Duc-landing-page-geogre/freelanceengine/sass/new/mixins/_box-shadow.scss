@@ -1,0 +1,20 @@
+//=== Box shadhow form authentication
+//
+@mixin box-shadow-authentication() {
+	-webkit-box-shadow: 0px 1px 1px 0px rgba($color_shadow_base, 0.75);
+	-moz-box-shadow: 0px 1px 1px 0px rgba($color_shadow_base, 0.75);
+	box-shadow: 0px 1px 1px 0px rgba($color_shadow_base, 0.75);
+}
+
+@mixin box-shadow-dropdown() {
+	-webkit-box-shadow: 0px 2px 2px 0px rgba($color_border_base, 0.75);
+	-moz-box-shadow: 0px 2px 2px 0px rgba($color_border_base, 0.75);
+	box-shadow: 0px 2px 2px 0px rgba($color_border_base, 0.75);
+}
+
+@mixin box-shadow-profile() {
+	border-top: 1px solid $color_top_shadow_base;
+	-webkit-box-shadow: 0px 1px 1px 0px rgba($color_shadow_base, 0.75);
+	-moz-box-shadow: 0px 1px 1px 0px rgba($color_shadow_base, 0.75);
+	box-shadow: 0px 1px 1px 0px rgba($color_shadow_base, 0.75);
+} 

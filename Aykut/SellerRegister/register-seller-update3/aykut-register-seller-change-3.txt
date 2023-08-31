@@ -1,0 +1,10 @@
+Freelancer, sole trader and enterprise giong nhau ve tinh chat va dieu kien
+
+Only that the field "Umsatzsteuernummer" gets renamed to 
+"Handelsregisternummer" when "enterprise" or "sole trader" are chosen
+
+in profile page va trang register seller page.
+
+
+
+

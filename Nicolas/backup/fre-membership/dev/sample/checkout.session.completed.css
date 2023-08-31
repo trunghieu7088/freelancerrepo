@@ -1,0 +1,55 @@
+2021-06-11 09:19:01: Stripe\Checkout\Session Object
+(
+    [id] => cs_test_a1AWPX0IRhzA1E09Zv3RseJvrhsud3Hx2DEVWZXXhecK5URiUthnj5f5cx
+    [object] => checkout.session
+    [allow_promotion_codes] => 
+    [amount_subtotal] => 1000
+    [amount_total] => 1000
+    [billing_address_collection] => 
+    [cancel_url] => https://mje.thuexephanrang.net/cancel/
+    [client_reference_id] => 1||sku_double
+    [currency] => usd
+    [customer] => cus_JeIYutfIrNMyJS
+    [customer_details] => Stripe\StripeObject Object
+        (
+            [email] => danhoat@gmail.com
+            [tax_exempt] => none
+            [tax_ids] => Array
+                (
+                )
+
+        )
+
+    [customer_email] => danhoat@gmail.com
+    [livemode] => 
+    [locale] => 
+    [metadata] => Stripe\StripeObject Object
+        (
+        )
+
+    [mode] => subscription
+    [payment_intent] => 
+    [payment_method_options] => Array
+        (
+        )
+
+    [payment_method_types] => Array
+        (
+            [0] => card
+        )
+
+    [payment_status] => paid
+    [setup_intent] => 
+    [shipping] => 
+    [shipping_address_collection] => 
+    [submit_type] => 
+    [subscription] => sub_JeIYrGzHNaq2Zm
+    [success_url] => https://mje.thuexephanrang.net/thankyou/
+    [total_details] => Stripe\StripeObject Object
+        (
+            [amount_discount] => 0
+            [amount_shipping] => 0
+            [amount_tax] => 0
+        )
+
+)

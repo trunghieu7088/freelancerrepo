@@ -1,0 +1,18 @@
+
+card : 4311 9522  2222 2222
+
+cvc: 222
+
+Success:
+show this page first:
+ https://payment-stage.ecpay.com.tw/bank/PaymentCenter/cntnotlogin/credit/result
+
+ Return merchan click: https://lab.thuexephanrang.net/checkout/order-received/84/?key=wc_order_zM1EGc4IFjKNx
+
+
+ clientBackUrl
+
+ $return_url = wc_get_endpoint_url( 'order-received', '', wc_get_checkout_url() );
+
+ 'clientBackUrl'     => $this->get_return_url($order),
+                    'orderId'           => $order->get_id(),

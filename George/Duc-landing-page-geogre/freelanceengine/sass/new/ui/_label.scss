@@ -1,0 +1,25 @@
+//=== Label
+//
+
+.fre-label-container {
+	.fre-label {
+		margin-top: 10px;
+	}
+}
+.fre-label {
+	display: inline-block;
+	padding: 4px 10px; 
+	background: #f2f5f7;
+	font-size: $font_size_small;
+	font-weight: 500;
+	color: $color_text_1;
+	line-height: 1.4em;
+	border-radius: 4px;
+	margin-right: 8px;
+	a, a:hover {
+		color: $color_text_1
+	}
+	&:last-child {
+		margin-right: 0;
+	}
+}

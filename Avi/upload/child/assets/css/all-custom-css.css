@@ -1,0 +1,87 @@
+ /*css cho slider */
+ .swiper {
+    width: 100%;
+    height: 100%;
+    max-width:100%;
+  }
+
+.custom-slider-swiper
+{
+   padding: 5px !important;               
+}
+
+ .next-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:50%;
+      right:0px;
+      z-index: 9999;
+}
+
+.previous-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:50%;
+      left:0px;
+      z-index: 9999;
+}
+
+ @media (min-width: 576px) 
+ {
+            
+   .custom-slider-swiper
+    {
+        padding: 10px !important;               
+    }
+
+     .next-icon-css
+        {
+            
+        }
+}
+
+@media (min-width: 768px)
+ { 
+    
+     .custom-slider-swiper
+    {
+        padding: 5px !important;               
+    }
+
+     .next-icon-css
+    {
+            
+     }
+ }
+        @media (min-width: 992px) 
+    { 
+         .custom-slider-swiper
+        {
+            padding: 5px !important;               
+        }
+        .next-icon-css
+        {
+            right: -50px;
+        }
+        .previous-icon-css
+        {
+            left: -50px !important;
+        }
+    }
+
+
+
+
+
+     .my-slider li .mjob-item
+        {
+            box-shadow: none !important;
+        }
+
+/* end */

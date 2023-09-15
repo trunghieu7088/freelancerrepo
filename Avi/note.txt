@@ -1,0 +1,73 @@
+List files of send offer in chat :
+
+Parent folder :
+
+includes > modules > MJE_Conversation > class-mje-conversation-action.php
+
+Child folder:
+
+single-ae-message.php
+
+template > custom-order-form-send-offer.php
+
+template-js > custom-order-detail.php
+
+assets > js > custom-order.js
+
+assets > css > all-custom-css.css
+
+custom_require_files.php
+
+
+MjE_recruit plugin:
+
+single-recruit.php
+
+
+List file of tiktok :
+
+Parent folder :
+
+includes > class-mje-post.php
+
+Child folder :
+
+template > mjob-post > description.php
+
+template > post-service-step3.php
+
+template > assets > css > all-custom-css.css
+
+template > assets > img > guidett.png
+
+
+Small task 13 - Sep 2023
+
+child > page-payment-method.php
+
+plugin > mje_withdrawal > template > awd_my_widthdrawal.php
+
+
+
+small task 14 - sep 2023
+
+plugin > mje_withdrawal > template > awd_withdrawing_balance_list_payment.php
+
+
+Add custom fields to Paypal withdrawal form:
+
+page-payment-method.php
+
+plugins 
+
+ mje_withdrawal > includes > mje-awd-function.php
+
+  mje_withdrawal > includes > init.php
+
+parent :
+
+ includes > modules > AE_authentication > class-mJobUserAction.php
+
+child :
+
+ assets > js > payment-method.js

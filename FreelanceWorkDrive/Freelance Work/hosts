@@ -1,0 +1,64 @@
+# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+# 102.54.94.97 rhino.acme.com # source server
+# 38.25.63.10 x.acme.com # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1 localhost
+#	::1 localhost
+127.0.0.1 localhost
+::1 localhost
+127.0.0.2 trunghieular.com
+127.0.0.2 www.trunghieular.com
+127.0.0.3 alexmail2.et
+127.0.0.3 www.alexmail2.et
+127.0.0.4 job360.et
+127.0.0.4 www.job360.et
+127.0.0.5 noti.et
+127.0.0.5 www.noti.et
+127.0.0.6 fixbug.et
+127.0.0.6 www.fixbug.et
+127.0.0.7 order.et
+127.0.0.7 www.order.et
+127.0.0.8 bang.et
+127.0.0.8 www.bang.et
+127.0.0.9 aykut.et
+127.0.0.9 www.aykut.et
+127.0.0.10 adrian.et
+127.0.0.10 www.adrian.et
+127.0.0.11 alexreal.et
+127.0.0.11 www.alexreal.et
+127.0.0.12 cunha.et
+127.0.0.12 www.cunha.et
+127.0.0.13 fabien.et
+127.0.0.13 www.fabien.et
+127.0.0.14 newcunha.et
+127.0.0.14 www.newcunha.et
+127.0.0.15 alexreview.et
+127.0.0.15 www.alexreview.et
+127.0.0.16 fabien2.et
+127.0.0.16 www.fabien2.et
+127.0.0.17 real.et
+127.0.0.17 www.real.et
+127.0.0.18 cunha2.et
+127.0.0.18 www.cunha2.et
+127.0.0.19 fabien3.et
+127.0.0.19 www.fabien3.et
+127.0.0.20 cunhadiscount.et
+127.0.0.20 www.cunhadiscount.et
+127.0.0.21 fabiencate.et
+127.0.0.21 www.fabiencate.et
+

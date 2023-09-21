@@ -2,7 +2,7 @@
 $absolute_url = mje_get_full_url( $_SERVER );
 $title = get_theme_mod('post_job_title') ? get_theme_mod('post_job_title') : __('Get your stuffs done from $5', 'enginethemes');
 //custom code here
-if(is_post_type_archive('mjob_post'))
+if(is_post_type_archive('mjob_post') || is_tax('mjob_category'))
 $title='Ghostwriter werden?';
 //end custom
 if( is_mje_submit_page() ){

@@ -349,16 +349,13 @@
                     /* $(".outer-detail-custom").mCustomScrollbar({
                         theme:"minimal",
                     }); */
-                    /*
                     $(".outer-detail-custom").mCustomScrollbar({
                         theme:"minimal",
                         scrollInertia: 0,
                         mouseWheelPixels: 50,
                          // autoDraggerLength:false,
-                        mouseWheel:true,                       
-                    });*/
-                    //o day co bug scrollbar ko xai duoc tren dien thoai 
-                    //( do height 100% ) nen scrollbar ko hien va kho scroll tren dien thoai
+                        mouseWheel:true,
+                    });
                     //end custom code aykut
                 },
                 hideOuterDetail: function() {

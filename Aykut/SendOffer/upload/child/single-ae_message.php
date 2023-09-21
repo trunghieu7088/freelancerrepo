@@ -401,7 +401,13 @@ echo '</div>';
 
                             </div>
                          <!-- custom code send offer here -->
-                         <button style="margin-left:20px;margin-bottom:10px;background-color:rgb(94, 141, 147) !important;border-radius: 45px !important;" class="btn-send-offer" data-custom-order="none"><?php _e('Send offer', 'enginethemes') ?></button>                      
+                         <?php 
+                         $user_profile_id=get_user_meta(get_current_user_id(),'user_profile_id',true);
+                        $registered_seller=get_post_meta($user_profile_id,'registered_seller',true);                       
+                         ?>
+                         <?php if($registered_seller && !$custom_order_query->have_posts()) : ?>
+                         <button style="margin-left:20px;margin-bottom:10px;background-color:rgb(94, 141, 147) !important;border-radius: 45px !important;" class="btn-send-offer" data-custom-order="none"><?php _e('Send offer', 'enginethemes') ?></button>  
+                         <?php endif; ?>                    
                         <!-- end custom code send offer -->
                         </div>
 

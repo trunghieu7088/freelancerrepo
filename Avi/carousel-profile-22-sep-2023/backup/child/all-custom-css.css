@@ -1,0 +1,158 @@
+ /*css cho slider */
+ .swiper {
+    width: 100%;
+    height: 100%;
+    max-width:100%;
+  }
+
+.custom-slider-swiper
+{
+   padding: 5px !important;               
+}
+
+ .next-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:50%;
+      right:0px;
+      z-index: 9999;
+}
+
+.previous-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:50%;
+      left:0px;
+      z-index: 9999;
+}
+
+ @media (min-width: 576px) 
+ {
+            
+   .custom-slider-swiper
+    {
+        padding: 10px !important;               
+    }
+
+     .next-icon-css
+        {
+            
+        }
+}
+
+@media (min-width: 768px)
+ { 
+    
+     .custom-slider-swiper
+    {
+        padding: 5px !important;               
+    }
+
+     .next-icon-css
+    {
+            
+     }
+ }
+        @media (min-width: 992px) 
+    { 
+         .custom-slider-swiper
+        {
+            padding: 5px !important;               
+        }
+        .next-icon-css
+        {
+            right: -50px;
+        }
+        .previous-icon-css
+        {
+            left: -50px !important;
+        }
+    }
+
+
+
+
+
+     .my-slider li .mjob-item
+        {
+            box-shadow: none !important;
+        }
+
+/* end */
+
+/* css for shortcode homepage */
+.slider-css-homepage
+{
+    background: #f0f8ff;
+}
+
+.slider-css-homepage a
+{
+    font-size:14px;
+}
+/* end */
+
+/* css for contact button in single-recruit */
+
+.custom-contact-btn .personal-profile
+{
+    margin-bottom:0px !important;
+    padding:0px !important;
+    
+}
+.custom-contact-btn .personal-profile .link-personal ul li
+{   
+    text-align:left !important;
+    padding:0px !important;
+}
+.custom-contact-btn .personal-profile .link-personal ul li a
+{
+    border:1px solid #00ccbb;
+    border-radius:5px;
+    text-align:center !important;
+    padding:10px !important;
+}
+
+.custom-contact-btn .personal-profile .link-personal ul li a i
+{
+    padding:0px !important;
+    margin-left:5px !important;
+}
+
+/* end */
+
+/* custom css for tiktok iframe */
+.tiktokIframe blockquote
+{
+    /* border:1px solid rgba(225, 225, 225, 0.67);
+    border-radius: 3px;
+    box-shadow: 0 3px 9px rgba(234, 234, 234, 0.58); */    
+    border:0px !important;
+}
+
+/* end */
+
+/* css for carousel slider homepage */
+.custom-gig-slider
+{
+	margin-top:0px !important;
+	padding-top: 30px!important;
+}
+.custom-gig-slider .container
+{
+	position: relative;
+	padding:5px !important;
+}
+
+.custom-gig-slider .container .block-title
+{
+	font-size:21px !important;
+}
+
+/* end css  */

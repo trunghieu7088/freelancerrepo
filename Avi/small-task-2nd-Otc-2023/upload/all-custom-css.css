@@ -1,0 +1,349 @@
+ /*css cho slider */
+ .swiper {
+    width: 100%;
+    height: 100%;
+    max-width:100%;
+  }
+
+.custom-slider-swiper
+{
+   padding: 5px !important;               
+}
+
+ .next-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:50%;
+      right:0px;
+      z-index: 9999;
+}
+
+.previous-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:50%;
+      left:0px;
+      z-index: 9999;
+}
+
+ @media (min-width: 576px) 
+ {
+            
+   .custom-slider-swiper
+    {
+        padding: 10px !important;               
+    }
+
+     .next-icon-css
+        {
+            
+        }
+}
+
+@media (min-width: 768px)
+ { 
+    
+     .custom-slider-swiper
+    {
+        padding: 5px !important;               
+    }
+
+     .next-icon-css
+    {
+            
+     }
+ }
+        @media (min-width: 992px) 
+    { 
+         .custom-slider-swiper
+        {
+            padding: 5px !important;               
+        }
+        .next-icon-css
+        {
+            right: -50px;
+        }
+        .previous-icon-css
+        {
+            left: -50px !important;
+        }
+    }
+
+
+
+
+
+     .my-slider li .mjob-item
+        {
+            box-shadow: none !important;
+        }
+
+/* end */
+
+/* css for shortcode homepage */
+.slider-css-homepage
+{
+    background: #f0f8ff;
+}
+
+.slider-css-homepage a
+{
+    font-size:14px;
+}
+/* end */
+
+/* css for contact button in single-recruit */
+
+.custom-contact-btn .personal-profile
+{
+    margin-bottom:0px !important;
+    padding:0px !important;
+    
+}
+.custom-contact-btn .personal-profile .link-personal ul li
+{   
+    text-align:left !important;
+    padding:0px !important;
+}
+.custom-contact-btn .personal-profile .link-personal ul li a
+{
+    border:1px solid #00ccbb;
+    border-radius:5px;
+    text-align:center !important;
+    padding:10px !important;
+}
+
+.custom-contact-btn .personal-profile .link-personal ul li a i
+{
+    padding:0px !important;
+    margin-left:5px !important;
+}
+
+/* end */
+
+/* custom css for tiktok iframe */
+.tiktokIframe blockquote
+{
+    /* border:1px solid rgba(225, 225, 225, 0.67);
+    border-radius: 3px;
+    box-shadow: 0 3px 9px rgba(234, 234, 234, 0.58); */    
+    border:0px !important;
+}
+
+/* end */
+
+/* css for carousel slider homepage */
+.custom-gig-slider
+{
+	margin-top:0px !important;
+	padding-top: 30px!important;
+}
+.custom-gig-slider .container
+{
+	position: relative;
+	padding:5px !important;
+}
+
+.custom-gig-slider .container .block-title
+{
+	font-size:21px !important;
+}
+
+/* end css  */
+
+/* custom css for profile carousel */
+.carouselswiper
+{
+    position:relative;
+    margin-left:auto !important;
+    margin-right:auto !important;  
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.carousel-profile .container
+{    
+    padding:0px;
+}
+.carousel-profile .carousel-item
+{
+    border:1px solid #F7F7F7;
+    background-color:#F7F7F7;
+    padding:10px 5px;
+    border-radius: 5px;
+    min-height: 80px;
+     display: flex;
+    align-items: stretch;
+}
+
+.carousel-profile .carousel-item .carousel-left,
+.carousel-profile .carousel-item .carousel-right
+{
+    padding:0px 5px;
+}
+
+.carousel-profile .carousel-item .carousel-left
+{
+    display:flex;  
+    justify-content: center; 
+    align-items: center;
+}
+.carousel-profile .carousel-item .carousel-left a
+{
+    display:flex;    
+    align-items: center;
+    justify-content: center;    
+}
+
+.carousel-profile .carousel-profile-avatar
+{    
+    max-height: 100% !important;
+    height: 70px !important;        
+    width: 70px;
+    border-radius: 50%;  
+    
+}
+.carousel-profile  .carousel-profile-title
+{
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size:20px !important;
+}
+.carousel-profile .carousel-profile-profession
+{
+    margin-bottom: 15px !important;
+}
+.carousel-profile .carousel-profile-profession span
+{
+    color:#ffffff;
+    background-color:#2a9df4;
+    border-radius: 10px;
+    padding:5px;
+    font-size:14px;
+    width:150px !important;
+    max-width: 150px !important;
+    display: inline-block;
+    text-align:center;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide the overflowing text */
+    text-overflow: ellipsis;
+}
+.carousel-profile .carousel-description
+{
+    height:60px;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom:15px !important;
+}  
+.carousel-profile .carousel-view-profile
+{
+    color:#10a2ef;
+    font-size:14px;
+    border:1px solid #10a2ef;
+    border-radius: 5px;
+    padding:5px;
+}
+.carousel-profile .carousel-view-profile i
+{
+    margin-left:5px;
+}
+.carousel-profile .carousel-view-profile:hover,
+.carousel-view-profile[style]:hover
+{
+    background-color:#10a2ef !important;
+    color:#ffffff !important;
+}
+
+.profile-next-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:60%;
+      right:-10px;
+      z-index: 9999;
+}
+
+.profile-previous-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:60%;
+      left:-10px;
+      z-index: 9999;
+}
+/* end */
+
+/* small changes css 22 sep 2023 */
+.btn-submit
+{
+    padding:10px 30px !important;
+}
+/* end */
+
+/* css new gig template (custom-mjob-item.php) 29 sep 2023 */
+.custom-slider-gig-title
+{
+    color:#adaeb2 !important;
+    font-size:13px !important;
+    margin-bottom:5px !important;
+}
+.custom-gig-new-template .custom-gig-entry
+{
+    padding:5px 15px !important;    
+}
+.custom-gig-new-template .custom-gig-entry .custom-gig-title-area
+{
+    margin-bottom:5px;    
+}
+.custom-gig-new-template .custom-gig-image img
+{
+    height:100% !important;
+}
+
+.custom-gig-new-template .custom-gig-title-area h2
+{    
+    height:25px !important;
+}
+
+.custom-gig-new-template .custom-gig-title-area h2 a
+{
+    font-size:13px !important;
+}
+.custom-gig-new-template .mje-price
+{
+    font-size:16px !important;
+}
+.custom-gig-new-template .custom-gig-description
+{
+    font-style:italic;
+    font-size:12px;        
+    height:35px;
+    max-height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* end */
+
+/* new css for swiper pagiation 2nd oct 2023 */
+.swiper-pagination
+{
+    bottom:-30px !important; 
+   
+}
+.swiper-pagination-bullet
+{
+    background-color:#495338 !important;
+    color:#495338 !important;
+    width:50px;
+    height:50px;
+}
+/* end */

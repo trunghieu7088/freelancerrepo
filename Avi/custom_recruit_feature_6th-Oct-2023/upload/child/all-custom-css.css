@@ -1,0 +1,639 @@
+ /*css cho slider */
+ .swiper {
+    width: 100%;
+    height: 100%;
+    max-width:100%;
+  }
+
+.custom-slider-swiper
+{
+   padding: 5px !important;               
+}
+
+ .next-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:50%;
+      right:0px;
+      z-index: 9999;
+}
+
+.previous-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:50%;
+      left:0px;
+      z-index: 9999;
+}
+
+ @media (min-width: 576px) 
+ {
+            
+   .custom-slider-swiper
+    {
+        padding: 10px !important;               
+    }
+
+     .next-icon-css
+        {
+            
+        }
+}
+
+@media (min-width: 768px)
+ { 
+    
+     .custom-slider-swiper
+    {
+        padding: 5px !important;               
+    }
+
+     .next-icon-css
+    {
+            
+     }
+ }
+        @media (min-width: 992px) 
+    { 
+         .custom-slider-swiper
+        {
+            padding: 5px !important;               
+        }
+        .next-icon-css
+        {
+            right: -50px;
+        }
+        .previous-icon-css
+        {
+            left: -50px !important;
+        }
+    }
+
+
+
+
+
+     .my-slider li .mjob-item
+        {
+            box-shadow: none !important;
+        }
+
+/* end */
+
+/* css for shortcode homepage */
+.slider-css-homepage
+{
+    background: #f0f8ff;
+}
+
+.slider-css-homepage a
+{
+    font-size:14px;
+}
+/* end */
+
+/* css for contact button in single-recruit */
+
+.custom-contact-btn .personal-profile
+{
+    margin-bottom:0px !important;
+    padding:0px !important;
+    
+}
+.custom-contact-btn .personal-profile .link-personal ul li
+{   
+    text-align:left !important;
+    padding:0px !important;
+}
+.custom-contact-btn .personal-profile .link-personal ul li a
+{
+    border:1px solid #00ccbb;
+    border-radius:5px;
+    text-align:center !important;
+    padding:10px !important;
+}
+
+.custom-contact-btn .personal-profile .link-personal ul li a i
+{
+    padding:0px !important;
+    margin-left:5px !important;
+}
+
+/* end */
+
+/* custom css for tiktok iframe */
+.tiktokIframe blockquote
+{
+    /* border:1px solid rgba(225, 225, 225, 0.67);
+    border-radius: 3px;
+    box-shadow: 0 3px 9px rgba(234, 234, 234, 0.58); */    
+    border:0px !important;
+}
+
+/* end */
+
+/* css for carousel slider homepage */
+.custom-gig-slider
+{
+	margin-top:0px !important;
+	padding-top: 30px!important;
+}
+.custom-gig-slider .container
+{
+	position: relative;
+	padding:5px !important;
+}
+
+.custom-gig-slider .container .block-title
+{
+	font-size:21px !important;
+}
+
+/* end css  */
+
+/* custom css for profile carousel */
+.carouselswiper
+{
+    position:relative;
+    margin-left:auto !important;
+    margin-right:auto !important;  
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.carousel-profile .container
+{    
+    padding:0px;
+}
+.carousel-profile .carousel-item
+{
+    border:1px solid #F7F7F7;
+    background-color:#F7F7F7;
+    padding:10px 5px;
+    border-radius: 5px;
+    min-height: 80px;
+     display: flex;
+    align-items: stretch;
+}
+
+.carousel-profile .carousel-item .carousel-left,
+.carousel-profile .carousel-item .carousel-right
+{
+    padding:0px 5px;
+}
+
+.carousel-profile .carousel-item .carousel-left
+{
+    display:flex;  
+    justify-content: center; 
+    align-items: center;
+}
+.carousel-profile .carousel-item .carousel-left a
+{
+    display:flex;    
+    align-items: center;
+    justify-content: center;    
+}
+
+.carousel-profile .carousel-profile-avatar
+{    
+    max-height: 100% !important;
+    height: 70px !important;        
+    width: 70px;
+    border-radius: 50%;  
+    
+}
+.carousel-profile  .carousel-profile-title
+{
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size:20px !important;
+}
+.carousel-profile .carousel-profile-profession
+{
+    margin-bottom: 15px !important;
+}
+.carousel-profile .carousel-profile-profession span
+{
+    color:#ffffff;
+    background-color:#2a9df4;
+    border-radius: 10px;
+    padding:5px;
+    font-size:14px;
+    width:150px !important;
+    max-width: 150px !important;
+    display: inline-block;
+    text-align:center;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide the overflowing text */
+    text-overflow: ellipsis;
+}
+.carousel-profile .carousel-description
+{
+    height:60px;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom:15px !important;
+}  
+.carousel-profile .carousel-view-profile
+{
+    color:#10a2ef;
+    font-size:14px;
+    border:1px solid #10a2ef;
+    border-radius: 5px;
+    padding:5px;
+}
+.carousel-profile .carousel-view-profile i
+{
+    margin-left:5px;
+}
+.carousel-profile .carousel-view-profile:hover,
+.carousel-view-profile[style]:hover
+{
+    background-color:#10a2ef !important;
+    color:#ffffff !important;
+}
+
+.profile-next-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:60%;
+      right:-10px;
+      z-index: 9999;
+}
+
+.profile-previous-icon-css
+{
+      cursor:pointer;
+      width:30px;
+      height:30px;
+      position:absolute;
+      top:60%;
+      left:-10px;
+      z-index: 9999;
+}
+/* end */
+
+/* small changes css 22 sep 2023 */
+.btn-submit
+{
+    padding:10px 30px !important;
+}
+/* end */
+
+/* css new gig template (custom-mjob-item.php) 29 sep 2023 */
+.custom-slider-gig-title
+{
+    color:#adaeb2 !important;
+    font-size:13px !important;
+    margin-bottom:5px !important;
+}
+.custom-gig-new-template .custom-gig-entry
+{
+    padding:5px 15px !important;    
+}
+.custom-gig-new-template .custom-gig-entry .custom-gig-title-area
+{
+    margin-bottom:5px;    
+}
+.custom-gig-new-template .custom-gig-image img
+{
+    height:100% !important;
+}
+
+.custom-gig-new-template .custom-gig-title-area h2
+{    
+    height:25px !important;
+}
+
+.custom-gig-new-template .custom-gig-title-area h2 a
+{
+    font-size:13px !important;
+}
+.custom-gig-new-template .mje-price
+{
+    font-size:16px !important;
+}
+.custom-gig-new-template .custom-gig-description
+{
+    font-style:italic;
+    font-size:12px;        
+    height:35px;
+    max-height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* end */
+
+/* new css for swiper pagiation 2nd oct 2023 */
+.swiper-pagination
+{
+    bottom:-30px !important; 
+   
+}
+.swiper-pagination-bullet
+{
+    background-color:#495338 !important;
+    color:#495338 !important;
+    width:50px;
+    height:50px;
+}
+/* end */
+
+
+/* new css for swiper pagiation 2nd oct 2023 */
+.swiper-pagination
+{
+    bottom:-30px !important; 
+   
+}
+.swiper-pagination-bullet
+{
+    background-color:#495338 !important;
+    color:#495338 !important;
+    width:50px;
+    height:50px;
+}
+/* end */
+
+/* new css for recruitment feature 6th 2023 */
+.mje-recruit-avatar
+{
+    border-radius:50% !important;
+    width:50px;
+    height:50px;
+    margin-right:10px;
+}
+
+@media only screen and (min-width : 320px) {
+.mje-recruit-avatar
+{       
+    width:80px !important;
+    height:80px !important;    
+}
+.mje-request-default .mje-request-list .mje-recruit-item-row
+{        
+    text-align:center !important;        
+    display:block !important;
+}
+.mje-request-default .mje-request-list .mje-recruit-item-row .mje-recruit-name
+{
+    margin: 0 !important;
+    width:auto !important;
+    display:block !important;
+                 
+}
+
+.mje-recruit-short-description
+{
+    font-size:12px;
+    color:#8F8F88;
+    display:block;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+.mje-recruit-item-row .mje-view-detail-mobile
+{
+    text-align:center !important;        
+}
+.archive-requesst-item .custom-info-recruit span:last-child
+{
+    margin-left:0px;
+    display:block;
+}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+.mje-request-default .mje-request-list .mje-recruit-item-row
+{        
+    text-align:center !important;        
+    display:block;
+}
+.mje-request-default .mje-request-list .mje-recruit-item-row .mje-recruit-name
+{   
+    margin: 0 !important;
+    width:auto !important;
+    display:block;
+}
+.mje-recruit-short-description
+{
+    font-size:12px;
+    color:#8F8F88;
+    display:block;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; 
+}
+.mje-recruit-item-row .mje-view-detail-mobile
+{
+    text-align:center !important;
+}
+.archive-requesst-item .custom-info-recruit span:last-child
+{
+    margin-left:0px;
+    display:block;
+}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+.archive-requesst-item .custom-info-recruit span:last-child
+{
+    margin-left:10px;
+    display:inline;
+}
+
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    .desktop-display-flex
+    {
+        display:flex;
+        align-items:center;
+        
+    }
+    .mje-request-default .mje-request-list .mje-recruit-item-row
+    {
+        text-align:left !important;
+        align-items:center !important;
+        display:flex !important;
+    }
+    .mje-request-default .mje-request-list .mje-recruit-item-row .mje-recruit-name
+    {
+        width:250px !important;
+        max-width: 250px;
+        display:inline-block !important;          
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;                
+    }
+    .mje-recruit-short-description
+    {
+        font-size:12px;
+        color:#8F8F88;
+        display:inline-block;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        margin-left:15px;
+
+    }
+    .mje-recruit-avatar
+    {   
+        width:50px !important;
+        height:50px !important;
+    }
+}
+
+ /* custom for all recruits page */
+ .archive-requesst-item
+ {
+     display:flex;
+ }
+ .archive-requesst-item .custom-flex-profile
+ {
+     flex-basis:10%;
+     display:flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     /*border:1px solid olivedrab; */
+ }
+ 
+ .archive-requesst-item .custom-flex-recruit
+ {
+     flex-basis:90%;
+     padding-left:20px;
+     /* border:1px solid orange; */
+ }
+ .archive-requesst-item .custom-flex-profile .recruitList-avatar-area
+ {
+     margin-bottom:10px;
+ }
+ .archive-requesst-item .custom-flex-profile .text-notyet
+ {
+     color:#AEAEAE;
+     font-size:12px;
+ }
+ .archive-requesst-item .custom-info-recruit
+ {
+     margin-top:15px;
+     font-size:15px;
+     /* color:#10a2ef;    */
+     color:#337ab7;         
+ }
+ .archive-requesst-item .custom-info-recruit span
+ {
+     margin-right:10px;
+     margin-left:10px;
+     margin-top:15px;
+ }
+ .archive-requesst-item .custom-info-recruit span:first-child
+ {
+     margin-right:10px;
+     margin-left:0px;
+ }
+
+ .archive-requesst-item .request-loop-tag-wrap
+ {   
+     margin-top:15px;
+     margin-bottom:10px; 
+ }
+ .archive-requesst-item .recruit-view-detail-btn
+ {
+     margin-top:15px;        
+ }
+ .archive-requesst-item .text-rate-score
+ {
+     color:#10a2ef;  
+ }
+ .archive-requesst-item .request-loop-tag-wrap .skill-name-profile
+ {
+     color: #2a394e;
+     font-size: 12px;
+     padding: 5px 15px;
+     background: #dae0e6;
+     border-radius: 45px;
+ }
+ .archive-requesst-item .custom-text-expire
+ {
+     font-size:12px;
+     /*margin-left:10px;*/
+     font-style:italic;
+     display:block;
+     color:#717171;
+ }
+ /* custom css for filter panel */
+ .mjob-container-control .filter-option-container
+ {
+     /* border:1px solid rgb(237, 237, 237);   */
+     color: rgb(93, 95, 94);
+    /* padding:20px 15px !important;*/
+    margin-bottom:20px;
+ }
+ .mjob-container-control .filter-option-container .row
+ {
+    border:1px solid rgb(237, 237, 237);
+    margin-left:0px;
+    margin-right: 0px;
+    padding:15px 15px;
+ }
+ .mjob-container-control .filter-option-container .custom-filter-option
+ {
+     padding:0px 20px;
+     margin-top:10px !important;        
+ }
+ .mjob-container-control .filter-option-container .custom-filter-option input[type='text'],
+ .mjob-container-control .filter-option-container .custom-filter-option input[type='number'],
+ .mjob-container-control .filter-option-container .custom-filter-option select
+ {
+     height:45px;        
+     box-shadow: none;
+     border:0;
+     border-bottom: 1px solid rgba(137, 138, 144, 0.2);        
+     padding:0;
+ }
+ .mjob-container-control .filter-option-container label
+ {
+     color:#717171;
+     font-size:15px;
+     font-weight: 600;
+ }
+
+ .mjob-container-control .filter-option-container .custom-filter-option input[type='text']:focus,
+ .mjob-container-control .filter-option-container .custom-filter-option select:focus
+ {
+     border-bottom: 1px solid #10a2ef;
+ }
+ .mjob-container-control .filter-option-container .budget-range
+ {
+     display:flex;
+     justify-content:space-around;       
+ }
+ .mjob-container-control .filter-option-container .budget-range .max-range
+ {
+     margin-left:10px;
+ }
+
+ /* fix bug line of recruit block */
+.mje-request-block .mje-request-default .container
+{
+    width:1140px !important;
+}
+
+ /* end */
+
+/* end */

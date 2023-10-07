@@ -191,7 +191,7 @@ function mje_request_loop_template($convert)
 function archive_recruit_page()
 { ?>
     <div id="content">
-        <?php // archive_recruits_banner(); ?>
+        <?php archive_recruits_banner(); ?>
         <!-- end banner !-->
         <div class="block-page mjob-container-control">
             <div class="container">
@@ -398,9 +398,9 @@ function filter_custom_recruit_seynou($query_args)
 add_filter('mje_mjob_filter_query_args', 'filter_custom_recruit_seynou', 99);
 
 function custom_archive_recruits_sort(){ ?>
-	<div class="row functions-items" style="margin-top:40px !important;">
+	<div class="row functions-items">
 	    <div class="col-lg-6 col-md-6 col-sm-6 col-sx-12 no-padding">
-	        <h2><?php _e('Hiring Requests', 'mje_recruit'); ?></h2>
+	        <h2><?php _e('All Recruitments', 'mje_recruit'); ?></h2>
 	    </div>
 	    <div class="col-lg-6 col-md-6 col-sm-16 col-sx-12 no-padding float-right">
 	        <?php

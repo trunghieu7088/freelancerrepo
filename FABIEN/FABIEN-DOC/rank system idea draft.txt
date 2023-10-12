@@ -1,0 +1,13 @@
+A Rank 1 , 16 points
+ 
+B Rank 2 , 15 points
+
+C Rank 3 , 14 points
+
+D Rank 4 , 12 points
+
+E Rank 5 , 11 points
+
+E get 13 points 
+
+E --> Rank 4

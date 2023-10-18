@@ -11,12 +11,15 @@ function get_info_custom_order_init()
         $kindwork=get_term(get_post_meta($custom_order->ID,'kindwork',true));
         $kindworkID=$kindwork->term_id;
         $etd=get_post_meta($custom_order->ID,'custom_order_deadline',true);
-        
+        $budget=get_post_meta($custom_order->ID,'custom_order_budget',true);
+
         $response['success']=true;
         $response['amountpage']=$amountpage;
         $response['topic']=$topic;
         $response['kindworkID']=$kindworkID;
-        $response['etd']=$etd;        
+        $response['etd']=$etd;      
+        $response['budget'] =$budget;
+        $response['description']=$custom_order->post_content;
     }
     else
     {

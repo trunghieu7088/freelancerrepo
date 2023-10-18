@@ -1,0 +1,40 @@
+/* custom css for custom social bar */
+.custom-social-bar {
+    position: fixed;
+    top: 45%; /* Adjust the top position as needed */
+    left: 1px; /* Align to the left side of the viewport */
+    width: 60px; /* Adjust the width as needed */         
+    z-index:99999 !important;
+}
+
+.custom-social-bar .social-icons-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;    
+}
+
+.custom-social-bar .social-icons-container a
+{
+    margin-bottom:3px;
+}
+
+.custom-social-bar .social-icons-container img
+{
+    width:38px;
+    height: 38px;
+}
+@media only screen and (max-width : 991px) {
+    .custom-social-bar {
+        display:none !important;
+    }
+}
+/* end custom css for custom social bar */
+
+/* 16th Oct 2023 fix bug elementor for blog post */
+.elementor-section .block-hot-items
+{
+    display:flex !important;
+}
+/* end */

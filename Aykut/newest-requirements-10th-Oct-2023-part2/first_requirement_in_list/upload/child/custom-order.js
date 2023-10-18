@@ -471,6 +471,10 @@
                                         $("#amountpage").val(response.amountpage);
                                         $("#topic").val(response.topic);
                                         $("#kindwork").val(response.kindworkID);
+                                        $("#budget").val(response.budget);
+                                        $(".send-offer-form-conversation").find("#post_content").val(response.description);
+                                        //$("#post_content").val(response.description);
+                                         
                                    }
                                    
                             }                       

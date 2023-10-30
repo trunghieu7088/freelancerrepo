@@ -184,7 +184,7 @@ else : ?>
                 </div>
 
                 <div class="extra-container shipping-address">
-                    <input type="text" class="disabled-shipping-address" disabled="disabled" placeholder="Shipping Address" name="shipping_address" id="shipping_address" value="">
+                    <input type="text" class="disabled-shipping-address" disabled="disabled" placeholder="Shipping Address" name="shipping_address" id="shipping_address">
                     <p class="text-danger text-shipping-alert">if you want to use shipping service, You must enter the address to checkout </p>
                 </div>
             </div>

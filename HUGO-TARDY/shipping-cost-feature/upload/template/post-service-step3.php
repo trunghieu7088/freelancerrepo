@@ -75,16 +75,34 @@ if(DEVELOP_MODE){
               
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 category-area mje-mjob-category-field">
-                  <!-- custom code here -->
+            <!-- custom code here -->
+           <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 category-area mje-mjob-category-field">
+                  
                   <div class="input-group">
-                    <label for="shipping_cost"><?php echo 'Shipping Cost'.' ('.$currency_code.')';?></label>
+                    <label for="shipping_cost"><?php echo 'Shipping Cost'.' ('.$currency_code.')';?>
+                        <input type="checkbox" class="no-shipping-checkbox" value="noship">
+                        <span class="no-shipping-text">No shipping service</span>
+                    </label>
                     <input type="number" min="1" class="input-item input-full" name="shipping_cost" value="" required>
                 </div>
-                <!-- end custom code here -->
-            </div>
+               
+            </div> -->
+             <!-- end custom code here -->
            
         </div>
+
+        <!-- custom code here -->
+        <div class="form-group">
+            <div class="input-group" id="shipping-cost-area">
+                <label for="shipping_cost"><?php echo 'Shipping Cost'.' ('.$currency_code.')';?></label>
+                <input type="number" min="1" class="input-item input-full" id="shipping_cost" name="shipping_cost" value="" required>
+            </div>
+            <div class="input-group no-shipping-area">
+                <input type="checkbox" id="no-shipping-option" name="no-shipping-option" class="no-shipping-checkbox" value="noship">
+                <label for="no-shipping-option">No shipping service</label>
+            </div>
+        </div>
+        <!-- end custom code here -->
 
         <div class="form-group mje-mjob-des-field">
             <div class="input-group">

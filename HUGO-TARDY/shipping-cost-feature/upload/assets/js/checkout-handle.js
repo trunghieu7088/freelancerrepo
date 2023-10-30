@@ -60,8 +60,8 @@
                     view.productData.total-=shipping_cost_commission;
                     view.$el.find('.total-price').html(AE.App.mJobPriceFormat(view.productData.total));
                 }
-                console.log('shipping cost com :'+ shipping_cost_commission);
-                console.log(  view.productData.total);
+               // console.log('shipping cost com :'+ shipping_cost_commission);
+                //console.log(  view.productData.total);
 
                 //end
 
@@ -125,7 +125,7 @@
             console.log('Update Extra Item.');
             var view = this;
             var commission = ae_globals.fee_order_buyer;
-            var fee_extra  = 0;
+			var fee_extra  = 0;
             $target = $(event.currentTarget);
             var extraBudget = parseFloat($target.val());
             var id = $target.attr('data-id');
@@ -133,12 +133,12 @@
             if($target.prop('checked')) {
                 $target.parents('.extra-item').addClass('active');
                 view.extraID.push(id);
-                //fee_extra=commission*extraBudget/100;
+				//fee_extra=commission*extraBudget/100;
 
 
                 AE.pubsub.trigger('mje:update:checkout:product:data', view.extraID, 'extra_ids');
                 AE.pubsub.trigger('mje:update:checkout:subtotal', extraBudget);
-                AE.pubsub.trigger('mje:update:checkout:fee');
+				AE.pubsub.trigger('mje:update:checkout:fee');
                 AE.pubsub.trigger('mje:update:checkout:total');
             } else {
                 $target.parents('.extra-item').removeClass('active');
@@ -147,7 +147,7 @@
                 AE.pubsub.trigger('mje:update:checkout:product:data', view.extraID, 'extra_ids');
                // fee_extra=commission*extraBudget/100;
                 AE.pubsub.trigger('mje:update:checkout:subtotal', -extraBudget);
-                AE.pubsub.trigger('mje:update:checkout:fee');
+				AE.pubsub.trigger('mje:update:checkout:fee');
                 AE.pubsub.trigger('mje:update:checkout:total');
 
             }

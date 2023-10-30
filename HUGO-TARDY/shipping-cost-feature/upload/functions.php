@@ -95,5 +95,7 @@ $output .= '<script>
 // Enregistrer le shortcode pour l'utiliser dans les articles, les pages, etc.
 add_shortcode('display_authors', 'display_authors_in_table');
 
-
 require('include_custom_function.php');
+
+
+

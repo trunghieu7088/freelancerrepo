@@ -43,3 +43,15 @@
 {
     color:#8800c7 !important;
 }
+
+.no-shipping-checkbox
+{
+    height:15px !important;
+    width:15px !important; 
+    margin-top:0px !important;
+    
+}
+.no-shipping-area
+{
+    margin-top:20px;
+}

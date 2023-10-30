@@ -6,17 +6,17 @@ $subtotal = (float) $product->et_budget;
 /* Get extra services */
 $extras_ids = array();
 if (isset($_GET['extras_ids'])) {
-    $extras_ids = $_GET['extras_ids'];
+	$extras_ids = $_GET['extras_ids'];
 }
 if (!empty($extras_ids)) {
-    foreach ($extras_ids as $key => $value) {
-        $extra = mje_extra_action()->get_extra_of_mjob($value, $product->ID);
-        if ($extra) {
-            $subtotal += (float) $extra->et_budget;
-        } else {
-            unset($extras_ids[$key]);
-        }
-    }
+	foreach ($extras_ids as $key => $value) {
+		$extra = mje_extra_action()->get_extra_of_mjob($value, $product->ID);
+		if ($extra) {
+			$subtotal += (float) $extra->et_budget;
+		} else {
+			unset($extras_ids[$key]);
+		}
+	}
 }
 $total = $subtotal;
 
@@ -31,27 +31,27 @@ $total = mje_get_price_after_commission_for_buyer($subtotal);
 $buyer_fee = mje_get_fee_buy($subtotal);
 
 $default_order_args = array(
-    'mjob_name' => $product->post_title,
-    'post_title' => sprintf(__('Order for %s ', 'enginethemes'), $product->post_title),
-    'post_content' => sprintf(__('Order for %s ', 'enginethemes'), $product->post_title),
-    'post_parent' => $product->ID,
-    'et_budget' => $product->et_budget,
+	'mjob_name' => $product->post_title,
+	'post_title' => sprintf(__('Order for %s ', 'enginethemes'), $product->post_title),
+	'post_content' => sprintf(__('Order for %s ', 'enginethemes'), $product->post_title),
+	'post_parent' => $product->ID,
+	'et_budget' => $product->et_budget,
     'subtotal' => $subtotal,
-    'total' => $total,
-    'extra_ids' => $extras_ids,
-    'post_type' => 'mjob_order',
-    'method' => 'create',
+	'total' => $total,
+	'extra_ids' => $extras_ids,
+	'post_type' => 'mjob_order',
+	'method' => 'create',
     'ef_fixed' => 0, //extension extra fee
     'ef_percent' => 0, //extension extra fee
-    '_wpnonce' => de_create_nonce('ae-mjob_post-sync'),
-    'custom_fee' => $buyer_fee,
+	'_wpnonce' => de_create_nonce('ae-mjob_post-sync'),
+	'custom_fee' => $buyer_fee,
     'discount' => 0,
     '_coupon_code' => '',
 );
 
 // Opening message
 if (!empty($product->opening_message)) {
-    $default_order_args['opening_message'] = $product->opening_message;
+	$default_order_args['opening_message'] = $product->opening_message;
 }
 
 //custom code here 

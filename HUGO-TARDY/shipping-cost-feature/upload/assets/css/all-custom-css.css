@@ -1,0 +1,45 @@
+.shipping-cost-area
+{    
+    border-bottom: 1px solid #dfe0e5;
+    padding: 5px 0 !important;
+    margin-bottom: 5px !important;
+    border-top:0 !important;
+}
+
+.shipping-cost-area .shipping-address
+{
+    margin-bottom: 15px;
+}
+.shipping-cost-area .shipping-address input[type="text"]
+{
+    border:1px solid #ccc !important;
+    padding:8px;
+    width:100%;
+}
+.shipping-cost-area  .active-shipping .mje-price
+{
+    color:#10a2ef;
+}
+.disabled-shipping-address
+{
+    background-color:#dddddd;
+}
+.shipping-info-orderPage
+{
+    border-bottom: 1px solid #dddddd !important;    
+}
+.disabled-btn-custom
+{
+    opacity: 0.4;
+}
+
+.shipping-cost-area .shipping-address .text-shipping-alert
+{
+    margin-top:10px !important;
+    display:none;
+}
+
+.shipping-cost-area .mje-price
+{
+    color:#8800c7 !important;
+}

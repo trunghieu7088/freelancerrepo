@@ -1,0 +1,175 @@
+/*
+Theme Name:     MicrojobEngine Child
+Theme URI:      http://enginetheme.com/
+Description:    Child theme for the MicrojobEngine theme
+Author: 		EngineThemes Team
+Author URI: 	http://www.enginethemes.com
+Template:       microjobengine
+Version:        1.0.1
+*/
+
+#input-search{
+	background: #ffffff;
+}
+
+.search-form h4{
+	 border-color: #ffffff;
+}
+
+.name-site font{
+	color: #8E24AA;
+}
+
+.recruit-publish font{
+	color: #3D5AFE;
+}
+
+.mjob-single-page .mjob-single-aside .mjob-status {
+	color: #3D5AFE;
+}
+.mjob-single-page .mjob-single-header h2 .edit-mjob-action {
+	color: #3D5AFE;
+}
+	
+.personal-profile .link-personal ul li .contact-link {
+	color: #3D5AFE;
+}
+
+.dashboard .edit-profile a {
+	color: #3D5AFE;
+}
+
+.active-color {
+	background: #3D5AFE; 
+	color: #3D5AFE;
+}
+
+.advanced-filters-item .filter-budget-max {
+	border: 1px;
+}
+
+.advanced-filters-item .filter-budget-max {
+	border: 1px;
+	border-bottom: 1px solid rgba(194, 194, 194, 0.8)
+}
+
+.mjob-single-page .mjob-single-aside .mje-commission-fee
+{
+	display: none;
+}
+
+.personal-profile .link-personal ul li .profile-link font { 
+	color: #3D5AFE;
+}
+.personal-profile .link-personal ul li .profile-link i { 
+	color: #3D5AFE;
+}
+
+.recruit-publish font {
+	color: #3D5AFE;
+}
+
+.personal-profile .link-personal ul li .contact-link i {
+	color: #3D5AFE;
+}
+
+.request-loop-title font{
+	color: #8E24AA;
+}
+
+.personal-profile .link-personal ul li .profile-link{
+	color: #3D5AFE;
+}
+
+.personal-profile ul li .show-bio {
+	color: #3D5AFE;
+}
+
+.order-extra-fee {
+	color: #3D5AFE;
+}
+
+.mjob-single-order-page .order-detail-price .total-order .price-items.charged_price_show_to_seller span p{
+	color: #3D5AFE;
+}
+
+.mjob-single-order-page .order-detail-price .total-order .no-extra span p {
+	color: #3D5AFE;
+}
+
+.mjob-single-page .mjob-single-aside .mje-commission-fee
+{
+	display: none;
+}
+
+.mje-bookmark-collection-list .coll-list .coll-item .coll-item__inner .coll-item__content h3
+{
+	overflow: visible;
+	font-size: 10px;
+}
+.advanced-filters-item .filter-price {
+	background: #8E24AA;
+    margin-left: 0px;
+    padding: 0;
+    width: 80px;
+    height: 44px;
+    color: #fff;
+    line-height: 42px;
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: top;
+	
+}
+
+.mje-bookmark-list .bookmark-list__header__title .actions .edit-collection {
+	color: #3D5AFE;
+}
+
+.advanced-filters-item .filter-budget-max
+{
+border: 1px solid rgba(137, 138, 144, 0.2);
+}
+
+.advanced-filters-item .filter-budget-min
+{
+border: 1px solid rgba(137, 138, 144, 0.2);
+}
+
+.diplomat .outer-form-search input {
+color: #8E24AA;
+}
+
+#et-header .et-pull-top .search-bar {
+	margin-top: 35px;
+	color: #ffffff;
+}
+
+#input-search font{
+	font-style: bold;
+	color: #8E24AA;
+}
+
+/* custom-style.css */
+
+/* Style of table header of member list page */
+#authors-table thead {
+    background-color: #8E24AA;
+    color: #fff;
+	border-collapse: collapse;
+	box-shadow: 0 5px 50px rgba(0,0,0,0,0.15);
+	cursor: pointer;
+	margin: 100px auto;
+	border:  2px solid violet;
+}
+
+/* Style des lignes paires du tableau */
+#authors-table tbody tr.even {
+    background-color: #f0f0f0; /* Gris léger */
+	
+}
+
+/* Style des lignes impaires du tableau */
+#authors-table tbody tr.odd {
+    background-color: #ffffff; /* Fond blanc par défaut pour les lignes impaires */
+}
+

@@ -160,7 +160,7 @@ else : ?>
                 </div>
             </div>
             <!-- custom code here -->
-            <?php if($provide_ship==true || $provide_ship=='true') : ?>
+            <?php if($provide_ship=='true') : ?>
             <div class="add-extra shipping-cost-area">
                 <span class="title-sub"><?php _e('Shipping Information', 'enginethemes');?></span>
                 <div class="extra-container">

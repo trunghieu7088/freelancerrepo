@@ -56,7 +56,6 @@ if (!empty($product->opening_message)) {
 
 //custom code here 
 $provide_ship=get_post_meta($product->ID,'provide_shipping_service',true);
-
 $shipping_cost=(int)get_post_meta($product->ID,'shipping_cost',true);
 if($shipping_cost < 0 || empty($shipping_cost))
 {
@@ -135,7 +134,7 @@ if ($user_ID != $product->post_author):
                 </div>
             </div>
             <!-- custom code here -->
-            <?php if($provide_ship==true || $provide_ship=='true') : ?>
+            <?php if($provide_ship=='true') : ?>
             <div class="add-extra shipping-cost-area">
                 <span class="title-sub"><?php _e('Shipping Information', 'enginethemes');?></span>
                 <div class="extra-container">

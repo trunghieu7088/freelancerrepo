@@ -13,10 +13,41 @@ add_action('ae_insert_mjob_post','add_shipping_cost_mjob',10,2);
 
 function add_shipping_cost_mjob($result,$args)
 {
-    $shipping_cost=format_shipping_cost($args['shipping_cost']);    
-    update_post_meta($result,'shipping_cost',$shipping_cost);
-    update_post_meta($result,'provide_shipping_service',true);
+    if($args['no-shipping-option'][0] == 'noship')
+    {
+        update_post_meta($result,'shipping_cost',0);
+        update_post_meta($result,'provide_shipping_service','false');
+    }
+    else
+    {    
+        $shipping_cost=format_shipping_cost($args['shipping_cost']);    
+        update_post_meta($result,'shipping_cost',$shipping_cost);
+        update_post_meta($result,'provide_shipping_service','true');
+    }
+    //update_post_meta($result,'testship',implode(" ",$args['no-shipping-option']));
+    //update_post_meta($result,'testship2',$args['no-shipping-option'][0]);
 }
+
+
+//update shipping cost when edit mjob
+add_action('ae_update_mjob_post','update_shipping_cost_when_updateMjob',10,2);
+
+function update_shipping_cost_when_updateMjob( $result, $args)
+{
+    if($args['no-shipping-option'][0] == 'noship')
+    {
+        update_post_meta($result,'shipping_cost',0);
+        update_post_meta($result,'provide_shipping_service','false');
+    }
+    else
+    {     
+        $shipping_cost=format_shipping_cost($args['shipping_cost']);    
+        update_post_meta($result,'shipping_cost',$shipping_cost);
+        update_post_meta($result,'provide_shipping_service','true');
+    }
+   
+}
+
 
 // add shipping cost when the users purchase a mjob if yes
 add_action('after_insert_mjob_order','add_shipping_cost_order',10,2);
@@ -94,3 +125,14 @@ function add_shipping_cost_for_dispute($request)
     }
     
 }
+
+// add shipping cost to filter for fetching information to edit mjob
+add_filter('ae_convert_mjob_post','add_shipping_cost_to_filter',99,1);
+
+function add_shipping_cost_to_filter($result)
+{
+    $shipping_cost=get_post_meta($result->ID,'shipping_cost',true);
+    $result->shipping_cost=$shipping_cost;
+    return $result;
+}
+

@@ -98,7 +98,7 @@ if(DEVELOP_MODE){
                 <input type="number" min="1" class="input-item input-full" id="shipping_cost" name="shipping_cost" value="" required>
             </div>
             <div class="input-group no-shipping-area">
-                <input type="checkbox" id="no-shipping-option" name="no-shipping-option" class="no-shipping-checkbox" value="noship">
+                <input type="checkbox" id="no-shipping-option" name="no-shipping-option" class="input-item no-shipping-checkbox" value="noship">
                 <label for="no-shipping-option">No shipping service</label>
             </div>
         </div>

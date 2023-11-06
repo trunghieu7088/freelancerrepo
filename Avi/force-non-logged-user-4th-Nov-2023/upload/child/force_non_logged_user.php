@@ -37,7 +37,12 @@ add_action('wp_loaded','add_non_logged_notify_page');
 function force_custom_redirects() {
     if ( !is_user_logged_in() ) 
     {      
-        if (!is_home() && !is_page('notify') && !is_front_page() && !is_page('tos')) {
+        if (!is_home() && !is_page('notify') && !is_front_page() && !is_page('tos')
+            && !is_page('how-it-works') && !is_page('trust-and-quality') && !is_page('frequently-asked-questions')
+            && !is_page('ip-claim') && !is_page('payment-and-withdrawal') && !is_page('privacy-policy')
+            && !is_page('tos-2') && !is_page('about-us') && !is_page('guidelines-for-experts') && !is_page('guidelines-for-clients')
+            && !is_page('influencer') && !is_page('pioneer')) 
+        {
             wp_redirect( site_url('/notify/'));
             die();
         }

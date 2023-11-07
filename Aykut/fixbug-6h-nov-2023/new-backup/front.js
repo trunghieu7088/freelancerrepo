@@ -157,32 +157,8 @@
         /** CUSTOM ORDER **/
 
         /*Scroll custom detail custom order*/
-        //custom code to fix bug smooth on mobile 7th Nov 2023
-        if(window.innerWidth < 768) {
-            $(".list-custom-order-wrapper").css('height','200px');
-            $(".list-custom-order-wrapper").css('max-height','200px');
-        }
-        $(".list-custom-order-wrapper").mCustomScrollbar({
 
-            theme:"dark",
-            //fix bug 6th Nov 2023            
-            contentTouchScroll: true,
-            scrollInertia:600,  
-            //alwaysShowScrollbar:1,  
-            //autoHideScrollbar:false,
-            //end
-            callbacks:{
-                onInit:function(){
-                    $("#mCSB_2_scrollbar_vertical").css('background-color','#585858');
-                    $("#mCSB_2_scrollbar_vertical").css('width','6px');
-                    
-                },
-            },   
-
-
-        });
-        //end
-        $(".outer-detail-custom").mCustomScrollbar({
+        $(".list-custom-order-wrapper, .outer-detail-custom").mCustomScrollbar({
 
             theme:"dark",
             //fix bug 6th Nov 2023            

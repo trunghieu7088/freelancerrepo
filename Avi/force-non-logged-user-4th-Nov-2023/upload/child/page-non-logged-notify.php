@@ -2,6 +2,13 @@
 /**
  * Template Name: Page Non Logged Nofity
  */
+//fix bug 12th Nov 2023
+//fix bug sau khi login thanh cong thi bi login ve lai trang nay --> sai --> dung la phai login ve trang home
+if(is_user_logged_in())
+{
+    wp_redirect(site_url());
+}
+//end
 global $current_user, $user_ID;
 get_header();
 ?>

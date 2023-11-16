@@ -1,0 +1,64 @@
+/*
+	Theme Name: Job Engine Child
+	Theme URI: http://lab.enginethemes.com/jobengine
+	Author: EngineThemes Team
+	Author URI: http://enginethemes.com
+	Description: The first project of Engine Themes
+	Version: 1.0
+	Tags: 2 Columns, Engine Themes, Wordpress Themes
+	Template:   jobengine
+*/
+@import url("../jobengine/style.css");
+
+
+/*
+header menu, account button background css 
+*/
+.category .menu-header-top li > a, .bg-btn-header {
+/*
+	background: #36577A;
+	background: -moz-linear-gradient(top,#3a5f85 0%,#36577a 85%,#2e4b69 100%);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#3A5F85),color-stop(85%,#36577A),color-stop(100%,#2E4B69));
+	background: -webkit-linear-gradient(top,#3A5F85 0%,#36577A 85%,#2E4B69 100%);
+	background: -o-linear-gradient(top,#3a5f85 0%,#36577a 85%,#2e4b69 100%);
+	background: -ms-linear-gradient(top,#3a5f85 0%,#36577a 85%,#2e4b69 100%);
+	background: linear-gradient(top,#3a5f85 0%,#36577a 85%,#2e4b69 100%);
+	box-shadow: 0 1px 2px #233950;
+	-moz-box-shadow: 0 1px 2px #233950;
+	-webkit-box-shadow: 0 1px 2px #233950;
+*/
+}
+/* 
+header menu text color 
+*/
+.header-technical a {
+	/* color : #ccc; */
+}
+/* site description color */
+.main-header .slogan {
+	/* color: #eee; */
+}
+/*
+post job button background
+*/
+
+.bg-btn-action {/*
+	background: #CF412E;
+	background: -moz-linear-gradient(top,#d65746 0%,#cf412e 90%,#c73e2c 100%);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#D65746),color-stop(90%,#CF412E),color-stop(100%,#C73E2C));
+	background: -webkit-linear-gradient(top,#D65746 0%,#CF412E 90%,#C73E2C 100%);
+	background: -o-linear-gradient(top,#d65746 0%,#cf412e 90%,#c73e2c 100%);
+	background: -ms-linear-gradient(top,#d65746 0%,#cf412e 90%,#c73e2c 100%);
+	background: linear-gradient(top,#d65746 0%,#cf412e 90%,#c73e2c 100%);
+	font-family: "Quicksand";
+	color: #EEE !important;
+	*/
+}
+
+/* breadcrum background */
+.header-second {
+	/* border-color: #E9E5D3;
+	background-color: #F2EFE4; */
+}
+
+/*  end header style  */

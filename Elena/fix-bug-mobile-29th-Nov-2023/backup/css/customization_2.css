@@ -1,0 +1,280 @@
+body,
+.wrapper {
+  background-color: #fff;
+  background-image: url(http://localhost/je/job/wp-content/themes/jobengine/img/pattern.png);
+  background-repeat: repeat;
+}
+footer,
+.bg-footer {
+  background: #E0E0E0;
+  color: #999999;
+}
+footer .copyright {
+  color: overlay(#E0E0E0,#000000);
+}
+footer .menu-bottom a {
+  color: #999999;
+}
+.header-second,
+.header-filter {
+  border-color: #e6e6e6;
+  background-color: #f2f2f2;
+}
+.main-title,
+.widget-title,
+.account-title,
+.form-account .line-hr {
+  border-bottom: 1px solid #e6e6e6;
+}
+.companies-statis div.first {
+  border-bottom: 1px solid #e6e6e6;
+}
+.entry-blog .comments #respond h3.reply-title,
+.entry-blog .comments .comment-list li {
+  border-bottom: 1px solid #f2f2f2;
+}
+.entry-blog h3.title {
+  border-bottom: 1px solid #f2f2f2;
+  border-top: 1px solid #f2f2f2;
+}
+.heading-info .heading-map {
+  border: 1px solid #e6e6e6;
+}
+.heading-info .sharing ul li,
+.heading-info .sharing ul li:first-child {
+  border-color: #f0f0f0;
+}
+.btn-background {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  color: #808080;
+}
+.btn-background:hover {
+  background: #fff;
+}
+.btn-background:active {
+  background: #e6e6e6;
+}
+.widget_search input#s,
+.input-search-box {
+  background: #fff;
+  border-color: #cccccc;
+  border-width: 1px;
+  border-style: solid;
+}
+.heading {
+  border-color: #e6e6e6;
+}
+.jse-signup-profile .module .title .btn-edit a,
+.jse-profile .setting-profile,
+.jse-profile .toggle-edit {
+  color: #b3b3b3 !important;
+}
+.jse-signup-profile .module .title {
+  border-color: #ebebeb !important;
+}
+.jse-signup-profile .module .edu-module .item .line {
+  border-color: #e0e0e0 !important;
+}
+.jse-signup-profile .module .edu-module .item .dot {
+  background-color: #e0e0e0 !important;
+}
+.edu-form {
+  border-color: #f2f2f2 !important;
+}
+.jse-signup-profile .module .edu-module .item .content {
+  color: #e0e0e0 !important;
+}
+.heading-info,
+.bg-job-frame,
+.bg-grey-widget {
+  background-color: #fafafa;
+}
+.jse-signup-profile .module.editing,
+.authorized .jse-signup-profile .module-edit:hover {
+  background-color: #fcfcfc !important;
+}
+.jquery-sort-column > ul > li .title,
+ul.list-company > li .title {
+  border-bottom: 1px solid #e6e6e6;
+}
+.heading-info,
+ul.list-company ul li,
+.jquery-sort-column > ul ul li,
+.main-column .list-jobs li,
+.entry-blog > li,
+.job-account-list li {
+  border-bottom: 1px solid #f2f2f2;
+}
+.job-account-list li .control {
+  border-left: 1px solid #f2f2f2;
+}
+.widget-area .company-profile .info,
+.entry-blog .comments li .thumb,
+.entry-blog .comments li .children li {
+  border-top: 1px solid #ededed;
+}
+.widget ul li a {
+  border-bottom: 1px solid #f2f2f2 !important;
+}
+.bg-main-header {
+  background: #383838;
+}
+.category .menu-header-top li > a,
+.bg-btn-header {
+  background-color: #262626;
+}
+.current-menu-item .bg-btn-header,
+.category .menu-header-top .current-menu-item a,
+.account .menu-header-top .selected a,
+.bg-btn-header:active {
+  background-color: #1a1a1a;
+}
+.header-technical .ver-line {
+  background-color: #333, 10%;
+}
+.main-header .slogan {
+  color: #eeeeee;
+  text-shadow: 1px 0 0 #262626;
+}
+body,
+.tinymce-style {
+  color: #333;
+}
+.breadcrumb a,
+.breadcrumb span {
+  color: #333;
+}
+.tinymce-style h1,
+.tinymce-style h2,
+.tinymce-style h3,
+.tinymce-style h4,
+.tinymce-style h5,
+.tinymce-style h6,
+.job-detail .description h6 {
+  color: #333;
+}
+.heading-info .info .name,
+.widget .widget-title,
+.heading h1.title {
+  color: #1a1a1a;
+}
+.widget ul.category-lists li a,
+.tinymce-style .description {
+  color: #333;
+}
+.widget-select ul li a.active,
+.widget-select ul li a:hover {
+  border-color: #333;
+}
+.heading-info .viewcount,
+.heading-info .date,
+.heading-info .date:before,
+.widget ul.category-lists li a span {
+  color: #333;
+}
+.heading-info .job-location:before,
+.heading-info .job-location,
+.main-column .list-jobs li .desc > div,
+.main-column .list-jobs li .desc > div a {
+  color: #595959;
+}
+.list-alphabet li a {
+  color: #666666;
+}
+.jobseeker .account-title a {
+  color: #666666;
+}
+.jobseeker .account-title .menu a {
+  color: #333;
+}
+.entry-blog #respond input[type="submit"],
+.bg-btn-action {
+  background: #f39482;
+  font-family: "Roboto";
+  color: #eeeeee !important;
+}
+.entry-blog #respond input[type="submit"]:hover,
+.bg-btn-action:hover {
+  background: #f4a090;
+}
+.entry-blog #respond input[type="submit"]:active,
+.bg-btn-action:active {
+  background: #f28c79;
+}
+.bg-btn-action span {
+  color: #eee;
+}
+.widget_calendar table td#today,
+.widget_calendar table td a,
+.entry-blog .content .footer a,
+.entry-blog .content .header a.comment,
+.heading .technical a {
+  color: #F28C79;
+}
+.color-action {
+  color: #F28C79;
+}
+.main-column a,
+.main-column a:visited,
+.widget a,
+.widget a:visited {
+  color: #F28C79;
+}
+.list-alphabet li.active a {
+  color: #F28C79;
+}
+.modal-job .footer .forgot-pass-link {
+  color: #F28C79;
+}
+.bg-btn-hyperlink {
+  background: #f39482;
+}
+.post-a-job .step ul li.selected {
+  background: #ffffff;
+}
+.selected .btn-select button {
+  background: #f9c8bf;
+  color: #F28C79;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+::-moz-selection {
+  background: #f7b4a7;
+  color: #ffffff;
+  text-shadow: none;
+}
+::selection {
+  background: #f7b4a7;
+  color: #ffffff;
+  text-shadow: none;
+}
+.heading h1.title {
+  font-size: 12px;
+  font-family: Arial, san-serif;
+}
+.tinymce-style h1,
+.tinymce-style h2,
+.tinymce-style h3,
+.tinymce-style h4,
+.tinymce-style h5,
+.tinymce-style h6,
+.job-detail .description h6,
+.main-title,
+.widget .widget-title,
+.headline {
+  font-family: Roboto, san-serif;
+  margin: 0 0 10px 0;
+}
+.modal-job .title-white h5 {
+  font-family: Roboto, san-serif;
+}
+body,
+.tinymce-style {
+  font-family: Arial, san-serif;
+  font-size: 14px;
+}
+a {
+  color: #F28C79;
+}

@@ -1,0 +1,52 @@
+/*
+ Theme Name:   Jobengine Flat
+ Author:       EngineThemes
+ Author URI:   http://example.com
+ Template:     jobengine
+ Theme URI: http://www.enginethemes.com/themes/jobengine
+ Author: EngineThemes Team
+ Author URI: http://www.enginethemes.com
+ Description: a premium WordPress job board theme
+ Version: 1.0
+ Tags: 2 Columns, EngineThemes, Wordpress Themes, job board
+*/
+
+.menu-header-top li:first-child a,
+.menu-header-top li:last-child a{	
+}
+.customizer-panel{
+	1000;
+}
+.category .menu-header-top li > a, .bg-btn-header{
+	box-shadow: 0;
+}
+.header-technical a{
+	text-shadow:none;
+}
+.btn-select-wait button, .btn-select button,
+.btn,
+.jobseeker-profile-widget .avatar-container button{
+	box-shadow: none;
+}
+.jse-center {
+    width: 100%;
+}
+.jse-content .jse-title > div {
+    width: 50%;
+}
+.jse-content .jse-title .number {
+    padding: 2px 0;
+}
+.jse-signup-profile {
+    width: 90%;
+}
+.edu-form.skill .jse-input input {
+    width: 300px;
+    margin-right: 10px;
+}
+.header-content .desc p+p{
+	font-size: 0.7em;
+    line-height: 120%;
+    margin-top: 10px;
+}
+}

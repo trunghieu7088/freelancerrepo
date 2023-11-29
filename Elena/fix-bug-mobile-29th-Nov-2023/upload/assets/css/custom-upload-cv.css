@@ -1,0 +1,33 @@
+.btn-custom-upload-pdf
+{
+    background-color:#555555;
+    color:#ffffff !important;
+    padding:15px 15px !important;
+    line-height: 0 !important;
+    text-align: center !important;
+    font-size:14px !important;
+    display: inline-block;
+    border-radius: 3px;  
+    font-weight:400 !important;
+    text-shadow:none !important;  
+    text-decoration: none !important;
+}
+.cv-show-area
+{
+    margin:15px 20px 10px 20px;
+}
+#cv-upload-container
+{
+    padding-top:5px !important;
+}
+
+@media screen and (max-width: 767px) {
+    .cv-show-area
+    {
+        margin:15px 20px 10px 0px;
+    }
+    .cv-show-area a
+    {
+        text-decoration: none !important;
+    }
+}

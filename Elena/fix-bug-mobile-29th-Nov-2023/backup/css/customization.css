@@ -1,0 +1,357 @@
+body,
+.wrapper {
+  background-color: #EFF7F4;
+  background-image: url(https://lavoro.mondodelgiardino.com/wp-content/themes/jobengine/img/pattern.png);
+  background-repeat: repeat;
+}
+footer,
+.bg-footer {
+  background: #020304;
+  background: -moz-linear-gradient(top,#000000 0%,#020304 15%,#020304 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#000000),color-stop(15%,#020304),color-stop(100%,#020304));
+  background: -webkit-linear-gradient(top,#000000 0%,#020304 15%,#020304 100%);
+  background: -o-linear-gradient(top,#000000 0%,#020304 15%,#020304 100%);
+  background: -ms-linear-gradient(top,#000000 0%,#020304 15%,#020304 100%);
+  background: linear-gradient(top,#000000 0%,#020304 15%,#020304 100%);
+  color: #eeeeee;
+}
+footer .copyright {
+  color: hardlight(#020304,#ffffff);
+}
+footer .menu-bottom a {
+  color: #eeeeee;
+}
+.header-second,
+.header-filter {
+  border-color: #cde6dd;
+  background-color: #deefe8;
+}
+.main-title,
+.widget-title,
+.account-title,
+.form-account .line-hr {
+  border-bottom: 1px solid #cde6dd;
+}
+.companies-statis div.first {
+  border-bottom: 1px solid #cde6dd;
+}
+.entry-blog .comments #respond h3.reply-title,
+.entry-blog .comments .comment-list li {
+  border-bottom: 1px solid #deefe8;
+}
+.entry-blog h3.title {
+  border-bottom: 1px solid #deefe8;
+  border-top: 1px solid #deefe8;
+}
+.heading-info .heading-map {
+  border: 1px solid #cde6dd;
+}
+.heading-info .sharing ul li,
+.heading-info .sharing ul li:first-child {
+  border-color: #dbede6;
+}
+.btn-background {
+  background: #e8f4ef;
+  background: -moz-linear-gradient(top,#eff7f4 0%,#ecf5f2 10%,#e5f2ed 88%,#d4e9e1 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#eff7f4),color-stop(10%,#ecf5f2),color-stop(88%,#e5f2ed),color-stop(100%,#d4e9e1));
+  background: -webkit-linear-gradient(top,#eff7f4 0%,#ecf5f2 10%,#e5f2ed 88%,#d4e9e1 100%);
+  background: -o-linear-gradient(top,#eff7f4 0%,#ecf5f2 10%,#e5f2ed 88%,#d4e9e1 100%);
+  background: -ms-linear-gradient(top,#eff7f4 0%,#ecf5f2 10%,#e5f2ed 88%,#d4e9e1 100%);
+  background: linear-gradient(top,#eff7f4 0%,#ecf5f2 10%,#e5f2ed 88%,#d4e9e1 100%);
+  border: 1px solid #c6e3d8;
+  color: #4d9a7d;
+}
+.btn-background:hover {
+  border: 1px solid #c6e3d8;
+  background: #deefe8;
+  background: -moz-linear-gradient(top,#ecf5f2 0%,#e8f4ef 10%,#deefe8 88%,#cde6dd 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#ecf5f2),color-stop(10%,#ecf5f2),color-stop(88%,#e5f2ed),color-stop(100%,#cde6dd));
+  background: -webkit-linear-gradient(top,#ecf5f2 0%,#e8f4ef 10%,#deefe8 88%,#cde6dd 100%);
+  background: -o-linear-gradient(top,#ecf5f2 0%,#e8f4ef 10%,#deefe8 88%,#cde6dd 100%);
+  background: -ms-linear-gradient(top,#ecf5f2 0%,#e8f4ef 10%,#deefe8 88%,#cde6dd 100%);
+  background: linear-gradient(top,#ecf5f2 0%,#e8f4ef 10%,#deefe8 88%,#cde6dd 100%);
+}
+.btn-background:active {
+  background: #cde6dd;
+  background: -moz-linear-gradient(top,#cde6dd 0%,#e5f2ed 12%,#ecf5f2 90%,#eff7f4 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#cde6dd),color-stop(12%,#e5f2ed),color-stop(90%,#ecf5f2),color-stop(100%,#eff7f4));
+  background: -webkit-linear-gradient(top,#cde6dd 0%,#e5f2ed 12%,#ecf5f2 90%,#eff7f4 100%);
+  background: -o-linear-gradient(top,#cde6dd 0%,#e5f2ed 12%,#ecf5f2 90%,#eff7f4 100%);
+  background: -ms-linear-gradient(top,#cde6dd 0%,#e5f2ed 12%,#ecf5f2 90%,#eff7f4 100%);
+  background: linear-gradient(top,#cde6dd 0%,#e5f2ed 12%,#ecf5f2 90%,#eff7f4 100%);
+}
+.widget_search input#s,
+.input-search-box {
+  background: #EFF7F4;
+  box-shadow: inset 0 1px 2px #bcded1;
+  -moz-box-shadow: inset 0 1px 2px #bcded1;
+  -webkit-box-shadow: inset 0 1px 2px #bcded1;
+  border-color: #abd5c5;
+  border-width: 1px;
+  border-style: solid;
+}
+.heading {
+  border-color: #cde6dd;
+}
+.jse-signup-profile .module .title .btn-edit a,
+.jse-profile .setting-profile,
+.jse-profile .toggle-edit {
+  color: #89c4ae !important;
+}
+.jse-signup-profile .module .title {
+  border-color: #d4e9e1 !important;
+}
+.jse-signup-profile .module .edu-module .item .line {
+  border-color: #c6e3d8 !important;
+}
+.jse-signup-profile .module .edu-module .item .dot {
+  background-color: #c6e3d8 !important;
+}
+.edu-form {
+  border-color: #deefe8 !important;
+}
+.jse-signup-profile .module .edu-module .item .content {
+  color: #c6e3d8 !important;
+}
+.heading-info,
+.bg-job-frame,
+.bg-grey-widget {
+  background-color: #e8f4ef;
+  box-shadow: inset 0 1px 6px -2px #bcded1;
+}
+.jse-signup-profile .module.editing,
+.authorized .jse-signup-profile .module-edit:hover {
+  background-color: #ecf5f2 !important;
+}
+.jquery-sort-column > ul > li .title,
+ul.list-company > li .title {
+  border-bottom: 1px solid #cde6dd;
+}
+.heading-info,
+ul.list-company ul li,
+.jquery-sort-column > ul ul li,
+.main-column .list-jobs li,
+.entry-blog > li,
+.job-account-list li {
+  border-bottom: 1px solid #deefe8;
+}
+.job-account-list li .control {
+  border-left: 1px solid #deefe8;
+}
+.widget-area .company-profile .info,
+.entry-blog .comments li .thumb,
+.entry-blog .comments li .children li {
+  border-top: 1px solid #d7ebe4;
+}
+.widget ul li a {
+  border-bottom: 1px solid #deefe8 !important;
+}
+.bg-main-header {
+  background: #0f3a1e;
+  background: -moz-linear-gradient(top,#15522b 0%,#0f3a1e 90%,#0d321a 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#15522b),color-stop(90%,#0f3a1e),color-stop(100%,#0d321a));
+  background: -webkit-linear-gradient(top,#15522b 0%,#0f3a1e 90%,#0d321a 100%);
+  background: -o-linear-gradient(top,#15522b 0%,#0f3a1e 90%,#0d321a 100%);
+  background: -ms-linear-gradient(top,#15522b 0%,#0f3a1e 90%,#0d321a 100%);
+  background: linear-gradient(top,#15522b 0%,#0f3a1e 90%,#0d321a 100%);
+}
+.category .menu-header-top li > a,
+.bg-btn-header {
+  background: #185a2f;
+  background: -moz-linear-gradient(top,#1b6735 0%,#185a2f 85%,#124625 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#1b6735),color-stop(85%,#185a2f),color-stop(100%,#124625));
+  background: -webkit-linear-gradient(top,#1b6735 0%,#185a2f 85%,#124625 100%);
+  background: -o-linear-gradient(top,#1b6735 0%,#185a2f 85%,#124625 100%);
+  background: -ms-linear-gradient(top,#1b6735 0%,#185a2f 85%,#124625 100%);
+  background: linear-gradient(top,#1b6735 0%,#185a2f 85%,#124625 100%);
+  box-shadow: 0 1px 2px #0b2a16;
+  -moz-box-shadow: 0 1px 2px #0b2a16;
+  -webkit-box-shadow: 0 1px 2px #0b2a16;
+}
+.current-menu-item .bg-btn-header,
+.category .menu-header-top .current-menu-item a,
+.account .menu-header-top .selected a,
+.bg-btn-header:active {
+  background: #020a05 !important;
+  background: -moz-linear-gradient(top,#0b2a16 0%,#020a05 100%) !important;
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#0b2a16),color-stop(100%,#020a05)) !important;
+  background: -webkit-linear-gradient(top,#0b2a16 0%,#020a05 100%) !important;
+  background: -o-linear-gradient(top,#0b2a16 0%,#020a05 100%) !important;
+  background: -ms-linear-gradient(top,#0b2a16 0%,#020a05 100%) !important;
+  background: linear-gradient(top,#0b2a16 0%,#020a05 100%) !important;
+  box-shadow: inset 0 2px 3px #020a05;
+  -moz-box-shadow: inset 0 2px 3px #020a05;
+  -webkit-box-shadow: inset 0 2px 3px #020a05;
+}
+.header-technical .ver-line {
+  background-color: #0c2e18;
+}
+.main-header .slogan {
+  color: #eeeeee;
+  text-shadow: 1px 0 0 #020a05;
+}
+body,
+.tinymce-style {
+  color: #555555;
+}
+.breadcrumb a,
+.breadcrumb span {
+  color: #555555;
+}
+.tinymce-style h1,
+.tinymce-style h2,
+.tinymce-style h3,
+.tinymce-style h4,
+.tinymce-style h5,
+.tinymce-style h6,
+.job-detail .description h6 {
+  color: #484848;
+}
+.heading-info .info .name,
+.widget .widget-title,
+.heading h1.title {
+  color: #3c3c3c;
+}
+.widget ul.category-lists li a,
+.tinymce-style .description {
+  color: #555555;
+}
+.widget-select ul li a.active,
+.widget-select ul li a:hover {
+  border-color: #555555;
+}
+.heading-info .viewcount,
+.heading-info .date,
+.heading-info .date:before,
+.widget ul.category-lists li a span {
+  color: #959595;
+}
+.heading-info .job-location:before,
+.heading-info .job-location,
+.main-column .list-jobs li .desc > div,
+.main-column .list-jobs li .desc > div a {
+  color: #7b7b7b;
+}
+.list-alphabet li a {
+  color: #888888;
+}
+.jobseeker .account-title a {
+  color: #888888;
+}
+.jobseeker .account-title .menu a {
+  color: #555555;
+}
+.entry-blog #respond input[type="submit"],
+.bg-btn-action {
+  background: #858d2f;
+  background: -moz-linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#9ba436),color-stop(90%,#858d2f),color-stop(100%,#7e852c));
+  background: -webkit-linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+  background: -o-linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+  background: -ms-linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+  background: linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+  font-family: "Roboto";
+  color: #eeeeee !important;
+}
+.entry-blog #respond input[type="submit"]:hover,
+.bg-btn-action:hover {
+  background: #909832;
+  background: -moz-linear-gradient(top,#a2ab39 0%,#909832 90%,#7e852c 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#a2ab39),color-stop(90%,#909832),color-stop(100%,#7e852c));
+  background: -webkit-linear-gradient(top,#a2ab39 0%,#858d2f 90%,#7e852c 100%);
+  background: -o-linear-gradient(top,#a2ab39 0%,#909832 90%,#7e852c 100%);
+  background: -ms-linear-gradient(top,#a2ab39 0%,#909832 90%,#7e852c 100%);
+  background: linear-gradient(top,#a2ab39 0%,#909832 90%,#7e852c 100%);
+}
+.entry-blog #respond input[type="submit"]:active,
+.bg-btn-action:active {
+  background: #7e852c;
+  background: -moz-linear-gradient(top,#7e852c 0%,#858d2f 10%,#9ba436 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#7e852c),color-stop(10%,#858d2f),color-stop(100%,#9ba436));
+  background: -webkit-linear-gradient(top,#7e852c 0%,#858d2f 10%,#9ba436 100%);
+  background: -o-linear-gradient(top,#7e852c 0%,#858d2f 10%,#9ba436 100%);
+  background: -ms-linear-gradient(top,#7e852c 0%,#858d2f 10%,#9ba436 100%);
+  background: linear-gradient(top,#7e852c 0%,#858d2f 10%,#9ba436 100%);
+}
+.bg-btn-action span {
+  color: #eee;
+}
+.widget_calendar table td#today,
+.widget_calendar table td a,
+.entry-blog .content .footer a,
+.entry-blog .content .header a.comment,
+.heading .technical a {
+  color: #7e852c;
+}
+.color-action {
+  color: #7e852c;
+}
+.main-column a,
+.main-column a:visited,
+.widget a,
+.widget a:visited {
+  color: #7e852c;
+}
+.list-alphabet li.active a {
+  color: #7e852c;
+}
+.modal-job .footer .forgot-pass-link {
+  color: #7e852c;
+}
+.bg-btn-hyperlink {
+  background: #858d2f;
+  background: -moz-linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#9ba436),color-stop(90%,#858d2f),color-stop(100%,#7e852c));
+  background: -webkit-linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+  background: -o-linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+  background: -ms-linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+  background: linear-gradient(top,#9ba436 0%,#858d2f 90%,#7e852c 100%);
+}
+.post-a-job .step ul li.selected {
+  background: #dadf9e;
+}
+.selected .btn-select button {
+  background: #b4be3f;
+  color: #7e852c;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+::-moz-selection {
+  background: #a2ab39;
+  color: #dadf9e;
+  text-shadow: none;
+}
+::selection {
+  background: #a2ab39;
+  color: #dadf9e;
+  text-shadow: none;
+}
+.heading h1.title {
+  font-size: 23px;
+  font-family: Roboto, sans-serif;
+}
+.tinymce-style h1,
+.tinymce-style h2,
+.tinymce-style h3,
+.tinymce-style h4,
+.tinymce-style h5,
+.tinymce-style h6,
+.job-detail .description h6,
+.main-title,
+.widget .widget-title,
+.headline {
+  font-family: Roboto, sans-serif;
+  margin: 0 0 10px 0;
+}
+.modal-job .title-white h5 {
+  font-family: Roboto, sans-serif;
+}
+body,
+.tinymce-style {
+  font-family: Ubuntu, sans-serif;
+  font-size: 14px;
+}
+a {
+  color: #7e852c;
+}

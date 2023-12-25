@@ -1,0 +1,51 @@
+.subscription-manage-wrapper
+{
+    margin:50px 0px; 
+    margin-bottom:200px;
+}
+.subscription-manage-wrapper .subscription-content-wrapper
+{
+    display:flex;
+}
+
+.subscription-menu-wrapper
+{
+    border-right:1px solid #d3ded3;
+}
+.manage-subscription-admin-menu
+{
+    display: flex;
+    flex-direction: column;
+    
+}
+.manage-subscription-admin-menu a
+{
+    margin-bottom:20px;
+}
+.subscription-task-area
+{
+    padding:10px 50px !important;    
+}
+.admin-subscription-title
+{
+    padding:0px !important;
+    margin-bottom:10px !important;
+    text-align: center;    
+    font-size:18px;
+}
+.title-advertisement input[type="text"]
+{
+    margin-bottom:10px !important;
+}
+.deactivate-subscription-btn
+{
+    padding:5px !important;
+}
+.admin-subscription-modal
+{
+    padding:15px !important;
+}
+.active-modal-content
+{
+    text-align: center !important;
+}

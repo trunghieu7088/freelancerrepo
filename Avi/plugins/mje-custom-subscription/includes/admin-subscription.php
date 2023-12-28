@@ -9,6 +9,32 @@ define('PAYPAL_API_URL','https://api-m.sandbox.paypal.com/v1/');
 
 require('admin-manage-layout.php');
 
+add_action('template_redirect','only_allow_specified_admin_access');
+
+function only_allow_specified_admin_access()
+{
+    global $post;
+    if(isset($post) && !empty($post))
+	{
+        $template_page=get_post_meta($post->ID,'_wp_page_template',true);
+        if($template_page=='custom-manage-subscription.php')
+		{            
+            $current_admin_list=get_option('admin_subscription_list',false);
+            if($current_admin_list)
+            {
+                $check_current_user=wp_get_current_user();
+               
+                    if(!in_array($check_current_user->user_email,$current_admin_list))
+                    {
+                        wp_redirect(site_url(''));
+                    }
+                               
+               
+            }
+        }
+    }
+}
+
 //function to get Paypal Access token
 function get_Paypal_access_token()
 {
@@ -745,6 +771,74 @@ function list_transaction_for_subscription($subscriptionID)
 
 }
 
+//set admin who can access subscription area
+
+add_action('wp_ajax_set_admin_access_subscription','set_admin_access_subscription_function');
+
+function set_admin_access_subscription_function()
+{
+    if (!is_super_admin()) {        
+        die('something went wrong');
+    }
+    extract($_POST);
+    $specified_user=get_user_by('email',$admin_email);
+    $current_admin_list=get_option('admin_subscription_list',false);
+    
+    if($specified_user)
+    {
+        if($current_admin_list)
+        {
+            array_push($current_admin_list,$specified_user->user_email);
+        }
+        else
+        {
+            $current_admin_list=array($specified_user->user_email);
+        }
+        update_option('admin_subscription_list',$current_admin_list);
+        $data['message']='Set admin successfully';
+        $data['success']='true';
+    }
+    else
+    {
+        $data['message']='this user does not exist';
+        $data['success']='false';
+    }
+
+    wp_send_json($data);
+    die();
+}
+
+add_action('wp_ajax_delete_email_admin_sub','delete_email_admin_sub_function');
+
+function delete_email_admin_sub_function()
+{
+    if (!is_super_admin()) {        
+        die('something went wrong');
+    }
+    extract($_POST);
+    
+    $current_admin_list=get_option('admin_subscription_list',false);
+    if($current_admin_list)
+    {
+        foreach($current_admin_list as $admin_position => $admin_email)
+        {
+            if($admin_email == $delete_email)
+            {
+                unset($current_admin_list[$admin_position]);
+            }
+        }
+        $data['message']='remove admin successfully';
+        $data['success']='true';
+        update_option('admin_subscription_list',$current_admin_list);
+    }
+    else
+    {
+        $data['message']='this user does not exist';
+        $data['success']='false';
+    }
+    wp_send_json($data);
+    die();
+}
 
 //get products
 //will delete in the future or comment out

@@ -269,6 +269,46 @@
         });            
     });
 
+    //handle add admin subscription area
+    $("#setAdminSubscription").submit(function(e){
+        e.preventDefault();  
+        var formData = $(this).serialize();
+        $.ajax({
+
+            type: "POST",
+            url: url_ajax,
+            dataType: 'json',
+            data: formData,
+            success: function(response) {                    
+                toastr.success(response.message);
+                window.location.reload();
+            },   
+            error: function(error) {                    
+                toastr.error('Something went wrong. Please refresh');
+            }             
+        });
+    });
+
+    $(".custom-btn-delete-admin-subscription").click(function(){
+        let delete_email=$(this).attr('data-email');
+        $.ajax({
+
+            type: "POST",
+            url: url_ajax,
+            dataType: 'json',
+            data: {
+                action: 'delete_email_admin_sub',
+                delete_email: delete_email,
+            },
+            success: function(response) {                    
+                toastr.success(response.message);
+                window.location.reload();
+            },   
+            error: function(error) {                    
+                toastr.error('Something went wrong. Please refresh');
+            }             
+        });
+    });
 
     });
 

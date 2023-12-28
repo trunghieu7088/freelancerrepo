@@ -9,6 +9,7 @@ function custom_menu_subscription_admin() {
                 <a href="<?php echo site_url('manage-subscription/?task=subscriptionmanage'); ?>">Manage Plans</a>                
                 <a href="<?php echo site_url('manage-subscription/?task=customcreateplan'); ?>">Create plans</a>                                
                 <a href="<?php echo site_url('manage-subscription/?task=subscriptionlist'); ?>">Manage subscriptions</a>                                
+                <a href="<?php echo site_url('manage-subscription/?task=adminaccess'); ?>">Admin Access</a>                                
                <!-- <a href="<?php echo site_url('manage-subscription/?task=manageproducts'); ?>">Manage Products</a> -->
        </div>
     <?php
@@ -66,6 +67,59 @@ function filter_title_subscription($title)
    
     return $title;
 };
+
+//layout to manage admin who can access
+
+function adminaccess_shortcode()
+{
+    ob_start();
+    $admin_subscription_list=get_option('admin_subscription_list',false);
+    $check_current_user=wp_get_current_user();    
+    ?>
+     <p class="admin-subscription-title">Manage Admin Access</p>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Action</th>
+                        </tr>                    
+                    </thead>  
+                    <tbody>
+                        <?php if($admin_subscription_list): ?>
+                            <?php foreach($admin_subscription_list as $admin): ?>
+                                <?php $admin_item=get_user_by('email',$admin); ?>
+                                 <tr>
+                                    <td><?php echo $admin_item->user_email; ?></td>
+                                    <td><?php echo $admin_item->display_name; ?></td>
+                                    <td><?php echo $admin_item->user_login; ?></td>
+                                    <td><button data-email="<?php echo $admin_item->user_email; ?>" class="btn btn-danger custom-btn-delete-admin-subscription">Remove</button></td>
+                                 </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>                       
+                    </tbody>              
+                </table>
+            </div>
+
+            <div class="col-md-12">
+                <h4 class="text-center">Set admin who can access</h4>
+                <form name="setAdminSubscription" id="setAdminSubscription" action="">                    
+                    <input type="hidden" id="action" name="action" value="set_admin_access_subscription">    
+                    <div class="form-group">
+                        <label for="admin_email">Admin Email</label>
+                        <input type="text" class="form-control" id="admin_email" name="admin_email" value="" required>     
+                    </div>  
+                    <button type="submit" class="btn btn-primary">Add</button> 
+                </form>
+            </div>
+        </div>
+    <?php 
+    return ob_get_clean();
+}
+add_shortcode('adminaccess', 'adminaccess_shortcode');
 
 
 //layout insert paypal info

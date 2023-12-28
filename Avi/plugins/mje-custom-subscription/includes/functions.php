@@ -287,13 +287,15 @@ function subscribePlan_function()
 
         
         
-         //total renewal times and total paid and last_subscription_date
-         //only update these for free plan because webhook will handle for paid plan
-         if($price==0 || $price=='0')
-         {  
-            update_post_meta($subscribe_plan_id,'total_paid',$price);         
-            update_post_meta($subscribe_plan_id,'total_renewal_times',1);
-            update_post_meta($subscribe_plan_id,'last_subscription_date',$subscription_time->format('Y-m-d'));
+         //total renewal times and total paid and last_subscription_date                  
+
+         update_post_meta($subscribe_plan_id,'total_paid',$price);         
+         update_post_meta($subscribe_plan_id,'total_renewal_times',1);
+         update_post_meta($subscribe_plan_id,'last_subscription_date',$subscription_time->format('Y-m-d'));
+         if($price != 0)
+         {
+            //update this to skip the first time of webhook payment.sale.completed
+            update_post_meta($subscribe_plan_id,'skip_first_payment_webhook','yes');
          }
         
          //update for user profile
@@ -324,14 +326,29 @@ function subscribePlan_function()
          //end
 
          //send email when subscribe successfully
-         $email_instance=new MJE_Mailing();
                 
          $subject= 'New subscription on '.get_bloginfo( 'name' );
          $link='<a href="'.site_url('mysubscription').'">here</a>';
-         $message='You have subscribed '.$plan_info->post_title;       
-         $message.='<p> Please click '.$link.' for more information';
-             
-         $email_instance->wp_mail($current_user->user_email,$subject,$message,array());
+
+         $message='Dear '.$current_user->display_name.',';
+
+         $message.='<p>Thank you for subscribing to Guide Per Hour!</p>';
+
+         $message.='<p>We are thrilled to have you join our community of experts. Your subscription unlocks a world of opportunities to share your knowledge and skills with a diverse audience eager to learn.</p>';
+
+         $message.='<p>As a valued member, you now have the privilege to start posting your sessions. Whether it\'s one-on-one guidance or in-depth tutorials, your expertise is key in creating meaningful and impactful learning journeys.</p>';
+
+         $message.='<p>We understand the importance of flexibility in your commitments. That’s why at Guide Per Hour, you have the freedom to upgrade or cancel your subscription at any time. This ensures that our platform aligns with your changing needs and preferences.</p>';
+
+         $message.='<p>We are committed to supporting you every step of the way. Should you need any assistance or have queries about setting up your sessions, managing your subscription, or anything else, our dedicated team is here to help.</p>';
+
+         $message.='<p>Welcome to Guide Per Hour, where your expertise meets endless possibilities.</p>';
+
+         $message.='<p>Warm regards,</p>';
+
+         $message.='<p>The Guide Per Hour Team</p>';                        
+
+         subscription_send_mail($current_user->user_email,$subject,$message);
          //end send email
          
          $data['message']='Subscribe successfully';
@@ -645,18 +662,19 @@ function auto_renew_free_plan()
                         
                         update_post_meta($current_subscription_plan,'transaction_fee',$transaction_fee);
 
-                        //send email when subscribe successfully
+                        //send email when renew free plan successfully
                         $wp_plan_info=get_post($wp_plan);
                         $wp_subscription=get_post($current_subscription_plan);
                         $user_subscription=get_user_by('ID',$wp_subscription->post_author);
-                        $email_instance=new MJE_Mailing();
+                       
                             
                         $subject= 'New subscription on '.get_bloginfo( 'name' );
                         $link='<a href="'.site_url('mysubscription').'">here</a>';
+                     
                         $message='The '.$wp_plan_info->post_title.' has automatically renew successfully';       
-                        $message.='<p> Please click '.$link.' for more information';
-                            
-                        $email_instance->wp_mail($user_subscription->user_email,$subject,$message,array());
+                        $message.='<p> Please click '.$link.' for more information';                    
+                                                    
+                        subscription_send_mail($user_subscription->user_email,$subject,$message);
                         //end send email
                     }                
 
@@ -720,9 +738,19 @@ function paypal_webhook_listener()
     $webhook_data = json_decode(file_get_contents('php://input'), true);
 
     
-    if ($webhook_data['event_type'] == 'PAYMENT.SALE.COMPLETED' && $webhook_data['state']=='completed') 
+    if ($webhook_data['event_type'] == 'PAYMENT.SALE.COMPLETED') 
     {
-        $subscription=get_subscription_by_ID_from_paypal($webhook_data['billing_agreement_id']);        
+        $subscription=get_subscription_by_ID_from_paypal($webhook_data['resource']['billing_agreement_id']);        
+        
+        $skip_first_payment_webhook=get_post_meta($subscription->ID,'skip_first_payment_webhook',true);
+
+        if($skip_first_payment_webhook=='yes')
+        {
+            update_post_meta($subscription->ID,'skip_first_payment_webhook','no');
+            http_response_code(200);
+            exit;
+        }        
+        
         $wp_plan=get_post_meta($subscription->ID,'wp_plan_id',true);
         $total_paid=(int)get_post_meta($subscription->ID,'total_paid',true);
 
@@ -751,17 +779,16 @@ function paypal_webhook_listener()
         update_post_meta($subscription->ID,'transaction_fee',$transaction_fee);
           
         
-            //send email when subscribe successfully
+            //send email when renew successfully
             $wp_plan_info=get_post($wp_plan);            
             $user_subscription=get_user_by('ID',$subscription->post_author);
-            $email_instance=new MJE_Mailing();
-                
+             
             $subject= 'New subscription on '.get_bloginfo( 'name' );
             $link='<a href="'.site_url('mysubscription').'">here</a>';
             $message='The '.$wp_plan_info->post_title.' has automatically renew successfully';       
-            $message.='<p> Please click '.$link.' for more information';
-                
-            $email_instance->wp_mail($user_subscription->user_email,$subject,$message,array());
+            $message.='<p> Please click '.$link.' for more information</p>';            
+
+            subscription_send_mail($user_subscription->user_email,$subject,$message,array());
             //end send email
 
         
@@ -872,4 +899,18 @@ function set_commission_seller_by_package( $result, $request)
 
         }
     }
+}
+
+function subscription_send_mail($email_address,$subject,$message_content)
+{
+    $email_instance= MJE_Mailing::get_instance();
+
+    $header_template=et_email_template_header();
+    $footer_template=et_email_template_footer();
+               
+    $message=$header_template;
+    $message.=$message_content;           
+    $message.=$footer_template;
+        
+    $email_instance->wp_mail($email_address,$subject,$message,array());
 }

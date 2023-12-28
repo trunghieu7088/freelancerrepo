@@ -24,3 +24,4 @@ function addAssetsFiles()
 }
 
 add_action('wp_enqueue_scripts', 'addAssetsFiles',999);
+

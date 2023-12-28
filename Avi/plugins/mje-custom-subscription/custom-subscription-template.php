@@ -29,7 +29,7 @@ $args_plans = array(
 $list_plans=get_posts($args_plans);
 ?>
 <div class="subscription-wrapper">
-    <h3 class="text-center text-introduction-plan">Please choose a plan to subscribe for posting services.</h3>
+    <h3 class="text-center text-introduction-plan"> Select Your Subscription Plan to Begin posting services</h3>
     <div class="container custom-plans-container">
         
 

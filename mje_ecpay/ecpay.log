@@ -1,0 +1,171 @@
+2022-01-28 23:58:09: Order Input :
+2022-01-28 23:58:09: MJE_Order Object
+(
+    [_ID:protected] => 2366
+    [_total:protected] => 5.00
+    [_total_before_discount:protected] => 5.00
+    [_currency:protected] => USD
+    [_payer:protected] => 1
+    [_payment:protected] => allpay
+    [_payment_code:protected] => 
+    [_products:protected] => Array
+        (
+            [2365] => Array
+                (
+                    [ID] => 2365
+                    [NAME] => Order for I will make a typograpy band logo 
+                    [AMT] => 5
+                    [QTY] => 1
+                    [L_DESC] => <p><span style="color: #000000; font-family: 'Roboto Condensed'; font-size: 15px; font-style: normal; font-weight: normal; letter-spacing: normal; text-align: left; text-indent: 0px; background-color: #ffffff; float: none;">I will create a beautiful and outstanding typography design for your band, clothing brand, business, website, etc. You can give any sample you may found out there or I&#8217;ll design an unique one for you. ***I only design a typographic based logo. Please don&#8217;t put your order here if You need an imagery based logo.*** What You will get: Vector based logotype 2400 x 2000 px PNG/JPG file. Only 3 revisions allowed (I hate this phrase, but designing is a time killing job) AI/EPS Source File with ordering an extra gigs (very recommended if You want to apply it in any media) *TYPOGRAPHY IS A BEAUTIFUL GROUP OF LETTERS, NOT A GROUP OF BEAUTIFUL LETTERS. *</span></p>
+
+                    [TYPE] => mjob_order
+                )
+
+        )
+
+    [_product_id:protected] => 2365
+    [_product_type:protected] => mjob_order
+    [_shipping:protected] => Array
+        (
+        )
+
+    [_created_date:protected] => 2022-01-28 23:58:09
+    [_paid_date:protected] => 
+    [_stat:protected] => draft
+    [_payer_id:protected] => 
+    [_setup_checkout:protected] => 1
+    [_coupon_code:protected] => 
+    [_discount_rate:protected] => 
+    [_discount_method:protected] => percent
+    [_vat_fee:protected] => 
+    [_post_parent:protected] => 2365
+    [_order_type:protected] => order
+    [vat_fee] => 0
+)
+2022-01-28 23:58:09: setup_checkout: Order ID after generate data to pay: 
+2022-01-28 23:58:09: Array
+(
+    [payment_code] => 
+    [ID] => 2366
+    [payer] => 1
+    [currencyCodeType] => USD
+    [products] => Array
+        (
+            [2365] => Array
+                (
+                    [ID] => 2365
+                    [NAME] => Order for I will make a typograpy band logo 
+                    [AMT] => 5
+                    [QTY] => 1
+                    [L_DESC] => <p><span style="color: #000000; font-family: 'Roboto Condensed'; font-size: 15px; font-style: normal; font-weight: normal; letter-spacing: normal; text-align: left; text-indent: 0px; background-color: #ffffff; float: none;">I will create a beautiful and outstanding typography design for your band, clothing brand, business, website, etc. You can give any sample you may found out there or I&#8217;ll design an unique one for you. ***I only design a typographic based logo. Please don&#8217;t put your order here if You need an imagery based logo.*** What You will get: Vector based logotype 2400 x 2000 px PNG/JPG file. Only 3 revisions allowed (I hate this phrase, but designing is a time killing job) AI/EPS Source File with ordering an extra gigs (very recommended if You want to apply it in any media) *TYPOGRAPHY IS A BEAUTIFUL GROUP OF LETTERS, NOT A GROUP OF BEAUTIFUL LETTERS. *</span></p>
+
+                    [TYPE] => mjob_order
+                )
+
+        )
+
+    [total] => 5.00
+    [total_before_discount] => 5.00
+    [ship] => Array
+        (
+        )
+
+    [payment] => allpay
+    [payer_id] => 
+    [vat_fee] => 
+    [coupon_code] => 
+    [discount_rate] => 
+    [discount_method] => percent
+    [order_name] => allpay
+    [product_id] => 2365
+)
+2022-01-28 23:58:33: Woo getTradeInfo:
+2022-01-28 23:58:33: Woo Inputs: 
+2022-01-28 23:58:33: Array
+(
+    [hashKey] => 5294y06JbISpM5x9
+    [hashIv] => v77hoKGq4kWxNNIS
+    [merchantTradeNo] => ECPAY2022012366
+)
+2022-01-28 23:58:33: WPp ECPay_QueryTradeInfo Input Check: 
+2022-01-28 23:58:33: arParameters: 
+2022-01-28 23:58:33: Array
+(
+    [MerchantTradeNo] => ECPAY2022012366
+    [TimeStamp] => 1643414313
+    [MerchantID] => 2000132
+    [EncryptType] => 1
+)
+2022-01-28 23:58:34: Woo arConfirmArgs: 
+2022-01-28 23:58:34: Array
+(
+    [CustomField1] => 
+    [CustomField2] => 
+    [CustomField3] => 
+    [CustomField4] => 
+    [HandlingCharge] => 5
+    [ItemName] => Order for I will make a typograpy band logo 
+    [MerchantID] => 2000132
+    [MerchantTradeNo] => ECPAY2022012366
+    [PaymentDate] => 
+    [PaymentType] => Credit_CreditCard
+    [PaymentTypeChargeFee] => 5
+    [StoreID] => 
+    [TradeAmt] => 5
+    [TradeDate] => 2022/01/29 07:58:09
+    [TradeNo] => 2201290758094794
+    [TradeStatus] => 10100058
+)
+2022-01-28 23:58:34: hasKey: 5294y06JbISpM5x9
+2022-01-28 23:58:34: HasIV: v77hoKGq4kWxNNIS
+2022-01-28 23:58:34: EncryptType: 1
+2022-01-28 23:58:34: verify order_id : 2366
+2022-01-28 23:58:34: ecpay_amount: 5
+2022-01-28 23:58:34: order_amount: 5
+2022-01-28 23:58:34: ecpay_payment_method: Credit
+2022-01-28 23:58:34: return_code: 10100058
+2022-01-28 23:58:34: Woo getTradeInfo:
+2022-01-28 23:58:34: Woo Inputs: 
+2022-01-28 23:58:34: Array
+(
+    [hashKey] => 5294y06JbISpM5x9
+    [hashIv] => v77hoKGq4kWxNNIS
+    [merchantTradeNo] => ECPAY2022012366
+)
+2022-01-28 23:58:34: WPp ECPay_QueryTradeInfo Input Check: 
+2022-01-28 23:58:34: arParameters: 
+2022-01-28 23:58:34: Array
+(
+    [MerchantTradeNo] => ECPAY2022012366
+    [TimeStamp] => 1643414314
+    [MerchantID] => 2000132
+    [EncryptType] => 1
+)
+2022-01-28 23:58:34: Woo arConfirmArgs: 
+2022-01-28 23:58:34: Array
+(
+    [CustomField1] => 
+    [CustomField2] => 
+    [CustomField3] => 
+    [CustomField4] => 
+    [HandlingCharge] => 5
+    [ItemName] => Order for I will make a typograpy band logo 
+    [MerchantID] => 2000132
+    [MerchantTradeNo] => ECPAY2022012366
+    [PaymentDate] => 
+    [PaymentType] => Credit_CreditCard
+    [PaymentTypeChargeFee] => 5
+    [StoreID] => 
+    [TradeAmt] => 5
+    [TradeDate] => 2022/01/29 07:58:09
+    [TradeNo] => 2201290758094794
+    [TradeStatus] => 10100058
+)
+2022-01-28 23:58:34: hasKey: 5294y06JbISpM5x9
+2022-01-28 23:58:34: HasIV: v77hoKGq4kWxNNIS
+2022-01-28 23:58:34: EncryptType: 1
+2022-01-28 23:58:34: verify order_id : 2366
+2022-01-28 23:58:34: ecpay_amount: 5
+2022-01-28 23:58:34: order_amount: 5
+2022-01-28 23:58:34: ecpay_payment_method: Credit
+2022-01-28 23:58:34: return_code: 10100058

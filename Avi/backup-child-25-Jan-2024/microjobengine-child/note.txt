@@ -1,0 +1,169 @@
+List files of send offer in chat :
+
+Parent folder :
+
+includes > modules > MJE_Conversation > class-mje-conversation-action.php
+
+Child folder:
+
+single-ae-message.php
+
+template > custom-order-form-send-offer.php
+
+template-js > custom-order-detail.php
+
+assets > js > custom-order.js
+
+assets > css > all-custom-css.css
+
+custom_require_files.php
+
+
+MjE_recruit plugin:
+
+single-recruit.php
+
+
+List file of tiktok :
+
+Parent folder :
+
+includes > class-mje-post.php
+
+Child folder :
+
+template > mjob-post > description.php
+
+template > post-service-step3.php
+
+template > assets > css > all-custom-css.css
+
+template > assets > img > guidett.png
+
+
+Small task 13 - Sep 2023
+
+child > page-payment-method.php
+
+plugin > mje_withdrawal > template > awd_my_widthdrawal.php
+
+
+
+small task 14 - sep 2023
+
+plugin > mje_withdrawal > template > awd_withdrawing_balance_list_payment.php
+
+
+Add custom fields to Paypal withdrawal form:
+
+
+
+plugins 
+
+ mje_withdrawal > includes > mje-awd-function.php
+
+  mje_withdrawal > includes > init.php
+
+parent :
+
+ includes > modules > AE_authentication > class-mJobUserAction.php
+
+child :
+
+page-payment-method.php
+
+ assets > js > payment-method.js
+
+ custom_require_files.php
+
+
+carousel profile:
+
+List files :
+
+Parent :
+
+class-mje-profile.php
+
+class-mje-mjob-post-type.php
+
+includes > aecore > template.php
+
+Child :
+
+page-profile.php
+
+custom_carousel_profile.php
+
+all-custom-css.css
+
+custom-swiper.js
+
+
+
+slider item background color
+
+profile name text color ( jonh doe)
+
+profession text color ( seo expert)
+
+description text color
+
+view profile button text color
+
+view profile button background color
+
+view profile button border color
+
+number of profiles to show
+
+
+
+List files of custom recruit page and homepage:
+
+MJE recruit plugin:
+
+inc > class-mje-request.php
+
+inc > functions.php
+
+child :
+
+all-custom-css.css
+
+appengine.js
+
+front.js
+
+custom_mje_recruit.php
+
+custom_require_files.php
+
+functions.php
+
+List files of custom role feature:
+
+Parent : 
+
+
+Child :
+
+all-custom-css.css
+
+functions.php
+
+custom_sign_up.php
+
+page-profile.php
+
+custom_require_files.php
+
+custom_header_menu.php
+
+page-post-service.php
+
+sidebar-my-profile.php
+
+Plugins :
+
+job verification : mje-claim-fontend.php

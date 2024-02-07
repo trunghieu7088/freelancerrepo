@@ -58,7 +58,7 @@ function get_all_profiles($page_number,$language=array(),$country=array(),$exper
 {
     global $post;
     $args=array('post_type' => 'mjob_profile',
-        'posts_per_page' => 19, 
+        'posts_per_page' => 18, 
         'paged'  =>$page_number,
         'post_status' =>'publish',            
         'meta_query'     => array(

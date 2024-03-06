@@ -1,0 +1,55 @@
+3. i went that the profile will be insted the gigs and will act like the gigs when you search for gig or
+
+ in categry you see all the profiles related the category not the gigs. after you enter the profile you see the gigs like now
+
+
+4. limit the carousel item of profile and gigs that the guest users can see ( tuong lai co the lam sau )
+
+Current task :
+
+1. Change next / previous button to three dots ( Gig and Profile carousel ) --> 15$ --> Done
+
+2. Chang expertise fields to drop down list and map with the category ( only show the parent category ) --> 30$ --> done
+
+3. Add a float banner to help the unverified users to understand that they need to verify the email before take any action --> 10$ Done
+
+4. Profiles :
+   4.1  Make search profiles feature
+   4.2  Create profile list page : 
+	4.2.1 add profile list : seller name, avatar , rating star and score , bio , language, country , expertise.
+	4.2.2 add filter option :  Language filter, Expertise filter, Rating filter, the price of gig filter
+   4.3  Custom the single profile page
+   4.4  add review tab in the single profile page
+   4.5  allow the users to be able to chooose search gigs or profile on homepage search bar.
+
+
+
+Custom role feature :
+
+Buyer :
+
+1. The buyer can post a hire ( recruitment )
+
+2. The buyer can purchase service from the seller ( purchase gig )
+
+
+3.The buyer can not send offer.
+
+4.The buyer can not purchase package to post gig.
+
+
+Freelancer :
+
+1. The freelancer can post a gig.
+
+2. The freelancer can send offer.
+
+3. The freelancer can purchase package to post gig
+
+4. The freelancer can post a hire.
+
+5. The freelancer can purchase service from the other seller (purchase gig )
+
+
+
+

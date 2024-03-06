@@ -1,0 +1,30 @@
+dung ajax check khoang 20 giay / 1 lan coi co online ko ( check cac meta fields khi user login khac voi khi ko login nhu the nao )
+
+php user online offline script
+
+https://stackoverflow.com/questions/41108026/wordpress-check-if-user-is-logged-in-works-wrong
+
+https://smartwp.com/check-if-user-is-logged-in-wordpress/
+
+https://wordpress.stackexchange.com/questions/74389/check-if-specific-username-is-logged-in
+
+https://www.isitwp.com/check-if-user-is-logged-in/
+
+https://stackoverflow.com/questions/19946972/wordpress-check-if-user-is-logged-in
+
+https://developer.wordpress.org/reference/functions/is_user_logged_in/
+
+https://usersinsights.com/wordpress-check-if-user-is-logged-in/
+
+https://forums.phpfreaks.com/topic/299618-check-user-online-offline-status/
+
+https://stackoverflow.com/questions/50892422/php-check-online-offline-user-status-simply
+
+https://stackoverflow.com/questions/29641888/how-can-i-show-user-online-or-offline-from-its-session-in-php-mysql-and-ajax
+
+https://stackoverflow.com/questions/23646060/php-online-offline-script
+
+https://stackoverflow.com/questions/22824592/display-online-users-as-green-and-offline-as-grey-using-real-time-updates
+
+https://www.sabiteach.com/
+

@@ -10,16 +10,22 @@
     {
         $message_data = $message['data'];
         //if the conversation, set custom_reminder
-        if ($message_data->type == 'conversation') 
+       /* if ($message_data->type == 'conversation' || $message_data->type == 'custom_order') 
         {
             update_post_meta($message_data->ID,'custom_reminder','true');            
-        }
+        } */
         //if the message, get parent conversation and set custom_reminder
-        if ($message_data->type == 'message') 
+
+       
+       /* if ($message_data->type == 'message') 
         {
             $parent_conversation_id=get_post_meta($message_data->ID,'parent_conversation_id',true);
             update_post_meta($parent_conversation_id,'custom_reminder','true');            
-        }
+        }*/
+
+         //new update
+         $parent_conversation_id=get_post_meta($message_data->ID,'parent_conversation_id',true);
+         update_post_meta($parent_conversation_id,'custom_reminder','true');     
     }
 
  }
@@ -27,8 +33,8 @@
 //add 48 hours cron schedule
  function custom_remind_cron_schedules($schedules) {
     $schedules['every_48_hours'] = array(
-       // 'interval' => 3600 * 24 * 2 ,  // 3600 seconds * 24 hours * 2 days = 48 hours
-       'interval' => 300,
+        'interval' => 3600 * 24 * 2 ,  // 3600 seconds * 24 hours * 2 days = 48 hours
+       //'interval' => 70,
         'display'  => 'Every 48 hours',
     );
     return $schedules;
@@ -70,9 +76,18 @@ function get_all_unread_messages_for_remind()
                 'key'   => 'custom_reminder',
                 'value' => 'true',
             ),
-            array(                     
+            array(
+                'relation' => 'OR',
+                array(                     
+                        'key'   => 'type',
+                        'value' => 'conversation', 
+                        'compare' => '=',                           
+                ),
+                array(                     
                     'key'   => 'type',
-                    'value' => 'conversation',                            
+                    'value' => 'custom_order', 
+                    'compare' => '=',                           
+                ),
             ),
         ),
     );

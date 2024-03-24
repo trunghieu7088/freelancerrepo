@@ -1,0 +1,23 @@
+@media (max-width: 991px) {
+    #et-header .list-message.message-icon {
+      display: inline-block !important;
+    }
+  }
+
+/* change category for mjob item 24th Mar 2024 */
+.custom-author-wrapper
+{
+    display:flex;
+    flex-direction:column;    
+}
+.custom-mjob-item-category
+{ 
+  font-style:italic;
+    display:flex;
+    justify-content:flex-end;
+}
+.mjob-item__price
+{
+  margin:5px 0 !important;
+}
+/* end */

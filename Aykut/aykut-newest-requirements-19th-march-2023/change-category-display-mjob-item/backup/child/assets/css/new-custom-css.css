@@ -1,0 +1,10 @@
+@media (max-width: 991px) {
+    #et-header .list-message.message-icon {
+      display: inline-block !important;
+    }
+  }
+
+.custom-mjob-item-category
+{ 
+  font-style:italic;
+}

@@ -1,0 +1,223 @@
+/* custom css for list project */
+.custom-list-project-css
+{
+    padding-top:50px !important;
+    padding-bottom:30px !important;
+}
+
+.fre-project-list > li:last-child .project-list-wrap
+{
+    border:1px solid #ededed !important;
+    border-right:0px !important;    
+}
+
+.custom-list-project-css .project-item
+{
+    display:flex;    
+    margin-bottom:35px;    
+}
+
+.custom-list-project-css .project-list-wrap
+{
+    flex:4;  
+    padding-left:20px;
+    padding-right:20px;
+    border:1px solid #ededed;
+    border-right:0px;
+}
+
+.custom-list-project-css .project-list-custom-info
+{    
+    flex:1;
+    display:flex;
+    justify-content: center;
+    align-items: center;     
+    border:1px solid #ededed; 
+    position:relative;   
+    flex-direction: column; 
+}
+
+.custom-list-project-css .project-list-custom-info .custom-white-space-top
+{
+    position:absolute;
+    top:0px;
+    left:-10px;
+    width:20px;
+    height:40px;    
+    background-color:#ffffff;
+    z-index: 999;
+}
+
+.custom-list-project-css .project-list-custom-info .custom-white-space-bottom
+{
+    position:absolute;    
+    left:-10px;
+    width:20px;
+    height:40px;    
+    background-color:#ffffff;
+    z-index: 999;
+    bottom:0px;
+}
+
+.custom-list-project-css .fre-label
+{
+    padding:10px 20px !important;
+    border-radius: 25px !important;
+}
+
+.custom-list-project-css .project-list-custom-info .custom-price 
+{
+   
+ /*   text-align: right !important;    
+    margin-left: auto; 
+    margin-right:30px; */
+    margin-bottom:10px; 
+    font-size:18px;
+    font-weight: 600;
+    
+}
+
+
+.custom-list-project-css .fontawesome-icon-custom
+{
+    margin-right:10px;
+}
+
+.custom-list-project-css .project-list-info span
+{
+    border-right:1px solid #bfbfbf;
+    margin-right:15px;
+    font-weight:600;
+    color:#808080;
+}
+.custom-list-project-css .custom-project-budget-bid
+{
+    display: flex;
+     justify-content: flex-end;
+    /* flex-direction: row-reverse; */
+    align-items: center;
+    margin-top: 10px;    
+}
+.custom-list-project-css .custom-project-budget-bid p
+{
+    font-size:20px;
+    text-transform: uppercase;
+    font-weight: 600;    
+    height: 100%;
+    margin:0 15px 0 0;
+}
+.custom-list-project-css .custom-project-budget-bid p i
+{
+    margin-right:5px;
+}
+.custom-list-project-css .custom-project-budget-bid a
+{
+    background-color:#1fbdbd;
+    border:1px solid #1fbdbd; 
+    border-radius: 4px;
+    padding:10px 10px;
+    color:#ffffff;
+    font-weight: 600;
+    text-align: center;
+}
+.custom-list-project-css .custom-project-budget-bid a:hover
+{
+    background-color:#ffffff;
+    border:1px solid #1fbdbd; 
+    color:#1fbdbd;
+}
+
+.custom-list-project-css .project-list-custom-info .custom-info-employer
+{
+    font-size:18px;
+    font-weight: 600;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+} 
+.custom-list-project-css .project-list-custom-info .custom-info-employer img
+{
+    border-radius: 50%;
+}
+.custom-list-project-css .project-list-custom-info .custom-info-employer p
+{
+    text-align: center;
+    margin-top:5px;    
+}
+.custom-list-project-css .project-list-custom-info .custom-info-employer a
+{
+    color:#415161;
+    
+}
+.custom-list-project-css .project-list-custom-info .custom-info-employer span
+{
+    font-size:14px;
+    color:#808080;
+}
+
+
+@media (max-width: 991px) {
+    .custom-list-project-css .project-item
+    {
+        display:flex;    
+        margin-bottom:35px;    
+        flex-direction: column-reverse; 
+    }
+    .custom-list-project-css .project-list-wrap
+    {
+        /* border-right:1px solid #ededed; */
+        border:1px solid #ededed;
+        border-top:0px;
+    }   
+    .custom-list-project-css .project-list-custom-info 
+    {
+        border:1px solid #ededed !important;
+        border-bottom:0px !important;
+        padding-top:10px;
+    }
+    
+}
+
+@media (max-width: 420px) {
+    .custom-list-project-css .project-list-info span
+    {
+        margin-right:5px !important;
+        padding-right:5px !important;
+    }
+    .custom-list-project-css .fontawesome-icon-custom
+    {
+        margin-right:2px !important;
+    }
+        
+}
+
+
+/* end custom css for list project */
+
+/* custom code 4th april 2024 */
+
+.custom-menu-related-job-links
+{
+    text-transform: capitalize !important;
+}
+#custom-html-header-menu
+{
+    display: inline-flex !important;
+    align-items: center;
+    margin-right:20px;
+}
+.custom-related-item a
+{
+    text-transform: capitalize !important;
+}
+@media (min-width: 1200px)
+{
+
+#custom-container
+{
+    width:1440px;
+}
+
+}
+/* end */

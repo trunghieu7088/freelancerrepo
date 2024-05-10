@@ -1,0 +1,43 @@
+Child:
+
+include_custom_function.php
+
+custom_format_files.php
+
+video_handling_function.php
+
+page-my-portfolio.php
+
+page-author-portfolio.php
+
+custom_portfolio_function.php
+
+
+
+template > mjob-post > description.php
+
+template > post-service-step3.php
+
+
+assets > js > plyr.js
+
+assets > js > appengine.js
+
+assets > js > custom-upload-video-service.js
+
+assets > js > custom-portfolio-feature.js
+
+assets > js > custom-upload-video-service.js
+
+
+assets > css > all-custom-css.css
+
+assets > css > newplyr.css
+
+
+
+
+Parent:
+
+includes > theme.php
+

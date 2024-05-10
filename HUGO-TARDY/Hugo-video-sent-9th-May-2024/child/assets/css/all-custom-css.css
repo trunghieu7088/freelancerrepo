@@ -1,0 +1,890 @@
+.shipping-cost-area
+{    
+    border-bottom: 1px solid #dfe0e5;
+    padding: 5px 0 !important;
+    margin-bottom: 5px !important;
+    border-top:0 !important;
+}
+
+.shipping-cost-area .shipping-address
+{
+    margin-bottom: 15px;
+}
+.shipping-cost-area .shipping-address input[type="text"]
+{
+    border:1px solid #ccc !important;
+    padding:8px;
+    width:100%;
+}
+.shipping-cost-area  .active-shipping .mje-price
+{
+    color:#10a2ef;
+}
+.disabled-shipping-address
+{
+    background-color:#dddddd;
+}
+.shipping-info-orderPage
+{
+    border-bottom: 1px solid #dddddd !important;    
+}
+.disabled-btn-custom
+{
+    opacity: 0.4;
+}
+
+.shipping-cost-area .shipping-address .text-shipping-alert
+{
+    margin-top:10px !important;
+    display:none;
+}
+
+.shipping-cost-area .mje-price
+{
+    color:#8800c7 !important;
+}
+
+.no-shipping-checkbox
+{
+    height:15px !important;
+    width:15px !important; 
+    margin-top:0px !important;
+    
+}
+.no-shipping-area
+{
+    margin-top:20px;
+}
+/* custom code css 17th Feb 2024 */
+.custom-social-links-block
+{
+    margin-top:10px !important;
+    text-transform: uppercase;
+}
+.custom-social-mjob-wrapper
+{
+    display: flex;
+    flex-direction: column;
+        
+}
+.custom-social-mjob-wrapper .custom-social-icon
+{
+    margin-top:10px;
+}
+.custom-social-mjob-wrapper .custom-social-icon img
+{
+    width:40px !important;
+    height:40px !important;
+}
+.custom_social_icon_wrapper
+{
+    position: fixed;
+    top: 35%;
+    left: 15%;
+    max-width:64px;       
+    z-index: 9999;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;    
+    padding: 0 !important;
+}
+.custom_social_icon_wrapper a
+{
+    margin-top:10px;
+}
+.custom_social_icon_wrapper a img
+{
+    width:40px !important;
+    height:40px !important;
+}
+/* end custom code */
+
+/* css for portfolio 7th Marc 2024 */
+.portfolio-top-wrapper
+{
+    padding:10px 5px;
+}
+.portfolio-container
+{
+    display:flex;
+    position: relative;
+}
+.portfolio-container .port-main-content
+{
+    flex:8;  
+}
+
+.port-banner-background
+{
+    margin-bottom:20px;
+    width:100%;
+    height:450px;
+    position:relative;
+}
+
+.port-banner-background img
+{
+    width:100%;
+    height:100%;
+    border-radius:10px;
+}
+
+.port-banner-background .update-banner-btn-area
+{
+    position:absolute;
+    bottom:30px;
+    right:30px;
+   
+}
+.port-update-banner-btn
+{
+    background-color:#d3d3d3;
+    color:#201f24;
+    font-size:16px;
+    padding:10px 20px;
+    border-radius:10px;
+    font-weight:600;
+    text-transform: capitalize;
+}
+
+.port-update-banner-btn:hover,
+.port-update-banner-btn:focus
+{
+    background-color:#d3d3d3;
+    color:#201f24;
+    text-decoration: none !important;
+}
+
+
+.port-update-banner-btn i
+{
+    margin-left:5px;
+}
+
+.port-head-title-info
+{
+    margin-top:20px;
+}
+
+.port-head-title-info p
+{
+    font-size:28px;
+    font-weight: 600;
+}
+
+.port-head-title-info span
+{
+    font-size:18px !important;
+    color: #999999;
+}
+.port-title-list
+{
+    display:flex; 
+    flex-wrap: wrap;
+    margin-top:20px;
+    padding:0px 5px;
+}
+.port-title-list a
+{    
+    font-size:16px;
+    margin-right:15px;
+    color:#2a394e;
+    padding-bottom: 8px;
+}
+.port-title-list a:hover
+{
+    color:#2a394e;
+}
+.port-title-list a:focus
+{
+    color:#2a394e;
+    text-decoration:none;
+}
+.port-active
+{
+    color:#000000 !important;
+    font-weight: 600 !important;
+    border-bottom:3px solid #10a2ef;
+}
+.port-folio-collection
+{
+    margin-top:25px;
+    display: flex;
+    flex-wrap: wrap;
+    padding:0px 5px;
+    justify-content: flex-start;
+}
+.port-item-wrapper
+{
+    margin-right:5px;
+    margin-bottom:20px;
+}
+.port-folio-collection p
+{
+    margin:0;
+    margin-top:10px;
+    display:none;
+    text-align: center;
+}
+
+.image-selector-port
+{
+    border:1px solid #10a2ef;
+    border-radius: 10px;
+    padding:5px 15px;
+    font-size:14px;
+    color:#10a2ef;
+}
+.image-selector-port:hover
+{
+    text-decoration: none !important;
+    color:#10a2ef;
+}
+.image-selector-port:focus
+{
+    text-decoration: none !important; 
+    color:#10a2ef;
+}
+
+#btn-delete-images-port
+{
+    display: none;
+}
+
+.port-folio-collection a img
+{
+    width:160px;
+    height:160px;
+    border-radius: 10px;
+}
+/* profile sidebar */
+.portfolio-container .port-sidebar
+{
+    flex:2;
+    display: flex;
+    flex-direction: column;
+    background-color: #201f24;
+    padding:20px 5px;
+    border-radius: 10px;
+    margin-left:5px;
+    color:#ffffff;
+}
+.port-profile-info-area
+{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.port-profile-avatar
+{
+    margin-bottom:20px;
+}
+.port-profile-avatar img
+{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+}
+.port-profile-name
+{
+    font-size:28px;
+    font-weight: 600;
+}
+.port-profile-bio
+{
+    margin-top:10px;
+    color:#90969b;
+    padding:0px 15px;
+}
+.port-profile-location
+{   
+    width: 100%;
+    padding:0px 15px;
+    margin-top:30px;   
+    display: flex;
+    justify-content: center;
+}
+.port-profile-location p
+{   
+    font-size:16px;
+    text-align: left;
+    
+}
+.port-profile-location p:last-child
+{
+    margin-left:25px;
+}
+.port-profile-location i
+{
+    margin-right:10px;
+}
+.port-profile-viewbtn
+{
+    margin-top:30px;
+}
+.port-view-pf-btn
+{
+    padding:10px 20px;
+    font-size:18px;
+    border:1px solid #ffffff;
+    background-color: #201f24;
+    text-transform: capitalize;   
+    border-radius: 10px; 
+    color:#ffffff;
+}
+.port-view-pf-btn:hover
+{
+    background-color: #ffffff;
+    color:#201f24;
+}
+.port-profile-socialblock
+{
+    padding:0px 15px;
+    width: 100%;
+    margin-top:45px;
+}
+.port-list-social-icons
+{
+    border-top:1px solid #90969b;
+    border-bottom:1px solid #90969b;
+    padding:15px 0px;
+}
+.port-socialblock-title
+{
+    font-size:14px;
+    color:#90969b;
+    margin:0 !important;
+}
+.port-list-social-items
+{
+    display: flex;
+    flex-wrap: wrap;  
+    justify-content: center;  
+}
+.port-list-social-items a
+{
+    margin-right:15px;
+    margin-top:20px;
+}
+
+.port-list-social-items a img
+{
+    width:40px !important;
+    height:40px !important;    
+}
+.port-profile-add-portfolio
+{
+    margin-top:80px;  
+    margin-bottom:40px;  
+}
+.port-add-portfolio-btn
+{
+    padding:10px 20px;
+    font-size:18px;
+    border:1px solid #ffffff;
+    background-color: #201f24;
+    text-transform: capitalize;   
+    border-radius: 10px; 
+    color:#ffffff;
+}
+.port-add-portfolio-btn:hover
+{
+    background-color: #ffffff;
+    color:#201f24;
+}
+.port-add-portfolio-btn:focus
+{
+    background-color: #ffffff;
+    color:#201f24;
+}
+/* end sidebar */
+
+/* css for add port modal */
+
+
+@keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+.uploadprogressBar
+{               
+    width: 100%;
+    height: 10px;
+    background-color: #ccc;
+    position: relative;
+    display:none;
+}
+.uploadprogressBar::after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 100%;
+    background-color: #4CAF50;
+    animation: progress 2s infinite;
+}
+.modal-confirm-delete-portfolio
+{
+    display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 99999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-confirm-delete-portfolio-content
+{
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.custom-modal-add-portfolio
+{
+    display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 99999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.custom-modal-add-portfolio-content
+{
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.close-modal-add-portfolio {
+   
+    font-size: 28px;
+    font-weight: bold;    
+    display: flex;
+    justify-content: space-between;
+    padding-bottom:3px;
+    border-bottom:1px solid #d3d3d3;
+  }
+  .close-modal-add-portfolio
+  {
+    cursor: pointer;
+  }
+  .add-port-modal-title
+  {
+    font-size:24px;
+    font-weight: 600;
+  }
+  .custom-form-add-port
+  {
+    margin-top:30px;
+    width:100%;
+  }
+  .custom-radio-port
+  {
+    position:static !important;
+    margin:0 !important;
+    visibility:visible !important;
+  }
+  .radio-private
+  {
+    margin-left:20px !important;
+  }
+  .upload-images-port-area
+  {
+    margin-top:30px;
+   
+  }
+  .port-upload-images-btn
+  {
+    padding:10px 15px;
+    font-size:16px;
+    background-color:#d3d3d3;
+    color:#000000;
+    border: 0 !important; 
+    border-radius: 10px;   
+    cursor: pointer !important; 
+    margin-right:15px;
+  }
+
+  .port-upload-images-btn i
+  {
+    margin-left:5px;
+    cursor: pointer;
+  }
+  .port-uploaded-images-area
+  {
+    margin-top:15px;
+    display: flex;
+    flex-wrap: wrap;    
+    font-size:18px !important;
+  }
+  .port-uploaded-images-area p
+  {
+    margin-right:20px;
+  }
+
+  .port-uploaded-images-area .port-remove-icon
+  {
+    margin-left:5px;
+  }
+
+  .port-submit-area
+  {
+    margin-top:20px;
+    text-align:right;
+   
+  }
+  .port-submit-area .btn
+  {
+    font-size:18px !important;
+  }
+  .create-portfolio-btn
+  {
+    margin-right:15px;
+  }
+ 
+/* end css add port modal */
+
+.portfolio-description
+{    
+    font-style: italic;
+    font-weight: 400;
+}
+.edit-portfolio-btn
+{
+    border-radius: 10px !important;
+    font-size:14px;
+}
+.action-buttons-area
+{ 
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.action-buttons-area button
+{
+    margin-right:10px;
+    margin-top:10px;
+}
+.counted-images
+{
+    margin-right:20px;
+}
+.topoverlay
+{
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.topoverlay .uploadingText
+{
+    color:#ffffff;
+    display:none;
+}
+/* responsive for portfolio */
+.show-sidebar-btn
+{
+    display:none;
+}
+.port-show-sidebar-area
+{
+    display:none;
+}
+.hide-port-sidebar-mobile
+{
+    display: none;
+}
+
+
+
+/* ipad screen */
+@media (max-width: 810px) 
+{
+    .portfolio-container
+    {
+        margin-top:80px;
+    }
+    .port-banner-background .update-banner-btn-area
+    {
+        display: flex;
+        justify-content: flex-end;
+        right:10px;
+    }
+
+    .hide-port-sidebar-mobile
+    {
+        display: block;
+        position:absolute;       
+        top: 50%;
+        left:-25px;
+        transform: translateY(-50%);
+    }
+    .hide-port-sidebar-btn
+    {
+        padding:15px 20px;
+        font-size:20px;       
+        background-color:#d3d3d3;
+        color:#201f24;
+        border-radius: 50%;
+    }
+ 
+    
+    .show-sidebar-btn
+    {
+        display:inline;
+        margin-right:10px;
+        background-color: #d3d3d3;
+        color: #201f24;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+    .show-sidebar-btn:focus,
+    .show-sidebar-btn:hover
+    {
+        text-decoration: none !important;
+        color: #201f24;
+    }
+    .show-sidebar-btn i
+    {
+        margin-left:5px;
+    }
+    .portfolio-container .port-sidebar
+    {
+        display:none;
+        width:300px;
+        position:absolute;
+        right:-100px;
+        z-index: 99999;                
+    }
+}
+/* end ipad */
+
+/* mobile */
+@media (max-width: 460px) 
+{
+    .portfolio-container
+    {
+        margin-top:70px;
+    }
+    .port-banner-background
+    {
+        height:250px;
+     
+    }
+    .custom-modal-add-portfolio-content
+    {
+        width:100%;
+    }
+}
+/* end mobile */
+
+/* end responsive */
+
+/* end css for portfolio 7th Marc 2024 */
+
+/* custom code css 4th may 2024 */
+.et-form .video-upload-area
+{              
+    margin-top:20px;
+    margin-bottom:30px;
+    margin-left:0px;
+    margin-right:0px;
+}    
+.et-form .video-upload-area .custom-video-upload
+{
+    background-color:#EAE8E9;    
+    padding:20px 0px 20px 0px; 
+    border-radius: 5px;
+}
+.et-form .video-upload-area .custom-video-upload a
+{
+    display:block;
+    color: #898a90;        
+    font-size:20px;
+}
+.et-form .videouploadprogressBar
+{               
+    background-color:#10a2ef;                
+    text-align:center; 
+    border-radius: 5px;        
+    padding:5px 0px;        
+    color:#fff;     
+    display: none;   
+    margin-bottom:20px;
+}
+.et-form .choosen-video-area
+{
+    margin-bottom:20px;
+}
+.custom-video-player-service
+{
+    margin:10px 0px;
+}
+.customized-video-player
+{
+    width:100%;
+}
+
+.custom-video-player-service .plyr__progress
+{
+    width:100%;
+}
+
+.custom-video-player-service .plyr__volume
+{
+    display: flex !important;
+    justify-content: flex-start;
+}
+
+.video-upload-progress-port-modal
+{
+    background-color:#4CAF50;                
+    text-align:center; 
+    border-radius: 5px;        
+    padding:5px 0px;        
+    color:#fff;     
+    display: none;   
+    margin:20px 0px;
+}
+.port-uploaded-videos-area
+{
+    margin:15px 0px;
+    display: flex;
+    flex-wrap: wrap;    
+    font-size:18px !important;
+}
+.port-uploaded-videos-area p
+{
+  margin-right:25px;
+}
+
+.port-video-collection
+{
+    margin-top:25px;
+    display: flex;
+    flex-wrap: wrap;
+    padding:0px 5px;
+    justify-content: flex-start;
+    
+}
+.port-video-collection .port-video-wrapper
+{
+    margin-right:5px;
+    margin-bottom:20px;
+    position: relative;
+   
+}
+.port-video-collection .port-video-wrapper video
+{    
+    border-radius: 10px;   
+    width:200px;
+    height:160px;
+}
+
+.port-video-wrapper p
+{
+    margin:0;
+    margin-top:10px;
+    display:none;
+    text-align: center;
+}
+
+.show_central_video_player
+{
+    background-color:rgb(0, 178, 255) !important;
+    color:#ffffff !important;
+    padding:10px 15px;
+    border-radius: 50%;
+    border:0px !important;
+    outline:none !important;
+    font-size:20px;
+    position: absolute;
+    top: 50%;    
+    left:50%;
+    transform: translate(-50%,-50%);    
+    z-index: 999;
+    text-align: center;
+
+}
+.video_player_central_topoverlay
+{
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.full-central-video-container
+{
+    width:1280px;
+    height:720px;
+    background-color:#ffffff;
+    
+}
+.full-central-video
+{
+    width:100%;
+    height:100%;
+}
+.full-central-video-container .plyr__progress
+{
+    width:100%;
+}
+
+.full-central-video-container .plyr__volume
+{
+    display: flex !important;
+    justify-content: flex-start;
+}
+
+.close_modal_video_player_button
+{
+    position: absolute;
+    top:20px;
+    right:20px;    
+    width:40px;
+    height:40px;    
+}
+.close_modal_video_player_button button
+{
+    font-size:40px;
+    outline:0px;
+    border:0px;
+    color:#ffffff;
+    background-color: transparent;
+}
+/* end custom code */

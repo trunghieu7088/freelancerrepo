@@ -1,0 +1,24 @@
+.order-item {
+  .mjob-item {
+    box-shadow: none;
+    border-bottom: 1px solid #dfe0e6;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  .status-label {
+    /* left: 175px;
+    right: initial; */
+  }
+  .mjob-item__entry {
+    padding: 0 0 0 15px;
+  }
+  .order-item__date {
+    font-size: 13px;
+    color: #ADAEB2;
+    float: right;
+  }
+  .mjob-item__author {
+    padding: 0;
+    float: left;
+  }
+}

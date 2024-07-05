@@ -1,0 +1,266 @@
+
+/* new css for recruitment feature 6th 2023 */
+.mje-recruit-avatar
+{
+    border-radius:50% !important;
+    width:50px;
+    height:50px;
+    margin-right:10px;
+}
+
+@media only screen and (min-width : 320px) {
+.mje-recruit-avatar
+{       
+    width:80px !important;
+    height:80px !important;    
+}
+.mje-request-default .mje-request-list .mje-recruit-item-row
+{        
+    text-align:center !important;        
+    display:block !important;
+}
+.mje-request-default .mje-request-list .mje-recruit-item-row .mje-recruit-name
+{
+    margin: 0 !important;
+    width:auto !important;
+    display:block !important;
+                 
+}
+
+.mje-recruit-short-description
+{
+    font-size:12px;
+    color:#8F8F88;
+    display:block;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+.mje-recruit-item-row .mje-view-detail-mobile
+{
+    text-align:center !important;        
+}
+.archive-requesst-item .custom-info-recruit span:last-child
+{
+    margin-left:0px;
+    display:block;
+}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+.mje-request-default .mje-request-list .mje-recruit-item-row
+{        
+    text-align:center !important;        
+    display:block;
+}
+.mje-request-default .mje-request-list .mje-recruit-item-row .mje-recruit-name
+{   
+    margin: 0 !important;
+    width:auto !important;
+    display:block;
+}
+.mje-recruit-short-description
+{
+    font-size:12px;
+    color:#8F8F88;
+    display:block;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; 
+}
+.mje-recruit-item-row .mje-view-detail-mobile
+{
+    text-align:center !important;
+}
+.archive-requesst-item .custom-info-recruit span:last-child
+{
+    margin-left:0px;
+    display:block;
+}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+.archive-requesst-item .custom-info-recruit span:last-child
+{
+    margin-left:10px;
+    display:inline;
+}
+
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    .desktop-display-flex
+    {
+        display:flex;
+        align-items:center;
+        
+    }
+    .mje-request-default .mje-request-list .mje-recruit-item-row
+    {
+        text-align:left !important;
+        align-items:center !important;
+        display:flex !important;
+    }
+    .mje-request-default .mje-request-list .mje-recruit-item-row .mje-recruit-name
+    {
+        width:250px !important;
+        max-width: 250px;
+        display:inline-block !important;          
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;                
+    }
+    .mje-recruit-short-description
+    {
+        font-size:12px;
+        color:#8F8F88;
+        display:inline-block;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        margin-left:15px;
+
+    }
+    .mje-recruit-avatar
+    {   
+        width:50px !important;
+        height:50px !important;
+    }
+}
+
+ /* custom for all recruits page */
+ .archive-requesst-item
+ {
+     display:flex;
+ }
+ .archive-requesst-item .custom-flex-profile
+ {
+     flex-basis:10%;
+     display:flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     /*border:1px solid olivedrab; */
+ }
+ 
+ .archive-requesst-item .custom-flex-recruit
+ {
+     flex-basis:90%;
+     padding-left:20px;
+     /* border:1px solid orange; */
+ }
+ .archive-requesst-item .custom-flex-profile .recruitList-avatar-area
+ {
+     margin-bottom:10px;
+ }
+ .archive-requesst-item .custom-flex-profile .text-notyet
+ {
+     color:#AEAEAE;
+     font-size:12px;
+ }
+ .archive-requesst-item .custom-info-recruit
+ {
+     margin-top:15px;
+     font-size:15px;
+     /* color:#10a2ef;    */
+     color:#337ab7;         
+ }
+ .archive-requesst-item .custom-info-recruit span
+ {
+     margin-right:10px;
+     margin-left:10px;
+     margin-top:15px;
+ }
+ .archive-requesst-item .custom-info-recruit span:first-child
+ {
+     margin-right:10px;
+     margin-left:0px;
+ }
+
+ .archive-requesst-item .request-loop-tag-wrap
+ {   
+     margin-top:15px;
+     margin-bottom:10px; 
+ }
+ .archive-requesst-item .recruit-view-detail-btn
+ {
+     margin-top:15px;        
+ }
+ .archive-requesst-item .text-rate-score
+ {
+     color:#10a2ef;  
+ }
+ .archive-requesst-item .request-loop-tag-wrap .skill-name-profile
+ {
+     color: #2a394e;
+     font-size: 12px;
+     padding: 5px 15px;
+     background: #dae0e6;
+     border-radius: 45px;
+ }
+ .archive-requesst-item .custom-text-expire
+ {
+     font-size:12px;
+     /*margin-left:10px;*/
+     font-style:italic;
+     display:block;
+     color:#717171;
+ }
+ /* custom css for filter panel */
+ .mjob-container-control .filter-option-container
+ {
+     /* border:1px solid rgb(237, 237, 237);   */
+     color: rgb(93, 95, 94);
+    /* padding:20px 15px !important;*/
+    margin-bottom:20px;
+ }
+ .mjob-container-control .filter-option-container .row
+ {
+    border:1px solid rgb(237, 237, 237);
+    margin-left:0px;
+    margin-right: 0px;
+    padding:15px 15px;
+ }
+ .mjob-container-control .filter-option-container .custom-filter-option
+ {
+     padding:0px 20px;
+     margin-top:10px !important;        
+ }
+ .mjob-container-control .filter-option-container .custom-filter-option input[type='text'],
+ .mjob-container-control .filter-option-container .custom-filter-option input[type='number'],
+ .mjob-container-control .filter-option-container .custom-filter-option select
+ {
+     height:45px;        
+     box-shadow: none;
+     border:0;
+     border-bottom: 1px solid rgba(137, 138, 144, 0.2);        
+     padding:0;
+ }
+ .mjob-container-control .filter-option-container label
+ {
+     color:#717171;
+     font-size:15px;
+     font-weight: 600;
+ }
+
+ .mjob-container-control .filter-option-container .custom-filter-option input[type='text']:focus,
+ .mjob-container-control .filter-option-container .custom-filter-option select:focus
+ {
+     border-bottom: 1px solid #10a2ef;
+ }
+ .mjob-container-control .filter-option-container .budget-range
+ {
+     display:flex;
+     justify-content:space-around;       
+ }
+ .mjob-container-control .filter-option-container .budget-range .max-range
+ {
+     margin-left:10px;
+ }
+
+/* end */

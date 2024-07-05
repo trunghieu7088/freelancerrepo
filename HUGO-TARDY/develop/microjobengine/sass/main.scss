@@ -1,0 +1,18 @@
+ /*---------------------------------------
+  1.IMPORT BOOTSTRAP 3
+--------------------------------*/
+@import "includes/bootstrap";
+/*---------------------------
+  3.CUSTOM ELEMENTS
+--------------------------------*/
+@import "includes/variables";
+@import "includes/fonts";
+@import "includes/elements";
+/*---------------------------
+  3.CUSTOM CSS FOR ALL PAGES
+--------------------------------*/
+@import "includes/pages";
+/*---------------------------
+  4.CUSTOMIZED BOOTSTRAP FOR PAGE
+--------------------------------*/
+@import "includes/customized";

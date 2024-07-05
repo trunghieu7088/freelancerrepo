@@ -1,0 +1,279 @@
+.ml-35 {
+	margin-left: 35px;
+}
+
+.form-authentication{
+	input{
+		min-height: 45px;
+	}
+	input[type="checkbox"]{
+		min-height: auto;
+	}
+	.submit{
+		border: none;
+		padding: 10px 50px;
+	}
+	.link-join{
+		margin-top: 10px;
+		min-height: 60px;
+	}
+	.note-paragraph{
+		text-align: center;
+		margin-bottom: 55px;
+	}
+	.check-terms{
+	  margin-left: 35px;
+	  p.error{
+		@media (max-width:$screen-xs-min){
+		  top: 67px;
+		}
+	  }
+	}
+}
+.signin-form{
+  margin-top: 30px;
+}
+.reset-pass-active{
+  margin-top: 130px !important;
+  .reset-title{
+	color: $blue-light-base;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+  }
+}
+.page-sign-in{
+  padding-top: 50px !important;
+}
+.reset-pass{
+  margin-top: 45px;
+}
+.social-authentication{
+	margin-top: 30px;
+	ul{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+		a{
+			display: block;
+			margin-bottom: 20px;
+			padding: 10px 0 10px 20px;
+			&.face{
+				border: 1px solid #3b5998;
+				color: #3b5998;
+			}
+			&.twitter{
+				border: 1px solid #68c5ef;
+				color: #68c5ef;
+			}
+			&.google{
+				border: 1px solid #ea4335;
+				color: #ea4335;
+			}
+			&.linkin{
+				border: 1px solid #007ab5;
+				color: #007ab5;
+			}
+			i{
+				margin-right: 10px;
+			}
+		}
+	}
+}
+.form-reset{
+  text-align: left;
+  margin: 0 auto;
+  width: 50%;
+  @media (max-width: 991px) {
+  	width: 60%;
+  }
+  @media (max-width: 767px) {
+  	width: 100%;
+  }
+}
+#forgotPasswordForm{
+  @media (max-width:$screen-xs-max) {
+	padding-top: 30px;
+  }
+}
+.open-forgot-modal{
+  color: $pink-base;
+  position: relative;
+  top: 10px;
+  text-decoration: underline;
+  @media (max-width:$screen-sm-max) {
+  	padding-left: 0;
+  }
+  &:hover{
+	color: $blue-light-base;
+  }
+}
+.forgot-pass{
+  float: right;
+  @media (max-width:$screen-xs-max) {
+	text-align: left;
+	margin: 20px 0;
+    float: none;
+  }
+}
+.sign-in-button{
+  float: left;
+  @media (max-width:$screen-xs-max) {
+	text-align: left;
+    float: none;
+  }
+}
+.inner-form{
+  padding: 50px 50px 20px 50px;
+  @media (max-width:$screen-sm-max){
+	padding: 40px;
+  }
+  @media (max-width:$screen-xs-max){
+	padding: 15px;
+  }
+}
+.social{
+  margin: 20px 0 10px 0;
+  @media (max-width:$screen-sm-max){
+	text-align: center;
+  }
+}
+.socials-head, .list-social-login{
+  display: inline-block;
+}
+.socials-head{
+  font-size: $font-size-base;
+  margin: 40px 20px 0 0;
+  @media (max-width:$screen-sm-max){
+	display: block;
+	margin: 80px 0 35px 0;
+  }
+}
+.list-social-login{
+  padding: 0;
+  @media (max-width:$screen-sm-max){
+	width: 100%;
+  }
+  li{
+	display: inline-block;
+	margin-left: 25px;
+	@media (max-width:$screen-sm-max){
+	  font-size: 25px;
+	  width: 24%;
+	  text-align: center;
+	  &:first-child{
+		text-align: left;
+		margin-left: 0;
+	  }
+	  &:last-child{
+		text-align: right;
+	  }
+	}
+	.fb{
+	  color: #002993;
+	}
+	.gplus{
+	  color: #d72227;
+	}
+	.tw{
+	  color: #03a9f4;
+	}
+	.social-text{
+	  display: none;
+	}
+  }
+}
+.not-member{
+  border: 1px solid rgba($dark-gray-base,0.2);
+  padding: 35px 0;
+  a{
+	color: $blue-light-base;
+  }
+}
+.insert-email{
+  input{
+	width: 58% !important;
+	display: inline-block;
+	@media (max-width:$screen-xs-max){
+	  width: 100% !important;
+	}
+  }
+  .btn-continue{
+	display: inline-block;
+	padding: 13px 30px;
+	float: right;
+	i{
+	  margin-left: 20px;
+	  font-size: 20px;
+	  font-weight: bold;
+	  position: relative;
+	  top: 1px;
+	}
+	@media (max-width:$screen-xs-max){
+	  position: absolute;
+	  left: 35px;
+	  top: 90px;
+	}
+  }
+}
+.text-choosen{
+  margin-left: 15px;
+  color: $blue-base;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  a{
+	color: $blue-light-base;
+	text-decoration: underline;
+  }
+  &:before{
+	content: '';
+	position: absolute;
+	left: -35px;
+	top: 3px;
+	width: 15px;
+	height: 15px;
+	border: 1px solid #10a2ef;
+	background: #fff;
+  }
+  &:after{
+	content: '\f00c';
+	font-family: "FontAwesome";
+	position: absolute;
+	left: -34px;
+	top: 1px;
+	font-size: 14px;
+	color: #10a2ef;
+	transition: all .2s;
+	-webkit-transition: all .2s;
+	-moz-transition: all .2s;
+	-ms-transition: all .2s;
+	-o-transition: all .2s;
+  }
+}
+.checkbox{
+  .error{
+	margin: 0 !important;
+	position: absolute;
+	top: 43px;
+	left: 33px;
+  }
+}
+.note-paragraph{
+  color: $dark-gray-base;
+  margin-bottom: 40px;
+}
+#signUpFormStep1{
+  p.error{
+	right: 188px;
+	@media (max-width:$screen-xs-max) {
+	  right: 0;
+	  margin-left: 0;
+	}
+  }
+  @media (max-width:$screen-xs-max) {
+	.social {
+	  margin-top: 150px !important;
+	}
+  }
+}

@@ -1,0 +1,38 @@
+.btn-submit{
+    border-radius: 45px;
+    padding: 13px 60px;
+    border: none;
+    background: $blue-light-base;
+    color: $white-base;
+    box-shadow: -1px 6px 19px rgba($blue-light-base, 0.4);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    outline:none;
+    position: relative;
+    overflow: hidden;
+    &:hover, &.active, &.visited{
+        color: $white-base;
+        text-decoration: none;
+    }
+}
+
+.btn-submit-o {
+    border-radius: 45px;
+    padding: 13px 60px;
+    border: none;
+    background: $white-base;
+    border: 2px solid $blue-light-base;
+    color: $blue-light-base;
+    // box-shadow: -1px 6px 19px rgba($blue-light-base, 0.4);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    outline:none;
+    position: relative;
+    overflow: hidden;
+    &:hover, &.active, &.visited{
+        color: $blue-light-base;
+        text-decoration: none;
+    }
+}

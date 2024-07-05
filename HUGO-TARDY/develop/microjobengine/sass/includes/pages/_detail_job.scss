@@ -1,0 +1,406 @@
+.mjob-single-page {
+  padding-bottom: 50px;
+  .box-shadow {
+    margin-bottom: 20px;
+  }
+  .mjob-single-primary {
+    margin-top: 50px;
+  }
+  .pad-lr-30 {
+    padding-left: 30px;
+    padding-right: 30px;
+    @media (max-width: 768px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  .mjob-single-block {
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      border: 0;
+    }
+    .title {
+      color: #aaafb2;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+  .mjob-single-gallery {
+    img {
+      max-width: 100%;
+    }
+  }
+  .mjob-single-header {
+    border-bottom: none;
+    h2 {
+      font-size: 21px;
+      color: #2a394e;
+      line-height: 35px;
+      display: inline-block;
+      font-weight: 500;
+      font-family: 'Montserrat', sans-serif;
+      .edit-mjob-action {
+        font-size: 14px;
+        font-weight: 500;
+        color: #00ccbb;
+        padding-left: 10px;
+        font-family: 'Montserrat', sans-serif;
+        i {
+          padding-right: 5px;
+        }
+        .loading {
+          position: relative;
+          top: -5px;
+          left: 19px;
+          display: none;
+        }
+        span {
+          display: inline-block;
+        }
+      }
+    }
+    .mjob-single-meta {
+      color: #aaafb3;
+      position: relative;
+      margin-top: 10px;
+      border-top: 1px solid #efefef;
+      padding-top: 15px;
+      .mjob-cat-breadcrumb {
+        .parent {
+          color: #aaafb3;
+        }
+        i {
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+  .mjob-single-gallery {
+    .carousel-indicators {
+      bottom: 10px;
+      li {
+        border: none;
+        background: #fff;
+        margin: 0 5px;
+        width: 8px;
+        height: 8px;
+      }
+    }
+    .carousel-control {
+      background: none;
+      &.left {
+        left: -30px;
+      }
+      &.right {
+        right: -30px;
+      }
+      .fa {
+        position: absolute;
+        top: 50%;
+        color: #898a90;
+        text-shadow: none;
+      }
+    }
+  }
+  .mjob-single-share {
+    position: absolute;
+    top: 0;
+    left: -50px;
+    margin-top: 0;
+    border-bottom: none;
+    @media (max-width: 1024px) {
+      position: initial;
+    }
+    .sharing {
+      @media (max-width: 1024px) {
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        display: block;
+        margin-bottom: 7px;
+        @media (max-width: 1024px) {
+          display: inline-block;
+          margin-bottom: 0;
+          margin-right: 5px;
+        }
+        a {
+          background: #ea4335;
+          color: #fff;
+          display: block;
+          width: 35px;
+          height: 35px;
+          border-radius: 3px;
+          line-height: 35px;
+          text-align: center;
+          font-size: 18px;
+          float: none;
+          margin-bottom: 0;
+        }
+        &.facebook {
+          a {
+            background: #3b5998;
+          }
+        }
+        &.twitter {
+          a {
+            background: #68c5ef;
+          }
+        }
+      }
+    }
+  }
+  .mjob-single-description {
+    padding-bottom: 40px;
+    .post-detail {
+      margin-top: 30px;
+      .blog-content {
+        .post-content {
+          padding: 0;
+          margin: 0;
+          border: none;
+        }
+      }
+    }
+    .tags {
+      margin-bottom: 30px;
+      ul {
+        padding: 0;
+        margin-top: 25px;
+        li {
+          display: inline-block;
+          margin-right: 10px;
+          margin-bottom: 20px;
+          a {
+            color: #2a394e;
+            font-size: 12px;
+            padding: 5px 15px;
+            background: #dae0e6;
+            border-radius: 45px;
+          }
+        }
+      }
+    }
+  }
+  .mjob-single-aside {
+    @media (max-width: $screen-sm-max) {
+      .box-aside-stat {
+        display: flex;
+        flex-direction: column;
+      }
+      .action {
+        order: 98;
+        padding: 30px !important;
+        button {
+          width: 100%;
+        }
+      }
+      .custom-order-link {
+        order: 99;
+      }
+      .mjob-add-extra {
+        margin-top: 25px;
+      }
+    }
+    .box-shadow {
+      padding: 30px 0;
+      margin-bottom: 20px;
+    }
+    .mjob-status {
+      padding-bottom: 30px;
+      text-transform: uppercase;
+      font-size: 21px;
+      font-weight: 600;
+    }
+    .mjob-single-stat {
+      padding: 0 30px;
+      ul {
+        padding: 0;
+        li {
+          margin: 10px 0;
+          span, .fa-star {
+            color: #aaafb3;
+          }
+          i {
+            margin-right: 15px;
+          }
+        }
+      }
+      .stat-block {
+        border-bottom: 1px solid #efefef;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .price {
+        font-size: 25px;
+        color: $blue_light-base;
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+        top: -5px;
+      }
+    }
+    .mjob-add-extra {
+      padding: 0 30px;
+      .extra {
+        font-weight: 700;
+      }
+      .mjob-list-extras {
+        margin-top: 10px;
+        padding: 0;
+        list-style: none;
+        .list-item-extra {
+          border-bottom: 1px solid #efefef;
+          padding-bottom: 10px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .mje-commission-fee {
+        margin: 15px 0 0;
+        font-size: 13px;
+        color: #2a394e;
+    }
+
+    .personal-profile {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .custom-order-link {
+      text-align: center;
+      padding-top: 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      i {
+        padding-left: 10px;
+      }
+    }
+    .action {
+      text-align: center;
+      border-bottom: 1px solid #efefef;
+      padding: 20px 30px;
+      margin-bottom: 20px;
+      button {
+        width: 100%;
+      }
+    }
+    /* Opening message block */
+    .opening-message {
+      padding: 30px;
+      .aside-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        border-bottom: 1px solid #dfe0e5;
+        padding-bottom: 13px;
+        margin-bottom: 15px;
+        i {
+          color: #b8b9bd;
+          margin-left: 5px;
+          font-size: 12px;
+        }
+      }
+      .content {
+        line-height: 25px;
+      }
+    }
+  }
+  /* mJob reviews */
+  .mjob-single-review {
+    .total-review{
+      color: $blue-base;
+      font-family: 'Open Sans', sans-serif;
+      text-transform: none;
+    }
+    ul{
+      margin-top: 30px;
+      padding: 0;
+      li{
+        display: block;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #dfe0e5;
+        padding-bottom: 30px;
+        &:last-child {
+          border-bottom: 0;
+        }
+        .image-avatar {
+          float: left;
+          width: 10%;
+          img{
+            width: 75px;
+            height: 65px;
+            border-radius: 50%;
+            max-width: 100%;
+            @media (max-width:$screen-xs-max){
+              width: 35px;
+              height: 25px;
+            }
+          }
+        }
+        .profile-viewer{
+          float: right;
+          width: 85%;
+          position: relative;
+          .name-author{
+            color: #2a394e;
+            font-family: 'Montserrat', sans-serif;
+          }
+          .review-time{
+            color: #c1c2c7;
+            font-size: 12px;
+            padding-top: 7px;
+          }
+          .rate-it{
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+          .commnet-content{
+            line-height: 25px;
+          }
+        }
+      }
+    }
+  }
+  /** Edit mJob Form **/
+  .mjob-edit-content {
+    .post-job {
+      width: 100%;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    .mjob-title {
+      margin-bottom: 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      border-bottom: 1px solid #dfe0e5;
+      padding-bottom: 10px;
+      font-size: 21px;
+      display: block;
+    }
+    .loading {
+      display: none;
+      position: relative;
+    }
+  }
+}
+.mjob-single-gallery-video {
+  height: 435px;
+  @media (max-width: 767px) {
+    height: 235px;
+  }
+}

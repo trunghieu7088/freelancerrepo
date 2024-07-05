@@ -1,0 +1,183 @@
+.table-wrapper {
+  padding: 30px 0;
+  .table-filter {
+    select {
+      float: right;
+      margin-left: 15px;
+      height: 37px;
+      border: 1px solid #dfe0e5;
+      background: none;
+      border-radius: 0;
+      cursor: pointer;
+      @media (max-width: $screen-xs-max){
+        margin-bottom: 6px;
+      }
+    }
+  }
+  .table-content {
+    margin-top: 30px;
+    @media (max-width:$screen-xs-max){
+      overflow-x: scroll;
+    }
+    table {
+      width: 100%;
+      th, tr, td {
+        border-bottom: 1px solid #efefef;
+        padding: 12px 20px;
+      }
+      th {
+        vertical-align: top;
+        text-transform: uppercase;
+        @media (max-width:$screen-xs-max){
+          font-size: 14px;
+        }
+        &.sort-head {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+        .sort-icon {
+          float: right;
+        }
+        a, a:hover {
+          color: #2a394e;
+          text-decoration: none;
+          display: block;
+          padding: 12px 0;
+        }
+      }
+      td:first-child, th:first-child {
+        padding-left: 0;
+      }
+      td:last-child, th:last-child {
+        padding-right: 0;
+      }
+      .td-w-20 {
+        width: 20%;
+      }
+      .payment-name {
+        margin-top: 0;
+        margin-bottom: 0;
+        span {
+          font-weight: normal;
+          display: none;
+        }
+        img {
+          width: 40px;
+        }
+      }
+      .st-completed {
+        color: #00ccbb;
+      }
+      .st-cancelled {
+        color: #aaafb3;
+      }
+      .st-pending {
+        color: #fda933;
+
+      }
+    }
+  }
+  .table-footer {
+    margin-top: 30px;
+    .paginations-wrapper {
+      float: left;
+      margin: 0;
+      @media (max-width:$screen-xs-max){
+        float: none;
+        text-align: left;
+      }
+    }
+    .help-text {
+      font-style: italic;
+      color: #898989;
+      float: right;
+      @media (max-width:$screen-xs-max){
+        float: none;
+        display: block;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .nothing-found {
+    display: none;
+    .no-items {
+      padding-top: 24% !important;
+    }
+  }
+}
+
+/* mjob price*/
+.mje-price-text {
+  text-transform: none !important;
+}
+
+.modal textarea {
+  border: 1px solid #ccc;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.list-item-extra{
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  @media (max-width: 1024px){
+    display: block;
+    flex-direction: column;
+  }
+  .checkbox {
+    margin: 0;
+  }
+  .packge-chose{
+    label{
+      line-height: 22px;
+      color: $blue-base;
+      padding-left: 0;
+      padding-right: 10px;
+    }
+  }
+  .package-price{
+    color: $blue-light-base;
+    font-size: 18px;
+    flex-grow: 10;
+    text-align: right;
+    @media (max-width:$screen-md-max){
+      position: relative;
+      top: 0;
+      text-align: right;
+    }
+    @media (max-width:1024px){
+      display: block !important;
+      text-align: right;
+    }
+  }
+}
+
+body.stop-scroll-y {
+  overflow-y: hidden;
+}
+
+
+//=== Update data
+//
+.update-data-wrap {
+    padding: 20px 150px;
+    text-align: center;
+    @media (max-width: 767px) {
+        padding: 0;
+    }
+    p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.65em;
+    }
+
+    button {
+      margin-top: 40px;
+      @media (max-width: 767px) {
+        margin-top: 30px;
+      }
+    }
+}

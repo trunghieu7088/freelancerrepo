@@ -1,0 +1,169 @@
+/*!
+ * Declare Sass structure general EngineThemes (http://enginethemes.com)
+ */
+//== Colors
+a:active, a:hover, a:focus{
+  outline: 0 !important;
+  outline-offset: 0 !important;
+}
+$blue-base: #2a394e !default;
+
+$blue-light-base: #10a2ef !default;
+
+$green-base: #00ccbb !default;
+
+$green-dark-base: #5d8635 !default;
+
+$grill-base: #9b9c85 !default;
+
+$yellow-base: #fda933 !default;
+
+$black-blue-base: #2a394e !default;
+
+$orange-base: #e56a2e !default;
+
+$grey-light-base: #aaafb3 !default;
+
+$red-base: #ef0c1c !default;
+
+$white-base: #fff !default;
+
+$dark-gray-base: #898a90 !default;
+
+$pink-base: #e52e5d !default;
+
+$blue-white-base: #3ec2eb !default;
+
+$gray-light-base: #ecf5fa !default;
+
+$dark-green-base: #78b939 !default;
+
+$lighter-blue-base: #3b567b !default;
+
+$green-leaf-base: #27ae60 !default;
+
+$dark-base: #2c2c2c !default;
+
+$text-color: $blue-base;
+
+
+/*Color placeholder*/
+input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: #c1c2c7;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    #c1c2c7;
+  opacity:  1;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    #c1c2c7;
+  opacity:  1;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:    #c1c2c7;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+
+$font-family-base: 'Open Sans', sans-serif;
+
+$font-family-second: 'Montserrat', sans-serif; 
+
+/*Font size general pages*/
+$font-size-base: 14px !default;
+
+$font-size-medium: floor(($font-size-base * 1.15)) !default; // ~48px
+
+/*Font size heading*/
+$font-size-page-h1: floor(($font-size-base * 3.4)) !default; // ~48px
+$font-size-page-h2: floor(($font-size-base * 1.75)) !default; // ~25px
+$font-size-page-h3: ceil(($font-size-base * 1.5)) !default; // ~21px
+$font-size-page-h4: ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-page-h5: ceil(($font-size-base * 1.05)) !default; // ~15px
+$font-size-page-h6: ceil(($font-size-base * 0.9)) !default; // ~15px
+
+body{
+  font-family: 'Open Sans', sans-serif;
+  font-size: $font-size-base;
+  color: $blue-base;
+  a{
+    text-decoration: none;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  outline: none;
+}
+.float-right{
+  text-align: right;
+}
+.float-center{
+  text-align: center;
+}
+.float-left{
+  text-align: left;
+}
+.no-padding{
+  padding: 0 !important;
+}
+.no-margin{
+  margin: 0 !important;
+}
+.margin-bot-15{
+  margin-bottom: 15px !important;
+}
+.bold{
+  font-weight: bold;
+}
+.loading{
+  .loading-img{
+    width: 26px;
+    height: 26px;
+    border:solid 2px transparent;
+    border-radius:50% ;
+    border-top:solid 2px #2196f3;
+    box-sizing:border-box;
+    animation:rotate 1s infinite;
+    left: 50%;
+    top: 50%;
+    margin:-13px 0 0 -13px;
+    background: none !important;
+  }
+  .loading-overlay{
+    opacity: 0.8 !important;
+  }
+  @keyframes rotate {
+    0% {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
+  }
+}
+
+/** Mixin **/
+.clearfix {
+  display: block;
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+.col-mobile-12 {
+  @media (max-width: 414px) {
+    width: 100%;
+  }
+}

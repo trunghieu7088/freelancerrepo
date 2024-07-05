@@ -1,0 +1,41 @@
+.page-404{
+  margin: 120px 0 55px 0;
+  .note-wrong{
+    font-size: 29px;
+    font-family: 'Montserrat', sans-serif;
+    color: $blue-light-base;
+    text-transform: uppercase;
+  }
+  .icon-404{
+    font-size: 195px;
+    margin-bottom: 0;
+    color: $blue-light-base;
+    @media (max-width:$screen-xs-max){
+      font-size: 10em;
+    }
+    span{
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
+  .content-404{
+    color: $blue-base;
+  }
+  a{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    text-decoration: underline;
+    color: $blue-base;
+  }
+  .link-back{
+    margin: 70px 0 30px 0;
+    a{
+      color: $white-base;
+      text-decoration: none;
+    }
+    i{
+      padding-right: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}

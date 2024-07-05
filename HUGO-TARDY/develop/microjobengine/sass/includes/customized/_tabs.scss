@@ -1,0 +1,38 @@
+.nav-tabs{
+  border: none;
+}
+.nav-tabs > li{
+  vertical-align: top;
+  height: 50px;
+}
+.nav-tabs > li > a{
+  text-transform: uppercase;
+  padding: 20px 0 !important;
+  margin-right: 30px;
+  color: #aaafb2;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  border-radius: 0;
+  background: none;
+  border-right: none;
+  border-left: 0;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+  border-top: 6px solid $blue-light-base;
+  border-radius: 0;
+  background: none;
+  border-right: none;
+  border-left: 0;
+  padding: 15px 0 !important;
+  color: $blue-light-base;
+}
+.nav-tabs > li > a:hover{
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  padding: 20px 0 !important;
+}
+.nav-tabs > li > a:hover{
+  border: none;
+}

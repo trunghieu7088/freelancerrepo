@@ -1,0 +1,214 @@
+th#mjob_finish {
+    text-align: center;
+}
+td.mjob_finish.column-mjob_finish {
+    text-align: center;
+}
+.column-payment_claim .payment-name > span{ display: none}
+.column-payment_claim .payment-name > img{  height: 40px}
+.mje_item label {
+    width: 150px;
+    display: inline-block;
+}
+.mje_item {
+    margin: 8px 0px;
+}
+.mje_item select, .mje_item input, .mje_item textarea, .mje_item ul{
+	width:calc(100% - 200px);
+}
+.mje_item ul, .claim_link_image{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.mje_item select, .mje_item input{ height: 30px;   padding: 0px 10px;}
+.mje_item textarea{height: 60px;    resize: none;    padding: 0px 10px; vertical-align: top;}
+.status_claim i.fa-check{ color:#10a2ef;}
+
+.mje_pending, .mje_pending i { color: rgb( 253, 169, 51 )!important;}
+.mje_verifying, .mje_verifying i { color: #3ec2eb!important;}
+.mje_approved, .mje_approved i { color: #0cb!important;}
+.mje_declined, .mje_declined i { color: #9b9c85!important;}
+
+.manage-column.column-claim_warming, td.claim_warming.column-claim_warming  {
+    text-align: center;
+	vertical-align: middle;
+}
+td.claim_warming.column-claim_warming a {
+    color:#fc0;
+}
+span.claim_notice_del {
+    color: red;
+    margin-left: 5px;
+    opacity: 0;
+	cursor:pointer;
+}
+td.claim_warming.column-claim_warming:hover .claim_notice_del{
+	opacity:1;
+}
+
+a.undo_notice i {
+    color: #10a2ef;
+    cursor: pointer;
+}
+/* tooltip bootrap***/
+.tooltip {
+  position: absolute;
+  z-index: 1070;
+  display: block;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: 1.42857143;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  font-size: 12px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  border-style: none!important;
+}
+.tooltip.in {
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+.tooltip.top {
+  margin-top: -3px;
+  padding: 5px 0;
+}
+.tooltip.right {
+  margin-left: 3px;
+  padding: 0 5px;
+}
+.tooltip.bottom {
+  margin-top: 3px;
+  padding: 5px 0;
+}
+.tooltip.left {
+  margin-left: -3px;
+  padding: 0 5px;
+}
+.tooltip-inner {
+  max-width: 200px;
+  padding: 3px 8px;
+  color: #ffffff;
+  text-align: center;
+  background-color: #000000;
+  border-radius: 4px;
+}
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.tooltip.top .tooltip-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: #000000;
+}
+.tooltip.top-left .tooltip-arrow {
+  bottom: 0;
+  right: 5px;
+  margin-bottom: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: #000000;
+}
+.tooltip.top-right .tooltip-arrow {
+  bottom: 0;
+  left: 5px;
+  margin-bottom: -5px;
+  border-width: 5px 5px 0;
+  border-top-color: #000000;
+}
+.tooltip.right .tooltip-arrow {
+  top: 50%;
+  left: 0;
+  margin-top: -5px;
+  border-width: 5px 5px 5px 0;
+  border-right-color: #000000;
+}
+.tooltip.left .tooltip-arrow {
+  top: 50%;
+  right: 0;
+  margin-top: -5px;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #000000;
+}
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: #000000;
+}
+.tooltip.bottom-left .tooltip-arrow {
+  top: 0;
+  right: 5px;
+  margin-top: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: #000000;
+}
+.tooltip.bottom-right .tooltip-arrow {
+  top: 0;
+  left: 5px;
+  margin-top: -5px;
+  border-width: 0 5px 5px;
+  border-bottom-color: #000000;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}
+/*
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+.invisible {
+  visibility: hidden;
+}
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.hidden {
+  display: none !important;
+}
+.affix {
+  position: fixed;
+}
+*/
+/* tooltip bootrap */

@@ -54,14 +54,14 @@ function override_appenginejs()
 
 //add lightbox assets
 
-add_action('wp_enqueue_scripts','add_css_lightbox2',1);
+//add_action('wp_enqueue_scripts','add_css_lightbox2',1);
 
 function add_css_lightbox2()
 {
     wp_enqueue_style('css-lightbox2', get_stylesheet_directory_uri().'/assets/lightbox2/css/lightbox.css');
 }
 
-add_action('wp_enqueue_scripts','add_js_lightbox2',999);
+//add_action('wp_enqueue_scripts','add_js_lightbox2',999);
 
 function add_js_lightbox2()
 {
@@ -69,3 +69,24 @@ function add_js_lightbox2()
         'jquery'
     ), ET_VERSION, true); 
 }
+
+//add fancybox
+
+
+add_action('wp_enqueue_scripts','add_fancybox_css',1);
+
+function add_fancybox_css()
+{
+    wp_enqueue_style('css-fancybox', get_stylesheet_directory_uri().'/assets/fancybox/fancybox.css');
+}
+
+
+add_action('wp_enqueue_scripts','add_fancybox_js',999);
+
+function add_fancybox_js()
+{
+    wp_enqueue_script('js-fancybox', get_stylesheet_directory_uri().'/assets/fancybox/fancybox.js', array(
+        'jquery'
+    ), ET_VERSION, true); 
+}
+

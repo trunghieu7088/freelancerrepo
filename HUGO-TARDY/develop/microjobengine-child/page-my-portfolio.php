@@ -98,6 +98,9 @@ $porfolio_items=get_portfolio_images(get_current_user_id(),$chosen_port);
 
 $portfolio_video_items=get_portfolio_videos(get_current_user_id(),$chosen_port);
 
+$portfolio_audio_items=get_portfolio_videos(get_current_user_id(),$chosen_port,'portfolio_audio');
+
+$counted_audios=(!empty($portfolio_audio_items)) ? count($portfolio_audio_items) : 0;
 
 if(!empty($portfolio_video_items)) 
 {
@@ -150,7 +153,7 @@ if(!$banner_url_image)
 
             <div class="port-head-title-info">
                 <p>
-                    <?php echo $portfolio_title; ?> <span class="counted-images"><?php echo $counted_items; ?> images | <?php echo $counted_videos; ?> videos</span>
+                    <?php echo $portfolio_title; ?> <span class="counted-images"><?php echo $counted_items; ?> images | <?php echo $counted_videos; ?> videos | <?php echo $counted_audios; ?> audios</span>
                     <?php if($chosen_port_info): ?>
                         <span class="portfolio-description">Description: <?php echo $chosen_port_info->post_content; ?></span>
                        
@@ -164,7 +167,7 @@ if(!$banner_url_image)
            
                         <button id="edit-portfolio" class="btn btn-default edit-portfolio-btn">Edit Portfolio <i class="fa fa-pencil"></i></button>
                         <button id="add-images-portfolio-area" class="btn btn-default edit-portfolio-btn"><span id="add-images-portfolio">Add Images <i class="fa fa-image"></i></span></button>
-                        <button id="add-video-portfolio-area" class="btn btn-default edit-portfolio-btn"><span id="add-videos-portfolio">Add Videos <i class="fa fa-video-camera"></i></span></button>
+                        <button id="add-video-portfolio-area" class="btn btn-default edit-portfolio-btn"><span id="add-videos-portfolio">Add Videos & Audios <i class="fa fa-video-camera"></i></span></button>
                         <input type="hidden" id="video_upload_single" name="video_upload_single" value="<?php echo wp_create_nonce('custom_video_upload_nonce'); ?>">                 
                         <!-- info for uploading single images -->
                         <input type="hidden" name="single_upload_images_nonce" id="single_upload_images_nonce" value="<?php echo wp_create_nonce('single_upload_images_nonce'); ?>">
@@ -173,9 +176,11 @@ if(!$banner_url_image)
 
                         <button id="bulk-select-images" data-bulk-select-status="false" class="btn btn-default edit-portfolio-btn">Bulk Select <i class="fa fa-check-square"></i></button>
 
+                        <button id="insert-data-btn" data-insert-mode-status="false" class="btn btn-default edit-portfolio-btn">Insert info <i class="fa fa-info-circle"></i></button>
+
                         <button data_portfolio_id="<?php echo $chosen_port_info->ID; ?>" data_delete_images_nonce="<?php echo wp_create_nonce('data_delete_images_nonce'); ?>" id="btn-delete-images-port" class="btn btn-danger edit-portfolio-btn">Delete media <i class="fa fa-trash-o"></i></button>
 
-                        <button  id="btn-delete-portfolio" class="btn btn-danger edit-portfolio-btn">Delete Portfolio <i class="fa fa-trash-o"></i></button>
+                        <button id="btn-delete-portfolio" class="btn btn-danger edit-portfolio-btn">Delete Portfolio <i class="fa fa-trash-o"></i></button>
            
             <?php endif; ?>
             </div>
@@ -194,22 +199,33 @@ if(!$banner_url_image)
                     <?php endforeach; ?>
                 <?php endif; ?>             
             </div>
-
+            <div class="portfolio-asset-label">
+                Images <i class="fa fa-image"></i>
+            </div>
             <div class="port-folio-collection">
                 <?php if(!empty($porfolio_items)): ?>
                     <?php foreach($porfolio_items as $porfolio_item) : ?>
+                       <?php 
+                            $text_title="<h3>".$porfolio_item->custom_meta_title."</h3>";
+                            $text_description="<p>".$porfolio_item->custom_meta_description."</p>";
+                            $social_buttons_img=display_sharing_social_buttons($porfolio_item->ID);
+                            $data_caption=esc_html($text_title.$text_description.$social_buttons_img);                            
+                        ?>
                         <div class="port-item-wrapper">
-                            <a data-port-item-id="<?php echo $porfolio_item->ID; ?>" data-lightbox="portfolio-item" href="<?php echo wp_get_attachment_image_url( $porfolio_item->ID, 'medium_large'); ?>">
-                                <img src="<?php echo wp_get_attachment_image_url( $porfolio_item->ID, 'thumbnail'); ?>">                            
+                            <a data-port-item-id="<?php echo $porfolio_item->ID; ?>" data-fancybox="gallery" data-caption="<?php echo $data_caption; ?>" href="<?php echo wp_get_attachment_image_url( $porfolio_item->ID, 'medium_large'); ?>">
+                                <img src="<?php echo wp_get_attachment_image_url( $porfolio_item->ID, 'thumbnail'); ?>">                                                                                                                            
                             </a>
                             <p class="chosen-image-select"><a data-item-type="image" class="image-selector-port" data_select_status="false" data_attachment_id_select="<?php echo $porfolio_item->ID; ?>" href="javascript:void(0)">Select</a></p>
+                            <p class="insert-btn-port-item"><a class="insert-btn-port-item-a" data-insert-item-id="<?php echo $porfolio_item->ID; ?>" href="javascript:void(0)">Insert info</a></p>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-               <!-- <a href="#">
-                    <img src="<?php echo get_stylesheet_directory_uri().'/assets/img/view1.png'; ?>">
-                </a> -->
+        
                
+            </div>
+
+            <div class="portfolio-asset-label">
+                Videos <i class="fa fa-camera"></i>
             </div>
 
             <div class="port-video-collection">                
@@ -219,17 +235,78 @@ if(!$banner_url_image)
                         $video_url=wp_get_attachment_url($porfolio_video_item->ID);                                                                       
                         ?>
                         <?php if($video_url): ?>                       
-                            <div class="port-video-wrapper">
-                            <button data-mime-type="<?php echo $porfolio_video_item->post_mime_type;  ?>" data-video-url="<?php echo $video_url; ?>" class="show_central_video_player"><i class="fa fa-play"></i></button>
-                                <video disablepictureinpicture class="portfolio-item-video-player" playsinline controls>                                                                        
+                            <div class="port-video-wrapper">                                                                
+                                 <?php 
+                                 //init video instance as esc html string for fancy box.
+                                 $video_part='<div class="custom-fancy-video-port-container">';
+                                 $video_part.='<video disablepictureinpicture class="fancy-video-port" playsinline controls>';
+                                 $video_part.='<source src="'.$video_url.'" type="'.$porfolio_video_item->post_mime_type.'"/>';
+                                 $video_part.='</video>';
+                                 $video_part.='<p class="custom_fancy_video_title">'.$porfolio_video_item->custom_meta_title.'</p>';
+                                 $video_part.='<p class="custom_fancy_video_description">'.$porfolio_video_item->custom_meta_description.'</p>';
+                                 $video_part.=display_sharing_social_buttons($porfolio_video_item->ID);
+                                 $video_part.='</div>';
+                                 $video_init=esc_html($video_part);
+                                 ?>
+                                 <a data-fancybox="video-group" data-type="html" href="<?php echo $video_init; ?>" class="show_central_video_player">
+                                    <i class="fa fa-play"></i>
+                                 </a>
+                                <video class="portfolio-item-video-player" disablepictureinpicture playsinline controls>                                                                        
                                     <source src="<?php echo $video_url; ?>" type="<?php echo $porfolio_video_item->post_mime_type;  ?>" />    
                                 </video>
-                                <p class="chosen-image-select"><a class="image-selector-port" data-item-type="video" data_select_status="false" data_attachment_id_select="<?php echo $porfolio_video_item->ID; ?>" href="javascript:void(0)">Select</a></p>
+                                <p class="chosen-image-select"><a class="image-selector-port" data-item-type="video" data_select_status="false" data_attachment_id_select="<?php echo $porfolio_video_item->ID; ?>" href="javascript:void(0)">Select</a></p>                                
+                                <p class="insert-btn-port-item"><a class="insert-btn-port-item-a" data-insert-item-id="<?php echo $porfolio_video_item->ID; ?>" href="javascript:void(0)">Insert info</a></p>
                             </div>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
+
+            <!-- portfolio audio collection -->
+
+            <div class="portfolio-asset-label">
+                Audios <i class="fa fa-music"></i>
+            </div>
+
+            <div class="port-audio-collection">   
+                <div class="container-fluid">
+                    <div class="row port-audio-container">
+                        <?php if(!empty($portfolio_audio_items)): ?>
+                            <?php foreach($portfolio_audio_items as $port_audio_item ): ?>
+                                <div class="port-audio-item col-md-1 col-sm-1 col-xs-6">
+                                    <?php 
+                                    //init audio as html string for fancybox
+                                    $audio_url=wp_get_attachment_url($port_audio_item->ID);  
+                                    $audio_type=$port_audio_item->post_mime_type;
+                                    
+                                    $audio_part='<div class="audio-player-fancybox-area">';
+                                    
+                                    $audio_part.='<audio class="custom-single-audio-player-port" controls>';
+                                    $audio_part.='<source src="'.$audio_url.'" type="'.$audio_type.'">';
+                                    $audio_part.='Your browser does not support the audio element.';
+                                    $audio_part.='</audio>';
+
+                                    $audio_part.='<p class="custom_meta_title_fancy">'.$port_audio_item->custom_meta_title.'</p>';
+                                    $audio_part.='<p class="custom_meta_description_fancy">'.$port_audio_item->custom_meta_description.'</p>';
+                                    $audio_part.=display_sharing_social_buttons($port_audio_item->ID);
+                                    $audio_part.='</div>';
+                                    $audio_init=esc_html($audio_part);
+                                    ?>
+                                    <a data-fancybox='audio-group' data-type="html" href="<?php echo $audio_init; ?>" class="port-audio-a-tag">
+                                        <img src="<?php echo get_stylesheet_directory_uri().'/assets/img/music.png'; ?>">
+                                        <p class="text-audio-caption"><?php echo $port_audio_item->custom_meta_title; ?></p>
+                                    </a>
+                                    <p class="chosen-image-select"><a class="image-selector-port" data-item-type="audio" data_select_status="false" data_attachment_id_select="<?php echo $port_audio_item->ID; ?>" href="javascript:void(0)">Select</a></p>                                
+                                    <p class="insert-btn-port-item"><a class="insert-btn-port-item-a" data-insert-item-id="<?php echo $port_audio_item->ID; ?>" href="javascript:void(0)">Insert info</a></p>
+                                </div>        
+                            <?php endforeach; ?>
+                        <?php endif;?>
+                        
+                    </div>
+                </div>  
+            </div>
+                       
+            <!--  end portfolio audio collection -->
 
         </div>
 
@@ -309,7 +386,7 @@ if(!$banner_url_image)
                 <input type="hidden" name="action" id="action" value="createPortfolio">
                 <input type="hidden" id="port_upload_images_none" name="port_upload_images_none" value="<?php echo wp_create_nonce('port_upload_images_none'); ?>">                                 
                 
-                <input type="hidden" id="port_upload_video_nonce" name="port_upload_video_nonce" value="<?php echo wp_create_nonce('custom_video_upload_nonce'); ?>">                 
+                <input type="hidden" id="port_upload_video_nonce" name="port_upload_video_nonce" value="<?php echo wp_create_nonce('custom_video_upload_nonce'); ?>">                                 
 
                 <div class="form-group">
                     <label for="port_title">Portfolio Title</label>
@@ -331,11 +408,11 @@ if(!$banner_url_image)
                 <div class="form-group upload-images-port-area">
                 
                      <button type="button" id="upload-images-port-area" class="port-upload-images-btn">
-                         <span id="port-upload-images-btn">Upload Images <i class="fa fa-upload"></i> </span> 
+                         <span id="port-upload-images-btn">Upload Images <i class="fa fa-image"></i> </span> 
                      </button>
                     
                      <button type="button" id="upload-videos-port-area" class="port-upload-images-btn">
-                         <span id="port-upload-videos-btn">Upload Videos <i class="fa fa-video-camera"></i> </span> 
+                         <span id="port-upload-videos-btn">Upload Videos & Audios <i class="fa fa-video-camera"></i> </span> 
                      </button>
 
                 </div>
@@ -430,19 +507,43 @@ if(!$banner_url_image)
 </div>
 <?php endif; ?>
 <!-- end  portfolio modal -->
+
+<!-- modal insert meta for portfolio item -->
+<div class="custom-modal-add-portfolio" id="custom-modal-insert-portfolio">
+   <div class="custom-modal-add-portfolio-content">
+         <div class="close-modal-add-portfolio">
+            <p class="add-port-modal-title">Edit Title & Description</p>
+            <span id="close-modal-insert-port-iconx">&times;</span>
+         </div>  
+         <div class="custom-form-add-port">
+            <form id="insert-meta-port-form" action="">
+                <input type="hidden" id="insert_meta_port_nonce" name="insert_meta_port_nonce" value="<?php echo wp_create_nonce('insert_meta_port_nonce'); ?>">                             
+                <input type="hidden" name="action" id="action" value="insert_edit_meta_port_item">                                
+                <input type="hidden" name="port_item_id" id="port_item_id" value="">                                
+                <div class="form-group">
+                    <label for="port_title">Portfolio Item Title</label>
+                    <input required type="text" class="form-control" id="insert_port_item_title" name="insert_port_item_title" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="port_description">Portfolio Item Description</label>
+                    <input type="text" class="form-control" id="insert_port_item_description" name="insert_port_item_description" value="">
+                </div>                                 
+
+                <div class="form-group port-submit-area">
+                        <button type="submit" class="btn btn-primary create-portfolio-btn">Save</button>
+                        <button type="button" id="close-modal-insert-port-item-icon" class="btn btn-danger">Close</button>
+                </div>
+
+    
+            </form>
+         </div>                         
+   </div>                                 
+</div>
+<!--end modal insert -->
 <?php 
 get_footer();
 ?>
 
-<!-- central video top overlay -->
-<div class="video_player_central_topoverlay">
-    <div class="close_modal_video_player_button">
-        <button id="close_modal_video_player_btn"><i class="fa fa-close"></i></button>
-    </div>
-    <div class="full-central-video-container">
-        <video disablepictureinpicture id="central_video_player" class="full-central-video" playsinline controls>                                                                        
-            <source id="central_video_player_src" />    
-        </video>
-    </div>
-</div>
-<!-- end -->
+
+

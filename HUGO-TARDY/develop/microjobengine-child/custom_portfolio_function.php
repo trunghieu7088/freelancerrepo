@@ -80,6 +80,8 @@ function createPortfolio_init()
                 {
                     $attach_update = array('ID' => $attachment_id, 'post_parent' => $port_inserted);
                     wp_update_post($attach_update);
+                    //remove temp meta after set portfolio ID
+                    delete_post_meta($attachment_id,'is_temp_file','true');
                 }            
         }  
         
@@ -91,6 +93,8 @@ function createPortfolio_init()
                 {
                     $video_attach_update = array('ID' => $video_attachment_id, 'post_parent' => $port_inserted);
                     wp_update_post($video_attach_update);
+                    //remove temp meta after set portfolio ID
+                    delete_post_meta($video_attachment_id,'is_temp_file','true');
                 }            
         }
         
@@ -159,7 +163,10 @@ function port_upload_images_action_init()
     {
         update_post_meta($attach_id,'_wp_attached_file',substr($upload_dir['subdir'],1).'/'.sanitize_file_name($uploaded_file['name']));        
         update_post_meta($attach_id,'datacustomID',$_REQUEST['datacustomID']);        
-        update_post_meta($attach_id,'custom_attachment_type','portfolio_item');        
+        update_post_meta($attach_id,'custom_attachment_type','portfolio_item');   
+        
+        //set temp file for removing system if the users did not complete create port steps
+        update_post_meta($attach_id,'is_temp_file','true');   
     }
 
 
@@ -288,6 +295,12 @@ function get_portfolio_images($user_id , $portfolio='all')
         'meta_key' =>'custom_attachment_type',
         'meta_value' => 'portfolio_item',
         'posts_per_page' => -1, 
+        'meta_query'=> array(
+            array(
+                'key' => 'is_temp_file',
+                'compare' => 'NOT EXISTS', // Simulated using other conditions                
+            ),
+        ),
     );
     if($portfolio!='all')
     {
@@ -311,6 +324,8 @@ function get_portfolio_images($user_id , $portfolio='all')
         while ($query->have_posts())
          {
             $query->the_post();
+            $post->custom_meta_title=(get_post_meta($post->ID,'custom_meta_title',true)) ? get_post_meta($post->ID,'custom_meta_title',true) : 'No title';
+            $post->custom_meta_description=(get_post_meta($post->ID,'custom_meta_description',true)) ? get_post_meta($post->ID,'custom_meta_description',true) : 'There is no description';            
             $data[]=$post;
         }
             wp_reset_postdata(); // Reset post data  
@@ -482,7 +497,7 @@ function delete_images_of_portfolio_action()
         }
     }
     $data['success']='true';
-    $data['message']='Delete images successfully';
+    $data['message']='Delete files successfully';
     wp_send_json($data);
     die();
 }
@@ -505,7 +520,9 @@ function deletePortfolio_action()
        $delete_port_info=get_post($delete_portfolio_id);
         if($delete_port_info)
         {
-            $all_attach_imgs=get_attached_media('image',$delete_port_info->ID);
+            //$all_attach_imgs=get_attached_media('image',$delete_port_info->ID);
+            //change type to all to delete vidoes, images, audio
+            $all_attach_imgs=get_attached_media('',$delete_port_info->ID);
             if($all_attach_imgs)
             {
                 foreach($all_attach_imgs as $attach_img)
@@ -525,7 +542,7 @@ function deletePortfolio_action()
 
 //get videos
 
-function get_portfolio_videos($user_id , $portfolio='all')
+function get_portfolio_videos($user_id , $portfolio='all',$portfolio_type='portfolio_video')
 {
     global $post;
     $data=array();
@@ -534,8 +551,14 @@ function get_portfolio_videos($user_id , $portfolio='all')
         'post_status' =>'inherit',
         'author'=>$user_id,
         'meta_key' =>'custom_attachment_type',
-        'meta_value' => 'portfolio_video',
+        'meta_value' => $portfolio_type,
         'posts_per_page' => -1, 
+        'meta_query'=> array(
+            array(
+                'key' => 'is_temp_file',
+                'compare' => 'NOT EXISTS', 
+            ),
+        ),
     );
     if($portfolio!='all')
     {
@@ -559,6 +582,8 @@ function get_portfolio_videos($user_id , $portfolio='all')
         while ($query->have_posts())
          {
             $query->the_post();
+            $post->custom_meta_title=(get_post_meta($post->ID,'custom_meta_title',true)) ? get_post_meta($post->ID,'custom_meta_title',true) : 'No title';
+            $post->custom_meta_description=(get_post_meta($post->ID,'custom_meta_description',true)) ? get_post_meta($post->ID,'custom_meta_description',true) : 'There is no description';
             $data[]=$post;
         }
             wp_reset_postdata(); // Reset post data  
@@ -569,3 +594,102 @@ function get_portfolio_videos($user_id , $portfolio='all')
 
 }
 
+
+//ajax get info of port item for edit or insert
+add_action('wp_ajax_get_info_of_port_item','get_info_of_port_item_action');
+
+function get_info_of_port_item_action()
+{
+    if(!is_user_logged_in())
+    {
+        die();
+    }
+
+    $data['meta_title']=(get_post_meta($_GET['portfolio_item_id'],'custom_meta_title',true)) ? get_post_meta($_GET['portfolio_item_id'],'custom_meta_title',true) : 'No title';
+    $data['meta_description']=(get_post_meta($_GET['portfolio_item_id'],'custom_meta_description',true)) ? get_post_meta($_GET['portfolio_item_id'],'custom_meta_description',true) : 'No description';
+    $data['success']='true';
+    wp_send_json($data);
+    die();
+}
+
+//ajax handling submit port item for edit or insert
+
+add_action('wp_ajax_insert_edit_meta_port_item','insert_edit_meta_port_item_action');
+
+function insert_edit_meta_port_item_action()
+{
+    if(!is_user_logged_in())
+    {
+        die();
+    }
+    if (!wp_verify_nonce($_POST['insert_meta_port_nonce'],'insert_meta_port_nonce')) {
+        die('something went wrong');
+    } 
+    extract($_POST);
+    update_post_meta($port_item_id,'custom_meta_title',$insert_port_item_title);
+    update_post_meta($port_item_id,'custom_meta_description',$insert_port_item_description);
+    $data['success']='true';
+    $data['message']='Updated information successfully';
+    wp_send_json($data);
+}
+
+
+//automatic system to delete the trash files from portfolio ( audio , images, video)
+
+add_filter('cron_schedules', 'custom_delete_trash_system_schedules', 999);
+function custom_delete_trash_system_schedules($schedules)
+{
+    // Add a new custom cron schedule named 'daily'
+    $schedules['daily_midnight'] = array(
+         'interval' => 24 * 60 * 60, // 24 hours in seconds
+        //'interval' => 100,
+        'display' => 'Once Daily at 12 PM',
+    );
+    return $schedules;
+}
+
+add_action('init', 'schedule_delete_trash_task',999);
+
+function schedule_delete_trash_task()
+{
+    if (!wp_next_scheduled('collect_delete_trash_file')) {
+        wp_schedule_event(strtotime('12:00 PM'), 'daily_midnight', 'collect_delete_trash_file');
+       //wp_schedule_event(time(), 'daily_midnight', 'collect_delete_trash_file');
+    }
+}
+
+add_action('collect_delete_trash_file','collect_delete_trash_file_action');
+function collect_delete_trash_file_action()
+{
+    global $post;
+    
+    $args_attachment = array(
+        'post_type' => 'attachment', 
+        'post_status' =>'inherit',             
+        'posts_per_page' => -1, 
+        'meta_query'=> array(            
+            array(
+                'key' => 'is_temp_file',
+                'compare' => 'EXISTS', 
+            ),        
+        ),
+        'date_query' => array(
+            array(
+                'column' => 'post_date', // You can change this to another column if needed
+                'before' => '1 day ago',
+            ),
+        ),
+    );
+
+    $query = new WP_Query($args_attachment);
+    if ($query->have_posts()) 
+    {            
+        while ($query->have_posts())
+        {
+            $query->the_post();     
+            wp_delete_attachment($post->ID,true);
+        }
+        wp_reset_postdata();      
+    }        
+
+}

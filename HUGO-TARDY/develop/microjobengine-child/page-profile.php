@@ -172,20 +172,23 @@ get_header();
                                 <div id="custom_website" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_website" data-id="#custom_website"><p><?php echo $custom_website; ?></p></div>
                                 </div>                                
+                                <button data-remove-name="custom_website" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>
                             </li>
                             
                             <li>
                                 <div class="cate-title"><?php _e('Email', 'enginethemes'); ?></div>
                                 <div id="custom_email" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_email" data-id="#custom_email"><p><?php echo $custom_email; ?></p></div>
-                                </div>                                
+                                </div>            
+                                <button data-remove-name="custom_email" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                    
                             </li>
 
                             <li>
                                 <div class="cate-title"><?php _e('Facebook', 'enginethemes'); ?></div>
                                 <div id="custom_facebook" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_facebook" data-id="#custom_facebook"><p><?php echo $custom_facebook; ?></p></div>
-                                </div>                                
+                                </div>      
+                                <button data-remove-name="custom_facebook" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                                              
                             </li>
 
                             <li>
@@ -193,20 +196,23 @@ get_header();
                                 <div id="custom_instagram" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_instagram" data-id="#custom_instagram"><p><?php echo $custom_instagram; ?></p></div>
                                 </div>                                
+                                <button data-remove-name="custom_instagram" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                                              
                             </li>
 
                             <li>
                                 <div class="cate-title"><?php _e('LinkedIn', 'enginethemes'); ?></div>
                                 <div id="custom_linkedin" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_linkedin" data-id="#custom_linkedin"><p><?php echo $custom_linkedin; ?></p></div>
-                                </div>                                
+                                </div>          
+                                <button data-remove-name="custom_linkedin" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                                                                    
                             </li>
 
                             <li>
                                 <div class="cate-title"><?php _e('MySpace', 'enginethemes'); ?></div>
                                 <div id="custom_myspace" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_myspace" data-id="#custom_myspace"><p><?php echo $custom_myspace; ?></p></div>
-                                </div>                                
+                                </div>      
+                                <button data-remove-name="custom_myspace" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                                                                                              
                             </li>
 
                             
@@ -214,35 +220,40 @@ get_header();
                                 <div class="cate-title"><?php _e('Pinterest', 'enginethemes'); ?></div>
                                 <div id="custom_pinterest" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_pinterest" data-id="#custom_pinterest"><p><?php echo $custom_pinterest; ?></p></div>
-                                </div>                                
+                                </div>   
+                                <button data-remove-name="custom_pinterest" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                                                                                                                           
                             </li>
 
                             <li>
                                 <div class="cate-title"><?php _e('SoundCloud', 'enginethemes'); ?></div>
                                 <div id="custom_soundcloud" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_soundcloud" data-id="#custom_soundcloud"><p><?php echo $custom_soundcloud; ?></p></div>
-                                </div>                                
+                                </div>          
+                                <button data-remove-name="custom_soundcloud" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                                                                                                                                                 
                             </li>
 
                             <li>
                                 <div class="cate-title"><?php _e('Tumblr', 'enginethemes'); ?></div>
                                 <div id="custom_tumblr" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_tumblr" data-id="#custom_tumblr"><p><?php echo $custom_tumblr; ?></p></div>
-                                </div>                                
+                                </div>           
+                                <button data-remove-name="custom_tumblr" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                                                                                                                                                                      
                             </li>
 
                             <li>
                                 <div class="cate-title"><?php _e('X (Twitter)', 'enginethemes'); ?></div>
                                 <div id="custom_twitter" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_twitter" data-id="#custom_twitter"><p><?php echo $custom_twitter; ?></p></div>
-                                </div>                                
+                                </div>      
+                                <button data-remove-name="custom_twitter" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                                                                                                                                                                                                
                             </li>
 
                             <li>
                                 <div class="cate-title"><?php _e('Youtube', 'enginethemes'); ?></div>
                                 <div id="custom_youtube" class="info-content">
                                     <div class="text-content" data-type="input" data-name="custom_youtube" data-id="#custom_youtube"><p><?php echo $custom_youtube; ?></p></div>
-                                </div>                                
+                                </div>      
+                                <button data-remove-name="custom_youtube" class="btn btn-warning btn-remove-social-link"><i class="fa fa-remove"></i></button>                                                                                                                                                                                                                          
                             </li>
 
                         </ul>                        

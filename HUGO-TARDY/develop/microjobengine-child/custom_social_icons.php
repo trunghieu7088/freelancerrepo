@@ -53,3 +53,23 @@ function display_social_icons_mobile_block($user_profile_id)
     </div>
     <?php    
 }
+
+//add ajax to handling delete social links
+
+add_action('wp_ajax_delete_social_link_profile','delete_social_link_profile_action');
+
+function delete_social_link_profile_action()
+{
+    if (!is_user_logged_in()) {
+        die();
+    }
+
+    extract($_POST);
+
+    $current_profile=get_user_meta(get_current_user_id(),'user_profile_id',true);
+    update_post_meta($current_profile,$social_type,'');
+    $data['success']='true';
+    $data['message']='Removed successfully';
+    wp_send_json($data);
+    die();
+}

@@ -16,8 +16,8 @@
                 fileListElement.empty(); 
             } 
             files.forEach(function(file) {
-                var fileName = file.name;
-                var fileElement = $("<p>").text(fileName);
+                var fileName = "<i class='fa fa-paperclip'></i> "+file.name;
+                var fileElement = $("<p class='custom-uploaded-items'>").html(fileName);
                 var removeButton = $("<a>", {
                     class: "port-remove-icon",
                     href:"javascript:void(0)",
@@ -122,7 +122,7 @@
                                                               
                             //set return attach id for element ( this is used for delete button)
                             $("[datacustomID='"+file.id+"']").attr('attach_file_id',responseObject.attach_id);
-                            
+                            toastr.success('File uploaded successfully');
                         },
                         UploadComplete: function(up,file)
                         {
@@ -232,13 +232,142 @@
             });
            
         });
+      
+          //fancybox init
+          Fancybox.bind("[data-fancybox]", { 
+            closeButton:true,
+            backdropClick:false,
+            on:
+            {
+                done:(fancybox,slide)=>{
+                    $('.linkedin-sharing-button').click(function(event){
+                        event.preventDefault();
+                        event.stopPropagation();
 
+                        let linkedin_url_share=$(this).attr('data-url-to-share');                        
+                        let linkedin_platform=$(this).attr('data-linkedin-platform-url')+ encodeURIComponent(linkedin_url_share);
+
+                        var popupWidth = 600;
+                        var popupHeight = 400;
+                        var popupLeft = (screen.width - popupWidth) / 2;
+                        var popupTop = (screen.height - popupHeight) / 2;
+
+                        window.open(linkedin_platform, "linkedinShareWindow", "width=" + popupWidth + ",height=" + popupHeight + ",left=" + popupLeft + ",top=" + popupTop + ",scrollbars=no");                        
+
+                    });
+
+                    $('.pinterest-sharing-button').click(function(event){
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        let pinterest_url_share=$(this).attr('data-url-to-share');                        
+                        let pinterest_platform=$(this).attr('data-pinterest-platform-url')+ encodeURIComponent(pinterest_url_share);
+
+                        var popupWidth = 750;
+                        var popupHeight = 550;
+                        var popupLeft = (screen.width - popupWidth) / 2;
+                        var popupTop = (screen.height - popupHeight) / 2;
+                                               
+                        window.open(pinterest_platform, "pinterestShareWindow", "width=" + popupWidth + ",height=" + popupHeight + ",left=" + popupLeft + ",top=" + popupTop + ",scrollbars=no");
+
+                    });
+
+
+                },
+            }
+
+          });
+        Fancybox.bind("[data-fancybox='audio-group']", {          
+              closeButton:false,
+              backdropClick:false,
+              mainClass:'customAudioGroup',
+              on:               
+              {
+                done: (fancybox, slide) => {      
+                    const audioPlayersCollection = document.querySelectorAll('.custom-single-audio-player-port');     
+                    audioPlayersCollection.forEach(function (playerElement) {
+                        const audioplayer = new Plyr(playerElement,{
+                            controls: ['play','progress','current-time','mute'],
+                            hideControls: false,
+                            autoplay: true,
+                        });
+                        audioplayer.on('play',function(){                            
+                            $('.fancybox__content').find('.plyr__control').css('display','inline-block');
+                        })
+                        
+                        
+                    });                      
+                },    
+                //turn off audio player by using trigger when changing slide
+                "Carousel.ready Carousel.beforeChange": (fancybox) => {           
+                 
+                    const slide = fancybox.getSlide();
+                    let status_play_btn=$(slide.contentEl.firstChild).find('[data-plyr="play"]').attr('aria-pressed');              
+                    if(status_play_btn=='true')
+                    {                        
+                        $(slide.contentEl.firstChild).find('[data-plyr="play"]').trigger('click');
+                    }
+                    
+                },
+                
+              },
+             
+        });
+
+        Fancybox.bind("[data-fancybox='video-group']", {          
+            closeButton:true,
+            backdropClick:false,            
+            mainClass:'customVideoGroup',
+            on:               
+            {
+              done: (fancybox, slide) => {      
+                const portFancyVideoPlayers = document.querySelectorAll('.fancy-video-port');
+    
+                portFancyVideoPlayers.forEach(function (playerElement) {
+                    const custom_fancy_video_players = new Plyr(playerElement,{ controls: ['play','play-large','progress','current-time','mute','volume','fullscreen']});
+                });    
+                 
+              },    
+            }
+        });
+
+        //remove social link button in profile
+        $('.btn-remove-social-link').click(function(){
+            let delete_social_option=$(this).attr('data-remove-name');
+            $.ajax({
+                type: "POST",
+                url: ae_globals.ajaxURL,
+                dataType: 'json',
+                data:
+                {
+                    action:'delete_social_link_profile',
+                    social_type:delete_social_option,
+                },          
+                success: function(response) {   
+                    if(response.success=='true') 
+                    {
+                        toastr.success(response.message); 
+                        window.location.reload();
+                    }          
+                    else
+                    {
+                        toastr.error('Something went wrong. Please refresh'); 
+                        window.location.reload();
+                    }      
+                                       
+                },   
+                error: function(error) {                    
+                    toastr.error('Something went wrong. Please refresh');
+                }             
+            });
+        });
+    
         //config lightbox
-        lightbox.option({
+        /*lightbox.option({
             'fadeDuration': 400,
             'imageFadeDuration':400,
             'resizeDuration':400,
-          });
+          }); */
 
           //handle show or hide sidebar on mobile
           $('.show-sidebar-btn').click(function(){            
@@ -386,6 +515,104 @@
             
         });
 
+        //turn on / off insert mode
+        $("#insert-data-btn").click(function(){
+            //turn on
+            if($(this).attr('data-insert-mode-status')=='false')
+            {
+                $(this).html('Cancel insert <i class="fa fa-ban"></i>');
+                $(this).attr('data-insert-mode-status','true');
+                $(".insert-btn-port-item").css('display','block');
+            }
+            else
+            {
+                $(this).html('Insert info <i class="fa fa-info-circle"></i>');
+                $(this).attr('data-insert-mode-status','false');
+                $(".insert-btn-port-item").css('display','none');
+            }
+        });
+        //insert info open modal button
+        $(".insert-btn-port-item-a").click(function(){            
+            let insert_port_item_id=$(this).attr('data-insert-item-id');
+            $("#port_item_id").val(insert_port_item_id);
+            $("#custom-modal-insert-portfolio").css('display','flex');
+            $("#insert_port_item_title").val('');
+            $("#insert_port_item_description").val('');
+            $.ajax({
+                type: "GET",
+                url: ae_globals.ajaxURL,
+                dataType: 'json',
+                data: {
+                    action:'get_info_of_port_item',
+                    portfolio_item_id: insert_port_item_id,                                   
+                },
+                success: function(response) {                       
+                   if(response.success=='true') 
+                    {
+                        $("#insert_port_item_title").val(response.meta_title);
+                        $("#insert_port_item_description").val(response.meta_description);
+                        
+                    }          
+                    else
+                    {
+                        toastr.error('Something went wrong. Please refresh'); 
+                        window.location.reload();
+                    }   
+                                       
+                },   
+            });
+
+        });
+
+        //handling form when user submit edit meta port form
+
+        $("#insert-meta-port-form").submit(function(event){
+            event.preventDefault();   
+            var edit_meta_formData = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: ae_globals.ajaxURL,
+                dataType: 'json',
+                data: edit_meta_formData,
+                beforeSend: function() {          
+                    $('#insert-meta-port-form').css('opacity',0.5); 
+                    $('#insert-meta-port-form').attr('disabled','disabled');         
+                    toastr.info('Saving...');   
+                },
+                success: function(response) {                       
+                   if(response.success=='true') 
+                    {
+                        toastr.success(response.message); 
+                        window.location.reload();
+                    }          
+                    else
+                    {
+                        toastr.error('Something went wrong. Please refresh'); 
+                        window.location.reload();
+                    }   
+                                       
+                },   
+                error: function(error) {                    
+                    toastr.error('Something went wrong. Please refresh');
+                }             
+            });
+
+        
+        });
+        
+        
+
+        //close modal edit meta title & description
+        $("#close-modal-insert-port-iconx").click(function(){
+            $("#custom-modal-insert-portfolio").css('display','none');
+            $("#port_item_id").val('');
+        });
+
+        $('#close-modal-insert-port-item-icon').click(function(){
+            $("#custom-modal-insert-portfolio").css('display','none');
+            $("#port_item_id").val('');
+        });
+
         //single button handling
 
         let select_content='Selected '+ '<i class="fa fa-check"></i>';
@@ -434,7 +661,7 @@
                     },
                     beforeSend: function() {
                         $('.topoverlay').css('display','block');
-                        toastr.info('Deleting images....');   
+                        toastr.info('Deleting files....');   
                     },
                     success: function(response) {                       
                        if(response.success=='true') 
@@ -531,7 +758,7 @@
                     prevent_duplicates: true,
                     //max_file_size: '20mb',
                     mime_types: [                        
-                        { title: 'allowed files', extensions: 'avi,mp4,webm,wmv' },                        
+                        { title: 'allowed files', extensions: 'avi,mp4,webm,wmv,ogg,flac,m4a,wma,aac,mp3' }, 
                     ],
                 },
                 multi_selection: false, // Allow multiple file selection
@@ -545,7 +772,7 @@
                     },
                     BeforeUpload: function(up,file)
                     {         
-                        toastr.warning('Start to uploading video !');
+                        toastr.warning('Start to uploading file !');
                         $(".topoverlay").css('display','flex');
                         $(".uploadingText").css('display','block');                        
                         up.settings.multipart_params.custom_file_name = file.name;
@@ -562,7 +789,7 @@
                         var responseObject = JSON.parse(response.response);  
                         if(responseObject.success==true || responseObject.success=='true') 
                         {
-                            toastr.success('uploaded video successfully !');
+                            toastr.success('File uploaded successfully!');
                             window.location.reload();
                         }  
                         else
@@ -599,8 +826,7 @@
                 multipart_params: {
                     action: 'video_upload_file_service_handling', // Custom AJAX action for handling the upload
                     _ajax_nonce: $("#port_upload_video_nonce").val(), // Nonce for security   
-                    datacustomID: "default",  
-                    single_video_upload_portfolio: "true",                    
+                    datacustomID: "default",                                      
                     custom_file_name: "defaultname",
                    custom_file_type: "defaulttype",
                    custom_file_id: "defaultid",                                       
@@ -609,7 +835,7 @@
                     prevent_duplicates: true,
                     //max_file_size: '20mb',
                     mime_types: [                        
-                        { title: 'allowed files', extensions: 'avi,mp4,webm,wmv' },                        
+                        { title: 'allowed files', extensions: 'avi,mp4,webm,wmv,ogg,flac,m4a,wma,aac,mp3' },                        
                     ],
                 },
                 multi_selection: true, // Allow multiple file selection
@@ -641,10 +867,10 @@
                             video_collection_ids.push({file_id: file.id, attach_id:responseObject.attach_id });                            
                             remove_button=" <a data-video-client-id='"+file.id+"' class='delete-video-service' data-attach-video='"+responseObject.attach_id+"' href='javascript:void(0)'><i class='fa fa-remove'></i></a>";
                        
-                            $(".port-uploaded-videos-area").append("<p>"+file.name+remove_button+"</p>");                            
+                            $(".port-uploaded-videos-area").append("<p class='custom-uploaded-items'><i class='fa fa-paperclip'></i> "+file.name+remove_button+"</p>");                            
                             $(".video-upload-progress-port-modal").css('display','none');
                             
-                            toastr.success('uploaded video successfully !');
+                            toastr.success('File uploaded successfully');
                         }  
                         else
                         {
@@ -664,6 +890,7 @@
         };
   
         video_portfolio_modal_uploader.init();
+
 
         $("#create-port-form").on("click",".delete-video-service",function(){
             let videoidToRemove=$(this).attr('data-video-client-id');                          
@@ -711,6 +938,8 @@
                 }
             });
         });
+
+     
         
     });
 

@@ -131,6 +131,13 @@ else
 }
 //end
 
+//get audio code and count audio
+$portfolio_audio_items=get_portfolio_videos($author_id,$chosen_port,'portfolio_audio');
+
+$counted_audios=(!empty($portfolio_audio_items)) ? count($portfolio_audio_items) : 0;
+
+//end 
+
 $banner_url_image=get_post_meta($profile_id,'banner_image_url',true);
 if(!$banner_url_image)
 {
@@ -164,7 +171,7 @@ get_header();
 
             <div class="port-head-title-info">
                 <p>
-                    <?php echo $portfolio_title; ?> <span class="counted-images"><?php echo $counted_items; ?> images | <?php echo $counted_videos; ?> videos</span>
+                    <?php echo $portfolio_title; ?> <span class="counted-images"><?php echo $counted_items; ?> images | <?php echo $counted_videos; ?> videos | <?php echo $counted_audios; ?> audios</span>
                     <?php if($chosen_port_info): ?>
                         <span class="portfolio-description">Description: <?php echo $chosen_port_info->post_content; ?></span>
                        
@@ -187,21 +194,32 @@ get_header();
                 <?php endif; ?>             
             </div>
 
+            <div class="portfolio-asset-label">
+                Images <i class="fa fa-image"></i>
+            </div>
+
             <div class="port-folio-collection">
                 <?php if(!empty($porfolio_items)): ?>
                     <?php foreach($porfolio_items as $porfolio_item) : ?>
+                       <?php 
+                            $text_title="<h3>".$porfolio_item->custom_meta_title."</h3>";
+                            $text_description="<p>".$porfolio_item->custom_meta_description."</p>";
+                            $social_buttons_img=display_sharing_social_buttons($porfolio_item->ID);
+                            $data_caption=esc_html($text_title.$text_description.$social_buttons_img);                            
+                        ?>
                         <div class="port-item-wrapper">
-                            <a data-port-item-id="<?php echo $porfolio_item->ID; ?>" data-lightbox="portfolio-item" href="<?php echo wp_get_attachment_image_url( $porfolio_item->ID, 'medium_large'); ?>">
-                                <img src="<?php echo wp_get_attachment_image_url( $porfolio_item->ID, 'thumbnail'); ?>">                            
-                            </a>
-                            <p class="chosen-image-select"><a class="image-selector-port" data_select_status="false" data_attachment_id_select="<?php echo $porfolio_item->ID; ?>" href="javascript:void(0)">Select</a></p>
+                            <a data-port-item-id="<?php echo $porfolio_item->ID; ?>" data-fancybox="gallery" data-caption="<?php echo $data_caption; ?>" href="<?php echo wp_get_attachment_image_url( $porfolio_item->ID, 'medium_large'); ?>">
+                                <img src="<?php echo wp_get_attachment_image_url( $porfolio_item->ID, 'thumbnail'); ?>">                                                                                                                            
+                            </a>                                                      
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-               <!-- <a href="#">
-                    <img src="<?php echo get_stylesheet_directory_uri().'/assets/img/view1.png'; ?>">
-                </a> -->
+        
                
+            </div>
+
+            <div class="portfolio-asset-label">
+                Videos <i class="fa fa-camera"></i>
             </div>
 
             <div class="port-video-collection">                
@@ -211,17 +229,75 @@ get_header();
                         $video_url=wp_get_attachment_url($porfolio_video_item->ID);                                                                       
                         ?>
                         <?php if($video_url): ?>                       
-                            <div class="port-video-wrapper">
-                            <button data-mime-type="<?php echo $porfolio_video_item->post_mime_type;  ?>" data-video-url="<?php echo $video_url; ?>" class="show_central_video_player"><i class="fa fa-play"></i></button>
-                                <video disablepictureinpicture class="portfolio-item-video-player" playsinline controls>                                                                        
+                            <div class="port-video-wrapper">                                                                
+                                 <?php 
+                                 //init video instance as esc html string for fancy box.
+                                 $video_part='<div class="custom-fancy-video-port-container">';
+                                 $video_part.='<video disablepictureinpicture class="fancy-video-port" playsinline controls>';
+                                 $video_part.='<source src="'.$video_url.'" type="'.$porfolio_video_item->post_mime_type.'"/>';
+                                 $video_part.='</video>';
+                                 $video_part.='<p class="custom_fancy_video_title">'.$porfolio_video_item->custom_meta_title.'</p>';
+                                 $video_part.='<p class="custom_fancy_video_description">'.$porfolio_video_item->custom_meta_description.'</p>';
+                                 $video_part.=display_sharing_social_buttons($porfolio_video_item->ID);
+                                 $video_part.='</div>';
+                                 $video_init=esc_html($video_part);
+                                 ?>
+                                 <a data-fancybox="video-group" data-type="html" href="<?php echo $video_init; ?>" class="show_central_video_player">
+                                    <i class="fa fa-play"></i>
+                                 </a>
+                                <video class="portfolio-item-video-player" disablepictureinpicture playsinline controls>                                                                        
                                     <source src="<?php echo $video_url; ?>" type="<?php echo $porfolio_video_item->post_mime_type;  ?>" />    
-                                </video>
-                                <p class="chosen-image-select"><a class="image-selector-port" data-item-type="video" data_select_status="false" data_attachment_id_select="<?php echo $porfolio_video_item->ID; ?>" href="javascript:void(0)">Select</a></p>
+                                </video>                                                                
                             </div>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
+
+             <!-- portfolio audio collection -->
+
+             <div class="portfolio-asset-label">
+                Audios <i class="fa fa-music"></i>
+            </div>
+
+            <div class="port-audio-collection">   
+                <div class="container-fluid">
+                    <div class="row port-audio-container">
+                        <?php if(!empty($portfolio_audio_items)): ?>
+                            <?php foreach($portfolio_audio_items as $port_audio_item ): ?>
+                                <div class="port-audio-item col-md-1 col-sm-1 col-xs-6">
+                                    <?php 
+                                    //init audio as html string for fancybox
+                                    $audio_url=wp_get_attachment_url($port_audio_item->ID);  
+                                    $audio_type=$port_audio_item->post_mime_type;
+                                    
+                                    $audio_part='<div class="audio-player-fancybox-area">';
+                                    
+                                    $audio_part.='<audio class="custom-single-audio-player-port" controls>';
+                                    $audio_part.='<source src="'.$audio_url.'" type="'.$audio_type.'">';
+                                    $audio_part.='Your browser does not support the audio element.';
+                                    $audio_part.='</audio>';
+
+                                    $audio_part.='<p class="custom_meta_title_fancy">'.$port_audio_item->custom_meta_title.'</p>';
+                                    $audio_part.='<p class="custom_meta_description_fancy">'.$port_audio_item->custom_meta_description.'</p>';
+                                    $audio_part.=display_sharing_social_buttons($port_audio_item->ID);
+                                    $audio_part.='</div>';
+                                    $audio_init=esc_html($audio_part);
+                                    ?>
+                                    <a data-fancybox='audio-group' data-type="html" href="<?php echo $audio_init; ?>" class="port-audio-a-tag">
+                                        <img src="<?php echo get_stylesheet_directory_uri().'/assets/img/music.png'; ?>">
+                                        <p class="text-audio-caption"><?php echo $port_audio_item->custom_meta_title; ?></p>
+                                    </a>                                                                        
+                                </div>        
+                            <?php endforeach; ?>
+                        <?php endif;?>
+                        
+                    </div>
+                </div>  
+            </div>
+                       
+            <!--  end portfolio audio collection -->
+
 
         </div>
 

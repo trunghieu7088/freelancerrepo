@@ -156,6 +156,147 @@
     text-decoration: none !important;
 }
 
+.portfolio-asset-label
+{
+    text-transform:uppercase;
+    font-weight:600;
+    font-size:18px;
+    margin:10px 5px;
+    padding-bottom:10px;
+    border-bottom:5px solid #8800c7;
+    display:inline-block;
+}
+.port-audio-collection
+{
+    padding:10px 0px;
+    min-height:150px;    
+}
+.port-audio-container
+{
+
+}
+.audio-player-fancybox-area
+{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.audio-player-fancybox-area .plyr--audio
+{
+    width:300px;
+}
+.audio-player-fancybox-area p
+{
+    margin:0 !important;
+    margin-top:10px !important;
+}
+.audio-player-fancybox-area .custom_meta_title_fancy
+{
+    font-size:18px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.audio-player-fancybox-area .custom_meta_title_description
+{
+    font-size:14px;    
+    text-transform: lowercase;
+    color:#d3d3d3;
+}
+/* hide next prev for audio / video fancy on mobile */
+@media (max-width: 480px) 
+{
+    .customAudioGroup .fancybox__nav
+    {
+        display: none !important;
+    }
+    .customVideoGroup .fancybox__nav
+    {
+        display: none !important;
+    }
+}
+
+/*end */
+.port-audio-item 
+{
+    margin-bottom:10px;
+}
+.port-audio-item .port-audio-a-tag
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;        
+    padding:0 !important;    
+}
+
+
+/* responsive for video port with fancybox */
+.custom-fancy-video-port-container
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;       
+}
+.port-audio-item .chosen-image-select
+{
+    display: none;
+    margin:0 !important;
+    margin-top:10px !important;
+    text-align: center;
+}
+.custom-fancy-video-port-container .plyr button[data-plyr="play"]
+{
+    z-index:99999 !important;
+    display:inline-block !important;
+}
+.custom-fancy-video-port-container .plyr__progress
+{
+    width:100%;
+}
+.custom-fancy-video-port-container .plyr__volume
+{
+    display: flex !important;
+    justify-content: flex-start;
+}
+
+.custom-fancy-video-port-container p
+{
+    margin:0 !important;
+    margin-top:10px !important; 
+}
+.custom-fancy-video-port-container .custom_fancy_video_title
+{
+    font-size:24px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.custom-fancy-video-port-container .custom_fancy_video_description
+{
+    font-size:16px;    
+    text-transform: lowercase;    
+}
+@media (min-width: 1080px) 
+{
+    .custom-fancy-video-port-container
+    {
+        width:1300px !important;
+    }
+    .custom-fancy-video-port-container video
+    {
+        width:1280px;
+        height:720px;
+    }
+}
+/* end port video */
+
+.text-audio-caption
+{
+    font-size:12px;
+    margin:0 !important;
+    margin-top:5px !important;
+}
 
 .port-update-banner-btn i
 {
@@ -254,8 +395,10 @@
 
 .port-folio-collection a img
 {
-    width:160px;
-    height:160px;
+    /*width:160px;
+    height:160px;*/
+    width: 100px;
+    height:100px;   
     border-radius: 10px;
 }
 /* profile sidebar */
@@ -401,7 +544,12 @@
     color:#201f24;
 }
 /* end sidebar */
-
+.custom-uploaded-items
+{
+    border:1px solid #d3d3d3 !important;
+    border-radius: 10px;
+    padding:5px 8px!important;
+}
 /* css for add port modal */
 
 
@@ -806,8 +954,16 @@
 .port-video-collection .port-video-wrapper video
 {    
     border-radius: 10px;   
-    width:200px;
-    height:160px;
+   /* width:200px;
+    height:160px;   */
+    width:160px;
+    height:100px;
+}
+
+.port-video-collection .port-video-wrapper .plyr
+{
+    min-width:160px;
+    height:100px;
 }
 
 .port-video-wrapper p
@@ -822,7 +978,7 @@
 {
     background-color:rgb(0, 178, 255) !important;
     color:#ffffff !important;
-    padding:10px 15px;
+    padding:15px 20px;
     border-radius: 50%;
     border:0px !important;
     outline:none !important;
@@ -971,5 +1127,44 @@
    justify-content: flex-end;
    
 }
+}
+/* end */
+
+/* css 24th July 2024 */
+.insert-btn-port-item
+{
+    border: 1px solid #10a2ef;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #10a2ef;
+}
+.port-audio-item .insert-btn-port-item
+{
+    text-align: center;
+    display:none;
+    margin-top:5px;
+}
+/* end */
+
+/* custom css for sharing icons */
+/* 25th July 2024 */
+.custom-sharing-social-icon-wrapper
+{
+    margin:10px 0px;
+}
+.custom-sharing-social-icon-wrapper .sharing-title
+{
+    font-size:16px;
+    margin:10px 0px !important;
+}
+.sharing-img-custom-icon
+{
+    width:42px;
+    height:42px;
+}
+.social-sharing-icon-a
+{
+    margin-left:10px;
 }
 /* end */

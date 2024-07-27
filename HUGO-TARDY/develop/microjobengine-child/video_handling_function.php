@@ -92,14 +92,27 @@ function video_upload_file_service_handling_init()
                 }
                 else
                 {
-                    $attach_id = wp_insert_attachment($attachment, $_REQUEST['custom_file_name']);       
+                    $attach_id = wp_insert_attachment($attachment, $_REQUEST['custom_file_name']);                                         
                 }
                 
                 
                 
                 if ($attach_id) {
                     update_post_meta($attach_id, '_wp_attached_file', str_replace(site_url() . '/wp-content/uploads/', '', $upload_dir['url'].'/'.sanitize_file_name($_REQUEST['custom_file_name'])));
-                    update_post_meta($attach_id,'custom_attachment_type','portfolio_video');        
+                    $file_type=detect_video_audio_base_on_mimeType($_REQUEST['custom_file_type']);                    
+                    update_post_meta($attach_id,'custom_attachment_type',$file_type);
+                    
+                    
+                    update_post_meta($attach_id,'is_temp_file','true');
+
+                  
+                    //remove temp file meta for the media has been uploaded from single upload button 
+                    if($_REQUEST['single_video_upload_portfolio']==true || $_REQUEST['single_video_upload_portfolio']=='true')
+                    {
+                        delete_post_meta($attach_id,'is_temp_file','true');
+                    }
+                      
+                    
                     $response = array(
                         'success' => true,
                         'message' => 'File uploaded successfully.',
@@ -113,6 +126,26 @@ function video_upload_file_service_handling_init()
     }
 
 }
+
+function detect_video_audio_base_on_mimeType($mimeType)
+{
+    $file_type='';
+    $audio_keywords=['audio', 'x-m4a', 'mpeg', 'wav', 'ogg', 'aac', 'x-ms-wma','flac','aiff']; 
+    $video_keywords=['video', 'x-msvideo', 'x-flv', 'mp4', 'avi', 'webm']; 
+    if(preg_match('/\b(' . implode('|', $audio_keywords) . ')\b/i', $mimeType))
+    {        
+        $file_type='portfolio_audio';
+    }
+    elseif(preg_match('/\b(' . implode('|', $video_keywords) . ')\b/i', $mimeType))
+    {
+        $file_type='portfolio_video';
+    }
+    else
+    {
+        $file_type='Unknown';
+    }
+    return $file_type;
+}   
 
 
 add_action( 'wp_ajax_delete_attach_video_on_server', 'delete_attach_video_on_server_init' );

@@ -23,6 +23,13 @@ function child_mjob_add_mime_types($mimes)
                 'avi' =>'video/x-msvideo',
                 'webm' => 'video/webm',
                 'wmv'=>'video/x-ms-wmv',
+                //new code 18th july 2024
+                'ogg'=>'audio/ogg',
+                'aac'=>'audio/aac',
+                'wma'=>'audio/x-ms-wma',
+                'm4a'=>'audio/x-m4a',
+                'flac'=>'audio/flac',
+
             ));
         }
         // if user is normal user
@@ -40,6 +47,12 @@ function child_mjob_add_mime_types($mimes)
             'avi' =>'video/x-msvideo',
             'webm' => 'video/webm',
             'wmv'=>'video/x-ms-wmv',
+              //new code 18th july 2024
+              'ogg'=>'audio/ogg',
+              'aac'=>'audio/aac',
+              'wma'=>'audio/x-ms-wma',
+              'm4a'=>'audio/x-m4a',
+              'flac'=>'audio/flac',
 
 
         ));

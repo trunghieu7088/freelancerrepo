@@ -259,7 +259,6 @@
     // Live preview for posting banner
     wp.customize('post_job_title', function(value) {
         value.bind(function(newval) {
-            console.log(newval);
             $('.banner-title').text(newval);
         })
     });

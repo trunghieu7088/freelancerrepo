@@ -1141,10 +1141,17 @@ if (!function_exists('et_get_page_link')) {
             $page_type = $pages['page_type'];
             $page_args = wp_parse_args($pages, $page_args);
         } else {
-
             // pages is page_type string (using this only insert a page template)
             $page_type = $pages;
             $page_args['post_title'] = $page_type;
+
+            $default_pages = mje_get_page_default();
+            foreach ($default_pages as $page_slug => $page_title) {
+                if ($page_type == $page_slug) {
+                    $page_args['post_title'] = $page_title;
+                    break;
+                }
+            }
         }
         /**
          * get page template link option and will return if it not empty
@@ -1313,39 +1320,7 @@ if (!function_exists('ae_order_by_post_status')) {
  */
 function is_social_connect_page()
 {
-    if (!is_singular('page')) return false;
-
-    global $post;
-    $connect_page    =  ae_get_option('social_connect');
-    if (!$connect_page)
-        return false;
-    if (is_array($connect_page) && $connect_page[0] == $post->ID)
-        return true;
-
-    return false;
-
-    // $current_page_slug = $post->post_name;
-    // $current_page_id        = get_the_ID();
-    // $social_connect_page    = ae_get_option('social_connect');
-    // $social_connect_page    = str_replace('www.', '', $social_connect_page);
-
-    // // check the current page slug match with social connect setting
-    // if($social_connect_page == $current_page_slug) {
-    //     return true;
-    // }
-
-    // $site_url = home_url('/');
-    // $site_url = str_replace('www.', '', $site_url);
-    // $social_connect_page = str_replace($site_url, '', $social_connect_page);
-    // $page_connect_id = get_page_by_path($social_connect_page, OBJECT);
-    // if($page_connect_id){
-    //     $page_connect_id = (int)$page_connect_id->ID;
-    // }
-    // $flag = false;
-    // if($page_connect_id == $current_page_id){
-    //     $flag = true;
-    // }
-    // return $flag;
+    return is_page_template('page-social-connect.php');
 }
 /**
  *get socail connect page link
@@ -1497,18 +1472,96 @@ add_action('et_cron_unban_users', 'et_unban_expired_users');
  * @author Tat Thien
  */
 if (!function_exists('ae_paypal_log')) {
-    function ae_paypal_log($input)
+    function ae_paypal_log($input, $comment = "")
     {
-
         $file_path = WP_CONTENT_DIR . '/mje_paypal.log';
-
-        if (MJE_DEBUG_PAYPAL) {
-
+        $comment = !empty($comment) ? $comment . ": " : "";
+        if (defined(TRACK_PAYMENT) && TRACK_PAYMENT) {
             if (is_array($input) || is_object($input)) {
-                error_log(print_r($input, TRUE), 3, $file_path);
+                error_log($comment . print_r($input, TRUE), 3, $file_path);
             } else {
-                error_log($input . "\n", 3, $file_path);
+                error_log($comment . $input . "\n", 3, $file_path);
             }
         }
     }
+}
+/**
+ * return an array of uploaderID used in MicrojobEngine for users to upload files
+ * @since v1.5 
+ */
+function get_uploaderID_array()
+{
+    return array(
+        'claim_photo' => "Photo verification", // uploaded photo used in job-verfication plugin
+        'custom-order' => "Custom Order", // custom order used in mje-recruit plugin
+        'send_offer' => "Sent Offer",
+        'modal_conversation' => "Conversation Modal",
+        'carousel_single_conversation' => "Conversation",
+        'deliver' => "File Delivery",
+        'carousel' => "mJob Gallery", // uploaded photos in mjob posting form & mjob editing form
+        'upload_avatar' => "Avatar Uploads",
+    );
+}
+
+
+/**
+ * Cron job to automatically trash unused images
+ * @since v1.5
+ */
+if (!function_exists('et_setup_schedule_unttached_cleanup')) {
+    function et_setup_schedule_unttached_cleanup()
+    {
+        $unattached_cleanup = ae_get_option('unattached_cleanup', false);
+        if ($unattached_cleanup && !wp_next_scheduled('et_cron_unattached_cleanup')) {
+            wp_schedule_event(time(), 'daily', 'et_cron_unattached_cleanup');
+        } else {
+            wp_clear_scheduled_hook('et_cron_unattached_cleanup');
+        }
+    }
+}
+add_action('wp_loaded', 'et_setup_schedule_unttached_cleanup');
+
+if (!function_exists('et_delete_unattached_files')) {
+    function et_delete_unattached_files($days = "3")
+    {
+        $days = apply_filters('et_unattached_files_days_threshold', $days);
+
+        $delete_threshold = date('Y-m-d', strtotime('-' . $days . ' days')); // Files uploaded before this time will be deleted
+        $arr_uploaderID_to_clean = array(
+            'custom-order',
+            'send_offer',
+            'modal_conversation',
+            'carousel_single_conversation',
+            'deliver',
+            'carousel',
+        );
+
+        $args = array(
+            'post_type' => 'attachment',
+            'post_status' => 'inherit',
+            'post_parent' => 0,
+            'date_query' => array(
+                array(
+                    'before' => $delete_threshold,
+                ),
+            ),
+            'meta_query' => array(
+                array(
+                    'key' => 'uploaderID',
+                    'compare' => 'IN',
+                    'value' => $arr_uploaderID_to_clean
+                ),
+            ),
+            'fields' => 'ids', // Only retrieve attachment IDs
+        );
+
+        $unattached_ids = get_posts($args);
+
+        if ($unattached_ids) {
+            foreach ($unattached_ids as $unattached_id) {
+                wp_delete_attachment($unattached_id, true); // Delete each unattached ID with force delete (true)
+            }
+        }
+    }
+    add_action('et_cron_unattached_cleanup', 'et_delete_unattached_files');
 }

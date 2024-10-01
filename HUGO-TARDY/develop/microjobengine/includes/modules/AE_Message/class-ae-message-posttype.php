@@ -1,4 +1,5 @@
 <?php
+
 /**
  * AE message class
  */
@@ -29,10 +30,11 @@ class AE_AE_Message_Posttype extends MJE_Post
      * @since 1.0
      * @author Tambh
      */
-    public  function __construct($post_type = '', $taxs = array(), $meta_data = array(), $localize = array()){
+    public  function __construct($post_type = '', $taxs = array(), $meta_data = array(), $localize = array())
+    {
         $this->post_type = 'ae_message';
 
-        parent::__construct( $this->post_type, $taxs, $meta_data, $localize);
+        parent::__construct($this->post_type, $taxs, $meta_data, $localize);
 
         $this->meta = array(
             'et_carousels',
@@ -50,8 +52,6 @@ class AE_AE_Message_Posttype extends MJE_Post
             'receiver_latest_reply',
             'sender_latest_reply',
             'latest_reply',
-            'receiver_unread',
-            'sender_unread',
             'type',
             'action_type',
             'level'
@@ -69,7 +69,8 @@ class AE_AE_Message_Posttype extends MJE_Post
      * @category void
      * @author JACK BUI
      */
-    public function init(){
+    public function init()
+    {
         $args = array(
             'labels' => array(
                 'name' => __("Message", 'enginethemes'),
@@ -98,7 +99,8 @@ class AE_AE_Message_Posttype extends MJE_Post
 }
 
 add_action('init', 'initMessagePostType');
-function initMessagePostType() {
+function initMessagePostType()
+{
     $instance = AE_AE_Message_Posttype::get_instance();
     $instance->init();
 }

@@ -2,7 +2,7 @@
  * Created by Jack Bui on 1/12/2016.
  */
 (function($, Models, Collections, Views) {
-    $(document).ready(function() {
+    $(function() {
 
         //define extra item
         var extraItem = Views.PostItem.extend({
@@ -50,7 +50,7 @@
             el: '.mjob-single-page',
             events: {
                 'click .mjob-order-action': 'mJobOrderAction',
-                'click .edit-mjob-action': 'openEditForm',
+                'click .edit-mjob-action.edit-inline': 'openEditForm',
                 'click .mjob-order-disable': 'disableNotification',
                 'click .show-opening-message' : 'showLessOpeningMessage'
             },
@@ -347,6 +347,12 @@
                 this.initExtras();
                 this.initValidator();
                 this.blockUi    = new Views.BlockUi();
+                _.bindAll(this, 'onBeforeUnload')
+
+                // $(window).on({
+                //     'beforeunload' : this.onBeforeUnload 
+                // })
+
                 //AE.pubsub.on('ae:carousel:after:remove', this.checkImage, this);
                 AE.pubsub.on('ae:carousel:before:remove', this.beforeRemoveImage, this);
                 AE.pubsub.on('ae:carousel:after:remove', this.afterRemoveImage, this);
@@ -363,7 +369,17 @@
                 $('.skills-list').html('');
                 view.$el.find('.carousel-gallery img').attr('src', ae_globals.mJobDefaultGalleryImage);
                 view.setupFields();
+
+                window.addEventListener("beforeunload", this.onBeforeUnload);
             },
+
+            onBeforeUnload: function(e){
+                e.preventDefault();
+                // Display confirmation message
+                e.returnValue = "Are you sure you want to leave this page? You may lose unsaved changes."; // Chrome, Firefox require returnValue
+                return e.returnValue; // Deprecated for Safari, but still included for broader compatibility
+            },
+
             uploadSuccess: function(res){
                 var view = this;
 
@@ -510,7 +526,7 @@
                 var view = this;
                 if(typeof $('.mjob-replace-image').attr('data-delete') !== 'undefined' ){
                     attachID  = $('.mjob-replace-image').attr('data-delete');
-                    $('#mjob-delete-' + attachID).click();
+                    $('#mjob-delete-' + attachID).trigger('click');
                 }
                 view.$el.find('.carousel-gallery img').attr('src', src);
                 view.$el.find('.mjob-delete-image').attr('data-id', attach_id);
@@ -527,7 +543,7 @@
                     type: 'post',
                     data: data,
                     beforeSend: function () {
-                      $('.mjob-edit-content').find('.loading').show();                      
+                      $('.mjob-edit-content').find('.loading').show();
                     },
                     success: function (res) {
                         if (res.success) {
@@ -544,14 +560,13 @@
                                 if( $input.attr('name') != '_wpnonce' ) {
                                     $input.val(view.mjobModel.get($input.attr('name')));
                                     // trigger chosen update if is select
-                                    if ($input.get(0).nodeName === "SELECT") $input.trigger('chosen:updated');
+                                    if ($input.get(0).nodeName === "SELECT" && !!$input.get(0).tomselect) $input.get(0).tomselect.addItem(view.mjobModel.get($input.attr('name')));
                                 }
                             });
 
                             if (typeof view.carousels === 'undefined') {
                                 view.carousels = new Views.Carousel({
                                     el: $('.gallery_container'),
-                                    name_item:'et_carousel',
                                     uploaderID:'carousel',
                                     model: view.mjobModel,
                                     min_images: 0,
@@ -623,12 +638,18 @@
             },
             discardMjob: function(e){
                 e.preventDefault();
-                var view = this;
+                let view = this,
+                    check = confirm(ae_globals.discard_confirm);
+
+                if(!check ) return;
+
                 view.$el.fadeOut(500);
                 $('.mjob-single-content').fadeIn(500);
                 $('html, body').animate({
                     scrollTop: $("html, body").offset().top
                 }, 1000);
+
+                window.removeEventListener("beforeunload",view.onBeforeUnload);
             },
             addExtras: function(event){
                 event.preventDefault();
@@ -697,6 +718,8 @@
                 var view 		= this,
                     $target 		= $(event.currentTarget),
                     temp 		= new Array();
+
+                window.removeEventListener("beforeunload",view.onBeforeUnload);
                 /**
                  * update model from input, textarea, select
                  */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: admin
@@ -6,32 +7,33 @@
  * Time: 13:28
  */
 
-if( ! function_exists('mjob_setting_microjob')) {
-    function mjob_setting_microjob() {
+if (!function_exists('mjob_setting_microjob')) {
+    function mjob_setting_microjob()
+    {
         return array(
             'args' => array(
-                'title' => __("Microjob", 'enginethemes') ,
+                'title' => __("Microjob", 'enginethemes'),
                 'id' => 'microjob-settings',
                 'icon' => 'l',
                 'class' => ''
-            ) ,
+            ),
             'groups' => array(
                 /* mJob Default Image*/
-				array(
+                array(
                     'args' => array(
-                        'title' => __(" mJob Default Thumbnail", 'enginethemes') ,
+                        'title' => __(" mJob Default Thumbnail", 'enginethemes'),
                         'id' => '',
                         'class' => '',
                         'name' => '',
-                    ) ,
+                    ),
                     'fields' => array(
                         array(
                             'id' => 'opt-ace-editor-js',
                             'type' => 'image',
-                            'title' => __("Photo setting", 'enginethemes') ,
+                            'title' => __("Photo setting", 'enginethemes'),
                             'desc' => __("Your logo should be in PNG, GIF or JPG format, minimum size is 768 x 435px and less than 1500Kb.", 'enginethemes'),
                             'name' => 'default_mjob',
-                            'default' =>  get_template_directory_uri().'/assets/img/mjob_thumbnail.png',
+                            'default' =>  get_template_directory_uri() . '/assets/img/mjob_thumbnail.png',
                             'class' => '',
                             'size' => array(
                                 '768',
@@ -40,21 +42,21 @@ if( ! function_exists('mjob_setting_microjob')) {
                         ),
                     )
                 ),
-				/* mJob Price Setting*/
+                /* mJob Price Setting*/
                 array(
                     'args' => array(
-                        'title' => __("Microjob Price", 'enginethemes') ,
-                        'desc' => __("mJob Price allows sellers to set either a custom price per mJob or fixed price.", 'enginethemes') ,
+                        'title' => __("Microjob Price", 'enginethemes'),
+                        'desc' => __("mJob Price allows sellers to set either a custom price per mJob or fixed price.", 'enginethemes'),
                         'id' => 'mjob-price-group',
                         'class' => '',
                         'name' => '',
-                    ) ,
+                    ),
                     'fields' => array(
                         /* mJob price */
                         array(
                             'id' => 'custom_price_mode',
                             'type' => 'switch',
-                            'title' => __("Price mode", 'enginethemes') ,
+                            'title' => __("Price mode", 'enginethemes'),
                             'desc' => __('If you choose custom option, sellers can set a price for their mJobs.', 'enginethemes'),
                             'name' => 'custom_price_mode',
                             'class' => 'option-item bg-grey-input ',
@@ -64,7 +66,7 @@ if( ! function_exists('mjob_setting_microjob')) {
                         array(
                             'id' => 'fixed_price',
                             'type' => 'number',
-                            'title' => sprintf(__("Fixed price (%s)", 'enginethemes'), ae_currency_sign(false)) ,
+                            'title' => sprintf(__("Fixed price (%s)", 'enginethemes'), ae_currency_sign(false)),
                             'desc' => __("Enter the default price for all mJobs.", 'enginethemes'),
                             'name' => 'mjob_price',
                             'placeholder' => ae_currency_sign(false),
@@ -75,13 +77,13 @@ if( ! function_exists('mjob_setting_microjob')) {
                             'id' => 'custom_price',
                             'name' => '',
                             'type' => 'combine',
-                            'title' => sprintf(__("Custom price (%s)", 'enginethemes'), ae_currency_sign(false)) ,
+                            'title' => sprintf(__("Custom price (%s)", 'enginethemes'), ae_currency_sign(false)),
                             'desc' => __("Set the minimum & maximum prices applied for mJobs.", 'enginethemes'),
                             'children' => array(
                                 array(
                                     'id' => 'mjob_min_price',
                                     'type' => 'number',
-                                    'title' => __("Minimum price", 'enginethemes') ,
+                                    'title' => __("Minimum price", 'enginethemes'),
                                     'name' => 'mjob_min_price',
                                     'placeholder' => ae_currency_sign(false),
                                     'class' => 'option-item bg-grey-input positive_int min_price_validate',
@@ -90,7 +92,7 @@ if( ! function_exists('mjob_setting_microjob')) {
                                 array(
                                     'id' => 'mjob_max_price',
                                     'type' => 'number',
-                                    'title' => __("Maximum price", 'enginethemes') ,
+                                    'title' => __("Maximum price", 'enginethemes'),
                                     'name' => 'mjob_max_price',
                                     'placeholder' => ae_currency_sign(false),
                                     'class' => 'option-item bg-grey-input positive_int max_price_validate',
@@ -101,29 +103,29 @@ if( ! function_exists('mjob_setting_microjob')) {
                         array(
                             'id' => 'order-commission',
                             'type' => 'number',
-                            'title' => __("Commission fee (%)", 'enginethemes') ,
-                            'desc' => __("Set up commission fee as percentage of mJob price you want to charge to seller.", 'enginethemes') ,
+                            'title' => __("Commission fee (%)", 'enginethemes'),
+                            'desc' => __("Set up commission fee as percentage of mJob price you want to charge to seller.", 'enginethemes'),
                             'name' => 'order_commission',
-                            'placeholder' => __("10", 'enginethemes') ,
+                            'placeholder' => __("10", 'enginethemes'),
                             'class' => 'option-item bg-grey-input positive_int_zero',
-                            'default'=> 10
+                            'default' => 10
                         ),
                         array(
                             'id' => 'order-commission-buyer',
                             'type' => 'number',
-                            'title' => __("Buyer commission fee(%)", 'enginethemes') ,
-                            'desc' => __("Set up the fee charged to the buyer as percentage of mJob price.", 'enginethemes') ,
+                            'title' => __("Buyer commission fee(%)", 'enginethemes'),
+                            'desc' => __("Set up the fee charged to the buyer as percentage of mJob price.", 'enginethemes'),
                             'name' => 'order_commission_buyer',
-                            'placeholder' => __("0", 'enginethemes') ,
+                            'placeholder' => __("0", 'enginethemes'),
                             'class' => 'option-item bg-grey-input positive_int_zero',
-                            'default'=> 0
+                            'default' => 0
                         )
                     )
                 ),
                 /* mJob settings */
                 array(
                     'args' => array(
-                        'title' => __("mJob Verification", 'enginethemes') ,
+                        'title' => __("mJob Verification", 'enginethemes'),
                         'desc' => '',
                         'id' => '',
                         'class' => '',
@@ -133,7 +135,7 @@ if( ! function_exists('mjob_setting_microjob')) {
                             'id' => 'use_pending',
                             'type' => 'switch',
                             'title' => __("Pending review", 'enginethemes'),
-                            'desc' => __("Enabling this will make every new mJob posted pending until you review and approve it manually.", 'enginethemes') ,
+                            'desc' => __("Enabling this will make every new mJob posted pending until you review and approve it manually.", 'enginethemes'),
                             'name' => 'use_pending',
                             'class' => 'option-item bg-grey-input '
                         ),
@@ -141,7 +143,7 @@ if( ! function_exists('mjob_setting_microjob')) {
                             'id' => 'edit_mjob',
                             'type' => 'switch',
                             'title' => __("Editing mJob", 'enginethemes'),
-                            'desc' => __("Enabling this will allow author to edit his mJob, even when his mJob is active.", 'enginethemes') ,
+                            'desc' => __("Enabling this will allow author to edit his mJob, even when his mJob is active.", 'enginethemes'),
                             'name' => 'edit_mjob',
                             'class' => 'option-item bg-grey-input '
                         )
@@ -150,7 +152,7 @@ if( ! function_exists('mjob_setting_microjob')) {
                 /* mJob order settings*/
                 array(
                     'args' => array(
-                        'title' => __("Microjob order settings", 'enginethemes') ,
+                        'title' => __("Microjob order settings", 'enginethemes'),
                         'desc' => __("Set up microjob's order settings.", 'enginethemes'),
                         'id' => '',
                         'class' => '',
@@ -171,16 +173,16 @@ if( ! function_exists('mjob_setting_microjob')) {
                 /* File settings */
                 array(
                     'args' => array(
-                        'title' => __("File settings", 'enginethemes') ,
+                        'title' => __("File settings", 'enginethemes'),
                         'id' => '',
                         'class' => '',
                         'desc' => ''
-                    ) ,
+                    ),
                     'fields' => array(
                         array(
                             'id' => 'file_types',
                             'type' => 'text',
-                            'title' => __("File types", 'enginethemes') ,
+                            'title' => __("File types", 'enginethemes'),
                             'desc' => __('Default: allows only pdf, doc, docx, zip, jpg or png files.', 'enginethemes'),
                             'name' => 'file_types',
                             'placeholder' => "",
@@ -191,11 +193,19 @@ if( ! function_exists('mjob_setting_microjob')) {
                         array(
                             'id' => 'max_file_size',
                             'type' => 'number',
-                            'title' => __("Maximum file size", 'enginethemes') ,
-                            'desc' => sprintf(__('Give a maximum file size in mb. Default is %s', 'enginethemes'), wp_max_upload_size() / (1024*1024).'mb'),
+                            'title' => __("Maximum file size", 'enginethemes'),
+                            'desc' => sprintf(__('Give a maximum file size in mb. Default is %s', 'enginethemes'), wp_max_upload_size() / (1024 * 1024) . 'mb'),
                             'name' => 'max_file_size',
                             'placeholder' => 'mb',
                             'class' => 'option-item bg-grey-input positive_int',
+                        ),
+                        array(
+                            'id' => 'unattached_cleanup',
+                            'type' => 'switch',
+                            'title' => __("Clean up unused images", 'enginethemes'),
+                            'desc' => __("Enable this to automatically delete unused user uploads after 3 days.", 'enginethemes'),
+                            'name' => 'unattached_cleanup',
+                            'class' => 'option-item bg-grey-input ',
                         )
                     )
                 ),
@@ -219,10 +229,10 @@ if( ! function_exists('mjob_setting_microjob')) {
                         array(
                             'id' => 'bad_word_replace',
                             'type' => 'text',
-                            'title' => __("Replace them", 'enginethemes') ,
+                            'title' => __("Replace them", 'enginethemes'),
                             'desc' => __('Give a replacement word for all bad words.', 'enginethemes'),
                             'name' => 'bad_word_replace',
-                            'placeholder' => __("Enter a word", 'enginethemes') ,
+                            'placeholder' => __("Enter a word", 'enginethemes'),
                             'class' => 'option-item bg-grey-input',
                         )
                     )
@@ -239,7 +249,7 @@ if( ! function_exists('mjob_setting_microjob')) {
                         array(
                             'id' => 'new_mjob_mail_template',
                             'type' => 'editor',
-                            'title' => __("New post notification", 'enginethemes') ,
+                            'title' => __("New post notification", 'enginethemes'),
                             'desc' => __("Send to admin when a user posts a new mJob", 'enginethemes'),
                             'class' => '',
                             'name' => 'new_mjob_mail_template',
@@ -249,7 +259,7 @@ if( ! function_exists('mjob_setting_microjob')) {
                         array(
                             'id' => 'approve_mjob_mail_template',
                             'type' => 'editor',
-                            'title' => __("mJob approved notification", 'enginethemes') ,
+                            'title' => __("mJob approved notification", 'enginethemes'),
                             'desc' => __("Send to a user to notify that one of his posted mJobs has been approved.", 'enginethemes'),
                             'class' => '',
                             'name' => 'approve_mjob_mail_template',
@@ -454,7 +464,7 @@ if( ! function_exists('mjob_setting_microjob')) {
                 array(
                     'args' => array(
                         'title' => __('Dispute Decision', 'enginethemes'),
-                        'desc' => __("Send to user when admin makes a decision on a disputed order", 'enginethemes') ,
+                        'desc' => __("Send to user when admin makes a decision on a disputed order", 'enginethemes'),
                         'id' => '',
                         'class' => '',
                     ),

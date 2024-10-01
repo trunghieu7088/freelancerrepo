@@ -2,7 +2,7 @@
  * Create Dang Bui
  */
 (function($, Models, Collections, Views) {
-    $(document).ready(function() {
+    $(function() {
         //Get user login
         var fromUser = $('#bt-send-custom').attr('data-from-user');
         var toUser = $('#bt-send-custom').attr('data-to-user');
@@ -24,7 +24,7 @@
             el: 'body',
             events: {
                 'click .bt-send-custom': 'modalCustom',
-                'click #bt-send-custom-disable' : 'infoCustomDisable'
+                'click #bt-send-custom-disable' : 'infoCustomDisable',
             },
             initialize: function () {
                 if($('#current_user').length > 0) {
@@ -39,7 +39,6 @@
             },
 
             modalCustom: function (event) {
-                console.log('123');
                 event.preventDefault();
                 if (fromUser == 0 || !fromUser) {
                     // Open sign in modal
@@ -116,7 +115,6 @@
                 if (typeof view.carousels === 'undefined') {
                     view.carousels = new Views.Carousel({
                         el: $('.gallery_container'),
-                        name_item: 'et_carousel',
                         uploaderID: 'custom-order',
                         model: view.model,
                         extensions: ae_globals.file_types,
@@ -250,9 +248,9 @@
                 showOuterDetail: function() {
                     $(".outer-detail-custom-order" ).show({direction: "left" }, 1000);
                     $('.single-ae_message .overlay-custom-detail').fadeIn();
-                    $(".outer-detail-custom").mCustomScrollbar({
-                        theme:"minimal",
-                    });
+                    if($(".outer-detail-custom").length > 0){
+                        $(".outer-detail-custom").OverlayScrollbars();
+                    }
                 },
                 hideOuterDetail: function() {
                     $(".outer-detail-custom-order").hide('slide');

@@ -2,11 +2,11 @@
  * Created by Jack Bui on 1/12/2016.
  */
 (function($, Models, Collections, Views) {
-    $(document).ready(function() {
+    $(function() {
         /*
          * Post service view
          */
-        Views.PostSevice = Views.SubmitPost.extend({
+        Views.PostService = Views.SubmitPost.extend({
             events: function() {
                 return _.defaults({
                     'click .mjob-img-wrapper' : 'showPreviewImage',
@@ -30,7 +30,6 @@
 
                 // Extend payment
                 AE.pubsub.on('ae:submitPost:extendGateway', this.onExtendPayment, this);
-
 
                 // Process bar
                 this.liStepOne = $('.post-service-step-1');
@@ -79,11 +78,29 @@
                 $('.progress-bar-success').removeClass('half');
                 $('.progress-bar-success').addClass('full');
             },
+            onAfterShowNextStep: function(current,prev){
+                let view = this;
+                if(
+                    ("post" == current)
+                    && !view.addedBeforeUnloadHandler
+                ){
+                    view.addedBeforeUnloadHandler = true;
+                    window.addEventListener("beforeunload", view.onBeforeUnload);
+                }
+            },
+
+            onBeforeUnload: function(e){
+                e.preventDefault();
+                // Display confirmation message
+                e.returnValue = "Are you sure you want to leave this page? You may lose unsaved changes."; // Chrome, Firefox require returnValue
+                return e.returnValue; // Deprecated for Safari, but still included for broader compatibility
+            },
+
             setupFields: function() {
                 this.initExtras();
                 var view = this,
-                    form_field = view.$('#step-post'),
-                    location = this.model.get('location');
+                    form_field = view.$('#step-post');
+
                 /**
                  * update form value for input, textarea select
                  */
@@ -92,8 +109,8 @@
                     if( $input.attr('name') != '_wpnonce' ) {
                         $input.val(view.model.get($input.attr('name')));
                     }
-                    // trigger chosen update if is select
-                    if ($input.get(0).nodeName === "SELECT") $input.trigger('chosen:updated');
+                    // trigger tomselect update if is select
+                    if ($input.get(0).nodeName === "SELECT") $input.get(0).tomselect.addItem(view.model.get($input.attr('name')));
                 });
                 form_field.find('input[type="radio"]').each(function() {
                     var $input = $(this),
@@ -102,10 +119,23 @@
                         $input.attr('checked', true);
                     }
                 });
+
+                if (typeof tinyMCE !== 'undefined') {
+                    if( null != tinymce.EditorManager.get('post_content') ) {
+                        tinymce.EditorManager.get('post_content').setContent(view.model.get('post_content'));
+                    }
+                    tinymce.EditorManager.execCommand('mceAddEditor', true, "post_content");
+                }
+
                 if( typeof view.model.get('mjob_extras') !== 'undefined' && view.model.get('mjob_extras').length > 0){
                     view.extrasCollection.reset(view.model.get('mjob_extras'));
                 }
+                /**
+                * Add trigger when finish setup data for editing single mjob
+                */
+                AE.pubsub.trigger('mje:after:setup:mjob:data', view.model);
             },
+
             showNextStep: function () {
                 var view = this,
                     next = 'auth';
@@ -135,7 +165,12 @@
                 view.$el.find('.step-'+next).show();
                 $('html, body').animate({
                     scrollTop: 0
-                }, 800);
+                }, 400);
+
+                // trigger an event after show another step, give the callback 2 params:
+                // "next" is the newly shown step
+                // "view.currentStep" is the previous step 
+                this.triggerMethod("after:showNextStep", next, view.currentStep);
             },
             selectStep: function(event) {
                 event.preventDefault();
@@ -251,7 +286,6 @@
                 if (typeof view.carousels === 'undefined') {
                     view.carousels = new Views.Carousel({
                         el: $('.gallery_container'),
-                        name_item:'et_carousel',
                         uploaderID:'carousel',
                         model: view.model,
                         filters: {
@@ -272,6 +306,9 @@
                 // Show step 3
                 view.redirect_url = '';
                 if( typeof res.data.redirect_url !== 'undefined') {
+                    view.addedBeforeUnloadHandler=false;
+                    window.removeEventListener("beforeunload", view.onBeforeUnload);
+
                     if(view.extrasListView.collection.models.length > 0 ){
                         view.redirect_url = res.data.redirect_url;
                     }
@@ -320,6 +357,9 @@
                 }
             },
             onSubmitPaymentSuccess: function(response){
+                let view = this;          
+                view.addedBeforeUnloadHandler=false;
+                window.removeEventListener("beforeunload", view.onBeforeUnload);
                 if( typeof response.data.url !== 'undefined' && response.paymentType == 'CASH'){
                     window.location.href = response.data.url;
                 }
@@ -461,7 +501,7 @@
                 var view = this;
                 if(typeof $('.mjob-replace-image').attr('data-delete') !== 'undefined' ){
                     attachID  = $('.mjob-replace-image').attr('data-delete');
-                    $('#mjob-delete-' + attachID).click();
+                    $('#mjob-delete-' + attachID).trigger('click');
                 }
                 view.$el.find('.carousel-gallery img').attr('src', src);
                 view.$el.find('.mjob-delete-image').attr('data-id', attach_id);
@@ -526,7 +566,7 @@
                                         $('#checkout_form .payment_info').html('').append(response.data.extend.extend_fields);
                                     }
                                     // trigger click on submit button
-                                    $('#payment_submit').click();
+                                    $('#payment_submit').trigger('click');
                                 } else {
                                     // call method onSubmitPaymentFail
                                     view.triggerMethod('submit:paymentFail', response);
@@ -540,7 +580,7 @@
                 event.preventDefault();
                 $target = $(event.currentTarget);
                 if( ('.carousel_browse_button').length > 0) {
-                    $('.carousel_browse_button').click();
+                    $('.carousel_browse_button').trigger('click');
                     $target.attr('data-delete', $target.attr('data-id'))
                 }
             },
@@ -550,7 +590,7 @@
                 $target = $(event.currentTarget);
                 attach_id = $target.attr('data-id');
                 if( $('#mjob-delete-'+attach_id).length > 0 ) {
-                    $('#mjob-delete-' + attach_id).click();
+                    $('#mjob-delete-' + attach_id).trigger('click');
                     view.changeImage(ae_globals.mJobDefaultGalleryImage, '');
                 }
             },
@@ -623,9 +663,11 @@
                         if(typeof this.secureModal === "undefined") {
                             this.secureModal = new Views.SecureModal({
                                 checkoutType: $target.attr('data-checkout-type'),
-                                packageID: data.packageID
+                                packageID: data.packageID,
+                                packagePrice: data.paymentTotal,
                             });
                         }
+                        this.secureModal.updateCheckoutData(data.paymentTotal);
                         this.secureModal.openModal();
                     }
                 }

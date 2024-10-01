@@ -128,6 +128,7 @@ class AE_Page extends AE_Base
             'loading'         => __('Loading', 'enginethemes'),
             'texts'           => array('limit_category_level' => __("Categories' level is limited to 3", 'enginethemes')),
             'ae_is_mobile'    => et_load_mobile() ? 1 : 0,
+            'site_locale'     => get_locale(),
             'plupload_config' => array(
                 'max_file_size' => ($max_upload_size / (1024 * 1024)) . 'mb',
                 'url'                 => admin_url('admin-ajax.php'),
@@ -246,7 +247,7 @@ class AE_Page extends AE_Base
         ?>
         <div class="et-header-setting">
             <div class="title">
-                <i class="fa <?php echo $this->args['icon']; ?>" aria-hidden="true"></i>
+                <i class="fa-solid <?php echo $this->args['icon']; ?>" aria-hidden="true"></i>
                 <?php echo $this->args['menu_title']; ?>
             </div>
             <?php if (isset($this->args['desc'])) : ?>
@@ -442,18 +443,18 @@ class AE_Menu extends AE_Page
                     try {
                         $attach_data = et_get_attachment_data($attach_id);
                         $attach_data['file_id'] = $fileID;
-                        AE_Options::get_instance();
 
                         // save this setting to theme options
                         // $options->$imgType = $attach_data;
                         // $options->save();
                         /**
-                         * do action to control how to store data
+                         * hook into this to process more after uploading a file via plupload
+                         * the $_POST['data'] is from the uploaderID declared in JS
                          * @param $attach_data the array of image data
                          * @param $request['data']
                          * @param $attach_id the uploaded file id
                          */
-                        do_action('ae_upload_image', $attach_data, $_POST['data'], $attach_id);
+                        do_action('ae_upload_image', $attach_data, $fileID, $attach_id);
 
                         $res = array(
                             'success' => true,

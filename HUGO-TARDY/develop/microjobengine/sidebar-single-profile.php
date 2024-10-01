@@ -3,9 +3,9 @@ global $wp_query, $ae_post_factory, $post, $user_ID;
 // Get author data
 $user_id = $post->post_author;
 
-if($user_id == $user_ID) {
+if ($user_id == $user_ID) {
     $seller_id = get_post_meta($post->ID, 'seller_id', true);
-    if(!empty($seller_id)) {
+    if (!empty($seller_id)) {
         $user_id = $seller_id;
     }
 }
@@ -16,9 +16,9 @@ $user_data = $user->get($user_id);
 // Convert profile
 $profile_obj = $ae_post_factory->get('mjob_profile');
 $profile_id = get_user_meta($user_id, 'user_profile_id', true);
-if($profile_id) {
+if ($profile_id) {
     $profile = get_post($profile_id);
-    if($profile && !is_wp_error($profile)) {
+    if ($profile && !is_wp_error($profile)) {
         $profile = $profile_obj->convert($profile);
     }
 }
@@ -56,18 +56,18 @@ $languages = isset($profile->tax_input['language']) ? $profile->tax_input['langu
                 </div>
                 <div class="pull-right">
                     <?php
-                    if(!empty($languages)) {
-                        foreach($languages as $language) {
-                            ?>
+                    if (!empty($languages)) {
+                        foreach ($languages as $language) {
+                    ?>
                             <p class="lang-item"><?php echo $language->name; ?></p>
-                            <?php
+                    <?php
                         }
                     }
                     ?>
                 </div>
             </li>
 
-            <?php mJobUser::showUserTimeZone( $user_id ); ?>
+            <?php mJobUser::showUserTimeZone($user_id); ?>
 
             <li class="bio clearfix">
                 <span> <i class="fa fa-info-circle"></i><?php _e('Bio', 'enginethemes'); ?></span>
@@ -80,10 +80,10 @@ $languages = isset($profile->tax_input['language']) ? $profile->tax_input['langu
             /**
              * Show information for public profile
              */
-            if(is_author()) {
-                ?>
+            if (is_author()) {
+            ?>
                 <li class="clearfix">
-                    <span> <i class="fa fa-money"></i><?php _e('Payment info', 'enginethemes'); ?></span>
+                    <span> <i class="fa-solid fa-money-bill"></i><?php _e('Payment info', 'enginethemes'); ?></span>
                     <p>
                         <?php echo $payment_info; ?>
                     </p>
@@ -104,7 +104,7 @@ $languages = isset($profile->tax_input['language']) ? $profile->tax_input['langu
                             <div class="cate-title"><?php _e('Country', 'enginethemes'); ?></div>
                             <?php
                             $country = get_term($billing_country);
-                            echo '<p>'. $country->name .'</p>';
+                            echo '<p>' . $country->name . '</p>';
                             ?>
                         </li>
                         <li>
@@ -113,7 +113,7 @@ $languages = isset($profile->tax_input['language']) ? $profile->tax_input['langu
                         </li>
                     </ul>
                 </li>
-                <?php
+            <?php
             }
             ?>
         </ul>

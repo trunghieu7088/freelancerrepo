@@ -482,7 +482,7 @@ _.templateSettings = {
             }
         },
         onFileUploaded: function(up, file, res) {
-            res = $.parseJSON(res.response);
+            res = JSON.parse(res.response);
             if (typeof this.controller.settings.cbUploaded === 'function') {
                 this.controller.settings.cbUploaded(up, file, res);
             }
@@ -1861,7 +1861,6 @@ _.templateSettings = {
                 $carousel = this.$el,
                 i = 0,
                 j = 0;
-            this.carousels = [];
             this.carousels = this.model.get('et_carousels') || [];
             this.featured_image = this.model.get('featured_image') || '';
 
@@ -1892,7 +1891,7 @@ _.templateSettings = {
                             $.each(res.data, function(index, item) {
                                 if (typeof item.thumbnail !== 'undefined') {
                                     var $ul = $('#image-list');
-                                    if (item.attach_id === that.model.get('featured_image')) item.is_feature = true;
+                                    if (item.attach_id == that.model.get('featured_image')) item.is_feature = true;
                                     var li = that.template(item);
                                     $ul.prepend(li);
                                 }
@@ -1906,7 +1905,7 @@ _.templateSettings = {
                 uploaderID = that.options.uploaderID;
             }
             else {
-                var uploaderID = 'carousel';
+                var uploaderID = 'et_carousel';
             }
             //add multi option for upload photo
 			var multi = (typeof this.options.multiple == "undefined" || this.options.multiple == null)?true:this.options.multiple;
@@ -2082,7 +2081,7 @@ _.templateSettings = {
             // user select a step
             'click .step-heading': 'selectStep',
             // update map lat long
-            'keyup input#et_full_location': 'gecodeMap'
+            // 'keyup input#et_full_location': 'gecodeMap'
         },
         // model event
         modelEvents: {
@@ -2131,7 +2130,7 @@ _.templateSettings = {
             this.user.on('change:id', this.userLogin);
             if (parseInt(this.step) == 2) this.currentStep = 'auth';
             if (parseInt(this.step) == 4) this.currentStep = 'plan';
-            this.initMap();
+            // this.initMap();
             this.setupFirstStep();
         },
         setupFirstStep : function() {
@@ -2158,7 +2157,7 @@ _.templateSettings = {
                 var $input = $(this);
                 $input.val(view.model.get($input.attr('name')));
                 // trigger chosen update if is select
-                if ($input.get(0).nodeName === "SELECT") $input.trigger('chosen:updated');
+                if ($input.get(0).nodeName === "SELECT") $input.get(0).tomselect.addItem(view.model.get($input.attr('name')));
             });
             form_field.find('input[type="radio"]').each(function() {
                 var $input = $(this),
@@ -2451,7 +2450,7 @@ _.templateSettings = {
                     paymentType: paymentType,
                     // send coupon code if exist
                     coupon_code: view.$('#coupon_code').val(),
-                    package_price_plan: this.model.get('et_package_price_plan')
+                    paymentTotal: this.model.get('et_package_price_plan')
                 };
             AE.pubsub.trigger('ae:submitPost:extendGateway', data, event);
         },
@@ -2464,27 +2463,32 @@ _.templateSettings = {
                 paymentType = $target.attr('data-type'),
                 $button = $target.find('button'),
                 view = this;
+                setupData = {
+                    action: 'et-setup-payment',
+                    // post id
+                    ID: view.model.id,
+                    // author
+                    author: view.model.get('post_author'),
+                    // package sku id
+                    packageID: view.model.get('et_payment_package'),
+                     //package type
+                    packageType: view.model.get('et_package_type'),
+                    // payment gateway
+                    paymentType: paymentType,
+                    // send coupon code if exist
+                    coupon_code: view.$('#coupon_code').val()
+                };
             $.ajax({
                 url: ae_globals.ajaxURL,
                 type: 'post',
                 contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
                 // build data and send
-                data: {
-                    action: 'et-setup-payment',
-                    // post id
-                    ID: this.model.id,
-                    // author
-                    author: this.model.get('post_author'),
-                    // package sku id
-                    packageID: this.model.get('et_payment_package'),
-                     //package type
-                    packageType: this.model.get('et_package_type'),
-                    // payment gateway
-                    paymentType: paymentType,
-                    // send coupon code if exist
-                    coupon_code: view.$('#coupon_code').val()
-                },
+                data: setupData,
                 beforeSend: function() {
+                    
+                    // trigger method onBeforeSetupPayment
+                    view.triggerMethod("before:setupPayment", setupData, $target);
+                    
                     if(typeof view.blockPaymentGateways != "undefined") {
                         view.blockUi.block(view.blockPaymentGateways);
                     } else {
@@ -2493,7 +2497,7 @@ _.templateSettings = {
                 },
                 success: function(response) {
                     //view.blockUi.unblock();
-                    if (typeof response.success !== 'undefined' && !response.succes){
+                    if (typeof response.success !== 'undefined' && !response.success){
 
                         // add this to check the case stripe key is expired
                         // view.triggerMethod('submit:paymentFail', response);
@@ -2505,7 +2509,7 @@ _.templateSettings = {
                     }
 
                     if (response.data.ACK) {
-                        // call method onSubmitPaymenSuccess
+                        // call method onSubmitPaymentSuccess
                         view.triggerMethod('submit:paymentSuccess', response);
                         // update form check out and submit
                         $('#checkout_form').attr('action', response.data.url);
@@ -2516,7 +2520,7 @@ _.templateSettings = {
                             $('#checkout_form .payment_info').html('').append(response.data.extend.extend_fields);
                         }
                         // trigger click on submit button
-                        $('#payment_submit').click();
+                        $('#payment_submit').trigger('click');
                     } else {
                         // call method onSubmitPaymentFail
                         view.triggerMethod('submit:paymentFail', response);

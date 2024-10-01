@@ -114,6 +114,13 @@ class ET_Microjobengine extends AE_Base
         $this->add_filter('ae_is_mobile', 'disableMobileVersion');
 
         /**
+         * save origin of an uploaded file into attachment data
+         * @since v1.5
+         */
+        $this->add_action('ae_upload_image', 'save_file_uploaderID', 10, 3);
+        $this->add_action('restrict_manage_posts', 'media_add_uploaderID_dropdown', 10);
+        $this->add_filter('pre_get_posts', 'media_add_uploaderID_query');
+        /**
          * Filter price decimal
          */
         $this->add_filter('ae_price_decimal', 'filter_price_decimal');
@@ -284,9 +291,13 @@ class ET_Microjobengine extends AE_Base
         /**
          * set up social login
          */
-        if (function_exists('init_social_login')) {
-            init_social_login();
-        };
+
+        if (ae_get_option('facebook_login', false)) {
+            new ET_FaceAuth();
+        }
+        if (ae_get_option('gplus_login', false)) {
+            new ET_GoogleAuth();
+        }
         /**
          * override author link
          */
@@ -649,13 +660,15 @@ class ET_Microjobengine extends AE_Base
             'appengine'
         ), ET_VERSION, true);
 
-
-        $this->add_script('scrollbar', get_template_directory_uri() . '/assets/js/lib/customscrollbar.min.js', array(
+        $this->add_script('overlayScrollbar', get_template_directory_uri() . '/assets/js/lib/overlayscrollbars.browser.es5.min.js', array(
             'jquery',
             'underscore',
             'backbone',
             'appengine'
-        ), ET_VERSION, true);
+        ), ET_VERSION, array(
+            'strategy'  => 'defer',
+            'in_footer' => true,
+        ));
 
         $this->add_script('jquery-detect-timezone', get_template_directory_uri() . '/assets/js/lib/jquerydetecttimezone.js', array(), ET_VERSION, false);
 
@@ -747,7 +760,6 @@ class ET_Microjobengine extends AE_Base
                 'appengine',
                 'front'
             ), ET_VERSION, true);
-            $this->add_script('addthis-script', '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4ed5eb280d19b26b', array(), ET_VERSION, true);
         }
 
         if (is_page_template('page-order.php')) {
@@ -827,6 +839,14 @@ class ET_Microjobengine extends AE_Base
                 'appengine',
             ), ET_VERSION, true);
         }
+        if (is_social_connect_page()) {
+            $this->add_script('et-authentication', get_template_directory_uri() . '/includes/aecore/social/js/authentication.js', array(
+                'jquery',
+                'underscore',
+                'backbone',
+                'appengine'
+            ), ET_VERSION, true);
+        }
         // Add style css for mobile version.
         if (et_load_mobile()) {
             return;
@@ -850,7 +870,15 @@ class ET_Microjobengine extends AE_Base
         //$this->add_existed_style('bootstrap');
         wp_deregister_style('bootstrap');
 
-        $this->add_style('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.css', array(), ET_VERSION);
+        $this->add_style('font-awesome', get_template_directory_uri() . '/assets/fontawesome/css/fontawesome.min.css', array(), ET_VERSION);
+
+        $this->add_style('font-awesome-brands', get_template_directory_uri() . '/assets/fontawesome/css/brands.min.css', array(), ET_VERSION);
+
+        $this->add_style('font-awesome-solid', get_template_directory_uri() . '/assets/fontawesome/css/solid.min.css', array(), ET_VERSION);
+
+        $this->add_style('font-awesome-v4-shims', get_template_directory_uri() . '/assets/fontawesome/css/v4-shims.min.css', array(), ET_VERSION);
+
+        $this->add_style('font-awesome-v4-font-face', get_template_directory_uri() . '/assets/fontawesome/css/v4-font-face.min.css', array(), ET_VERSION);
 
         // CSS Vendor
         $this->add_style('vendor', get_template_directory_uri() . '/assets/css/vendor.css', array(), ET_VERSION);
@@ -858,6 +886,10 @@ class ET_Microjobengine extends AE_Base
         $this->add_style('main-style-css', get_template_directory_uri() . '/assets/css/main.css', ET_VERSION);
         $this->add_style('custom-css', get_template_directory_uri() . '/assets/css/custom.css', ET_VERSION);
         $this->add_style('plyr-css', get_template_directory_uri() . '/assets/css/plyr.css', ET_VERSION);
+
+        if (ae_is_social_enabled()) {
+            $this->add_style('social-connect-style', get_template_directory_uri() . '/includes/aecore/social/css/default.css');
+        }
     }
     /*
      * custom query prev query post
@@ -948,8 +980,8 @@ class ET_Microjobengine extends AE_Base
                         });
                     }
                     AE.App.user = currentUser;
-                    if (typeof Views.PostSevice !== 'undefined' && $('.mjob-post-service').length > 0) {
-                        AE.PostService = new Views.PostSevice({
+                    if (typeof Views.PostService !== 'undefined' && $('.mjob-post-service').length > 0) {
+                        AE.PostService = new Views.PostService({
                             el: '.mjob-post-service',
                             user_login: currentUser.get('id'),
                             free_plan_used: 0,
@@ -1085,6 +1117,70 @@ class ET_Microjobengine extends AE_Base
         </script>
     <?php
     }
+
+    function save_file_uploaderID($attach_data, $uploaderID, $attach_id)
+    {
+        if (array_key_exists(
+            $uploaderID,
+            get_uploaderID_array()
+        )) {
+            update_post_meta($attach_id, 'uploaderID', $uploaderID);
+        }
+    }
+
+    function media_add_uploaderID_dropdown($screen_post_type)
+    {
+        if ('attachment' !== $screen_post_type) return;
+
+        $selected   = (isset($_REQUEST['uploaderID_filter']))
+            ? htmlspecialchars($_REQUEST['uploaderID_filter'])
+            : 'all';
+
+        $arrUploader = get_uploaderID_array();
+    ?>
+        <select name="uploaderID_filter" id="uploaderID_filter">
+            <option value="all" <?php if ('all' == $selected) echo 'selected="selected"'; ?>><?php _e("All Upload Sources", 'enginethemes'); ?></option>
+            <?php
+            foreach ($arrUploader as $uploaderID => $label) { ?>
+                <option value="<?php echo $uploaderID; ?>" <?php if ($uploaderID == $selected) echo 'selected="selected"'; ?>><?php echo $label; ?></option>
+            <?php
+            }
+            ?>
+        </select>
+    <?php
+    }
+
+    public function media_add_uploaderID_query($query)
+    {
+        if (is_admin() && function_exists('get_current_screen')) {
+            $scr = get_current_screen();
+
+            if (empty($scr) || "upload" !== $scr->id || !$query->is_main_query()) return $query;
+
+            if (isset($_REQUEST['uploaderID_filter'])) {
+                $arrUploader = get_uploaderID_array();
+                $uploaderID = htmlspecialchars($_REQUEST['uploaderID_filter']);
+                if (!array_key_exists($uploaderID, $arrUploader)) return $query;
+
+                $args = array(
+                    'meta_query' => array(
+                        array(
+                            'key' => "uploaderID",
+                            'value' => $uploaderID,
+                            'compare' => "=",
+                        ),
+                    ),
+                );
+                // Merge our custom arguments with the existing query vars
+                $query->query_vars = wp_parse_args($args, $query->query_vars);
+
+                return $query;
+            }
+        } else {
+            return $query;
+        }
+    }
+
 
     /**
      * include template
@@ -1246,6 +1342,8 @@ class ET_Microjobengine extends AE_Base
         $vars['user_confirm'] = ae_get_option('user_confirm');
         $vars['permalink_structure'] = get_option('permalink_structure');
         $vars['notice_expired_date'] = __('This order was expected to be delivered at ', 'enginethemes');
+        $vars['dispute_confirm'] = __('Are you certain you want to dispute this order?', 'enginethemes');
+        $vars['discard_confirm'] = __('Are you sure you want to discard your changes?', 'enginethemes');
         $primary_color = get_theme_mod(MJE_Skin_Action::get_skin_name() . '_primary_color');
         $primary_chart_color = get_theme_mod(MJE_Skin_Action::get_skin_name() . '_primary_chart_shadow');
         $vars['primary_color'] = !empty($primary_color) ? $primary_color : 'rgba(16,162,239,1)';

@@ -1,8 +1,10 @@
 <?php
 define("ET_UPDATE_PATH", "https://update.enginethemes.com/?do=product-update");
-define('ET_VERSION', '1.4.0');
-define('TRACK_PAYMENT', 0);
-define('DEVELOP_MODE', 0);
+define('ET_VERSION', '1.5.1');
+
+define('ET_DEBUG', false);
+define('TRACK_PAYMENT', false);
+define('DEVELOP_MODE', false);
 
 if (!defined('ET_URL')) define('ET_URL', 'https://www.enginethemes.com/');
 if (!defined('ET_CONTENT_DIR')) define('ET_CONTENT_DIR', WP_CONTENT_DIR . '/et-content/');
@@ -10,18 +12,12 @@ define('TEMPLATEURL', get_template_directory_uri());
 $theme_name = 'microjobengine';
 define('THEME_NAME', $theme_name);
 
-define('MOBILE_PATH', TEMPLATEPATH . '/mobile/');
-
-//Start pagination page
-define('PAGINATION_START', 1);
-/**
- * Turn on/off theme debug by writing issues into log file
- * path for log file: /wp-content/et-content/theme.log
- */
-define('ET_DEBUG', false);
-
 if (!defined('THEME_CONTENT_DIR ')) define('THEME_CONTENT_DIR', WP_CONTENT_DIR . '/et-content' . '/' . $theme_name);
 if (!defined('THEME_CONTENT_URL')) define('THEME_CONTENT_URL', content_url() . '/et-content' . '/' . $theme_name);
+
+define('MOBILE_PATH', get_template_directory() . '/mobile/');
+//Start pagination page
+define('PAGINATION_START', 1);
 
 // theme language path
 if (!defined('THEME_LANGUAGE_PATH')) define('THEME_LANGUAGE_PATH', THEME_CONTENT_DIR . '/lang/');
@@ -177,11 +173,8 @@ function mje_debug_track()
         echo 'File log no exists.';
     }
 
-
-
-
-    $track_path = WP_CONTENT_DIR . '/et_track_payment.css';
-    $coin_path  = WP_CONTENT_DIR . '/mje_btc_log.css';
+    $track_path = WP_CONTENT_DIR . '/et_track_payment.log';
+    $coin_path  = WP_CONTENT_DIR . '/mje_btc.log';
     $act = isset($_GET['act']) ? $_GET['act'] : '';
 
     if ($act == 'dellog') {
@@ -191,9 +184,8 @@ function mje_debug_track()
     ?>
 
     <div id="et_log">
-        <a href="<?php echo home_url(); ?>/wp-content/et_track_payment.css" target="_blank"> Payment Log</a>
-
-        <a href="<?php echo home_url(); ?>/wp-content/mje_btc_log.css" target="_blank">Crypto Log</a>
+        <a href="<?php echo home_url(); ?>/wp-content/et_track_payment.log" target="_blank"> Payment Log</a>
+        <a href="<?php echo home_url(); ?>/wp-content/mje_btc.log" target="_blank">Crypto Log</a>
         <a href="<?php echo home_url(); ?>/?act=dellog">Del Log</a>
     </div>
     <style type="text/css">

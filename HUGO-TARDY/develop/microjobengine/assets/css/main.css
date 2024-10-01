@@ -310,7 +310,7 @@ th {
 }
 
 html {
-  font-size: 10px;
+  /* font-size: 10px; */
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -6902,6 +6902,7 @@ body a:hover {
 .table-wrapper .table-content table .payment-name {
   margin-top: 0;
   margin-bottom: 0;
+  text-align:center;
 }
 .table-wrapper .table-content table .payment-name span {
   font-weight: normal;
@@ -7151,11 +7152,11 @@ body.stop-scroll-y {
   z-index: 2;
   position: relative;
 }
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
   #et-header .list-message.message-icon {
     display: none;
   }
-}
+} */
 @media (max-width: 991px) {
   #et-header .list-message {
     border: 0;
@@ -8915,8 +8916,8 @@ body.filter-open {
   color: #3b5998;
 }
 .social-authentication li a.twitter {
-  border: 1px solid #68c5ef;
-  color: #68c5ef;
+  border: 1px solid #0f1419;
+  color: #0f1419;
 }
 .social-authentication li a.google {
   border: 1px solid #ea4335;
@@ -9004,10 +9005,15 @@ body.filter-open {
 
 .social {
   margin: 20px 0 10px 0;
+  display:flex;
+  justify-content:flex-end;
+  align-items:flex-end;
 }
 @media (max-width: 991px) {
   .social {
     text-align: center;
+    margin-right:25px;
+    margin-bottom:25px;
   }
 }
 
@@ -9018,26 +9024,20 @@ body.filter-open {
 
 .socials-head {
   font-size: 14px;
-  margin: 40px 20px 0 0;
+  margin: 40px 10px 0 0;
 }
 @media (max-width: 991px) {
   .socials-head {
-    display: block;
-    margin: 80px 0 35px 0;
+    display: inline-block;
   }
 }
 
 .list-social-login {
   padding: 0;
 }
-@media (max-width: 991px) {
-  .list-social-login {
-    width: 100%;
-  }
-}
 .list-social-login li {
-  display: inline-block;
-  margin-left: 25px;
+  display: inline-flex;
+  margin-left: 20px;
 }
 @media (max-width: 991px) {
   .list-social-login li {
@@ -9053,8 +9053,16 @@ body.filter-open {
     text-align: right;
   }
 }
+.list-social-login li a {
+  font-size: 35px;
+  display:block;
+  width:32px;
+  height:32px;
+}
 .list-social-login li .fb {
-  color: #002993;
+  color: rgb(26, 119, 242);
+  position:relative;
+  top:-9px;
 }
 .list-social-login li .gplus {
   color: #d72227;
@@ -11748,7 +11756,7 @@ body.archive .block-title {
   background: #3b5998;
 }
 .mjob-single-page .mjob-single-share ul li.twitter a {
-  background: #68c5ef;
+  background: #0f1419;
 }
 .mjob-single-page .mjob-single-description {
   padding-bottom: 40px;
@@ -12429,10 +12437,12 @@ body.archive .block-title {
 .profile .block-connect-social ul {
   padding: 0;
   margin-top: 10px;
+  display:flex;
+  align-items:center;
 }
 .profile .block-connect-social ul li {
   display: inline-block;
-  margin: 0 20px 20px 0;
+  margin: 0 20px 0px 0;
   cursor: pointer;
 }
 @media (max-width: 767px) {
@@ -12460,8 +12470,8 @@ body.archive .block-title {
   .profile .block-connect-social ul li .fb,
   .profile .block-connect-social ul li .gplus,
   .profile .block-connect-social ul li .tw {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }
 .profile .block-connect-social ul li .fb i,
@@ -12474,8 +12484,8 @@ body.archive .block-title {
   color: #3b5998;
 }
 .profile .block-connect-social ul li .tw {
-  border: 1px solid #68c5ef;
-  color: #68c5ef;
+  border: 1px solid #0f1419;
+  color: #0f1419;
 }
 .profile .block-connect-social ul li .gplus {
   border: 1px solid #ea4335;
@@ -15390,6 +15400,7 @@ body.archive .block-title {
 
 .mjob_conversation_detail_page .conversation-form {
   padding-left: 0;
+  padding-right: 0;
   clear: both;
   margin: 30px 0 50px 0;
 }

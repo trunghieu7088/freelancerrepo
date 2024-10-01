@@ -268,7 +268,7 @@ class MJE_MJob_Order_Action extends MJE_Post_Action
     public function check_user_pending($result, $request)
     {
         if (isset($request['post_type']) && ($request['post_type'] == 'mjob_order' || $request['post_type'] == 'ae_message')) {
-            if ($request['post_type'] != 'ae_message') {
+            if ($request['post_type'] == 'mjob_order') {
                 return array(
                     'success' => true,
                     'msg' => __('Successful.', 'enginethemes')
@@ -848,7 +848,6 @@ class MJE_MJob_Order_Action extends MJE_Post_Action
                         $fee_x        = get_post_meta($order_id, 'fee_commission', true); // buyer commision fee
                         $fee_buyer    = $total_x * ($fee_x * 0.01) / (1 + $fee_x * 0.01);
                         //et_log("Fee refund: ".$fee_buyer);
-                        update_post_meta($order_id,'fee refund',$fee_buyer);
                         $wallet       = AE_WalletAction()->getUserWallet($buyer);
                         //et_log('Amount fee  refund to buyer: '.$fee_buyer);
                         $wallet->balance += $fee_buyer;

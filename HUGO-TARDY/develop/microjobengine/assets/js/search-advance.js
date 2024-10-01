@@ -7,10 +7,8 @@
 
         },
         getParamSearch : function(params){
-        	//console.log('getParamSearch Processing:');
         	var view = this;
         	if( ae_globals.is_search ){
-        		console.log('is_search ');
 	        	/*var key = params.val == 'date'? params.val : params.name;
 	        	var value = params.val == 'date'? params.sort : params.val;*/
 	        	var new_url = view.paramUpdate({
@@ -18,15 +16,11 @@
 				    value: params.val,
 				    sort: params.sort
 				});
-	        	console.log('new_url');
-				console.log(new_url);
 
 	            window.history.pushState('', '',new_url );
             } else {
             	// is_taxonomy page và chỉ call khi thay đổi các custom filter.
             	// khong call nếu thay đổi link mjob_cat.
-            	//console.log('change filter in mjob_cat page . Param: ');
-            	//console.log(params);
 
             	var term_url = ae_globals.term_link;
             	if( params){
@@ -38,7 +32,6 @@
 
 
             		} else{
-            			//console.log(params.name);
             		}
             	}
 
@@ -54,8 +47,6 @@
             	}, 800);
         	}
         	if(ae_globals.is_tax_mjob_category){
-        		//console.log('change url after fetch.');
-        		//console.log(params);
         	}
         },
         paramUpdate: function(param, default_url = '') {
@@ -74,7 +65,6 @@
       			param.key = 'skill_ids';
       		}
       		if(param.key == "mjob_category") {
-      			console.log('paramUpdate for key = mjob_category.');
       			var regExp = new RegExp('s' + '=([a-z0-9\-\_]+)(?:&)?'),
       			existsMatch = url.match(regExp);
       			if(existsMatch != null){

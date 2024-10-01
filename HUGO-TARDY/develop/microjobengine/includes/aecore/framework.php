@@ -182,6 +182,7 @@ class AppEngine extends AE_Base
             'geolocation' => ae_get_option('geolocation', 0),
             'date_format' => get_option('date_format'),
             'time_format' => get_option('time_format'),
+            'site_locale' => get_locale(),
             'dates' => array(
                 'days' => array(
                     __("Sunday", 'enginethemes'),

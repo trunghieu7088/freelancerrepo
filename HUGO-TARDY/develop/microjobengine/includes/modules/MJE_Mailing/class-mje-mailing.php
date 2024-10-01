@@ -1005,43 +1005,57 @@ class MJE_Mailing extends AE_Mailing
         return apply_filters('mje_order_placeholder', $message, $order);
     }
 
+    function inbox_mail_new_msg($from_user, $to_user, $conversation, $message)
+    {
+        if (!mje_is_subscriber($to_user->ID)) {
+            return false;
+        }
+
+        $message_data = get_post($message);
+        if ($message_data) {
+            $headers = 'From: ' . $from_user->display_name . ' <' . $from_user->user_email . '>' . "\r\n";
+            $headers .= "Reply-To: $from_user->user_email " . "\r\n";
+            /**
+             * Filter inbox mail header
+             * @param string $headers
+             */
+            $headers = apply_filters('ae_inbox_mail_headers', $headers);
+
+            $inbox_message = mje_filter_message_content($message_data->post_content);
+            $inbox_message = stripslashes(str_replace("\n", "<br>", $inbox_message));
+
+            $subject = sprintf(__('[%s] New Message From %s', 'enginethemes'), get_bloginfo('blogname'), $from_user->display_name);
+
+            $message = ae_get_option('inbox_mail_template');
+
+            $target_url = get_the_permalink($conversation);
+
+            /**
+             * replace holder receive
+             */
+            $message = str_ireplace('[display_name]', $to_user->display_name, $message);
+            $message = str_ireplace('[sender_link]', $target_url, $message);
+            $message = str_ireplace('[sender]', $from_user->display_name, $message);
+            $message = str_ireplace('[message]', $inbox_message, $message);
+            $message = str_ireplace('[blogname]', get_bloginfo('blogname'), $message);
+            $this->wp_mail($to_user->user_email, $subject, $message, array(), $headers);
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @param object $author
      * @param object $message_data
      */
     function inbox_mail($author, $message_data)
     {
-        global $current_user;
-
         if (!mje_is_subscriber($author->ID)) {
             return false;
         }
-        $headers = 'From: ' . $current_user->display_name . ' <' . $current_user->user_email . '>' . "\r\n";
-        $headers .= "Reply-To: $current_user->user_email " . "\r\n";
 
-        /**
-         * Filter inbox mail header
-         * @param string $headers
-         */
-        $headers = apply_filters('ae_inbox_mail_headers', $headers);
+        global $current_user;
 
-        //$inbox_message = $message_data->post_content;
-        $inbox_message = mje_filter_message_content($message_data->unfiltered_content);
-
-        $subject = sprintf(__('[%s]New Private Message From %s', 'enginethemes'), get_bloginfo('blogname'), $current_user->display_name);
-        $message = ae_get_option('inbox_mail_template');
-        $inbox_message = stripslashes(str_replace("\n", "<br>", $inbox_message));
-
-        $sender_link = get_the_permalink($message_data->conversation_id);
-
-        /**
-         * replace holder receive
-         */
-        $message = str_ireplace('[display_name]', $author->display_name, $message);
-        $message = str_ireplace('[sender_link]', $sender_link, $message);
-        $message = str_ireplace('[sender]', $current_user->display_name, $message);
-        $message = str_ireplace('[message]', $inbox_message, $message);
-        $message = str_ireplace('[blogname]', get_bloginfo('blogname'), $message);
-        $this->wp_mail($author->user_email, $subject, $message, array(), $headers);
+        $this->inbox_mail_new_msg($current_user, $author, $message_data->conversation_id, $message_data->ID);
     }
 }

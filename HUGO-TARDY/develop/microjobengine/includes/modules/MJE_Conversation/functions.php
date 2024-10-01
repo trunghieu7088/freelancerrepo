@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Update receiver id
  * @param int $user_id
@@ -9,8 +10,9 @@
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_update_receiver_id')) {
-    function mje_update_receiver_id($user_id, $receiver_id) {
+if (!function_exists('mje_update_receiver_id')) {
+    function mje_update_receiver_id($user_id, $receiver_id)
+    {
         // Get array of receiver id
         $receiver_id_arr = mje_get_receiver_id($user_id);
         array_push($receiver_id_arr, $receiver_id);
@@ -27,10 +29,11 @@ if(!function_exists('mje_update_receiver_id')) {
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_get_receiver_id')) {
-    function mje_get_receiver_id($user_id) {
+if (!function_exists('mje_get_receiver_id')) {
+    function mje_get_receiver_id($user_id)
+    {
         $receiver_id = get_user_meta($user_id, 'receiver_id', true);
-        if(empty($receiver_id)) {
+        if (empty($receiver_id)) {
             return array();
         } else {
             return $receiver_id;
@@ -48,10 +51,11 @@ if(!function_exists('mje_get_receiver_id')) {
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_is_has_conversation')){
-    function mje_is_has_conversation($user_id, $receiver_id) {
+if (!function_exists('mje_is_has_conversation')) {
+    function mje_is_has_conversation($user_id, $receiver_id)
+    {
         $conversation = mje_get_conversation($user_id, $receiver_id);
-        if(!empty($conversation)) {
+        if (!empty($conversation)) {
             return true;
         } else {
             return false;
@@ -69,8 +73,9 @@ if(!function_exists('mje_is_has_conversation')){
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_get_conversation')) {
-    function mje_get_conversation($first_user, $second_user) {
+if (!function_exists('mje_get_conversation')) {
+    function mje_get_conversation($first_user, $second_user)
+    {
         $args = array(
             'post_type' => 'ae_message',
             'post_status' => 'publish',
@@ -124,8 +129,9 @@ if(!function_exists('mje_get_conversation')) {
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_get_conversation_by_user')) {
-    function mje_get_conversation_by_user($user_id) {
+if (!function_exists('mje_get_conversation_by_user')) {
+    function mje_get_conversation_by_user($user_id)
+    {
         $args = array(
             'post_type' => 'ae_message',
             'post_status' => 'publish',
@@ -164,8 +170,9 @@ if(!function_exists('mje_get_conversation_by_user')) {
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_get_conversation_link')) {
-    function mje_get_conversation_link($first_user, $second_user) {
+if (!function_exists('mje_get_conversation_link')) {
+    function mje_get_conversation_link($first_user, $second_user)
+    {
         $posts = mje_get_conversation($first_user, $second_user);
         $link = get_permalink($posts[0]->ID);
         return $link;
@@ -181,14 +188,15 @@ if(!function_exists('mje_get_conversation_link')) {
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_get_message_class')) {
-    function mje_get_message_class($post_author) {
+if (!function_exists('mje_get_message_class')) {
+    function mje_get_message_class($post_author)
+    {
         global $user_ID;
-        if( $user_ID != $post_author)
-           return "guest-message";
-        if(is_super_admin($post_author)) {
+        if ($user_ID != $post_author)
+            return "guest-message";
+        if (is_super_admin($post_author)) {
             return "admin-message";
-        } elseif($user_ID == $post_author) {
+        } elseif ($user_ID == $post_author) {
             return "private-message";
         }
     }
@@ -203,23 +211,24 @@ if(!function_exists('mje_get_message_class')) {
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_filter_message_content')) {
-    function mje_filter_message_content($content) {
+if (!function_exists('mje_filter_message_content')) {
+    function mje_filter_message_content($content)
+    {
         // Get bad words
-        $bad_words = (ae_get_option('filter_bad_words'))?ae_get_option('filter_bad_words'):'';
-		//$bad_words = ($bad_words && !is_array($bad_words))?trim($bad_words):'';
+        $bad_words = (ae_get_option('filter_bad_words')) ? ae_get_option('filter_bad_words') : '';
+        //$bad_words = ($bad_words && !is_array($bad_words))?trim($bad_words):'';
         $bad_words = preg_replace('/\s+/', '', $bad_words);
 
         $content = apply_filters('mjob_before_filter_message_content', $content);
-        if(!empty($bad_words)) {
+        if (!empty($bad_words)) {
             // Get bad words replace
             $bad_words_replace = ae_get_option('bad_word_replace');
-            if(empty($bad_words_replace)) {
+            if (empty($bad_words_replace)) {
                 $bad_words_replace = "[bad word]";
             }
             $bad_words_arr = explode(",", $bad_words);
-            foreach($bad_words_arr as $bad_word) {
-                if(!empty($bad_word)) {
+            foreach ($bad_words_arr as $bad_word) {
+                if (!empty($bad_word)) {
                     $content = str_ireplace($bad_word, $bad_words_replace, $content);
                 }
             }
@@ -240,12 +249,11 @@ if(!function_exists('mje_filter_message_content')) {
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_get_default_conversation_query_args')) {
-    function mje_get_default_conversation_query_args($receiver_id = 0) {
+if (!function_exists('mje_get_default_conversation_query_args')) {
+    function mje_get_default_conversation_query_args($receiver_id = 0)
+    {
         global $user_ID;
-        $user_id = $user_ID;
-        if($receiver_id)
-            $user_id = $receiver_id;
+        $user_id = ($receiver_id != 0) ? $receiver_id : $user_ID;
         $default = array(
             'post_type' => 'ae_message',
             'post_status' => 'publish',
@@ -279,14 +287,12 @@ if(!function_exists('mje_get_default_conversation_query_args')) {
  * @package MicrojobEngine
  * @category Conversation
  * @author Tat Thien
+ * @deprecated 1.5
  */
-if(!function_exists('mje_get_unread_message')) {
-    function mje_get_unread_message($conversation) {
+if (!function_exists('mje_get_unread_message')) {
+    function mje_get_unread_message($conversation)
+    {
         global $user_ID;
-        $count = 0;
-        if($user_ID == $conversation->to_user && $conversation->receiver_unread == true) {
-            $count = 1;
-        }
 
         $messages = get_posts(array(
             'post_type' => 'ae_message',
@@ -299,14 +305,10 @@ if(!function_exists('mje_get_unread_message')) {
                     'key' => 'to_user',
                     'value' => $user_ID,
                 ),
-                array(
-                    'key' => 'receiver_unread',
-                    'value' => '1'
-                )
             )
         ));
 
-       return $messages;
+        return $messages;
     }
 }
 
@@ -318,13 +320,15 @@ if(!function_exists('mje_get_unread_message')) {
  * @package MicrojobEngine
  * @category Conversation
  * @author Tat Thien
+ * @deprecated 1.5
  */
-if(!function_exists('mje_get_unread_message_count')) {
-    function mje_get_unread_message_count($conversation) {
+if (!function_exists('mje_get_unread_message_count')) {
+    function mje_get_unread_message_count($conversation)
+    {
         global $ae_post_factory;
-        if( is_numeric( $conversation ) ) {
-            $post_object= $ae_post_factory->get('ae_message');
-            $conversation = $post_object->convert( get_post( $conversation ) );
+        if (is_numeric($conversation)) {
+            $post_object = $ae_post_factory->get('ae_message');
+            $conversation = $post_object->convert(get_post($conversation));
         }
         $messages = mje_get_unread_message($conversation);
         $count = count($messages);
@@ -341,8 +345,9 @@ if(!function_exists('mje_get_unread_message_count')) {
  * @category void
  * @author Tat Thien
  */
-if(!function_exists('mje_get_unread_conversation')) {
-    function mje_get_unread_conversation( $query_args = array() ) {
+if (!function_exists('mje_get_unread_conversation')) {
+    function mje_get_unread_conversation($query_args = array())
+    {
         global $user_ID;
         $default = mje_get_default_conversation_query_args();
         $args = wp_parse_args(array(
@@ -350,7 +355,7 @@ if(!function_exists('mje_get_unread_conversation')) {
             'meta_query' => array(
                 'relation' => 'AND',
                 array(
-                    'key' => $user_ID . '_conversation_status',
+                    'key' => $user_ID . '_read_status',
                     'value' => 'unread',
                 ),
                 array(
@@ -360,8 +365,8 @@ if(!function_exists('mje_get_unread_conversation')) {
             )
         ), $default);
 
-        if( ! empty( $query_args ) ) {
-            $args = wp_parse_args( $query_args, $args );
+        if (!empty($query_args)) {
+            $args = wp_parse_args($query_args, $args);
         }
 
         $conversation = get_posts($args);
@@ -378,15 +383,17 @@ if(!function_exists('mje_get_unread_conversation')) {
  * @category Conversation
  * @author Tat Thien
  */
-if(!function_exists('mje_get_unread_conversation_count')) {
-    function mje_get_unread_conversation_count() {
+if (!function_exists('mje_get_unread_conversation_count')) {
+    function mje_get_unread_conversation_count()
+    {
         $conversation = mje_get_unread_conversation();
         $count = count($conversation);
         return $count;
     }
 }
 
-function mje_get_user_dropdown_conversation() {
+function mje_get_user_dropdown_conversation()
+{
     $default = mje_get_default_conversation_query_args();
 
     $args = wp_parse_args(array(
@@ -402,7 +409,7 @@ function mje_get_user_dropdown_conversation() {
     ));
 
     $conversations_query = new WP_Query($args);
-    while($conversations_query->have_posts()) :
+    while ($conversations_query->have_posts()) :
         $conversations_query->the_post();
         get_template_part('template/conversation-dropdown', 'item');
 

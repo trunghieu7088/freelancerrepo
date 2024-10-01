@@ -15,42 +15,43 @@ returnURL:  https://home_url.net/?page_id=303&order-id=387&ppipn=engineipn1&ppip
 notify_url: https://home_url.net/?paypalListener=paypal_appengine_IPN
 */
 
-function ae_veryfy_paypal_standard(){
-	if( isset($_REQUEST['paypalListener'] ) && $_REQUEST['paypalListener']  == 'paypal_appengine_IPN' ) {
-		et_track_payment('catching notiry_url reponse - paypalListener: ');
-		$order_id 		= $_POST['custom'];
-		$porder = get_post($order_id);
-		if( $porder->post_status !== 'publish' ){
+function ae_veryfy_paypal_standard()
+{
+    if (isset($_REQUEST['paypalListener']) && $_REQUEST['paypalListener']  == 'paypal_appengine_IPN') {
+        et_track_payment('catching notiry_url reponse - paypalListener: ');
+        $order_id         = $_POST['custom'];
+        $porder = get_post($order_id);
+        if ($porder->post_status !== 'publish') {
 
-			if( isset($session['process_type']) && $session['process_type'] == 'buy' ){
-				$pending_reason = $_POST['pending_reason'];
-				if($pending_reason){
-					et_track_payment('pending reason :'.$pending_reason);
-				}
+            if (isset($session['process_type']) && $session['process_type'] == 'buy') {
+                $pending_reason = $_POST['pending_reason'];
+                if ($pending_reason) {
+                    et_track_payment('pending reason :' . $pending_reason);
+                }
 
-				//unilateral: The payment is pending because it was made to an email address that is not yet registered or confirmed
+                //unilateral: The payment is pending because it was made to an email address that is not yet registered or confirmed
 
-				$order 		= new MJE_Order($order_id);
-				$order_data = $order->get_order_data();
-				$payment_type = $order_data['payment'];
+                $order         = new MJE_Order($order_id);
+                $order_data = $order->get_order_data();
+                $payment_type = $order_data['payment'];
 
-				$receiver_email = $_POST['receiver_email'];
-				$payment_gross 	= $_POST['payment_gross'];
-				$mc_currency 	= $_POST['mc_currency'];
-				$payer_status 	= $_POST['payer_status'];
-			}
+                $receiver_email = $_POST['receiver_email'];
+                $payment_gross     = $_POST['payment_gross'];
+                $mc_currency     = $_POST['mc_currency'];
+                $payer_status     = $_POST['payer_status'];
+            }
 
 
 
-			//$order 		= new MJE_Order($order_id);
-			//MJE_Checkout::process_payment( $payment_type, $session ); // buy 1 service
-		} else{
-			et_track_payment('This is business account.');
-			et_track_payment($_POST);
-		}
-	}
+            //$order 		= new MJE_Order($order_id);
+            //MJE_Checkout::process_payment( $payment_type, $session ); // buy 1 service
+        } else {
+            et_track_payment('This is business account.');
+            et_track_payment($_POST);
+        }
+    }
 }
-add_action('parse_request','ae_veryfy_paypal_standard',1);
+// add_action('parse_request','ae_veryfy_paypal_standard',1);
 
 /**
 [mc_gross] => 5.00
@@ -148,4 +149,4 @@ BUSINESS RESPONSE
     [payment_gross] => 5.00
     [ipn_track_id] => 9a0930be17032
 )
-*/
+ */

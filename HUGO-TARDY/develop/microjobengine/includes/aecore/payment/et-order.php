@@ -175,18 +175,15 @@ abstract class ET_Order
             // contruct an order by new order and insert into database
 
             $default_order = array(
-
                 'payer' => '',
-                'currency' => $currency['code'],
-
-                //'products'			=>	 array(),
                 'total' => '',
                 'status' => 'pending',
                 'payment' => 'cash',
-                'create_date' => current_time('mysql'),
                 'paid_date' => '',
-                'token' => '',
                 'coupon_code' => '',
+                'create_date' => current_time('mysql'),
+                'currency' => $currency['code'],
+                'token' => '',
                 'discount_rate' => '',
                 'discount_method' => 'percent',
                 'vat_fee' => 0,
@@ -197,6 +194,7 @@ abstract class ET_Order
             $this->_payer = $payer;
             $this->_currency = $currency;
             $this->_total = $total;
+            $this->_total_before_discount = $total;
             $this->_stat = $status;
             $this->_payment = $payment;
             $this->_created_date = $create_date;
@@ -209,9 +207,6 @@ abstract class ET_Order
             }
             // $this->_products		=	$products
             $this->set_shipping($ship);
-
-            $this->_total = $total;
-            $this->_total_before_discount = $total;
 
             /**
              * coupon
@@ -260,7 +255,6 @@ abstract class ET_Order
     //convert order to an associate array
     public function generate_data_to_pay()
     {
-
         $order = array(
 
             'payment_code' => $this->_payment_code,
@@ -291,7 +285,9 @@ abstract class ET_Order
     function update_order()
     {
 
-        if ($this->_total_before_discount == '' && $this->_total == '') return false;
+        if ($this->_total_before_discount == '' && $this->_total == '')
+            return false;
+
         $postarr = array();
         $postarr['ID'] = $this->_ID;
         $postarr['post_author'] = $this->_payer;

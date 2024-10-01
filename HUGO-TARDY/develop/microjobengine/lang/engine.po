@@ -4358,7 +4358,7 @@ msgid "Get Stuffs Done Right the First Time"
 msgstr ""
 
 #: includes/modules/MJE_Admin/module/welcome/page-welcome.php:25
-msgid "Enter Your License Key to active..."
+msgid "Enter Your License Key to receive updates"
 msgstr ""
 
 #: includes/modules/MJE_Admin/module/welcome/page-welcome.php:27

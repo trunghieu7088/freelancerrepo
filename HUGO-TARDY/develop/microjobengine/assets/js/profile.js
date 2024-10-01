@@ -1,5 +1,5 @@
 (function($, Views, Models, Collection, AE) {
-    $(document).ready(function() {
+    $(function() {
         Models.mJobProfile = Backbone.Model.extend({
             action: 'mjob_sync_profile',
             initialize: function () {

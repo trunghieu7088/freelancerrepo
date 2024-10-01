@@ -9,7 +9,6 @@
             'click button#delete_sample_data'  : 'deleteSampleData'                
         },
         initialize: function() {
-            console.log('init wizard');
             this.blockUi = new Views.BlockUi();
         },
         //install sample data

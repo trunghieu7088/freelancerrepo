@@ -30,7 +30,7 @@ class AE_Private_Message_Actions extends MJE_Post_Action
         $this->post_type = 'ae_message';
         parent::__construct($post_type);
         $this->ruler = array(
-            'post_content'
+            'post_content' => 'required',
         );
     }
     /**
@@ -48,8 +48,10 @@ class AE_Private_Message_Actions extends MJE_Post_Action
         $this->add_ajax('ae-ae_message-sync', 'syncMessage');
         $this->add_action('wp_footer', 'ae_message_add_template');
         $this->add_action('wp_enqueue_scripts', 'aeMessageScript');
-        $this->add_filter('ae_convert_ae_message', 'convert');
         $this->add_ajax('ae-fetch-ae_custom_post', 'fetch_post');
+
+        // moved this func body to mje-conversation-action convert
+        // $this->add_filter('ae_convert_ae_message', 'convert');
     }
     /**
      * enqueue script for ae message
@@ -94,7 +96,6 @@ class AE_Private_Message_Actions extends MJE_Post_Action
      */
     public function syncMessage()
     {
-        global $user_ID;
         $request = $_REQUEST;
 
         if (isset($request['conversation_content'])) {
@@ -102,11 +103,12 @@ class AE_Private_Message_Actions extends MJE_Post_Action
         };
 
         do_action('ae_message_validate_before_sync', $request);
-        $response = $this->validatePost($request);
-        if (!$response['success']) {
-            wp_send_json($response);
-            exit;
+
+        $validateRequest = $this->validatePost($request);
+        if (!$validateRequest['success']) {
+            wp_send_json($validateRequest);
         }
+
         $request['post_status'] = 'publish';
 
         if (!isset($request['post_title']) || empty($request['post_title'])) {
@@ -119,9 +121,13 @@ class AE_Private_Message_Actions extends MJE_Post_Action
             }
         }
 
-        $request['from_user'] = $user_ID;
+        if (isset($request['type']) && ('reject' == $request['type'] || 'decline' == $request['type'])) {
+            unset($this->ruler['post_content']);
+        }
+
         $response = $this->sync_post($request);
         do_action('ae_after_message', $response, $request);
+
         $response = apply_filters('ae_message_response', $response, $request);
         if (in_array($request['type'], array('decline', 'reject'))) {
             $response['data']->custom_order_id = $request['custom_order_id'];
@@ -139,12 +145,20 @@ class AE_Private_Message_Actions extends MJE_Post_Action
      * @category void
      * @author JACK BUI
      */
-    public function validatePost($data)
+    public function validatePost($request)
     {
-        $result = array(
-            'success' => true,
-            'msg' => __('Successful!', 'enginethemes')
-        );
+        global $user_ID;
+        if (!isset($request['from_user']) || $request['from_user'] != $user_ID) {
+            $result = array(
+                'success'   => false,
+                'msg'       => __("Missing sender information.", 'enginethemes')
+            );
+        } else {
+            $result = array(
+                'success' => true,
+                'msg' => __('Successful!', 'enginethemes')
+            );
+        }
         return $result;
     }
     /**
@@ -162,21 +176,12 @@ class AE_Private_Message_Actions extends MJE_Post_Action
         global $user_ID;
         $result->author_avatar = mje_avatar($result->post_author);
         if (current_user_can('manage_options') || $result->post_author == $user_ID || $result->to_user == $user_ID || ae_user_role($result->post_author) == 'administrator') {
-            $children = get_children(array(
+            $result->et_carousels = get_children(array(
                 'numberposts' => 15,
                 'order' => 'ASC',
                 'post_parent' => $result->ID,
                 'post_type' => 'attachment'
             ));
-            $result->et_carousels = array();
-
-            foreach ($children as $key => $value) {
-                $result->et_carousels[] = $value;
-            }
-            $result->et_files = array();
-            foreach ($children as $key => $value) {
-                $result->et_files[] = $value;
-            }
         }
 
         return $result;

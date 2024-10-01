@@ -1,7 +1,24 @@
 /* css Page social connect*/
 
+
+.social-auth {
+	max-width: 70%;
+}
 .social-auth .social-form {
 	margin-top:30px;
+}
+.social-error {
+	margin-top: 40px;
+	font-weight: 700;
+	font-size:16px;
+}
+.social-auth .social-welcome{
+	font-weight: bold;
+	margin-top:30px;
+	margin-bottom:30px;
+}
+.social-instruction p {
+	margin-bottom:10px;
 }
 .social-auth input {
 	height: 35px;
@@ -13,6 +30,7 @@
 	margin-bottom: 20px;
 	outline: none;
 	width: 45%;
+	display:block;
 }
 .social-auth input[type="submit"] {
 	-moz-border-radius: 3px;
@@ -64,46 +82,11 @@
 ul.list-social-login {
 	list-style: none;
 	padding-left: 0;
+	display:inline-flex;
+	justify-content:flex-end;
+	align-items:flex-end;
+	margin-bottom:0px;
 }
-/*ul.list-social-login li {
-	display: inline-block;
-	margin-right: 12px;
-	margin-bottom: 20px;
-}*/
-/*ul.list-social-login li a {
-	display: block;
-	min-width: 110px;
-	height: 32px;
-	color: #fff;
-	font-size: 14px;
-	line-height: 2.3;
-	text-align: center;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-ms-border-radius: 3px;
-}
-ul.list-social-login li a.fb {
-	background: #5d82d1;
-}
-ul.list-social-login li a.tw {
-	background: #40bff5;
-}
-ul.list-social-login li a.gplus {
-	background: #eb5e4c;
-}
-ul.list-social-login li a.lkin {
-	background:#0369A0;
-}
-ul.list-social-login li a i {
-	font-size: 20px;
-	float: left;
-	line-height: 32px;
-	margin-left: 15px;
-}*/
 .socials-head {
 	color: #2c3e50;
-	font-size: 20px;
-	margin-top: 30px;
-	margin-bottom: 20px;
 }

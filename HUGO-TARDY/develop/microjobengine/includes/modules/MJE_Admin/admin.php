@@ -469,8 +469,8 @@ You can view this offer detail here: [link].</p>
 											<div class="inner">
 												<div class="action-overlay">
 													<nav>
-														<a href="javascript:void(0)" class="select" data-name="<?php echo $skin['name']; ?>"><i class="fa fa-check"></i><span><?php _e('Select', 'enginethemes'); ?></span></a>
-														<a href="javascript:void(0)" class="preview" data-preview="<?php echo $skin['preview']; ?>"><i class="fa fa-eye"></i><span><?php _e('Preview', 'enginethemes'); ?></span></a>
+														<a href="javascript:void(0)" class="select" data-name="<?php echo $skin['name']; ?>"><i class="fa-solid fa-check"></i><span><?php _e('Select', 'enginethemes'); ?></span></a>
+														<a href="javascript:void(0)" class="preview" data-preview="<?php echo $skin['preview']; ?>"><i class="fa-solid fa-eye"></i><span><?php _e('Preview', 'enginethemes'); ?></span></a>
 													</nav>
 													<div class="skin-description">
 														<h2><?php echo $skin['title'] ?></h2>
@@ -569,7 +569,7 @@ You can view this offer detail here: [link].</p>
 				'menu_title' => __('WELCOME', 'enginethemes'),
 				'cap' => 'administrator',
 				'slug' => 'et-welcome',
-				'icon' => 'L',
+				'icon' => 'fa-gauge-simple-high',
 				'desc' => sprintf(__("%s welcome", 'enginethemes'), $options->blogname),
 				'own_frame' => true,
 			),
@@ -607,7 +607,7 @@ You can view this offer detail here: [link].</p>
 				'menu_title' => __('THEME OPTIONS', 'enginethemes'),
 				'cap' => 'administrator',
 				'slug' => 'et-settings',
-				'icon' => 'fa fa-cogs',
+				'icon' => 'fa-gear',
 				'desc' => __("Manage how your MicrojobEngine looks and feels", 'enginethemes'),
 			),
 			'container' => $container,
@@ -626,7 +626,7 @@ You can view this offer detail here: [link].</p>
 				'menu_title' => __('Payment Gateways', 'enginethemes'),
 				'cap' => 'administrator',
 				'slug' => 'et-payment-gateways',
-				'icon' => 'fa fa-credit-card',
+				'icon' => 'fa-credit-card',
 				'desc' => __("Manage your payment gateways", 'enginethemes'),
 			),
 			'container' => $payment_gateways_container,
@@ -642,7 +642,7 @@ You can view this offer detail here: [link].</p>
 				'menu_title' => __('PACKAGE PURCHASES', 'enginethemes'),
 				'cap' => 'administrator',
 				'slug' => 'et-payments',
-				'icon' => 'fa-shopping-basket',
+				'icon' => 'fa-basket-shopping',
 				'desc' => __("Synthetize the purchase of pricing plans", 'enginethemes'),
 			),
 			'container' => new AE_OrderList(),
@@ -659,7 +659,7 @@ You can view this offer detail here: [link].</p>
 				'menu_title' => __('ORDERS', 'enginethemes'),
 				'cap' => 'administrator',
 				'slug' => 'et-mjob-order',
-				'icon' => 'fa-shopping-cart',
+				'icon' => 'fa-cart-shopping',
 				'desc' => sprintf(__("Synthetize all the microjob orders. <a href='%s'>View Microjob Orders (for advanced users).</a>", 'enginethemes'), $mjob_order_edit_url),
 			),
 			'container' => new MJE_MJob_Order_Container(),
@@ -675,7 +675,7 @@ You can view this offer detail here: [link].</p>
 				'menu_title' => __('MONEY WITHDRAWAL', 'enginethemes'),
 				'cap' => 'administrator',
 				'slug' => 'et-withdraws',
-				'icon' => 'fa-money',
+				'icon' => 'fa-money-bill',
 				'desc' => __("Overview of all withdraws", 'enginethemes'),
 			),
 			'container' => new AE_WithdrawList(),

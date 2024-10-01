@@ -53,6 +53,125 @@ if (!function_exists('mje_avatar')) {
 	}
 }
 
+/**
+ * Set post read status of a user to "read" or "unread"
+ * @param int $post_ID
+ * @param int $user
+ * @param string $status
+ * @return int|false $post_ID|false 
+ */
+if (!function_exists('mje_set_post_read_status')) {
+	function mje_set_post_read_status($post_id, $user_id, $status = "read")
+	{
+		update_post_meta($post_id, $user_id . '_read_status', $status);
+	}
+}
+
+/**
+ * Get post read status of a user: "read" or "unread"
+ * @param int $post_ID
+ * @param int $user
+ * @return string "read"|"unread" 
+ */
+if (!function_exists('mje_get_post_read_status')) {
+	function mje_get_post_read_status($post_id, $user_id)
+	{
+		return get_post_meta($post_id, $user_id . '_read_status', true);
+	}
+}
+
+if (!function_exists('mje_mark_post_as_read')) {
+	/**
+	 * @return boolean return whether the function has marked posts from unread to read
+	 */
+	function mje_mark_post_as_read($post_id, $user_id)
+	{
+		if (
+			empty($post_id) || !is_numeric($post_id)
+			|| empty($user_id) || !is_numeric($user_id)
+		) {
+			return false; // Exit if invalid ID
+		}
+		// update last read time of the current user
+		mje_set_user_last_read_time($post_id, $user_id);
+
+		$post_read_status = mje_get_post_read_status($post_id, $user_id);
+		if ("read" !== $post_read_status) {
+			mje_set_post_read_status($post_id, $user_id, 'read');
+			do_action('mje_remove_delayed_notify_new_msg', $post_id);
+			return true;
+		}
+		return false;
+	}
+}
+
+if (!function_exists('mje_update_user_last_read_time')) {
+	function mje_set_user_last_read_time($conversation_id, $user_id)
+	{
+		if (
+			empty($conversation_id) || !is_numeric($conversation_id)
+			|| empty($user_id) || !is_numeric($user_id)
+		) {
+			return false; // Exit if invalid ID
+		}
+		$current_time = current_time('mysql');
+		$updated = update_post_meta($conversation_id, 'user_last_read_time_' . $user_id, $current_time);
+		if ($updated) {
+			return $current_time;
+		} else {
+			return false;
+		}
+	}
+}
+
+if (!function_exists('mje_update_user_last_read_time')) {
+	function mje_get_user_last_read_time($conversation_id, $user_id)
+	{
+		if (
+			empty($conversation_id) || !is_numeric($conversation_id)
+			|| empty($user_id) || !is_numeric($user_id)
+		) {
+			return false; // Exit if invalid ID
+		}
+		return get_post_meta($conversation_id, 'user_last_read_time_' . $user_id, true);
+	}
+}
+
+if (!function_exists('mje_is_user_currently_in_conversation')) {
+	function mje_is_user_in_conversation($conversation_id, $user_id, $time_frame = 15)
+	{
+		// Check if a valid ID is provided
+		if (
+			empty($conversation_id) || !is_numeric($conversation_id)
+			|| empty($user_id) || !is_numeric($user_id)
+		) {
+			return false; // Exit if invalid ID
+		}
+
+		// Get the stored time from post meta
+		$last_read_time = mje_get_user_last_read_time($conversation_id, $user_id);
+
+		// Check if the meta key exists and has a value
+		if (empty($last_read_time)) {
+			return false; // No time stored
+		}
+
+		// Convert both times to DateTime objects for comparison
+		try {
+			$last_read_time_obj = new DateTime($last_read_time);
+			$current_time_obj = new DateTime(current_time('mysql'));
+		} catch (Exception $e) {
+			return false; // Handle potential errors during conversion
+		}
+
+		// Calculate the time difference in seconds
+		$time_diff = abs($current_time_obj->diff($last_read_time_obj)->s);
+
+		// Check if the time difference is within 1 hour (3600 seconds)
+		return $time_diff <= $time_frame;
+	}
+}
+
 if (!function_exists('mje_show_user_header')) {
 	/**
 	 * Show user section on main navigation
@@ -78,7 +197,7 @@ if (!function_exists('mje_show_user_header')) {
 			</div>
 
 			<div class="message-icon list-message dropdown et-dropdown">
-				<div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+				<a href="<?php echo et_get_page_link('my-list-messages'); ?>" class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
 					<span class="link-message">
 						<?php
 						if ($conversation_unread > 0) {
@@ -87,7 +206,7 @@ if (!function_exists('mje_show_user_header')) {
 						?>
 						<i class="fa fa-comment"></i>
 					</span>
-				</div>
+				</a>
 				<div class="list-message-box dropdown-menu" aria-labelledby="dLabel">
 					<div class="list-message-box-header">
 						<span>
@@ -120,13 +239,6 @@ if (!function_exists('mje_show_user_header')) {
 			} else {
 				$post_link = et_get_page_link('post-service') . '?return_url=' . $absolute_url;
 			}
-			//fix bug post service link does not work while the users are in post recruit page
-			//fix bug on 25th Nov 2023
-			if(is_page('post-recruit'))
-			{
-				$post_link = et_get_page_link('post-service') . '?return_url=' . $absolute_url;
-			}
-			//end fix
 			?>
 			<div class="link-post-services">
 				<a href="<?php echo $post_link; ?>"><?php _e('Post a mJob', 'enginethemes'); ?>
@@ -1949,47 +2061,48 @@ if (!function_exists('mje_get_thumbnail')) {
 		if ($video) {
 			echo mje_get_video($video);
 		} else { ?>
-			<img src="<?php echo $img; ?>"> <?php
-										}
+			<img src="<?php echo $img; ?>">
+		<?php
+		}
 
-										return ob_get_clean();
-									}
-								}
-								/***
-								 * add video in ae_convert_mjob_post
-								 * author @tanhoai
-								 * verison 1.3.5
-								 */
-								add_filter('ae_convert_mjob_post', 'add_filter_content_video');
-								if (!function_exists('add_filter_content_video')) {
-									function add_filter_content_video($mjob_post)
-									{
-										$mjob_post->mje_get_thumbnail = mje_get_thumbnail($mjob_post->ID);
-										$video_url = get_post_meta($mjob_post->ID, 'video_meta', true);
-										$mjob_post->class_video = (mje_is_video($video_url)) ? 'mjob-item__video' : '';
-										return $mjob_post;
-									}
-								}
+		return ob_get_clean();
+	}
+}
+/***
+ * add video in ae_convert_mjob_post
+ * author @tanhoai
+ * verison 1.3.5
+ */
+add_filter('ae_convert_mjob_post', 'add_filter_content_video');
+if (!function_exists('add_filter_content_video')) {
+	function add_filter_content_video($mjob_post)
+	{
+		$mjob_post->mje_get_thumbnail = mje_get_thumbnail($mjob_post->ID);
+		$video_url = get_post_meta($mjob_post->ID, 'video_meta', true);
+		$mjob_post->class_video = (mje_is_video($video_url)) ? 'mjob-item__video' : '';
+		return $mjob_post;
+	}
+}
 
 
-								/***
-								 * custom css admin bar
-								 * author @tanhoai
-								 * verison 1.3.5
-								 */
-								add_action('get_header', 'remove_css_admin_bar');
-								if (!function_exists('remove_css_admin_bar')) {
-									function remove_css_admin_bar()
-									{
-										remove_action('wp_head', '_admin_bar_bump_cb');
-									}
-								}
-								add_action('wp_head', 'add_css_admin_bar');
-								if (!function_exists('add_css_admin_bar')) {
-									function add_css_admin_bar()
-									{
-										if (current_user_can('manage_options')) {
-											?>
+/***
+ * custom css admin bar
+ * author @tanhoai
+ * verison 1.3.5
+ */
+add_action('get_header', 'remove_css_admin_bar');
+if (!function_exists('remove_css_admin_bar')) {
+	function remove_css_admin_bar()
+	{
+		remove_action('wp_head', '_admin_bar_bump_cb');
+	}
+}
+add_action('wp_head', 'add_css_admin_bar');
+if (!function_exists('add_css_admin_bar')) {
+	function add_css_admin_bar()
+	{
+		if (current_user_can('manage_options')) {
+		?>
 			<style type="text/css" media="screen">
 				html {
 					margin-top: 32px !important;
@@ -2010,52 +2123,52 @@ if (!function_exists('mje_get_thumbnail')) {
 				}
 			</style>
 		<?php
-										}
-									}
-								}
+		}
+	}
+}
 
-								/***
-								 * add fee for buyer below button order
-								 * author @tanhoai
-								 * verison 1.3.5
-								 */
-								if (!function_exists('mje_render_buy_fee ')) {
-									function mje_render_buy_fee()
-									{
-										$fee = (ae_get_option('order_commission_buyer')) ? (float) ae_get_option('order_commission_buyer') : '';
-										if ($fee) {
+/***
+ * add fee for buyer below button order
+ * author @tanhoai
+ * verison 1.3.5
+ */
+if (!function_exists('mje_render_buy_fee ')) {
+	function mje_render_buy_fee()
+	{
+		$fee = (ae_get_option('order_commission_buyer')) ? (float) ae_get_option('order_commission_buyer') : '';
+		if ($fee) {
 		?>
 			<div class="mje-commission-fee">
 				<span><?php printf(__('%s%%  commission fee included', 'enginethemes'), $fee); ?></span>
 			</div>
 <?php
-										}
-									}
-								}
-								if (!function_exists('is_mje_submit_page')) {
-									function is_mje_submit_page()
-									{
-										if (is_page_template('page-post-service.php') || is_page_template('page-post-recruit.php'))
-											return true;
-										return false;
-									}
-								}
-								function mje_enable_extra_fee()
-								{
-									if (function_exists('_mjeef_load_plugin'))
-										return true;
-									return false;
-								}
-								/**
-								 * Check the plugin MJE_Geolocation is actived.
-								 * @since 1.3.10
-								 * @return boolean
-								 * @author: danng.
-								 */
-								function is_acti_mje_geo()
-								{
-									if (class_exists('MJE_Geolocation'))
-										return true;
-									return false;
-								}
+		}
+	}
+}
+if (!function_exists('is_mje_submit_page')) {
+	function is_mje_submit_page()
+	{
+		if (is_page_template('page-post-service.php') || is_page_template('page-post-recruit.php'))
+			return true;
+		return false;
+	}
+}
+function mje_enable_extra_fee()
+{
+	if (function_exists('_mjeef_load_plugin'))
+		return true;
+	return false;
+}
+/**
+ * Check the plugin MJE_Geolocation is actived.
+ * @since 1.3.10
+ * @return boolean
+ * @author: danng.
+ */
+function is_acti_mje_geo()
+{
+	if (class_exists('MJE_Geolocation'))
+		return true;
+	return false;
+}
 ?>

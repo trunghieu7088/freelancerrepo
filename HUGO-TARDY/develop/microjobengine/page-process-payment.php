@@ -1,17 +1,18 @@
 <?php
+
 /**
  *	Template Name: Process Payment
  */
 $session = et_read_session();
-global $ad , $payment_return, $order_id, $user_ID;
+global $ad, $payment_return, $order_id, $user_ID;
 
 /**
  * If seller reuse purchased packages
  */
-if(isset($_GET['payment-type']) && $_GET['payment-type'] == 'usePackage') {
+if (isset($_GET['payment-type']) && $_GET['payment-type'] == 'usePackage') {
     $payment_return = ae_process_payment($_GET['payment-type'], $session);
     // If success, return to mjob detail
-    if($payment_return['ACK']) {
+    if ($payment_return['ACK']) {
         $mjob_url = get_the_permalink($session['ad_id']);
 
         // Destroy session for order data
@@ -35,7 +36,7 @@ $order_id = isset($_GET['order-id']) ? $_GET['order-id'] : '';
 // var_dump($quey);
 // echo '</pre>';
 
-if( isset($session['process_type']) && $session['process_type'] == 'buy' ){
+if (isset($session['process_type']) && $session['process_type'] == 'buy') {
     $order = new MJE_Order($order_id);
 } else {
     $order = new AE_Order($order_id);
@@ -45,11 +46,19 @@ $order_data = $order->get_order_data();
 /**
  * Allow current user is payer and administrator can view the order
  */
-if( $order_id && ($user_ID == $order_data['payer'] || is_super_admin($user_ID)) ) {
+if ($order_id && ($user_ID == $order_data['payer'] || is_super_admin($user_ID))) {
     // Get product data
     $ad = get_post($order_data['product_id']);
 
     $payment_type = $order_data['payment'];
+
+    $is_order_processed = get_post_meta($order_id, "et_order_is_process_payment", true);
+    et_track_payment("process status:");
+    et_track_payment($is_order_processed);
+
+    $subtitle_txt = ("true" === $is_order_processed)
+        ? __("Thank you. Your order has been received and verified.", 'enginethemes')
+        : __('Thank you. Your order has been received and is now being processed!', 'enginethemes');
 
     get_header(); ?>
     <!-- Page Blog -->
@@ -60,7 +69,7 @@ if( $order_id && ($user_ID == $order_data['payer'] || is_super_admin($user_ID)) 
                 <div class="blog-content info-payment-method">
                     <h1 class="title"><?php _e('Order Received', 'enginethemes'); ?></h1>
 
-                    <p class="sub-title"><?php _e('Thank you. Your order has been received and is now being processed!', 'enginethemes'); ?></p>
+                    <p class="sub-title"><?php echo $subtitle_txt; ?></p>
 
                     <div class="invoice-detail">
                         <div class="mje-table">
@@ -77,8 +86,8 @@ if( $order_id && ($user_ID == $order_data['payer'] || is_super_admin($user_ID)) 
                                     <span class="table-invoice-title"><?php _e('Payment type', 'enginethemes') ?></span>
 
                                     <?php
-                                        $payment_method_txt_arr = mje_render_payment_name();
-                                        $payment_method = $order_data['payment'];
+                                    $payment_method_txt_arr = mje_render_payment_name();
+                                    $payment_method = $order_data['payment'];
                                     ?>
                                     <?php echo $payment_method_txt_arr[$payment_method]; ?>
 
@@ -90,7 +99,7 @@ if( $order_id && ($user_ID == $order_data['payer'] || is_super_admin($user_ID)) 
                             </div>
                         </div>
 
-                        <?php if($order_data['payment'] == 'cash') : ?>
+                        <?php if ($order_data['payment'] == 'cash') : ?>
                             <?php
                             $cash_options = ae_get_option('cash');
                             $cash_message = $cash_options['cash_message'];
@@ -102,33 +111,33 @@ if( $order_id && ($user_ID == $order_data['payer'] || is_super_admin($user_ID)) 
                         <?php endif; ?>
                     </div>
                     <div class="link-detail-method">
-                        <?php if($ad->post_type == 'mjob_post') : ?>
-                            <a href="<?php echo get_the_permalink($ad->ID) ?>" class="<?php mje_button_classes( array( ) ); ?>"><?php _e('Visit your mJob', 'enginethemes'); ?><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        <?php if ($ad->post_type == 'mjob_post') : ?>
+                            <a href="<?php echo get_the_permalink($ad->ID) ?>" class="<?php mje_button_classes(array()); ?>"><?php _e('Visit your mJob', 'enginethemes'); ?><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                         <?php else :
-								echo apply_filters('show_text_button_process_payment',$content="", $ad);
-						 	  endif
-						 ?>
+                            echo apply_filters('show_text_button_process_payment', $content = "", $ad);
+                        endif
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <?php
+<?php
     // Make sure that process payment just happen one time
 
-    if($order_id ) {
-
-        $process_type = isset($session['process_type']) ? $session['process_type'] : '';
-        et_track_payment('Call Process_Payment in page_process-payment.php. process_type ='.$process_type);
-        if( $process_type == 'buy' ){
-            $payment_return = MJE_Checkout::process_payment( $payment_type, $session ); // buy 1 service
-        } else {
-            $payment_return = ae_process_payment($payment_type, $session);
+    if ($order_id) {
+        if ("true" !== $is_order_processed) {
+            $process_type = isset($session['process_type']) ? $session['process_type'] : 'submitPost';
+            et_track_payment('Call Process_Payment in page_process-payment.php. process_type =' . $process_type);
+            if ($process_type == 'buy') {
+                MJE_Checkout::process_payment($payment_type, $session); // buy 1 service
+            } else {
+                ae_process_payment($payment_type, $session);
+            }
+            update_post_meta($order_id, 'et_order_is_process_payment', "true");
+            et_destroy_session();
         }
-        update_post_meta($order_id, 'et_order_is_process_payment', true);
-        et_destroy_session();
-
     }
     get_footer();
 } else {

@@ -15,7 +15,7 @@ define('ACK_SUCCESS_WITH_WARNING', 'SUCCESSWITHWARNING');
 //define ('PAYMENT_MODE', 1 );
 
 
-abstract  class ET_Payment
+abstract class ET_Payment
 {
 
 
@@ -441,7 +441,7 @@ class ET_Paypal extends ET_Payment
 
 			$order_pay->update_order();
 
-			$url	=	et_get_page_link('process-payment', array('order-id' => $order_id, 'ppipn' => 'engineipn'));
+			$url	=	et_get_page_link('process-payment', array('order-id' => $order_id));
 			ae_paypal_log("Redirect to: " . $url);
 
 			wp_redirect($url); // version 1.3.9.6

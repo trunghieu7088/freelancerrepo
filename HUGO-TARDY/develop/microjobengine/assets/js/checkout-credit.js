@@ -45,7 +45,7 @@
                 });
 
                 AE.pubsub.on('ae:form:submit:success', this.afterCheckout, this);
-            }
+            }            
         },
         events: {
             'click .request-secure-code': 'requestSecureCode',
@@ -79,6 +79,11 @@
                 }
             })
         },
+        updateCheckoutData : function(paymentTotal){
+            const localeStr = ae_globals.site_locale.replace(/_/g, "-"); // e.g. turn en_US to en-US
+            this.$el.find("#user_balance").html("<strong>" + currentUser.data.available_fund.toLocaleString(localeStr) + "</strong>");
+            this.$el.find("#checkout_total").html("<strong>" + paymentTotal.toLocaleString(localeStr) + "</strong>");
+        },
         resetModal: function() {
             this.$el.find('input').val('');
         },
@@ -104,7 +109,7 @@
         initialize: function() {
             AE.pubsub.on('mje:after:setup:checkout', this.afterSetupOrder, this);
         },
-        afterSetupOrder: function(data) {
+        afterSetupOrder: function(data) { // data here is the view.checkoutModel of Views.Order 
             this.checkoutData = data;
             this.productData  = data.get('p_data');
 
@@ -134,6 +139,8 @@
                             custom_offer_id: view.productData.custom_offer_id
                         });
                     }
+                    
+                    this.secureModal.updateCheckoutData(this.checkoutData.get('p_total'));
                     this.secureModal.openModal();
                 }
             } else {

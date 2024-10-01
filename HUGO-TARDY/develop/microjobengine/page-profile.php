@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Page Profile
  */
@@ -13,13 +14,13 @@ $profile_obj = $ae_post_factory->get('mjob_profile');
 $profile_id = get_user_meta($user_ID, 'user_profile_id', true);
 
 // If user profile id is valid
-if($profile_id) {
+if ($profile_id) {
     // Get profile
     $post = get_post($profile_id);
     // If profile is valid
-    if($post && !is_wp_error($post)) {
+    if ($post && !is_wp_error($post)) {
         // Check if user has profile or not
-        if($post->post_author == $user_ID && $post->post_type == 'mjob_profile') {
+        if ($post->post_author == $user_ID && $post->post_type == 'mjob_profile') {
             $profile = $profile_obj->convert($post);
         } else {
             // Create a new profile, if user has not profile,
@@ -33,7 +34,7 @@ if($profile_id) {
             $profile = $profile_obj->convert(get_post($profile_id));
         }
     }
-    echo '<script type="text/json" id="mjob_profile_data" >'.json_encode($profile).'</script>';
+    echo '<script type="text/json" id="mjob_profile_data" >' . json_encode($profile) . '</script>';
 }
 // Get profile infomation
 $description = !empty($profile->profile_description) ? $profile->profile_description : __('There is no content', 'enginethemes');
@@ -45,7 +46,7 @@ $billing_vat = !empty($profile->billing_vat) ? $profile->billing_vat : __('There
 get_header();
 ?>
 
-<?php if(!mje_is_user_active($user_ID)): ?>
+<?php if (!mje_is_user_active($user_ID)) : ?>
     <div class="active-account">
         <p><?php _e('Your account is not activated yet! Lost the activation link?', 'enginethemes'); ?> <a href="" class="resend-email-confirm"><?php _e('Resend it.', 'enginethemes'); ?></a></p>
     </div>
@@ -55,7 +56,7 @@ get_header();
         <div class="row title-top-pages">
             <div class="col-xs-12">
                 <p class="block-title"><?php _e('MY PROFILE', 'enginethemes'); ?></p>
-                <p><a href="<?php echo et_get_page_link('dashboard'); ?>" class="btn-back"><i class="fa fa-angle-left"></i><?php _e('Back to dashboard', 'enginethemes'); ?></a></p>    
+                <p><a href="<?php echo et_get_page_link('dashboard'); ?>" class="btn-back"><i class="fa fa-angle-left"></i><?php _e('Back to dashboard', 'enginethemes'); ?></a></p>
             </div>
         </div>
         <div class="row profile">
@@ -67,7 +68,7 @@ get_header();
                 <div class="box-shadow block-profile">
                     <div class="status-customer float-right" style="display: none">
                         <select name="user_status" id="user_status" data-edit="user" class="user-status">
-                            <?php if($user_data->user_status == 'online') { ?>
+                            <?php if ($user_data->user_status == 'online') { ?>
                                 <option value="online" selected><?php _e('Online', 'enginethemes'); ?></option>
                                 <option value="offline"><?php _e('Offline', 'enginethemes'); ?></option>
                             <?php } else { ?>
@@ -101,7 +102,9 @@ get_header();
                             <li>
                                 <div class="cate-title"><?php _e('Business full name', 'enginethemes'); ?></div>
                                 <div id="billing_full_name" class="info-content">
-                                    <div class="text-content" data-type="input" data-name="billing_full_name" data-id="#billing_full_name"><p><?php echo $billing_full_name; ?></p></div>
+                                    <div class="text-content" data-type="input" data-name="billing_full_name" data-id="#billing_full_name">
+                                        <p><?php echo $billing_full_name; ?></p>
+                                    </div>
                                 </div>
                             </li>
                             <li>
@@ -128,24 +131,31 @@ get_header();
                             <li>
                                 <div class="cate-title"><?php _e('VAT or Tax Number', 'enginethemes'); ?></div>
                                 <div id="billing_vat" class="info-content">
-                                    <div class="text-content" data-type="input" data-name="billing_vat" data-id="#billing_vat"><p><?php echo $billing_vat; ?></p></div>
+                                    <div class="text-content" data-type="input" data-name="billing_vat" data-id="#billing_vat">
+                                        <p><?php echo $billing_vat; ?></p>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="block-connect-social">
-                        <p class="title"><?php _e('CONNECT TO SOCIALS', 'enginethemes'); ?></p>
-                        <?php
-                        ae_render_connect_social_button();
-                        ?>
-                    </div>
+                    <?php
+                    ob_start();
+                    ae_render_connect_social_button();
+                    $social_area_html = ob_get_clean();
+                    if (!empty($social_area_text)) {
+                    ?>
+                        <div class="block-connect-social">
+                            <p class="title"><?php _e('CONNECT TO SOCIALS', 'enginethemes'); ?></p>
+                            <?php echo $social_area_html; ?>
+                        </div>
+                    <?php } ?>
                 </div>
 
             </div>
         </div>
     </div>
-    <input type="hidden" class="input-item" name="_wpnonce" id="profile_wpnonce" value="<?php echo de_create_nonce('ae-mjob_post-sync');?>" />
+    <input type="hidden" class="input-item" name="_wpnonce" id="profile_wpnonce" value="<?php echo de_create_nonce('ae-mjob_post-sync'); ?>" />
 </div>
 <?php
 get_footer();

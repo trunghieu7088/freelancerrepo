@@ -139,7 +139,7 @@ class ET_Session
     public function read_data()
     {
         if (!get_option("_et_session_{$this->_session_id}", '')) return false;
-        $this->_session_data = unserialize(get_option("_et_session_{$this->_session_id}", ''));
+        $this->_session_data = get_option("_et_session_{$this->_session_id}", '');
         return (array)$this->_session_data;
     }
 
@@ -155,11 +155,11 @@ class ET_Session
             $this->_session_data = array(
                 $key => $value
             );
-            add_option("_et_session_{$this->_session_id}", serialize($this->_session_data), '', 'no');
+            add_option("_et_session_{$this->_session_id}", $this->_session_data, '', 'no');
             add_option("_et_session_expires_{$this->_session_id}", $this->_expired_time, '', 'no');
         } else {
             $this->_session_data[$key] = $value;
-            update_option("_et_session_{$this->_session_id}", serialize($this->_session_data));
+            update_option("_et_session_{$this->_session_id}", $this->_session_data);
         }
     }
 

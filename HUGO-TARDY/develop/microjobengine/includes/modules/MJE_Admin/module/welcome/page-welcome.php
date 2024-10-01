@@ -1,5 +1,5 @@
 <?php
-if(!defined('ABSPATH')) {
+if (!defined('ABSPATH')) {
 	exit(1);
 }
 
@@ -14,7 +14,9 @@ $admin_customizer_url = admin_url() . 'customize.php';
 				<p><?php _e('Hola, thank you for loading MjE admin area !', 'enginethemes'); ?></p>
 			</div>
 			<div class="bottom">
-				<div class="title"><i class="fa fa-tachometer" aria-hidden="true"></i><h2><?php _e('Welcome to MicrojobEngine', 'enginethemes'); ?></h2></div>
+				<div class="title"><i class="fa fa-tachometer" aria-hidden="true"></i>
+					<h2><?php _e('Welcome to MicrojobEngine', 'enginethemes'); ?></h2>
+				</div>
 				<p>MicrojobEngine <?php echo ET_VERSION; ?> - PHP <?php echo phpversion(); ?></p>
 			</div>
 			<span class="logo-et"></span>
@@ -22,7 +24,7 @@ $admin_customizer_url = admin_url() . 'customize.php';
 		<div class="key-active">
 			<form class="input-key-form">
 				<p class="block-title"><?php _e('Get Stuffs Done Right the First Time', 'enginethemes'); ?></p>
-				<input type="text" placeholder="<?php _e('Enter Your License Key to active...', 'enginethemes'); ?>" class="input-active-key regular-text" name="et_license_key" id="et_license_key" value="<?php echo get_option('et_license_key'); ?>">
+				<input type="text" placeholder="<?php _e('Enter Your License Key to receive updates', 'enginethemes'); ?>" class="input-active-key regular-text" name="et_license_key" id="et_license_key" value="<?php echo get_option('et_license_key'); ?>">
 			</form>
 			<a class="btn-submit btn-install" href="<?php echo $admin_url . '?page=et-wizard' ?>" target="_blank"><?php _e('Install Demo', 'enginethemes'); ?></a>
 		</div>
@@ -72,89 +74,91 @@ $admin_customizer_url = admin_url() . 'customize.php';
 	</div>
 	<div class="wl-bottom">
 		<div class="information-structure">
-		<div class="row inner">
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aside-left">
-				<p class="name-structure"><i class="fa fa-cog" aria-hidden="true"></i><?php _e('Theme Instructions', 'enginethemes'); ?></p>
-				<p class="line"></p>
-				<div class="tree-systems">
-					<ul class="install">
-						<span>1</span>
-						<p class="name-config"><?php _e('Install', 'enginethemes'); ?></p>
-
-						<?php if(get_option('option_sample_data', 0)) : ?>
-							<li><a href="<?php echo $admin_url . '?page=et-wizard'; ?>" target="_blank"><?php _e('Delete Sample Data', 'enginethemes'); ?></a></li>
-						<?php else: ?>
-							<li><a href="<?php echo $admin_url . '?page=et-wizard'; ?>" target="_blank"><?php _e('Install Sample Data', 'enginethemes'); ?></a></li>
-						<?php endif; ?>
-					</ul>
-					<ul class="config">
-						<span>2</span>
-						<p class="name-config"><?php _e('Configure', 'enginethemes'); ?></p>
-						<li><a href="<?php echo $admin_customizer_url; ?>" target="_blank"><?php _e('Theme customization', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_setting_url . '#section/users-setting'; ?>" target="_blank"><?php _e('Users', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_setting_url . '#section/microjob-settings'; ?>" target="_blank"><?php _e('MicroJobs (mJobs)', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_setting_url . '#section/currency-settings'; ?>" target="_blank"><?php _e('Currency', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_url . '?page=et-payment-gateways'; ?>" target="_blank"><?php _e('Payment Gateways', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_setting_url . '#section/payment-type-settings'; ?>" target="_blank"><?php _e('Payment Type (packages)', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_setting_url . '#section/withdraw-settings'; ?>" target="_blank"><?php _e('Withdraw Config', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_setting_url . '#section/seo'; ?>" target="_blank"><?php _e('SEO', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_setting_url . '#section/language-settings'; ?>" target="_blank"><?php _e('Translation', 'enginethemes'); ?></a></li>
-					</ul>
-					<ul class="make-site">
-						<span>3</span>
-						<p class="name-config"><?php _e('Make your site work', 'enginethemes'); ?></p>
-						<li><a href="<?php echo $admin_url . '?page=et-payments'; ?>" target="_blank"><?php _e('Package Purchases', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_url . '?page=et-mjob-order'; ?>" target="_blank"><?php _e('Orders', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_url . '?page=et-withdraws'; ?>" target="_blank"><?php _e('Money Withdrawal', 'enginethemes'); ?></a></li>
-						<li><a href="<?php echo $admin_url . '?page=et-users'; ?>" target="_blank"><?php _e('Member List', 'enginethemes'); ?></a></li>
-					</ul>
-				</div>
-			</div>
-
-			<?php
-			// Get blog feed data
-			$rss = fetch_feed('https://www.enginethemes.com/blog/feed');
-			$maxitems = 0;
-			if( ! is_wp_error($rss)) {
-				$maxitems = $rss->get_item_quantity(10);
-				$rss_items = $rss->get_items(0, $maxitems);
-			}
-			?>
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aside-right">
-				<div class="top">
-					<p class="name-structure"><i class="fa fa-rss" aria-hidden="true"></i><?php _e('Blog & News Feed', 'enginethemes'); ?></p>
+			<div class="row inner">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aside-left">
+					<p class="name-structure"><i class="fa fa-cog" aria-hidden="true"></i><?php _e('Theme Instructions', 'enginethemes'); ?></p>
 					<p class="line"></p>
-					<ul class="list-blog">
-						<?php
-						if( ! empty($rss_items)) {
-							foreach ($rss_items as $item) {
-								?>
-								<li class="clearfix"><a href="<?php echo $item->get_permalink(); ?>" target="_blank"><i class="fa fa-circle" aria-hidden="true"></i><span><?php echo $item->get_title(); ?></span></a></li>
-								<?php
+					<div class="tree-systems">
+						<ul class="install">
+							<span>1</span>
+							<p class="name-config"><?php _e('Install', 'enginethemes'); ?></p>
+
+							<?php if (get_option('option_sample_data', 0)) : ?>
+								<li><a href="<?php echo $admin_url . '?page=et-wizard'; ?>" target="_blank"><?php _e('Delete Sample Data', 'enginethemes'); ?></a></li>
+							<?php else : ?>
+								<li><a href="<?php echo $admin_url . '?page=et-wizard'; ?>" target="_blank"><?php _e('Install Sample Data', 'enginethemes'); ?></a></li>
+							<?php endif; ?>
+						</ul>
+						<ul class="config">
+							<span>2</span>
+							<p class="name-config"><?php _e('Configure', 'enginethemes'); ?></p>
+							<li><a href="<?php echo $admin_customizer_url; ?>" target="_blank"><?php _e('Theme customization', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_setting_url . '#section/users-setting'; ?>" target="_blank"><?php _e('Users', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_setting_url . '#section/microjob-settings'; ?>" target="_blank"><?php _e('MicroJobs (mJobs)', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_setting_url . '#section/currency-settings'; ?>" target="_blank"><?php _e('Currency', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_url . '?page=et-payment-gateways'; ?>" target="_blank"><?php _e('Payment Gateways', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_setting_url . '#section/payment-type-settings'; ?>" target="_blank"><?php _e('Payment Type (packages)', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_setting_url . '#section/withdraw-settings'; ?>" target="_blank"><?php _e('Withdraw Config', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_setting_url . '#section/seo'; ?>" target="_blank"><?php _e('SEO', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_setting_url . '#section/language-settings'; ?>" target="_blank"><?php _e('Translation', 'enginethemes'); ?></a></li>
+						</ul>
+						<ul class="make-site">
+							<span>3</span>
+							<p class="name-config"><?php _e('Make your site work', 'enginethemes'); ?></p>
+							<li><a href="<?php echo $admin_url . '?page=et-payments'; ?>" target="_blank"><?php _e('Package Purchases', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_url . '?page=et-mjob-order'; ?>" target="_blank"><?php _e('Orders', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_url . '?page=et-withdraws'; ?>" target="_blank"><?php _e('Money Withdrawal', 'enginethemes'); ?></a></li>
+							<li><a href="<?php echo $admin_url . '?page=et-users'; ?>" target="_blank"><?php _e('Member List', 'enginethemes'); ?></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<?php
+				// Get blog feed data
+				$rss = fetch_feed('https://www.enginethemes.com/blog/feed');
+				$maxitems = 0;
+				if (!is_wp_error($rss)) {
+					$maxitems = $rss->get_item_quantity(10);
+					$rss_items = $rss->get_items(0, $maxitems);
+				}
+				?>
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 aside-right">
+					<div class="top">
+						<p class="name-structure"><i class="fa fa-rss" aria-hidden="true"></i><?php _e('Blog & News Feed', 'enginethemes'); ?></p>
+						<p class="line"></p>
+						<ul class="list-blog">
+							<?php
+							if (!empty($rss_items)) {
+								foreach ($rss_items as $item) {
+							?>
+									<li class="clearfix"><a href="<?php echo $item->get_permalink(); ?>" target="_blank"><i class="fa fa-circle" aria-hidden="true"></i><span><?php echo $item->get_title(); ?></span></a></li>
+							<?php
+								}
+							} else {
+								_e('Not yet', 'enginethemes');
 							}
-						} else {
-							_e('Not yet', 'enginethemes');
-						}
 
-						?>
-					</ul>
-					<a href="https://www.enginethemes.com/blog/" class="link-more" target="_blank"><p class="icon"></p><?php _e('Learn more', 'enginethemes'); ?></a>
-				</div>
-				<div class="bottom">
-					<p class="name-structure"><i class="fa fa-info-circle" aria-hidden="true"></i><?php _e('Theme version', 'enginethemes'); ?></p>
-					<p class="line"></p>
-					<div class="version">
-						<div class="img-version">
-							<a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/img/admin/img-version.png" alt="" class="img-version"></a>
-						</div>
-						<div class="text-version">
-							<p class="name-project"><span></span>MicrojobEngine</p>
-							<p class="name-version"><?php echo ET_VERSION; ?></p>
+							?>
+						</ul>
+						<a href="https://www.enginethemes.com/blog/" class="link-more" target="_blank">
+							<p class="icon"></p><?php _e('Learn more', 'enginethemes'); ?>
+						</a>
+					</div>
+					<div class="bottom">
+						<p class="name-structure"><i class="fa fa-info-circle" aria-hidden="true"></i><?php _e('Theme version', 'enginethemes'); ?></p>
+						<p class="line"></p>
+						<div class="version">
+							<div class="img-version">
+								<a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/img/admin/img-version.png" alt="" class="img-version"></a>
+							</div>
+							<div class="text-version">
+								<p class="name-project"><span></span>MicrojobEngine</p>
+								<p class="name-version"><?php echo ET_VERSION; ?></p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 </div>

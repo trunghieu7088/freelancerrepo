@@ -21,12 +21,10 @@
             onItemBeforeRender: function() {
             },
             onItemRendered: function() {
-                console.log('onItemRendered');
             },
             render: function() { // v 1.3.9.7
                 var view = this;
                 this.$el.html(this.template(this.model.toJSON()));
-                console.log('render');
 
                 return this;
             },
@@ -67,7 +65,6 @@
                         $('.mjob-order-container').find('.list-mjob-orders').html('<p class="no-items">'+ ae_globals.mjob_order_not_found_text +'</p>');
                         $(".btnExportOrder").addClass('hide');
                     } else {
-                        console.log('show btn download');
                         $(".btnExportOrder").removeClass('hide');
                     }
 

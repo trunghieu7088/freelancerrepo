@@ -125,7 +125,8 @@
         },
         /* Fetch notification */
         fetch: function(data) {
-            if(this.first) {
+            const hasNew = jQuery("#show-notifications").find(".alert-sign").length;
+            if(this.first || hasNew > 0) {
                 var view = this;
                 if ( typeof data !== 'undefined' ) {
                     view.paged = data.paged
@@ -232,7 +233,6 @@
         },
         reload: function() {
             var view = this;
-            console.log('reload');
             if(view.maxPages > 1) {
                 view.first = true;
                 view.isLoading = false;
@@ -248,7 +248,7 @@
         }
     });
 
-    $(document).ready(function () {
+    $(function () {
         var notification =  new Views.Notification();
 
         var notiOverlay = $('#mje-notification-overlay');

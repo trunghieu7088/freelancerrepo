@@ -2,7 +2,7 @@
  * Created by Jack Bui on 1/28/2016.
  */
 (function($, Models, Collections, Views) {
-    $(document).ready(function () {
+    $(function () {
         //
         /**
          * mjob collections
@@ -27,7 +27,6 @@
                 // before render view
             },
             onItemRendered: function() {
-                console.log('onItemRendered line 30');
 
                 var view = this;
                 if( view.$el.find('input[name="_wpnonce"]').length > 0 ){
@@ -256,6 +255,8 @@
             },
             disputeOrder: function (e) {
                 e.preventDefault();
+                if (true !== confirm(ae_globals.dispute_confirm)) return;
+
                 var view = this;
                 var $target = $(e.currentTarget);
 
@@ -447,7 +448,6 @@
                 if (typeof view.carousels === 'undefined') {
                     view.carousels = new Views.Carousel({
                         el: $('.gallery_container'),
-                        name_item:'et_carousel',
                         uploaderID:'deliver',
                         model: view.model,
                         extensions: ae_globals.file_types,

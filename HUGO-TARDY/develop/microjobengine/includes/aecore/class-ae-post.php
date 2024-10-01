@@ -127,6 +127,8 @@ class AE_Posts
         $result['status_text'] = isset($status[$result['post_status']]) ? $status[$result['post_status']] : '';
 
         $result['post_date'] = get_the_date('U', $post['ID']);
+        $result['post_date_gmt'] = $post['post_date_gmt'];
+        $result['post_date_gmt_obj'] = get_post_datetime($post['ID'], 'date', 'gmt');
         $result['post_human_time'] = sprintf(__('%s', 'enginethemes'),  et_the_time($result['post_date']));
 
         // generate post taxonomy
@@ -706,20 +708,14 @@ class AE_Posts
              * return array of data if success
              */
             return array(
-                'posts' => $data,
-
                 // post data
-                'post_count' => $query->post_count,
-
+                'posts' => $data,
                 // total post count
-                'max_num_pages' => $query->max_num_pages,
-
+                'post_count' => $query->post_count,
                 // total pages
-                'query' => $query
-
+                'max_num_pages' => $query->max_num_pages,
                 // wp_query object
-
-
+                'query' => $query
             );
         } else {
             return false;
@@ -942,9 +938,13 @@ class AE_PostAction extends AE_Base
     {
         global $ae_post_factory;
 
-        $post_type = isset($_REQUEST['query']['post_type']) ? $_REQUEST['query']['post_type'] : '';
         $post = $ae_post_factory->get($this->post_type);
 
+        /**
+         * overwrite this $post object to manipulate the returned data for MJE RECRUIT
+         * TODO: refactor this flow
+         */
+        $post_type = isset($_REQUEST['query']['post_type']) ? $_REQUEST['query']['post_type'] : '';
         if (defined('MJOB_RECRUIT') && $post_type == MJOB_RECRUIT) {
             $post = $ae_post_factory->get(MJOB_RECRUIT);
         }
@@ -994,6 +994,7 @@ class AE_PostAction extends AE_Base
          * fetch data
          */
         $data = $post->fetch($query_args);
+
         if (isset($_REQUEST['text'])) {
             $load_more_text = $_REQUEST['text'];
         } else {
@@ -1022,7 +1023,6 @@ class AE_PostAction extends AE_Base
                 'total' => $data['query']->found_posts,
             );
             if (isset($_REQUEST['is_tax_mjob_category']) && $_REQUEST['is_tax_mjob_category']) {
-
                 $term_id    = (int) $_REQUEST['query']['mjob_category'];
                 $term_link  = get_term_link($term_id, 'mjob_category');
                 $json['term_link'] = $term_link;

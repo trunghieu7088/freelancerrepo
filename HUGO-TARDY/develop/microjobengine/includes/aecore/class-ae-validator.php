@@ -9,7 +9,8 @@
  * @subpackage
  * @author nguyenvanduocit
  */
-class AE_Validator {
+class AE_Validator
+{
 	/**
 	 * The failed validation rules.
 	 *
@@ -77,13 +78,13 @@ class AE_Validator {
 	 *
 	 * @var array
 	 */
-	protected $sizeRules = array( 'Size', 'Between', 'Min', 'Max' );
+	protected $sizeRules = array('Size', 'Between', 'Min', 'Max');
 	/**
 	 * The numeric related validation rules.
 	 *
 	 * @var array
 	 */
-	protected $numericRules = array( 'Numeric', 'Integer' );
+	protected $numericRules = array('Numeric', 'Integer');
 	/**
 	 * The validation rules that imply the field is required.
 	 *
@@ -109,9 +110,10 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function __construct( array $data, array $rules, array $customAttributes = array(), array $customMessages = array() ) {
-		$this->data             = $this->parseData( $data );
-		$this->rules            = $this->explodeRules( $rules );
+	public function __construct(array $data, array $rules, array $customAttributes = array(), array $customMessages = array())
+	{
+		$this->data             = $this->parseData($data);
+		$this->rules            = $this->explodeRules($rules);
 		$this->customAttributes = $customAttributes;
 		$this->customMessages   = $customMessages;
 	}
@@ -124,7 +126,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	protected function parseData( array $data, $arrayKey = NULL ) {
+	protected function parseData(array $data, $arrayKey = NULL)
+	{
 		return $data;
 	}
 
@@ -135,9 +138,10 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	protected function explodeRules( $rules ) {
-		foreach ( $rules as $key => &$rule ) {
-			$rule = ( is_string( $rule ) ) ? explode( '|', $rule ) : $rule;
+	protected function explodeRules($rules)
+	{
+		foreach ($rules as $key => &$rule) {
+			$rule = (is_string($rule)) ? explode('|', $rule) : $rule;
 		}
 
 		return $rules;
@@ -152,20 +156,21 @@ class AE_Validator {
 	 * @return void
 	 * @throws \InvalidArgumentException
 	 */
-	public function each( $attribute, $rules ) {
-		$data = static::array_get( $this->data, $attribute );
-		if ( ! is_array( $data ) ) {
-			if ( $this->hasRule( $attribute, 'Array' ) ) {
+	public function each($attribute, $rules)
+	{
+		$data = static::array_get($this->data, $attribute);
+		if (!is_array($data)) {
+			if ($this->hasRule($attribute, 'Array')) {
 				return;
 			}
-			throw new InvalidArgumentException( 'Attribute for each() must be an array.' );
+			throw new InvalidArgumentException('Attribute for each() must be an array.');
 		}
-		foreach ( $data as $dataKey => $dataValue ) {
-			foreach ( $rules as $ruleKey => $ruleValue ) {
-				if ( ! is_string( $ruleKey ) ) {
-					$this->mergeRules( "$attribute.$dataKey", $ruleValue );
+		foreach ($data as $dataKey => $dataValue) {
+			foreach ($rules as $ruleKey => $ruleValue) {
+				if (!is_string($ruleKey)) {
+					$this->mergeRules("$attribute.$dataKey", $ruleValue);
 				} else {
-					$this->mergeRules( "$attribute.$dataKey.$ruleKey", $ruleValue );
+					$this->mergeRules("$attribute.$dataKey.$ruleKey", $ruleValue);
 				}
 			}
 		}
@@ -179,10 +184,11 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function mergeRules( $attribute, $rules ) {
-		$current                   = isset( $this->rules[ $attribute ] ) ? $this->rules[ $attribute ] : array();
-		$merge                     = reset( $this->explodeRules( array( $rules ) ) );
-		$this->rules[ $attribute ] = array_merge( $current, $merge );
+	public function mergeRules($attribute, $rules)
+	{
+		$current                   = isset($this->rules[$attribute]) ? $this->rules[$attribute] : array();
+		$merge                     = reset($this->explodeRules(array($rules)));
+		$this->rules[$attribute] = array_merge($current, $merge);
 	}
 
 	/**
@@ -190,17 +196,18 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	public function passes() {
+	public function passes()
+	{
 		// We'll spin through each rule, validating the attributes attached to that
 		// rule. Any error messages will be added to the containers with each of
 		// the other error messages, returning true if we don't have messages.
-		foreach ( $this->rules as $attribute => $rules ) {
-			foreach ( $rules as $rule ) {
-				$this->validate( $attribute, $rule );
+		foreach ($this->rules as $attribute => $rules) {
+			foreach ($rules as $rule) {
+				$this->validate($attribute, $rule);
 			}
 		}
 
-		return count( $this->messages ) === 0;
+		return count($this->messages) === 0;
 	}
 
 	/**
@@ -208,8 +215,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	public function fails() {
-		return ! $this->passes();
+	public function fails()
+	{
+		return !$this->passes();
 	}
 
 	/**
@@ -220,29 +228,30 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	protected function validate( $attribute, $rule ) {
-		list( $rule, $parameters ) = $this->parseRule( $rule );
-		if ( $rule == '' ) {
+	protected function validate($attribute, $rule)
+	{
+		list($rule, $parameters) = $this->parseRule($rule);
+		if ($rule == '') {
 			return;
 		}
 		// We will get the value for the given attribute from the array of data and then
 		// verify that the attribute is indeed validatable. Unless the rule implies
 		// that the attribute is required, rules are not run for missing values.
-		$value = $this->getValue( $attribute );
-		$rule  = ucfirst( $rule );
-		if ( is_array( $value ) && ! $this->isArrayAccepted( $rule ) ) {
-			foreach ( $value as $val ) {
-				$validatable = $this->isValidatable( $rule, $attribute, $val );
+		$value = $this->getValue($attribute);
+		$rule  = ucfirst($rule);
+		if (is_array($value) && !$this->isArrayAccepted($rule)) {
+			foreach ($value as $val) {
+				$validatable = $this->isValidatable($rule, $attribute, $val);
 				$method      = "validate{$rule}";
-				if ( $validatable && ! $this->$method( $attribute, $val, $parameters, $this ) ) {
-					$this->addFailure( $attribute, $rule, $parameters );
+				if ($validatable && !$this->$method($attribute, $val, $parameters, $this)) {
+					$this->addFailure($attribute, $rule, $parameters);
 				}
 			}
 		} else {
-			$validatable = $this->isValidatable( $rule, $attribute, $value );
+			$validatable = $this->isValidatable($rule, $attribute, $value);
 			$method      = "validate{$rule}";
-			if ( $validatable && ! $this->$method( $attribute, $value, $parameters, $this ) ) {
-				$this->addFailure( $attribute, $rule, $parameters );
+			if ($validatable && !$this->$method($attribute, $value, $parameters, $this)) {
+				$this->addFailure($attribute, $rule, $parameters);
 			}
 		}
 	}
@@ -252,12 +261,13 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function valid() {
-		if ( ! $this->messages ) {
+	public function valid()
+	{
+		if (!$this->messages) {
 			$this->passes();
 		}
 
-		return array_diff_key( $this->data, $this->messages );
+		return array_diff_key($this->data, $this->messages);
 	}
 
 	/**
@@ -265,12 +275,13 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function invalid() {
-		if ( ! $this->messages ) {
+	public function invalid()
+	{
+		if (!$this->messages) {
 			$this->passes();
 		}
 
-		return array_intersect_key( $this->data, $this->messages );
+		return array_intersect_key($this->data, $this->messages);
 	}
 
 	/**
@@ -280,10 +291,11 @@ class AE_Validator {
 	 *
 	 * @return mixed
 	 */
-	protected function getValue( $attribute ) {
-		if ( ! is_null( $value = static::array_get( $this->data, $attribute ) ) ) {
+	protected function getValue($attribute)
+	{
+		if (!is_null($value = static::array_get($this->data, $attribute))) {
 			return $value;
-		} elseif ( ! is_null( $value = static::array_get( $this->files, $attribute ) ) ) {
+		} elseif (!is_null($value = static::array_get($this->files, $attribute))) {
 			return $value;
 		}
 	}
@@ -297,10 +309,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function isValidatable( $rule, $attribute, $value ) {
-		return $this->presentOrRuleIsImplicit( $rule, $attribute, $value ) &&
-		       $this->passesOptionalCheck( $attribute ) &&
-		       $this->hasNotFailedPreviousRuleIfPresenceRule( $rule, $attribute );
+	protected function isValidatable($rule, $attribute, $value)
+	{
+		return $this->presentOrRuleIsImplicit($rule, $attribute, $value) &&
+			$this->passesOptionalCheck($attribute) &&
+			$this->hasNotFailedPreviousRuleIfPresenceRule($rule, $attribute);
 	}
 
 	/**
@@ -310,8 +323,9 @@ class AE_Validator {
 	 * @return bool
 	 * @author nguyenvanduocit
 	 */
-	protected function isArrayAccepted( $rule ) {
-		return in_array( $rule, array('Unique', 'Exists'));
+	protected function isArrayAccepted($rule)
+	{
+		return in_array($rule, array('Unique', 'Exists'));
 	}
 
 	/**
@@ -323,8 +337,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function presentOrRuleIsImplicit( $rule, $attribute, $value ) {
-		return $this->validateRequired( $attribute, $value ) || $this->isImplicit( $rule );
+	protected function presentOrRuleIsImplicit($rule, $attribute, $value)
+	{
+		return $this->validateRequired($attribute, $value) || $this->isImplicit($rule);
 	}
 
 	/**
@@ -334,11 +349,12 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function passesOptionalCheck( $attribute ) {
-		if ( $this->hasRule( $attribute, array( 'Sometimes' ) ) ) {
-			return array_key_exists( $attribute, static::dot( $this->data ) )
-			       || in_array( $attribute, array_keys( $this->data ) )
-			       || array_key_exists( $attribute, $this->files );
+	protected function passesOptionalCheck($attribute)
+	{
+		if ($this->hasRule($attribute, array('Sometimes'))) {
+			return array_key_exists($attribute, static::dot($this->data))
+				|| in_array($attribute, array_keys($this->data))
+				|| array_key_exists($attribute, $this->files);
 		}
 
 		return TRUE;
@@ -346,15 +362,11 @@ class AE_Validator {
 	public static function dot($array, $prepend = '')
 	{
 		$results = array();
-		foreach ($array as $key => $value)
-		{
-			if (is_array($value))
-			{
-				$results = array_merge($results, static::dot($value, $prepend.$key.'.'));
-			}
-			else
-			{
-				$results[$prepend.$key] = $value;
+		foreach ($array as $key => $value) {
+			if (is_array($value)) {
+				$results = array_merge($results, static::dot($value, $prepend . $key . '.'));
+			} else {
+				$results[$prepend . $key] = $value;
 			}
 		}
 		return $results;
@@ -366,8 +378,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function isImplicit( $rule ) {
-		return in_array( $rule, $this->implicitRules );
+	protected function isImplicit($rule)
+	{
+		return in_array($rule, $this->implicitRules);
 	}
 
 	/**
@@ -379,9 +392,10 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function hasNotFailedPreviousRuleIfPresenceRule( $rule, $attribute ) {
-		return in_array( $rule, array( 'Unique', 'Exists', 'Nonce' ) )
-			? ! array_key_exists( $attribute, $this->messages ) : TRUE;
+	protected function hasNotFailedPreviousRuleIfPresenceRule($rule, $attribute)
+	{
+		return in_array($rule, array('Unique', 'Exists', 'Nonce'))
+			? !array_key_exists($attribute, $this->messages) : TRUE;
 	}
 
 	/**
@@ -393,9 +407,10 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	protected function addFailure( $attribute, $rule, $parameters ) {
-		$this->addError( $attribute, $rule, $parameters );
-		$this->failedRules[ $attribute ][ $rule ] = $parameters;
+	protected function addFailure($attribute, $rule, $parameters)
+	{
+		$this->addError($attribute, $rule, $parameters);
+		$this->failedRules[$attribute][$rule] = $parameters;
 	}
 
 	/**
@@ -407,10 +422,11 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	protected function addError( $attribute, $rule, $parameters ) {
-		$message                      = $this->getMessage( $attribute, $rule );
-		$message                      = $this->doReplacements( $message, $attribute, $rule, $parameters );
-		$this->messages[ $attribute ] = $message;
+	protected function addError($attribute, $rule, $parameters)
+	{
+		$message                      = $this->getMessage($attribute, $rule);
+		$message                      = $this->doReplacements($message, $attribute, $rule, $parameters);
+		$this->messages[$attribute] = $message;
 	}
 
 	/**
@@ -419,7 +435,8 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateSometimes() {
+	protected function validateSometimes()
+	{
 		return TRUE;
 	}
 
@@ -431,12 +448,13 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateRequired( $attribute, $value ) {
-		if ( is_null( $value ) ) {
+	protected function validateRequired($attribute, $value)
+	{
+		if (is_null($value)) {
 			return FALSE;
-		} elseif ( is_string( $value ) && trim( $value ) === '' ) {
+		} elseif (is_string($value) && trim($value) === '') {
 			return FALSE;
-		} elseif ( ( is_array( $value ) || $value instanceof Countable ) && count( $value ) < 1 ) {
+		} elseif ((is_array($value) || $value instanceof Countable) && count($value) < 1) {
 			return FALSE;
 		}
 
@@ -451,9 +469,10 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateFilled( $attribute, $value ) {
-		if ( array_key_exists( $attribute, $this->data ) || array_key_exists( $attribute, $this->files ) ) {
-			return $this->validateRequired( $attribute, $value );
+	protected function validateFilled($attribute, $value)
+	{
+		if (array_key_exists($attribute, $this->data) || array_key_exists($attribute, $this->files)) {
+			return $this->validateRequired($attribute, $value);
 		}
 
 		return TRUE;
@@ -466,9 +485,10 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function anyFailingRequired( array $attributes ) {
-		foreach ( $attributes as $key ) {
-			if ( ! $this->validateRequired( $key, $this->getValue( $key ) ) ) {
+	protected function anyFailingRequired(array $attributes)
+	{
+		foreach ($attributes as $key) {
+			if (!$this->validateRequired($key, $this->getValue($key))) {
 				return TRUE;
 			}
 		}
@@ -483,9 +503,10 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function allFailingRequired( array $attributes ) {
-		foreach ( $attributes as $key ) {
-			if ( $this->validateRequired( $key, $this->getValue( $key ) ) ) {
+	protected function allFailingRequired(array $attributes)
+	{
+		foreach ($attributes as $key) {
+			if ($this->validateRequired($key, $this->getValue($key))) {
 				return FALSE;
 			}
 		}
@@ -502,9 +523,10 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateRequiredWith( $attribute, $value, $parameters ) {
-		if ( ! $this->allFailingRequired( $parameters ) ) {
-			return $this->validateRequired( $attribute, $value );
+	protected function validateRequiredWith($attribute, $value, $parameters)
+	{
+		if (!$this->allFailingRequired($parameters)) {
+			return $this->validateRequired($attribute, $value);
 		}
 
 		return TRUE;
@@ -519,9 +541,10 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateRequiredWithAll( $attribute, $value, $parameters ) {
-		if ( ! $this->anyFailingRequired( $parameters ) ) {
-			return $this->validateRequired( $attribute, $value );
+	protected function validateRequiredWithAll($attribute, $value, $parameters)
+	{
+		if (!$this->anyFailingRequired($parameters)) {
+			return $this->validateRequired($attribute, $value);
 		}
 
 		return TRUE;
@@ -536,9 +559,10 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateRequiredWithout( $attribute, $value, $parameters ) {
-		if ( $this->anyFailingRequired( $parameters ) ) {
-			return $this->validateRequired( $attribute, $value );
+	protected function validateRequiredWithout($attribute, $value, $parameters)
+	{
+		if ($this->anyFailingRequired($parameters)) {
+			return $this->validateRequired($attribute, $value);
 		}
 
 		return TRUE;
@@ -553,9 +577,10 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateRequiredWithoutAll( $attribute, $value, $parameters ) {
-		if ( $this->allFailingRequired( $parameters ) ) {
-			return $this->validateRequired( $attribute, $value );
+	protected function validateRequiredWithoutAll($attribute, $value, $parameters)
+	{
+		if ($this->allFailingRequired($parameters)) {
+			return $this->validateRequired($attribute, $value);
 		}
 
 		return TRUE;
@@ -570,12 +595,13 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateRequiredIf( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 2, $parameters, 'required_if' );
-		$data   = static::array_get( $this->data, $parameters[ 0 ] );
-		$values = array_slice( $parameters, 1 );
-		if ( in_array( $data, $values ) ) {
-			return $this->validateRequired( $attribute, $value );
+	protected function validateRequiredIf($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(2, $parameters, 'required_if');
+		$data   = static::array_get($this->data, $parameters[0]);
+		$values = array_slice($parameters, 1);
+		if (in_array($data, $values)) {
+			return $this->validateRequired($attribute, $value);
 		}
 
 		return TRUE;
@@ -588,11 +614,12 @@ class AE_Validator {
 	 *
 	 * @return int
 	 */
-	protected function getPresentCount( $attributes ) {
+	protected function getPresentCount($attributes)
+	{
 		$count = 0;
-		foreach ( $attributes as $key ) {
-			if ( static::array_get( $this->data, $key ) || static::array_get( $this->files, $key ) ) {
-				$count ++;
+		foreach ($attributes as $key) {
+			if (static::array_get($this->data, $key) || static::array_get($this->files, $key)) {
+				$count++;
 			}
 		}
 
@@ -607,8 +634,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateConfirmed( $attribute, $value ) {
-		return $this->validateSame( $attribute, $value, array( $attribute . '_confirmation' ) );
+	protected function validateConfirmed($attribute, $value)
+	{
+		return $this->validateSame($attribute, $value, array($attribute . '_confirmation'));
 	}
 
 	/**
@@ -620,11 +648,12 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateSame( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'same' );
-		$other = static::array_get( $this->data, $parameters[ 0 ] );
+	protected function validateSame($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'same');
+		$other = static::array_get($this->data, $parameters[0]);
 
-		return isset( $other ) && $value == $other;
+		return isset($other) && $value == $other;
 	}
 
 	/**
@@ -636,11 +665,12 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateDifferent( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'different' );
-		$other = static::array_get( $this->data, $parameters[ 0 ] );
+	protected function validateDifferent($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'different');
+		$other = static::array_get($this->data, $parameters[0]);
 
-		return isset( $other ) && $value != $other;
+		return isset($other) && $value != $other;
 	}
 
 	/**
@@ -652,10 +682,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateAccepted( $attribute, $value ) {
-		$acceptable = array( 'yes', 'on', '1', 1, TRUE, 'true' );
+	protected function validateAccepted($attribute, $value)
+	{
+		$acceptable = array('yes', 'on', '1', 1, TRUE, 'true');
 
-		return $this->validateRequired( $attribute, $value ) && in_array( $value, $acceptable, TRUE );
+		return $this->validateRequired($attribute, $value) && in_array($value, $acceptable, TRUE);
 	}
 
 	/**
@@ -666,8 +697,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateArray( $attribute, $value ) {
-		return is_array( $value );
+	protected function validateArray($attribute, $value)
+	{
+		return is_array($value);
 	}
 
 	/**
@@ -678,10 +710,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateBoolean( $attribute, $value ) {
-		$acceptable = array( TRUE, FALSE, 0, 1, '0', '1' );
+	protected function validateBoolean($attribute, $value)
+	{
+		$acceptable = array(TRUE, FALSE, 0, 1, '0', '1');
 
-		return in_array( $value, $acceptable, TRUE );
+		return in_array($value, $acceptable, TRUE);
 	}
 
 	/**
@@ -692,8 +725,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateInteger( $attribute, $value ) {
-		return filter_var( $value, FILTER_VALIDATE_INT ) !== FALSE;
+	protected function validateInteger($attribute, $value)
+	{
+		return filter_var($value, FILTER_VALIDATE_INT) !== FALSE;
 	}
 
 	/**
@@ -704,8 +738,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateNumeric( $attribute, $value ) {
-		return is_numeric( $value );
+	protected function validateNumeric($attribute, $value)
+	{
+		return is_numeric($value);
 	}
 
 	/**
@@ -716,8 +751,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateString( $attribute, $value ) {
-		return is_string( $value );
+	protected function validateString($attribute, $value)
+	{
+		return is_string($value);
 	}
 
 	/**
@@ -729,11 +765,12 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateDigits( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'digits' );
+	protected function validateDigits($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'digits');
 
-		return $this->validateNumeric( $attribute, $value )
-		       && strlen( (string) $value ) == $parameters[ 0 ];
+		return $this->validateNumeric($attribute, $value)
+			&& strlen((string) $value) == $parameters[0];
 	}
 
 	/**
@@ -745,12 +782,13 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateDigitsBetween( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 2, $parameters, 'digits_between' );
-		$length = strlen( (string) $value );
+	protected function validateDigitsBetween($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(2, $parameters, 'digits_between');
+		$length = strlen((string) $value);
 
-		return $this->validateNumeric( $attribute, $value )
-		       && $length >= $parameters[ 0 ] && $length <= $parameters[ 1 ];
+		return $this->validateNumeric($attribute, $value)
+			&& $length >= $parameters[0] && $length <= $parameters[1];
 	}
 
 	/**
@@ -762,10 +800,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateSize( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'size' );
+	protected function validateSize($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'size');
 
-		return $this->getSize( $attribute, $value ) == $parameters[ 0 ];
+		return $this->getSize($attribute, $value) == $parameters[0];
 	}
 
 	/**
@@ -777,11 +816,12 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateBetween( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 2, $parameters, 'between' );
-		$size = $this->getSize( $attribute, $value );
+	protected function validateBetween($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(2, $parameters, 'between');
+		$size = $this->getSize($attribute, $value);
 
-		return $size >= $parameters[ 0 ] && $size <= $parameters[ 1 ];
+		return $size >= $parameters[0] && $size <= $parameters[1];
 	}
 
 	/**
@@ -793,10 +833,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateMin( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'min' );
+	protected function validateMin($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'min');
 
-		return $this->getSize( $attribute, $value ) >= $parameters[ 0 ];
+		return $this->getSize($attribute, $value) >= $parameters[0];
 	}
 
 	/**
@@ -808,9 +849,10 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateMax( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'max' );
-		return $this->getSize( $attribute, $value ) <= $parameters[ 0 ];
+	protected function validateMax($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'max');
+		return $this->getSize($attribute, $value) <= $parameters[0];
 	}
 
 	/**
@@ -821,19 +863,20 @@ class AE_Validator {
 	 *
 	 * @return mixed
 	 */
-	protected function getSize( $attribute, $value ) {
-		$hasNumeric = $this->hasRule( $attribute, $this->numericRules );
+	protected function getSize($attribute, $value)
+	{
+		$hasNumeric = $this->hasRule($attribute, $this->numericRules);
 		// This method will determine if the attribute is a number, string, or file and
 		// return the proper size accordingly. If it is a number, then number itself
 		// is the size. If it is a file, we take kilobytes, and for a string the
 		// entire length of the string will be considered the attribute size.
-		if ( is_numeric( $value ) && $hasNumeric ) {
-			return static::array_get( $this->data, $attribute );
-		} elseif ( is_array( $value ) ) {
-			return count( $value );
+		if (is_numeric($value) && $hasNumeric) {
+			return static::array_get($this->data, $attribute);
+		} elseif (is_array($value)) {
+			return count($value);
 		}
 
-		return mb_strlen( $value );
+		return mb_strlen($value);
 	}
 
 	/**
@@ -845,8 +888,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateIn( $attribute, $value, $parameters ) {
-		return in_array( (string) $value, $parameters );
+	protected function validateIn($attribute, $value, $parameters)
+	{
+		return in_array((string) $value, $parameters);
 	}
 
 	/**
@@ -858,8 +902,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateNotIn( $attribute, $value, $parameters ) {
-		return ! $this->validateIn( $attribute, $value, $parameters );
+	protected function validateNotIn($attribute, $value, $parameters)
+	{
+		return !$this->validateIn($attribute, $value, $parameters);
 	}
 
 	/**
@@ -872,8 +917,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateUnique( $attribute, $value, $parameters ) {
-		return ! $this->validateExists( $attribute, $value, $parameters );
+	protected function validateUnique($attribute, $value, $parameters)
+	{
+		return !$this->validateExists($attribute, $value, $parameters);
 	}
 
 	/**
@@ -885,16 +931,17 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateExists( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'exists' );
-		$table = $parameters[ 0 ];
+	protected function validateExists($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'exists');
+		$table = $parameters[0];
 		// The second parameter position holds the name of the column that should be
 		// verified as existing. If this parameter is not specified we will guess
 		// that the columns being "verified" shares the given attribute's name.
-		$column   = isset( $parameters[ 1 ] ) ? $parameters[ 1 ] : $attribute;
-		$expected = ( is_array( $value ) ) ? count( $value ) : 1;
+		$column   = isset($parameters[1]) ? $parameters[1] : $attribute;
+		$expected = (is_array($value)) ? count($value) : 1;
 
-		return $this->getExistCount( $table, $column, $value, $parameters ) >= $expected;
+		return $this->getExistCount($table, $column, $value, $parameters) >= $expected;
 	}
 
 	/**
@@ -909,22 +956,24 @@ class AE_Validator {
 	 * @return bool
 	 * @author nguyenvanduocit
 	 */
-	protected function validateNonce( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'nonce' );
-		$action = $parameters[ 0 ];
-		if ( function_exists( 'wp_verify_nonce' ) ) {
-			return wp_verify_nonce( $value, $action );
+	protected function validateNonce($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'nonce');
+		$action = $parameters[0];
+		if (function_exists('wp_verify_nonce')) {
+			return wp_verify_nonce($value, $action);
 		} else {
 			return FALSE;
 		}
 	}
 
-	protected function validateTerm( $attribute, $value, $parameters ) {
-		$taxonomy = isset( $parameters[ 0 ] ) ? $parameters[ 0 ] : NULL;
-		$parent   = isset( $parameters[ 1 ] ) ? $parameters[ 1 ] : NULL;
+	protected function validateTerm($attribute, $value, $parameters)
+	{
+		$taxonomy = isset($parameters[0]) ? $parameters[0] : NULL;
+		$parent   = isset($parameters[1]) ? $parameters[1] : NULL;
 
-		if ( function_exists( 'term_exists' ) ) {
-			return ( term_exists( $value, $taxonomy, $parent ) != NULL );
+		if (function_exists('term_exists')) {
+			return (term_exists($value, $taxonomy, $parent) != NULL);
 		} else {
 			return FALSE;
 		}
@@ -940,30 +989,31 @@ class AE_Validator {
 	 *
 	 * @return int
 	 */
-	protected function getExistCount( $table, $column, $value, $parameters ) {
+	protected function getExistCount($table, $column, $value, $parameters)
+	{
 		global $wpdb;
-		if ( ! is_array( $value ) ) {
+		if (!is_array($value)) {
 			$value = (array) $value;
 		}
 
-		$value_count          = count( $value );
-		$stringPlaceholders   = array_fill( 0, $value_count, '%s' );
-		$placeholdersForValue = implode( ',', $stringPlaceholders );
+		$value_count          = count($value);
+		$stringPlaceholders   = array_fill(0, $value_count, '%s');
+		$placeholdersForValue = implode(',', $stringPlaceholders);
 
-		$value = $wpdb->prepare( $placeholdersForValue, $value );
+		$value = $wpdb->prepare($placeholdersForValue, $value);
 
-		switch ( count( $parameters ) ) {
+		switch (count($parameters)) {
 			case 4:
-				$addition_column = $parameters[ 2 ];
-				$addtion_value   = $parameters[ 3 ];
-				$query           = $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE {$column} IN ({$value}) AND {$addition_column} = %s", $addtion_value );
+				$addition_column = $parameters[2];
+				$addtion_value   = $parameters[3];
+				$query           = $wpdb->prepare("SELECT COUNT(*) FROM {$table} WHERE {$column} IN ({$value}) AND {$addition_column} = %s", $addtion_value);
 				break;
 			case 2:
 			default:
 				$query = "SELECT COUNT(*) FROM {$table} WHERE {$column} IN ({$value})";
 				break;
 		}
-		$count = $wpdb->get_var( $query );
+		$count = $wpdb->get_var($query);
 
 		return $count;
 	}
@@ -975,8 +1025,9 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	protected function getExtraExistConditions( array $parameters ) {
-		return $this->getExtraConditions( array_values( array_slice( $parameters, 2 ) ) );
+	protected function getExtraExistConditions(array $parameters)
+	{
+		return $this->getExtraConditions(array_values(array_slice($parameters, 2)));
 	}
 
 	/**
@@ -986,11 +1037,12 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	protected function getExtraConditions( array $segments ) {
+	protected function getExtraConditions(array $segments)
+	{
 		$extra = array();
-		$count = count( $segments );
-		for ( $i = 0; $i < $count; $i = $i + 2 ) {
-			$extra[ $segments[ $i ] ] = $segments[ $i + 1 ];
+		$count = count($segments);
+		for ($i = 0; $i < $count; $i = $i + 2) {
+			$extra[$segments[$i]] = $segments[$i + 1];
 		}
 
 		return $extra;
@@ -1004,8 +1056,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateIp( $attribute, $value ) {
-		return filter_var( $value, FILTER_VALIDATE_IP ) !== FALSE;
+	protected function validateIp($attribute, $value)
+	{
+		return filter_var($value, FILTER_VALIDATE_IP) !== FALSE;
 	}
 
 	/**
@@ -1016,8 +1069,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateEmail( $attribute, $value ) {
-		return filter_var( $value, FILTER_VALIDATE_EMAIL ) !== FALSE;
+	protected function validateEmail($attribute, $value)
+	{
+		return filter_var($value, FILTER_VALIDATE_EMAIL) !== FALSE;
 	}
 
 	/**
@@ -1028,8 +1082,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateUrl( $attribute, $value ) {
-		return filter_var( $value, FILTER_VALIDATE_URL ) !== FALSE;
+	protected function validateUrl($attribute, $value)
+	{
+		return filter_var($value, FILTER_VALIDATE_URL) !== FALSE;
 	}
 
 	/**
@@ -1040,10 +1095,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateActiveUrl( $attribute, $value ) {
-		$url = str_replace( array( 'http://', 'https://', 'ftp://' ), '', strtolower( $value ) );
+	protected function validateActiveUrl($attribute, $value)
+	{
+		$url = str_replace(array('http://', 'https://', 'ftp://'), '', strtolower($value));
 
-		return checkdnsrr( $url, 'A' );
+		return checkdnsrr($url, 'A');
 	}
 	/**
 	 * Validate the MIME type of a file is an image MIME type.
@@ -1097,8 +1153,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateAlpha( $attribute, $value ) {
-		return preg_match( '/^[\pL\pM]+$/u', $value );
+	protected function validateAlpha($attribute, $value)
+	{
+		return preg_match('/^[\pL\pM]+$/u', $value);
 	}
 
 	/**
@@ -1109,8 +1166,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateAlphaNum( $attribute, $value ) {
-		return preg_match( '/^[\pL\pM\pN]+$/u', $value );
+	protected function validateAlphaNum($attribute, $value)
+	{
+		return preg_match('/^[\pL\pM\pN]+$/u', $value);
 	}
 
 	/**
@@ -1121,8 +1179,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateAlphaDash( $attribute, $value ) {
-		return preg_match( '/^[\pL\pM\pN_-]+$/u', $value );
+	protected function validateAlphaDash($attribute, $value)
+	{
+		return preg_match('/^[\pL\pM\pN_-]+$/u', $value);
 	}
 
 	/**
@@ -1134,10 +1193,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateRegex( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'regex' );
+	protected function validateRegex($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'regex');
 
-		return preg_match( $parameters[ 0 ], $value );
+		return preg_match($parameters[0], $value);
 	}
 
 	/**
@@ -1148,16 +1208,17 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateDate( $attribute, $value ) {
-		if ( $value instanceof DateTime ) {
+	protected function validateDate($attribute, $value)
+	{
+		if ($value instanceof DateTime) {
 			return TRUE;
 		}
-		if ( strtotime( $value ) === FALSE ) {
+		if (strtotime($value) === FALSE) {
 			return FALSE;
 		}
-		$date = date_parse( $value );
+		$date = date_parse($value);
 
-		return checkdate( $date[ 'month' ], $date[ 'day' ], $date[ 'year' ] );
+		return checkdate($date['month'], $date['day'], $date['year']);
 	}
 
 	/**
@@ -1169,11 +1230,12 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateDateFormat( $attribute, $value, $parameters ) {
-		$this->requireParameterCount( 1, $parameters, 'date_format' );
-		$parsed = date_parse_from_format( $parameters[ 0 ], $value );
+	protected function validateDateFormat($attribute, $value, $parameters)
+	{
+		$this->requireParameterCount(1, $parameters, 'date_format');
+		$parsed = date_parse_from_format($parameters[0], $value);
 
-		return $parsed[ 'error_count' ] === 0 && $parsed[ 'warning_count' ] === 0;
+		return $parsed['error_count'] === 0 && $parsed['warning_count'] === 0;
 	}
 	/**
 	 * Validate the date is before a given date.
@@ -1206,10 +1268,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateBeforeWithFormat( $format, $value, $parameters ) {
-		$param = $this->getValue( $parameters[ 0 ] ) ?: $parameters[ 0 ];
+	protected function validateBeforeWithFormat($format, $value, $parameters)
+	{
+		$param = $this->getValue($parameters[0]) ?: $parameters[0];
 
-		return $this->checkDateTimeOrder( $format, $value, $param );
+		return $this->checkDateTimeOrder($format, $value, $param);
 	}
 	/**
 	 * Validate the date is after a given date.
@@ -1242,10 +1305,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateAfterWithFormat( $format, $value, $parameters ) {
-		$param = $this->getValue( $parameters[ 0 ] ) ?: $parameters[ 0 ];
+	protected function validateAfterWithFormat($format, $value, $parameters)
+	{
+		$param = $this->getValue($parameters[0]) ?: $parameters[0];
 
-		return $this->checkDateTimeOrder( $format, $param, $value );
+		return $this->checkDateTimeOrder($format, $param, $value);
 	}
 
 	/**
@@ -1257,11 +1321,12 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function checkDateTimeOrder( $format, $before, $after ) {
-		$before = $this->getDateTimeWithOptionalFormat( $format, $before );
-		$after  = $this->getDateTimeWithOptionalFormat( $format, $after );
+	protected function checkDateTimeOrder($format, $before, $after)
+	{
+		$before = $this->getDateTimeWithOptionalFormat($format, $before);
+		$after  = $this->getDateTimeWithOptionalFormat($format, $after);
 
-		return ( $before && $after ) && ( $after > $before );
+		return ($before && $after) && ($after > $before);
 	}
 
 	/**
@@ -1272,14 +1337,15 @@ class AE_Validator {
 	 *
 	 * @return \DateTime|null
 	 */
-	protected function getDateTimeWithOptionalFormat( $format, $value ) {
-		$date = DateTime::createFromFormat( $format, $value );
-		if ( $date ) {
+	protected function getDateTimeWithOptionalFormat($format, $value)
+	{
+		$date = DateTime::createFromFormat($format, $value);
+		if ($date) {
 			return $date;
 		}
 		try {
-			return new DateTime( $value );
-		} catch ( Exception $e ) {
+			return new DateTime($value);
+		} catch (Exception $e) {
 			return;
 		}
 	}
@@ -1292,10 +1358,11 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function validateTimezone( $attribute, $value ) {
+	protected function validateTimezone($attribute, $value)
+	{
 		try {
-			new DateTimeZone( $value );
-		} catch ( Exception $e ) {
+			new DateTimeZone($value);
+		} catch (Exception $e) {
 			return FALSE;
 		}
 
@@ -1309,9 +1376,10 @@ class AE_Validator {
 	 *
 	 * @return string|null
 	 */
-	protected function getDateFormat( $attribute ) {
-		if ( $result = $this->getRule( $attribute, 'DateFormat' ) ) {
-			return $result[ 1 ][ 0 ];
+	protected function getDateFormat($attribute)
+	{
+		if ($result = $this->getRule($attribute, 'DateFormat')) {
+			return $result[1][0];
 		}
 	}
 
@@ -1323,13 +1391,14 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function getMessage( $attribute, $rule ) {
-		$lowerRule     = static::snake_case( $rule );
-		$inlineMessage = $this->getInlineMessage( $attribute, $lowerRule );
+	protected function getMessage($attribute, $rule)
+	{
+		$lowerRule     = static::snake_case($rule);
+		$inlineMessage = $this->getInlineMessage($attribute, $lowerRule);
 		// First we will retrieve the custom message for the validation rule if one
 		// exists. If a custom validation message is being used we'll return the
 		// custom message, otherwise we'll keep searching for a valid message.
-		if ( ! is_null( $inlineMessage ) ) {
+		if (!is_null($inlineMessage)) {
 			return $inlineMessage;
 		}
 		$customKey     = "validation.custom.{$attribute}.{$lowerRule}";
@@ -1337,12 +1406,13 @@ class AE_Validator {
 		// First we check for a custom defined validation message for the attribute
 		// and rule. This allows the developer to specify specific messages for
 		// only some attributes and rules that need to get specially formed.
-		if ( $customMessage !== $customKey ) {
+		if ($customMessage !== $customKey) {
 			return $customMessage;
 		}
 	}
 
-	public function getMessages() {
+	public function getMessages()
+	{
 		return $this->messages;
 	}
 
@@ -1355,15 +1425,16 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function getInlineMessage( $attribute, $lowerRule, $source = NULL ) {
+	protected function getInlineMessage($attribute, $lowerRule, $source = NULL)
+	{
 		$source = $source ?: $this->customMessages;
-		$keys   = array( "{$attribute}.{$lowerRule}", $lowerRule );
+		$keys   = array("{$attribute}.{$lowerRule}", $lowerRule);
 		// First we will check for a custom message for an attribute specific rule
 		// message for the fields, then we will check for a general custom line
 		// that is not attribute specific. If we find either we'll return it.
-		foreach ( $keys as $key ) {
-			if ( isset( $source[ $key ] ) ) {
-				return $source[ $key ];
+		foreach ($keys as $key) {
+			if (isset($source[$key])) {
+				return $source[$key];
 			}
 		}
 	}
@@ -1376,12 +1447,13 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function getSizeMessage( $attribute, $rule ) {
-		$lowerRule = static::snake_case( $rule );
+	protected function getSizeMessage($attribute, $rule)
+	{
+		$lowerRule = static::snake_case($rule);
 		// There are three different types of size validations. The attribute may be
 		// either a number, file, or string so we will check a few things to know
 		// which type of value it is and return the correct line for that type.
-		$type = $this->getAttributeType( $attribute );
+		$type = $this->getAttributeType($attribute);
 		$key  = "validation.{$lowerRule}.{$type}";
 
 		return $key;
@@ -1394,15 +1466,16 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function getAttributeType( $attribute ) {
+	protected function getAttributeType($attribute)
+	{
 		// We assume that the attributes present in the file array are files so that
 		// means that if the attribute does not have a numeric rule and the files
 		// list doesn't have it we'll just consider it a string by elimination.
-		if ( $this->hasRule( $attribute, $this->numericRules ) ) {
+		if ($this->hasRule($attribute, $this->numericRules)) {
 			return 'numeric';
-		} elseif ( $this->hasRule( $attribute, array( 'Array' ) ) ) {
+		} elseif ($this->hasRule($attribute, array('Array'))) {
 			return 'array';
-		} elseif ( array_key_exists( $attribute, $this->files ) ) {
+		} elseif (array_key_exists($attribute, $this->files)) {
 			return 'file';
 		}
 
@@ -1419,10 +1492,13 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function doReplacements( $message, $attribute, $rule, $parameters ) {
-		$message = str_replace( ':attribute', $this->getAttribute( $attribute ), $message );
-		if ( method_exists( $this, $replacer = "replace{$rule}" ) ) {
-			$message = $this->$replacer( $message, $attribute, $rule, $parameters );
+	protected function doReplacements($message, $attribute, $rule, $parameters)
+	{
+		if ($message !== null) {
+			$message = str_replace(':attribute', $this->getAttribute($attribute), $message);
+			if (method_exists($this, $replacer = "replace{$rule}")) {
+				$message = $this->$replacer($message, $attribute, $rule, $parameters);
+			}
 		}
 
 		return $message;
@@ -1435,13 +1511,14 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	protected function getAttributeList( array $values ) {
+	protected function getAttributeList(array $values)
+	{
 		$attributes = array();
 		// For each attribute in the list we will simply get its displayable form as
 		// this is convenient when replacing lists of parameters like some of the
 		// replacement functions do when formatting out the validation message.
-		foreach ( $values as $key => $value ) {
-			$attributes[ $key ] = $this->getAttribute( $value );
+		foreach ($values as $key => $value) {
+			$attributes[$key] = $this->getAttribute($value);
 		}
 
 		return $attributes;
@@ -1454,18 +1531,19 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function getAttribute( $attribute ) {
+	protected function getAttribute($attribute)
+	{
 		// The developer may dynamically specify the array of custom attributes
 		// on this Validator instance. If the attribute exists in this array
 		// it takes precedence over all other ways we can pull attributes.
-		if ( isset( $this->customAttributes[ $attribute ] ) ) {
-			return $this->customAttributes[ $attribute ];
+		if (isset($this->customAttributes[$attribute])) {
+			return $this->customAttributes[$attribute];
 		}
 		$key = "validation.attributes.{$attribute}";
 		// If no language line has been specified for the attribute all of the
 		// underscores are removed from the attribute name and that will be
 		// used as default versions of the attribute's displayable names.
-		return str_replace( '_', ' ', static::snake_case( $attribute ) );
+		return str_replace('_', ' ', static::snake_case($attribute));
 	}
 
 	/**
@@ -1476,9 +1554,10 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	public function getDisplayableValue( $attribute, $value ) {
-		if ( isset( $this->customValues[ $attribute ][ $value ] ) ) {
-			return $this->customValues[ $attribute ][ $value ];
+	public function getDisplayableValue($attribute, $value)
+	{
+		if (isset($this->customValues[$attribute][$value])) {
+			return $this->customValues[$attribute][$value];
 		}
 
 		return $value;
@@ -1494,8 +1573,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceBetween( $message, $attribute, $rule, $parameters ) {
-		return str_replace( array( ':min', ':max' ), $parameters, $message );
+	protected function replaceBetween($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(array(':min', ':max'), $parameters, $message);
 	}
 
 	/**
@@ -1508,8 +1588,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceDigits( $message, $attribute, $rule, $parameters ) {
-		return str_replace( ':digits', $parameters[ 0 ], $message );
+	protected function replaceDigits($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(':digits', $parameters[0], $message);
 	}
 
 	/**
@@ -1522,8 +1603,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceDigitsBetween( $message, $attribute, $rule, $parameters ) {
-		return $this->replaceBetween( $message, $attribute, $rule, $parameters );
+	protected function replaceDigitsBetween($message, $attribute, $rule, $parameters)
+	{
+		return $this->replaceBetween($message, $attribute, $rule, $parameters);
 	}
 
 	/**
@@ -1536,8 +1618,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceSize( $message, $attribute, $rule, $parameters ) {
-		return str_replace( ':size', $parameters[ 0 ], $message );
+	protected function replaceSize($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(':size', $parameters[0], $message);
 	}
 
 	/**
@@ -1550,8 +1633,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceMin( $message, $attribute, $rule, $parameters ) {
-		return str_replace( ':min', $parameters[ 0 ], $message );
+	protected function replaceMin($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(':min', $parameters[0], $message);
 	}
 
 	/**
@@ -1564,8 +1648,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceMax( $message, $attribute, $rule, $parameters ) {
-		return str_replace( ':max', $parameters[ 0 ], $message );
+	protected function replaceMax($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(':max', $parameters[0], $message);
 	}
 
 	/**
@@ -1578,12 +1663,13 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceIn( $message, $attribute, $rule, $parameters ) {
-		foreach ( $parameters as &$parameter ) {
-			$parameter = $this->getDisplayableValue( $attribute, $parameter );
+	protected function replaceIn($message, $attribute, $rule, $parameters)
+	{
+		foreach ($parameters as &$parameter) {
+			$parameter = $this->getDisplayableValue($attribute, $parameter);
 		}
 
-		return str_replace( ':values', implode( ', ', $parameters ), $message );
+		return str_replace(':values', implode(', ', $parameters), $message);
 	}
 
 	/**
@@ -1596,8 +1682,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceNotIn( $message, $attribute, $rule, $parameters ) {
-		return $this->replaceIn( $message, $attribute, $rule, $parameters );
+	protected function replaceNotIn($message, $attribute, $rule, $parameters)
+	{
+		return $this->replaceIn($message, $attribute, $rule, $parameters);
 	}
 
 	/**
@@ -1610,8 +1697,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceMimes( $message, $attribute, $rule, $parameters ) {
-		return str_replace( ':values', implode( ', ', $parameters ), $message );
+	protected function replaceMimes($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(':values', implode(', ', $parameters), $message);
 	}
 
 	/**
@@ -1624,10 +1712,11 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceRequiredWith( $message, $attribute, $rule, $parameters ) {
-		$parameters = $this->getAttributeList( $parameters );
+	protected function replaceRequiredWith($message, $attribute, $rule, $parameters)
+	{
+		$parameters = $this->getAttributeList($parameters);
 
-		return str_replace( ':values', implode( ' / ', $parameters ), $message );
+		return str_replace(':values', implode(' / ', $parameters), $message);
 	}
 
 	/**
@@ -1640,8 +1729,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceRequiredWithAll( $message, $attribute, $rule, $parameters ) {
-		return $this->replaceRequiredWith( $message, $attribute, $rule, $parameters );
+	protected function replaceRequiredWithAll($message, $attribute, $rule, $parameters)
+	{
+		return $this->replaceRequiredWith($message, $attribute, $rule, $parameters);
 	}
 
 	/**
@@ -1654,8 +1744,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceRequiredWithout( $message, $attribute, $rule, $parameters ) {
-		return $this->replaceRequiredWith( $message, $attribute, $rule, $parameters );
+	protected function replaceRequiredWithout($message, $attribute, $rule, $parameters)
+	{
+		return $this->replaceRequiredWith($message, $attribute, $rule, $parameters);
 	}
 
 	/**
@@ -1668,8 +1759,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceRequiredWithoutAll( $message, $attribute, $rule, $parameters ) {
-		return $this->replaceRequiredWith( $message, $attribute, $rule, $parameters );
+	protected function replaceRequiredWithoutAll($message, $attribute, $rule, $parameters)
+	{
+		return $this->replaceRequiredWith($message, $attribute, $rule, $parameters);
 	}
 
 	/**
@@ -1682,11 +1774,12 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceRequiredIf( $message, $attribute, $rule, $parameters ) {
-		$parameters[ 1 ] = $this->getDisplayableValue( $parameters[ 0 ], static::array_get( $this->data, $parameters[ 0 ] ) );
-		$parameters[ 0 ] = $this->getAttribute( $parameters[ 0 ] );
+	protected function replaceRequiredIf($message, $attribute, $rule, $parameters)
+	{
+		$parameters[1] = $this->getDisplayableValue($parameters[0], static::array_get($this->data, $parameters[0]));
+		$parameters[0] = $this->getAttribute($parameters[0]);
 
-		return str_replace( array( ':other', ':value' ), $parameters, $message );
+		return str_replace(array(':other', ':value'), $parameters, $message);
 	}
 
 	/**
@@ -1699,8 +1792,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceSame( $message, $attribute, $rule, $parameters ) {
-		return str_replace( ':other', $this->getAttribute( $parameters[ 0 ] ), $message );
+	protected function replaceSame($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(':other', $this->getAttribute($parameters[0]), $message);
 	}
 
 	/**
@@ -1713,8 +1807,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceDifferent( $message, $attribute, $rule, $parameters ) {
-		return $this->replaceSame( $message, $attribute, $rule, $parameters );
+	protected function replaceDifferent($message, $attribute, $rule, $parameters)
+	{
+		return $this->replaceSame($message, $attribute, $rule, $parameters);
 	}
 
 	/**
@@ -1727,8 +1822,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceDateFormat( $message, $attribute, $rule, $parameters ) {
-		return str_replace( ':format', $parameters[ 0 ], $message );
+	protected function replaceDateFormat($message, $attribute, $rule, $parameters)
+	{
+		return str_replace(':format', $parameters[0], $message);
 	}
 
 	/**
@@ -1741,12 +1837,13 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceBefore( $message, $attribute, $rule, $parameters ) {
-		if ( ! ( strtotime( $parameters[ 0 ] ) ) ) {
-			return str_replace( ':date', $this->getAttribute( $parameters[ 0 ] ), $message );
+	protected function replaceBefore($message, $attribute, $rule, $parameters)
+	{
+		if (!(strtotime($parameters[0]))) {
+			return str_replace(':date', $this->getAttribute($parameters[0]), $message);
 		}
 
-		return str_replace( ':date', $parameters[ 0 ], $message );
+		return str_replace(':date', $parameters[0], $message);
 	}
 
 	/**
@@ -1759,8 +1856,9 @@ class AE_Validator {
 	 *
 	 * @return string
 	 */
-	protected function replaceAfter( $message, $attribute, $rule, $parameters ) {
-		return $this->replaceBefore( $message, $attribute, $rule, $parameters );
+	protected function replaceAfter($message, $attribute, $rule, $parameters)
+	{
+		return $this->replaceBefore($message, $attribute, $rule, $parameters);
 	}
 
 	/**
@@ -1771,8 +1869,9 @@ class AE_Validator {
 	 *
 	 * @return bool
 	 */
-	protected function hasRule( $attribute, $rules ) {
-		return ! is_null( $this->getRule( $attribute, $rules ) );
+	protected function hasRule($attribute, $rules)
+	{
+		return !is_null($this->getRule($attribute, $rules));
 	}
 
 	/**
@@ -1783,15 +1882,16 @@ class AE_Validator {
 	 *
 	 * @return array|null
 	 */
-	protected function getRule( $attribute, $rules ) {
-		if ( ! array_key_exists( $attribute, $this->rules ) ) {
+	protected function getRule($attribute, $rules)
+	{
+		if (!array_key_exists($attribute, $this->rules)) {
 			return;
 		}
 		$rules = (array) $rules;
-		foreach ( $this->rules[ $attribute ] as $rule ) {
-			list( $rule, $parameters ) = $this->parseRule( $rule );
-			if ( in_array( $rule, $rules ) ) {
-				return array( $rule, $parameters );
+		foreach ($this->rules[$attribute] as $rule) {
+			list($rule, $parameters) = $this->parseRule($rule);
+			if (in_array($rule, $rules)) {
+				return array($rule, $parameters);
 			}
 		}
 	}
@@ -1803,12 +1903,13 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	protected function parseRule( $rules ) {
-		if ( is_array( $rules ) ) {
-			return $this->parseArrayRule( $rules );
+	protected function parseRule($rules)
+	{
+		if (is_array($rules)) {
+			return $this->parseArrayRule($rules);
 		}
 
-		return $this->parseStringRule( $rules );
+		return $this->parseStringRule($rules);
 	}
 
 	/**
@@ -1818,8 +1919,9 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	protected function parseArrayRule( array $rules ) {
-		return array( trim( static::array_get( $rules, 0 ) ), array_slice( $rules, 1 ) );
+	protected function parseArrayRule(array $rules)
+	{
+		return array(trim(static::array_get($rules, 0)), array_slice($rules, 1));
 	}
 
 	/**
@@ -1829,17 +1931,18 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	protected function parseStringRule( $rules ) {
+	protected function parseStringRule($rules)
+	{
 		$parameters = array();
 		// The format for specifying validation rules and parameters follows an
 		// easy {rule}:{parameters} formatting convention. For instance the
 		// rule "Max:3" states that the value may only be three letters.
-		if ( strpos( $rules, ':' ) !== FALSE ) {
-			list( $rules, $parameter ) = explode( ':', $rules, 2 );
-			$parameters = $this->parseParameters( $rules, $parameter );
+		if (strpos($rules, ':') !== FALSE) {
+			list($rules, $parameter) = explode(':', $rules, 2);
+			$parameters = $this->parseParameters($rules, $parameter);
 		}
 
-		return array( trim( $rules ), $parameters );
+		return array(trim($rules), $parameters);
 	}
 
 	/**
@@ -1850,12 +1953,13 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	protected function parseParameters( $rule, $parameter ) {
-		if ( strtolower( $rule ) == 'regex' ) {
-			return array( $parameter );
+	protected function parseParameters($rule, $parameter)
+	{
+		if (strtolower($rule) == 'regex') {
+			return array($parameter);
 		}
 
-		return str_getcsv( $parameter );
+		return str_getcsv($parameter);
 	}
 
 	/**
@@ -1863,7 +1967,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function getExtensions() {
+	public function getExtensions()
+	{
 		return $this->extensions;
 	}
 
@@ -1874,12 +1979,13 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function addExtensions( array $extensions ) {
-		if ( $extensions ) {
-			$keys       = array_map( 'WE_Validator::snake_case', array_keys( $extensions ) );
-			$extensions = array_combine( $keys, array_values( $extensions ) );
+	public function addExtensions(array $extensions)
+	{
+		if ($extensions) {
+			$keys       = array_map('WE_Validator::snake_case', array_keys($extensions));
+			$extensions = array_combine($keys, array_values($extensions));
 		}
-		$this->extensions = array_merge( $this->extensions, $extensions );
+		$this->extensions = array_merge($this->extensions, $extensions);
 	}
 
 	/**
@@ -1889,10 +1995,11 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function addImplicitExtensions( array $extensions ) {
-		$this->addExtensions( $extensions );
-		foreach ( $extensions as $rule => $extension ) {
-			$this->implicitRules[ ] = $rule;
+	public function addImplicitExtensions(array $extensions)
+	{
+		$this->addExtensions($extensions);
+		foreach ($extensions as $rule => $extension) {
+			$this->implicitRules[] = $rule;
 		}
 	}
 
@@ -1904,8 +2011,9 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function addExtension( $rule, $extension ) {
-		$this->extensions[ static::snake_case( $rule ) ] = $extension;
+	public function addExtension($rule, $extension)
+	{
+		$this->extensions[static::snake_case($rule)] = $extension;
 	}
 
 	/**
@@ -1916,9 +2024,10 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function addImplicitExtension( $rule, $extension ) {
-		$this->addExtension( $rule, $extension );
-		$this->implicitRules[ ] = $rule;
+	public function addImplicitExtension($rule, $extension)
+	{
+		$this->addExtension($rule, $extension);
+		$this->implicitRules[] = $rule;
 	}
 
 	/**
@@ -1926,7 +2035,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function getReplacers() {
+	public function getReplacers()
+	{
 		return $this->replacers;
 	}
 
@@ -1937,12 +2047,13 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function addReplacers( array $replacers ) {
-		if ( $replacers ) {
-			$keys      = array_map( 'WE_Validator::snake_case', array_keys( $replacers ) );
-			$replacers = array_combine( $keys, array_values( $replacers ) );
+	public function addReplacers(array $replacers)
+	{
+		if ($replacers) {
+			$keys      = array_map('WE_Validator::snake_case', array_keys($replacers));
+			$replacers = array_combine($keys, array_values($replacers));
 		}
-		$this->replacers = array_merge( $this->replacers, $replacers );
+		$this->replacers = array_merge($this->replacers, $replacers);
 	}
 
 	/**
@@ -1953,8 +2064,9 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function addReplacer( $rule, $replacer ) {
-		$this->replacers[ static::snake_case( $rule ) ] = $replacer;
+	public function addReplacer($rule, $replacer)
+	{
+		$this->replacers[static::snake_case($rule)] = $replacer;
 	}
 
 	/**
@@ -1962,7 +2074,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function getData() {
+	public function getData()
+	{
 		return $this->data;
 	}
 
@@ -1973,8 +2086,9 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function setData( array $data ) {
-		$this->data = $this->parseData( $data );
+	public function setData(array $data)
+	{
+		$this->data = $this->parseData($data);
 	}
 
 	/**
@@ -1982,7 +2096,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function getRules() {
+	public function getRules()
+	{
 		return $this->rules;
 	}
 
@@ -1993,8 +2108,9 @@ class AE_Validator {
 	 *
 	 * @return $this
 	 */
-	public function setRules( array $rules ) {
-		$this->rules = $this->explodeRules( $rules );
+	public function setRules(array $rules)
+	{
+		$this->rules = $this->explodeRules($rules);
 
 		return $this;
 	}
@@ -2006,7 +2122,8 @@ class AE_Validator {
 	 *
 	 * @return $this
 	 */
-	public function setAttributeNames( array $attributes ) {
+	public function setAttributeNames(array $attributes)
+	{
 		$this->customAttributes = $attributes;
 
 		return $this;
@@ -2019,7 +2136,8 @@ class AE_Validator {
 	 *
 	 * @return $this
 	 */
-	public function setValueNames( array $values ) {
+	public function setValueNames(array $values)
+	{
 		$this->customValues = $values;
 
 		return $this;
@@ -2030,7 +2148,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function getFiles() {
+	public function getFiles()
+	{
 		return $this->files;
 	}
 
@@ -2041,7 +2160,8 @@ class AE_Validator {
 	 *
 	 * @return $this
 	 */
-	public function setFiles( array $files ) {
+	public function setFiles(array $files)
+	{
 		$this->files = $files;
 
 		return $this;
@@ -2052,7 +2172,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function getCustomMessages() {
+	public function getCustomMessages()
+	{
 		return $this->customMessages;
 	}
 
@@ -2063,8 +2184,9 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function setCustomMessages( array $messages ) {
-		$this->customMessages = array_merge( $this->customMessages, $messages );
+	public function setCustomMessages(array $messages)
+	{
+		$this->customMessages = array_merge($this->customMessages, $messages);
 	}
 
 	/**
@@ -2072,7 +2194,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function getCustomAttributes() {
+	public function getCustomAttributes()
+	{
 		return $this->customAttributes;
 	}
 
@@ -2083,8 +2206,9 @@ class AE_Validator {
 	 *
 	 * @return $this
 	 */
-	public function addCustomAttributes( array $customAttributes ) {
-		$this->customAttributes = array_merge( $this->customAttributes, $customAttributes );
+	public function addCustomAttributes(array $customAttributes)
+	{
+		$this->customAttributes = array_merge($this->customAttributes, $customAttributes);
 
 		return $this;
 	}
@@ -2094,7 +2218,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function getCustomValues() {
+	public function getCustomValues()
+	{
 		return $this->customValues;
 	}
 
@@ -2105,8 +2230,9 @@ class AE_Validator {
 	 *
 	 * @return $this
 	 */
-	public function addCustomValues( array $customValues ) {
-		$this->customValues = array_merge( $this->customValues, $customValues );
+	public function addCustomValues(array $customValues)
+	{
+		$this->customValues = array_merge($this->customValues, $customValues);
 
 		return $this;
 	}
@@ -2116,7 +2242,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function getFallbackMessages() {
+	public function getFallbackMessages()
+	{
 		return $this->fallbackMessages;
 	}
 
@@ -2127,7 +2254,8 @@ class AE_Validator {
 	 *
 	 * @return void
 	 */
-	public function setFallbackMessages( array $messages ) {
+	public function setFallbackMessages(array $messages)
+	{
 		$this->fallbackMessages = $messages;
 	}
 
@@ -2136,7 +2264,8 @@ class AE_Validator {
 	 *
 	 * @return array
 	 */
-	public function failed() {
+	public function failed()
+	{
 		return $this->failedRules;
 	}
 
@@ -2150,35 +2279,38 @@ class AE_Validator {
 	 * @return void
 	 * @throws \InvalidArgumentException
 	 */
-	protected function requireParameterCount( $count, $parameters, $rule ) {
-		if ( count( $parameters ) < $count ) {
-			throw new InvalidArgumentException( "Validation rule $rule requires at least $count parameters." );
+	protected function requireParameterCount($count, $parameters, $rule)
+	{
+		if (count($parameters) < $count) {
+			throw new InvalidArgumentException("Validation rule $rule requires at least $count parameters.");
 		}
 	}
 
 	/**
 	 * Helper class, may split to new class
 	 */
-	public static function array_get( $array, $key, $default = NULL ) {
-		if ( is_null( $key ) ) {
+	public static function array_get($array, $key, $default = NULL)
+	{
+		if (is_null($key)) {
 			return $array;
 		}
-		if ( isset( $array[ $key ] ) ) {
-			return $array[ $key ];
+		if (isset($array[$key])) {
+			return $array[$key];
 		}
-		foreach ( explode( '.', $key ) as $segment ) {
-			if ( ! is_array( $array ) || ! array_key_exists( $segment, $array ) ) {
+		foreach (explode('.', $key) as $segment) {
+			if (!is_array($array) || !array_key_exists($segment, $array)) {
 				return $default;
 			}
-			$array = $array[ $segment ];
+			$array = $array[$segment];
 		}
 
 		return $array;
 	}
 
-	public static function snake_case( $value, $delimiter = '_' ) {
-		if ( ! ctype_lower( $value ) ) {
-			$value = strtolower( preg_replace( '/(.)(?=[A-Z])/', '$1' . $delimiter, $value ) );
+	public static function snake_case($value, $delimiter = '_')
+	{
+		if (!ctype_lower($value)) {
+			$value = strtolower(preg_replace('/(.)(?=[A-Z])/', '$1' . $delimiter, $value));
 		}
 
 		return $value;

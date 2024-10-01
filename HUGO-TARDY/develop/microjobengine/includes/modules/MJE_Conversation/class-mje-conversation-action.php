@@ -25,12 +25,19 @@ class MJE_Conversation_Action extends MJE_Post_Action
     public function __construct($post_type = 'ae_message')
     {
         parent::__construct($post_type);
-        $this->add_ajax('mjob_conversation_sync', 'conversation_sync');
-        $this->add_action('ae_after_message', 'after_send_message', 10, 2);
+        $this->add_ajax('mjob_conversation_sync', 'conversation_sync'); // mark as read 
         $this->add_action('wp_enqueue_scripts', 'add_conversation_scripts');
-        $this->add_action('ae_message_validate_before_sync', 'validate_data_before_sync');
+
+        // called everytime converting the response before returning
         $this->add_filter('ae_convert_ae_message', 'convert_conversation');
+
+        $this->add_action('mje_delayed_notify_new_msg', 'notify_for_new_msg', 10, 4);
+        $this->add_action('mje_remove_delayed_notify_new_msg', 'mje_remove_delayed_notify_new_msg', 10, 1);
+
+        $this->add_action('ae_message_validate_before_sync', 'validate_data_before_sync');
+        $this->add_action('ae_after_message', 'after_send_message', 10, 2);
         $this->add_filter('ae_message_response', 'filter_message_response', 10, 2);
+
         $this->add_filter('mjob_check_pending_account', 'check_pending_account', 10, 2);
         $this->mail = new MJE_Mailing();
     }
@@ -57,8 +64,7 @@ class MJE_Conversation_Action extends MJE_Post_Action
 
     public function mark_unread()
     {
-        global $user_ID, $ae_post_factory;
-        $post_object = $ae_post_factory->get('ae_message');
+        global $user_ID;
 
         if (!$user_ID) {
             wp_send_json(array(
@@ -68,19 +74,11 @@ class MJE_Conversation_Action extends MJE_Post_Action
         }
 
         // Update unread meta
-        $unread_conversation = mje_get_unread_conversation();
+        $unread_conversations = mje_get_unread_conversation();
 
-        if (!empty($unread_conversation)) {
-            foreach ($unread_conversation as $unread) {
-                update_post_meta($unread->ID, $user_ID . '_conversation_status', 'read');
-
-                // Update read for message
-                $unread_messages = mje_get_unread_message($post_object->convert($unread));
-                if (!empty($unread_messages)) {
-                    foreach ($unread_messages as $message) {
-                        update_post_meta($message->ID, 'receiver_unread', "");
-                    }
-                }
+        if (!empty($unread_conversations)) {
+            foreach ($unread_conversations as $unread) {
+                mje_set_post_read_status($unread->ID, $user_ID, "read");
             }
 
             wp_send_json(array(
@@ -110,29 +108,44 @@ class MJE_Conversation_Action extends MJE_Post_Action
         global $user_ID;
         if (isset($message['data']) && !empty($message['data'])) {
             $message_data = $message['data'];
+
+            $target_conversation = (isset($message_data->post_parent) && $message_data->post_parent > 0)
+                ? $message_data->post_parent
+                : $message_data->ID;
+
+            $message_data->conversation_id = $target_conversation;
+
             // Update latest reply
-            if (isset($message_data->is_conversation) && $message_data->is_conversation == '1') {
-                update_post_meta($message_data->ID, 'latest_reply', $message_data->ID);
-                update_post_meta($message_data->ID, 'latest_reply_timestamp', time());
-                update_post_meta($message_data->ID, 'parent_conversation_id', $message_data->ID);
-            } else {
-                update_post_meta($message_data->post_parent, 'latest_reply', $message_data->ID);
-                update_post_meta($message_data->post_parent, 'latest_reply_timestamp', time());
-                update_post_meta($message_data->ID, 'parent_conversation_id', $message_data->post_parent);
-            }
+            update_post_meta($target_conversation, 'latest_reply', $message_data->ID);
+            update_post_meta($target_conversation, 'latest_reply_timestamp', time());
+            update_post_meta($message_data->ID, 'parent_conversation_id', $target_conversation);
+
             // Update user unread
             if ($message_data->from_user == $user_ID) {
-                update_post_meta($message_data->ID, 'receiver_unread', true);
-                update_post_meta($message_data->ID, 'sender_unread', false);
+
                 // Update unread for conversation
-                if (isset($message_data->post_parent) && $message_data->post_parent) {
-                    update_post_meta($message_data->post_parent, $message_data->to_user . '_conversation_status', 'unread');
-                    $message_data->conversation_id = $message_data->post_parent;
-                } else {
-                    update_post_meta($message_data->ID, $message_data->to_user . '_conversation_status', 'unread');
-                    $message_data->conversation_id = $message_data->ID;
+                $post_read_status = mje_get_post_read_status($target_conversation, $message_data->to_user);
+
+                // check if current read_status of the conversation is "unread" already?
+                if ("unread" !== $post_read_status) {
+                    mje_set_post_read_status($target_conversation, $message_data->to_user, "unread");
+
+                    // new msg received since previous read status, do_action for sending email & notifications
+                    if ($message_data->type == 'message' || $message_data->type == 'conversation') {
+
+                        $this->mje_setup_delayed_notify_new_msg($message_data);
+
+                        if (
+                            (isset($request['page']) && $request['page'] == 'mjob_order')
+                            && !mje_is_user_in_conversation($target_conversation, $message_data->to_user)
+                        ) {
+                            // this conversation id is the mjob_order_id, since this is the conversation of an mjob order
+                            do_action('new_msg_mjob_order', $target_conversation);
+                        }
+                    }
                 }
             }
+
             if ($message_data->type == 'custom_order') {
                 if ($request['budget']) {
                     update_post_meta($message_data->ID, 'custom_order_budget', absint($request['budget']));
@@ -204,16 +217,61 @@ class MJE_Conversation_Action extends MJE_Post_Action
                 }
                 $this->mail->reject_custom_order($request);
             }
+        }
+    }
 
-            // Send email to user
-            if ($message_data->type == 'message' || $message_data->type == 'conversation') {
+    // when a receiver read a message before the scheduled email event happen, remove it.
+    public function mje_remove_delayed_notify_new_msg($post_id)
+    {
+        $event_id = get_transient('mje_delayed_notify_new_msg_' . $post_id);
+        if ($event_id) {
+            wp_clear_scheduled_hook('mje_delayed_notify_new_msg', $event_id);
+            delete_transient('mje_delayed_notify_new_msg_' . $post_id);
+        }
+    }
 
+    public function mje_setup_delayed_notify_new_msg($message)
+    {
+        $delay = absint(ae_get_option('new_msg_notify_delayed_minutes', 15));
+        $delay = ($delay < 10) ? 600 : ($delay * 60);
 
-                if (mje_is_subscriber($message_data->to_user)) { // @since 1.3.72
-                    $to_user = get_userdata($message_data->to_user);
-                    $this->mail->inbox_mail($to_user, $message_data);
-                }
-            }
+        // make sure there is no cron lock so that we can schedule our event
+        delete_transient('doing_cron');
+        // setup a scheduled event to send email after $delay/60 minutes
+        wp_schedule_single_event(
+            time() + $delay,
+            'mje_delayed_notify_new_msg',
+            array(
+                $message->from_user,
+                $message->to_user,
+                $message->conversation_id,
+                $message->ID,
+            )
+        );
+        spawn_cron();
+
+        // set a transient to mark this email-sending event, 
+        // if within this time frame, the receiver read the message, 
+        // we will read this transient & cancel the scheduled event  
+        set_transient(
+            'mje_delayed_notify_new_msg_' . $message->conversation_id,
+            array(
+                $message->from_user,
+                $message->to_user,
+                $message->conversation_id,
+                $message->ID,
+            ),
+            $delay
+        );
+    }
+
+    // function to hook into the scheduled event 'mje_delayed_notify_new_msg'
+    public function notify_for_new_msg($from_user, $to_user, $conversation, $message)
+    {
+        if (mje_is_subscriber($to_user)) {
+            $from_user = get_userdata($from_user);
+            $to_user = get_userdata($to_user);
+            $this->mail->inbox_mail_new_msg($from_user, $to_user, $conversation, $message);
         }
     }
 
@@ -375,84 +433,79 @@ class MJE_Conversation_Action extends MJE_Post_Action
      */
     public function convert_conversation($result)
     {
-
         global $user_ID;
         $from_user = $result->from_user;
         $to_user = $result->to_user;
 
         if ($result->is_conversation == "1") {
-
             if ($user_ID == $from_user) {
-                $user_id = $to_user;
+                $author_id = $to_user;
             } else if ($user_ID == $to_user) {
-                $user_id = $from_user;
+                $author_id = $from_user;
             } else if (current_user_can('manage_options')) {
-                $user_id = $from_user;
+                $author_id = $from_user;
             } else {
                 return $result;
             }
             /**
              * Latest reply
              */
-            if (isset($result->latest_reply) and get_post($result->latest_reply)) {
+            if (isset($result->latest_reply)) {
                 $message = get_post($result->latest_reply);
-                //If message content null set message content is message title
-                if ($message->post_content == '')
-                    $message->post_content = $message->post_title;
+                if (!empty($message)) {
+                    //If message content null set message content is message title
+                    if ($message->post_content == '')
+                        $message->post_content = $message->post_title;
 
-                if ($message->post_author == $user_ID) {
-                    $result->latest_reply_text = __('You: ', 'enginethemes') . mje_filter_message_content($message->post_content);
-                } else {
-                    $result->latest_reply_text = mje_filter_message_content($message->post_content);
+                    if ($message->post_author == $user_ID) {
+                        $result->latest_reply_text = __('You: ', 'enginethemes') . mje_filter_message_content($message->post_content);
+                    } else {
+                        $result->latest_reply_text = mje_filter_message_content($message->post_content);
+                    }
+                    $result->latest_reply_time = et_the_time(get_the_time('U', $message->ID));
                 }
-                $result->latest_reply_time = et_the_time(get_the_time('U', $message->ID));
             }
-
-            $user_data = get_userdata($user_id);
-            $result->author_name = '';
-            if (!empty($user_data)) {
-                $result->author_name = $user_data->display_name;
-            }
-            $result->author_url = get_author_posts_url($user_id);
-            $result->author_avatar = '<a href="' . $result->author_url . '" target="_blank" title="' . $result->author_name . '">' . mje_avatar($user_id, 80) . '</a>';
-            $result->author_avatar_img = mje_avatar($user_id, 80);
 
             // Message parent
-            $conversation_status = get_post_meta($result->ID, $user_ID . '_conversation_status', true);
-            if ($conversation_status == "unread") {
+            if ("unread" == mje_get_post_read_status($result->ID, $user_ID)) {
                 // If unread
                 $result->unread_class = "unread";
             } else {
                 $result->unread_class = "";
             }
         } else {
-
             // Message child
-            $user_id = "";
-            if ($user_ID != $result->post_author) {
-                $user_id = $result->post_author;
-            } else {
-                $user_id = $user_ID;
-            }
-            $user_name = get_the_author_meta('display_name', $user_id);
-            $result->author_avatar = '<a href="' . get_author_posts_url($user_id) . '" target="_blank" title="' . $user_name . '">' . mje_avatar($user_id, 80) . '</a>';
+            $author_id = $result->post_author;
         }
 
-        $result->post_content_filtered = mje_filter_message_content($result->post_content);
-        //$result->post_date =  et_the_time(get_the_time('U', $result->ID)); //
-        // replase line 431
-        // $gmt_timestamp  = get_post_time( 'U', true, $result->ID );
-        $p_msg              = get_post($result->ID);
-        $from               = strtotime($p_msg->post_date_gmt); //2020-12-16 08:22:56
-        $gmt_date           = gmdate("M d Y H:i:s"); // v1.3.9.4
-        $to                 = strtotime($gmt_date);
-        $result->post_date  = sprintf(__('%s ago', 'enginethemes'), human_time_diff($from, $to));
-        // end replaceline 431
+        $result->author_name = get_the_author_meta('display_name', $author_id);
+        $result->author_url = get_author_posts_url($author_id);
+        $result->author_avatar_img = mje_avatar($author_id, 80);
 
-        // Get message attachment
+        $result->author_avatar = '<a href="' . $result->author_url . '" 
+                            target="_blank" 
+                            title="' . $result->author_name . '">' . $result->author_avatar_img . '</a>';
+
+
+        $result->post_content_filtered = mje_filter_message_content($result->post_content);
+
+        $from               = (isset($result->post_date_gmt_obj)) ? $result->post_date_gmt_obj->getTimestamp() : time(); //2020-12-16 08:22:56
+        $now                 = strtotime(gmdate("M d Y H:i:s"));
+        $result->post_date  = sprintf(__('%s ago', 'enginethemes'), human_time_diff($from, $now));
+
+        // Get message attachments
+        if (current_user_can('manage_options') || $result->post_author == $user_ID || $result->to_user == $user_ID || ae_user_role($result->post_author) == 'administrator') {
+            $result->et_carousels = get_children(array(
+                'numberposts' => 15,
+                'order' => 'ASC',
+                'post_parent' => $result->ID,
+                'post_type' => 'attachment'
+            ));
+        }
+
         $output = '<ul>';
-        if (!empty($result->et_files)) :
-            foreach ($result->et_files as $key => $value) {
+        if (!empty($result->et_carousels)) :
+            foreach ($result->et_carousels as $key => $value) {
                 $output .= '<li class="image-item" id="' . $value->ID . '">';
                 $output .= '<a class="ellipsis"  target="_blank" title="' . $value->post_title . '" href="' . $value->guid . '"><i class="fa fa-paperclip"></i>' . $value->post_title . '</a>';
                 $output .= '</li>';
@@ -460,10 +513,12 @@ class MJE_Conversation_Action extends MJE_Post_Action
         endif;
         $output .= '</ul>';
         $result->message_attachment = $output;
+
         $result->message_class = mje_get_message_class($result->post_author);
         if (empty($result->message_class)) {
             $result->message_class = '...';
         }
+
         $result->admin_message = false;
         if (is_super_admin($result->post_author)) {
             $result->admin_message = true;
@@ -474,10 +529,12 @@ class MJE_Conversation_Action extends MJE_Post_Action
          */
         if ('changelog' == $result->type) {
             $result->changelog = "";
+
             $author_url = get_author_posts_url($result->post_author);
             $author_name = get_the_author_meta('display_name', $result->post_author);
             $author_link = sprintf('<a href="%s" target="_blank">%s</a>', $author_url, $author_name);
             $changelog_time = get_the_time(get_option('date_format') . ' ' . get_option('time_format'));
+
             switch ($result->action_type) {
                 case 'dispute':
                     $result->changelog = sprintf(__('%s sent a dispute for this order - %s.', 'enginethemes'), $author_link, $changelog_time);
@@ -488,9 +545,9 @@ class MJE_Conversation_Action extends MJE_Post_Action
                 case 'admin_decide':
                     $winner_id = get_post_meta($result->ID, 'winner', true);
                     if (!empty($winner_id)) {
-                        $author_url = get_author_posts_url($winner_id);
+                        $winner_url = get_author_posts_url($winner_id);
                         $author_name = get_the_author_meta('display_name', $winner_id);
-                        $author_link = sprintf('<a href="%s" target="_blank">%s</a>', $author_url, $author_name);
+                        $author_link = sprintf('<a href="%s" target="_blank">%s</a>', $winner_url, $author_name);
                     }
                     $result->changelog = sprintf(__("The dispute was decided in %s's favor - %s. This Order was marked as Resolved. Its fund was returned to %s's Available fund.", 'enginethemes'), $author_link, $changelog_time, $author_link);
                     break;
@@ -661,8 +718,6 @@ class MJE_Conversation_Action extends MJE_Post_Action
             'to_user' => $result->post_author,
             'type' => 'message',
             'parent_conversation_id' => $result->ID,
-            'receiver_unread' => '1',
-            'sender_unread' => ''
         );
         $data_post = array(
             'post_author' => $result->mjob_author,

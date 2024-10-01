@@ -28,21 +28,7 @@ class MJE_Profile extends MJE_Post{
             'billing_vat',
             'status',
             'time_delivery',
-            'profile_description',
-            //custom code 17th Feb 2024
-            'custom_website',
-            'custom_email',
-            'custom_facebook',
-            'custom_twitter',
-            'custom_youtube',
-            'custom_linkedin',
-            'custom_pinterest',
-            'custom_soundcloud',
-            'custom_tumblr',
-            'custom_myspace',
-            'custom_instagram',
-            //end custom code
-
+            'profile_description'
         );
         $this->post_type_singular = 'Profile';
         $this->post_type_regular = 'Profiles';

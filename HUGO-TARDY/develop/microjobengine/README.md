@@ -1,5 +1,36 @@
 # Releases
 
+v1.5.1
+Jun 21, 2024
+
+* replace old social connect shortcode with a separate social-connect page template
+* fix minor compatibility bugs with PHP 8
+
+---
+v1.5.0
+Jun 11, 2024
+
+* improve credit payment modal, clarifying the payment amount
+* managing unused image uploads by users in dashboard
+* automatically clean up unused user-uploaded images
+* request users to confirm before exiting mjob posting & editing form
+* correctly auto fill mjob data when resuming posting drafts or editing active/pending mjobs
+* update Facebook login & Google login to latest API version
+* update FontAwesome to v6
+* replace mCustomScrollbar with OverlayScrollbar for conversation view
+* add inbox icon to header in mobile screens, linking to Inbox page
+* optimize ET theme & extensions updater, requesting update information in batch
+* conversations in mjob orders is now also live update
+* fix: loading old messages in conversations
+* fix: no longer reloading the whole conversation when fetching messages
+* performance improvement: fetching messages faster and only load new messages
+* performance improvement: no longer making several unnecessary server calls to fetch messages
+* smart notifications: prevent notification spams, only notify users with new messages when needed
+* add a delay before sending emails for new messages, if the messages are read within that delay, cancel sending email
+* reload notification sidebar when there are new notifications
+* and many other bug fixes and minor improvements
+
+---
 v1.4.0
 Jun 21, 2023
 

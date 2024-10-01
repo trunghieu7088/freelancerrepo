@@ -70,7 +70,7 @@ if ($mjob_order->seller_id == get_current_user_id()) {
                 </p>
             <?php endif; ?>
 
-        </div>        
+        </div>
         <div class="total-order">
             <p class="title-cate"><?php (isset($is_seller) && $is_seller == true) ? _e('Charged', 'enginethemes') : _e('Total', 'enginethemes'); ?></p>
             <p class="price-items <?php if (isset($is_seller) && $is_seller == true) echo 'charged_price_show_to_seller'; ?>"><?php echo mje_shorten_price($mjob_order->amount); ?></p>

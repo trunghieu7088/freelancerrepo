@@ -29,7 +29,6 @@
 
 		initialize: function(options) {
 			_.bindAll(this, 'render', 'fadeOut');
-			// console.log(this.$el);
 			this.template_name = options.template_name || '';
 			this.option_name = options.option_name || '';
 			this.template = _.template($(options.template).html());
@@ -122,7 +121,6 @@
 			var template_name = this.model.get('template_name');
 			if($('#template_edit_'+template_name).length == 0) {
 				// apply template for view
-				console.log(template_name);
 				if ($('#template_edit_form').length > 0) {
 					this.template = _.template($('#template_edit_form').html());
 				}
@@ -326,10 +324,8 @@
 				}
 			};
 			params.beforeSend = function(){
-				//console.log('a');
 			};
 			params.success = function(data){
-				//console.log('finish');
 			};
 			$.ajax(params);
 		},
@@ -337,7 +333,6 @@
 		 * add one
 		 */
 		addOne: function(pack) {
-			// console.log('add one');
 			var Item = new Views.PackItem({
 				model: pack,
 				template: '#ae-template-' + this.data_template,

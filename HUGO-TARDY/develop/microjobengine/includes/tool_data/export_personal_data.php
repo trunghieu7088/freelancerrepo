@@ -9,29 +9,30 @@ post_type: user_request
 Create a request: wp_create_user_request
 */
 //wp_user_personal_data_exporter();
-class Fre_Tool_Data{
+class Fre_Tool_Data
+{
 	public static $instance;
-	function __construct(){
-
+	function __construct()
+	{
 	}
 
-	public static function get_instance() {
-		if ( self::$instance == null ) {
+	public static function get_instance()
+	{
+		if (self::$instance == null) {
 			self::$instance = new Fre_Tool_Data();
 		}
 
 		return self::$instance;
 	}
-
-
 }
 
-function register_fre_theme_exporter( $exporters ) {
- 	$exporters[] = array(
+function register_fre_theme_exporter($exporters)
+{
+	$exporters[] = array(
 		'exporter_friendly_name' =>  'MicrojobEngine Data',
 		'callback'               => 'fre_personal_data_exporter',
 	);
- 	$exporters[] = array(
+	$exporters[] = array(
 		'exporter_friendly_name' =>  'Your Mjob Posted',
 		'callback'               => 'mje_mjob_posted_exporter',
 	);
@@ -46,99 +47,102 @@ function register_fre_theme_exporter( $exporters ) {
 
 
 	return $exporters;
-
 }
-add_filter('wp_privacy_personal_data_exporters','register_fre_theme_exporter');
+add_filter('wp_privacy_personal_data_exporters', 'register_fre_theme_exporter');
 
-function mje_recruit_exporter($email_address, $page = 1){
+function mje_recruit_exporter($email_address, $page = 1)
+{
 
-	$user = get_user_by( 'email', $email_address );
-	$number = 300; $found_posts = 0;
+	$user = get_user_by('email', $email_address);
+	$number = 300;
+	$found_posts = 0;
 	$project_to_export = $data_to_export = array();
 
-		$args = array(
-			'post_type' => 'recruit',
-			'author' => $user->ID,
-			'posts_per_page' => $number,
-			'post_status' => 'any',
-		);
-		$the_query = new WP_Query( $args );
+	$args = array(
+		'post_type' => 'recruit',
+		'author' => $user->ID,
+		'posts_per_page' => $number,
+		'post_status' => 'any',
+	);
+	$the_query = new WP_Query($args);
 
-		// The Loop
-		if ( $the_query->have_posts() ) {
-			$found_posts = $the_query->found_posts;
-			while ( $the_query->have_posts() ) {
-				$project_data_to_export = array();
-				$the_query->the_post();
+	// The Loop
+	if ($the_query->have_posts()) {
+		$found_posts = $the_query->found_posts;
+		while ($the_query->have_posts()) {
+			$project_data_to_export = array();
+			$the_query->the_post();
 
-				global $post;
-				global $ae_post_factory, $post;
-				$mjob_object = $ae_post_factory->get( 'mjob_post' );
-				$mjob_post = $mjob_object->convert( $post );
+			global $post;
+			global $ae_post_factory, $post;
+			$mjob_object = $ae_post_factory->get('mjob_post');
+			$mjob_post = $mjob_object->convert($post);
 
-				$metas = list_mjob_post_meta();
+			$metas = list_mjob_post_meta();
 
-				$project_data_to_export[] = array(
-					'name'  => 'Recruit ID',
-					'value' => $mjob_post->ID,
-				);
+			$project_data_to_export[] = array(
+				'name'  => 'Recruit ID',
+				'value' => $mjob_post->ID,
+			);
 
-				$project_data_to_export[] = array(
-					'name'  => 'Recruit Name',
-					'value' => '<a href="'.get_permalink().'">'.get_the_title().'</a>',
-				);
-				$project_data_to_export[] = array(
-					'name'  => 'Post Date',
-					'value' => get_the_date(),
-				);
-				foreach ($metas as $key => $label) {
-					if( ! empty($mjob_post->$key) ){
-						$project_data_to_export[] = array(
-							'name'  => $label,
-							'value' => $mjob_post->$key,
-						);
-					}
+			$project_data_to_export[] = array(
+				'name'  => 'Recruit Name',
+				'value' => '<a href="' . get_permalink() . '">' . get_the_title() . '</a>',
+			);
+			$project_data_to_export[] = array(
+				'name'  => 'Post Date',
+				'value' => get_the_date(),
+			);
+			foreach ($metas as $key => $label) {
+				if (!empty($mjob_post->$key)) {
+					$project_data_to_export[] = array(
+						'name'  => $label,
+						'value' => $mjob_post->$key,
+					);
 				}
-
-				$item_id = "recruit-{$post->ID}";
-				$data_to_export[] = array(
-					'group_id'    => 'recruits',
-					'group_label' => __( 'List Recruits' ),
-					'item_id'     => $item_id,
-					'data'        => $project_data_to_export,
-				);
 			}
-			wp_reset_postdata();
+
+			$item_id = "recruit-{$post->ID}";
+			$data_to_export[] = array(
+				'group_id'    => 'recruits',
+				'group_label' => __('List Recruits'),
+				'item_id'     => $item_id,
+				'data'        => $project_data_to_export,
+			);
 		}
-		$done = $found_posts < $number;
+		wp_reset_postdata();
+	}
+	$done = $found_posts < $number;
 
 	//}
 	return array(
 		'data' => $data_to_export,
 		'done' => $done,
 	);
-
 }
-function list_mjob_order_meta(){
+function list_mjob_order_meta()
+{
 	return array(
-           // 'amount' => 'Amount',
-            'real_amount' => 'Real Amount',
+		// 'amount' => 'Amount',
+		'real_amount' => 'Real Amount',
 
-          //  'mjob_price_text' => 'Price',
+		//  'mjob_price_text' => 'Price',
 
-            //'paid' => 'Paid',
-            'seller_id' => 'Seller id',
-            'extra_info' => 'Extra info',
-            'fee_commission' => 'Fee commission',
-            //'et_order_currency' => 'Currency',
-            'et_invoice_no' => 'Invoice No',
-        );
+		//'paid' => 'Paid',
+		'seller_id' => 'Seller id',
+		'extra_info' => 'Extra info',
+		'fee_commission' => 'Fee commission',
+		//'et_order_currency' => 'Currency',
+		'et_invoice_no' => 'Invoice No',
+	);
 }
-function mje_mjob_order_exporter($email_address, $page = 1){
+function mje_mjob_order_exporter($email_address, $page = 1)
+{
 
-	$number = 300; $found_posts= 0;
+	$number = 300;
+	$found_posts = 0;
 	$bid_to_export = $data_to_export = array();
-	$user = get_user_by( 'email', $email_address );
+	$user = get_user_by('email', $email_address);
 
 	$role = ae_user_role($user->ID);
 
@@ -148,15 +152,15 @@ function mje_mjob_order_exporter($email_address, $page = 1){
 		'posts_per_page' => $number,
 		'post_status' => 'any',
 	);
-	$the_query = new WP_Query( $args );
+	$the_query = new WP_Query($args);
 
 	global $wp_query, $ae_post_factory, $post;
-	$mjob_order_obj = $ae_post_factory->get( 'mjob_order' );
+	$mjob_order_obj = $ae_post_factory->get('mjob_order');
 	// The Loop
-	if ( $the_query->have_posts() ) {
+	if ($the_query->have_posts()) {
 
-		$found_posts = $the_query->found_posts ;
-		while ( $the_query->have_posts() ) {
+		$found_posts = $the_query->found_posts;
+		while ($the_query->have_posts()) {
 
 			$mjob_order_to_export = array();
 			$the_query->the_post();
@@ -170,13 +174,13 @@ function mje_mjob_order_exporter($email_address, $page = 1){
 			);
 			$mjob_order_to_export[] = array(
 				'name'  => 'Name',
-				'value' => '<a href="'.get_permalink($convert->ID).'">'.$convert->post_title.'</a>'
+				'value' => '<a href="' . get_permalink($convert->ID) . '">' . $convert->post_title . '</a>'
 			);
 
 
 			$metas = list_mjob_order_meta();
 			foreach ($metas as $key => $label) {
-				if( ! empty($convert->$key) ){
+				if (!empty($convert->$key)) {
 					$mjob_order_to_export[] = array(
 						'name'  => $label,
 						'value' => $convert->$key,
@@ -206,10 +210,10 @@ function mje_mjob_order_exporter($email_address, $page = 1){
 				'value' => $convert->post_content
 			);
 			$mjob_order_delivery  = get_post_meta($convert->ID, 'mjob_order_delivery', true);
-			if( ! $mjob_order_delivery){
-                $mjob_order_delivery = $convert->mjob_time_delivery;
-            }
-            $mjob_order_to_export[] = array(
+			if (!$mjob_order_delivery) {
+				$mjob_order_delivery = $convert->mjob_time_delivery;
+			}
+			$mjob_order_to_export[] = array(
 				'name'  => 'Time Delivery',
 				'value' => sprintf(__('%s day(s)', 'enginethemes'), $mjob_order_delivery)
 			);
@@ -218,7 +222,7 @@ function mje_mjob_order_exporter($email_address, $page = 1){
 
 			$data_to_export[] = array(
 				'group_id'    => 'mjob_orders',
-				'group_label' => __( 'List Mjob Orders' ),
+				'group_label' => __('List Mjob Orders'),
 				'item_id'     => $item_id,
 				'data'        => $mjob_order_to_export,
 			);
@@ -235,99 +239,102 @@ function mje_mjob_order_exporter($email_address, $page = 1){
 		'done' => $done,
 	);
 }
-function list_mjob_post_meta(){
+function list_mjob_post_meta()
+{
 	return array(
 		'time_delivery' => 'Time Delivery',
-        'et_price' => 'Price',
-        'et_budget_text' => 'Budget',
-        'rating_score' => 'Rating Score',
-        'et_carousels' => 'Carousol',
-        'modified_date' => 'Modified Date',
-        'et_total_sales' => 'Total Sale',
-        'view_count' => 'Count View',
-    );
+		'et_price' => 'Price',
+		'et_budget_text' => 'Budget',
+		'rating_score' => 'Rating Score',
+		'et_carousels' => 'Carousels',
+		'modified_date' => 'Modified Date',
+		'et_total_sales' => 'Total Sale',
+		'view_count' => 'Count View',
+	);
 }
-function mje_mjob_posted_exporter($email_address, $page = 1){
+function mje_mjob_posted_exporter($email_address, $page = 1)
+{
 
-	$user = get_user_by( 'email', $email_address );
-	$number = 300; $found_posts = 0;
+	$user = get_user_by('email', $email_address);
+	$number = 300;
+	$found_posts = 0;
 	$project_to_export = $data_to_export = array();
 	$item_id = "project-of-{$user->ID}";
 
 	//if( $role == EMPLOYER || $role == 'administrator' ) {
-		$args = array(
-			'post_type' => 'mjob_post',
-			'author' => $user->ID,
-			'posts_per_page' => $number,
-			'post_status' => 'any',
-		);
-		$the_query = new WP_Query( $args );
+	$args = array(
+		'post_type' => 'mjob_post',
+		'author' => $user->ID,
+		'posts_per_page' => $number,
+		'post_status' => 'any',
+	);
+	$the_query = new WP_Query($args);
 
 
-		// The Loop
-		if ( $the_query->have_posts() ) {
-			$found_posts = $the_query->found_posts;
-			while ( $the_query->have_posts() ) {
-				$project_data_to_export = array();
-				$the_query->the_post();
+	// The Loop
+	if ($the_query->have_posts()) {
+		$found_posts = $the_query->found_posts;
+		while ($the_query->have_posts()) {
+			$project_data_to_export = array();
+			$the_query->the_post();
 
-				global $post;
-				global $ae_post_factory, $post;
-				$mjob_object = $ae_post_factory->get( 'mjob_post' );
-				$mjob_post = $mjob_object->convert( $post );
+			global $post;
+			global $ae_post_factory, $post;
+			$mjob_object = $ae_post_factory->get('mjob_post');
+			$mjob_post = $mjob_object->convert($post);
 
-				$metas = list_mjob_post_meta();
+			$metas = list_mjob_post_meta();
 
-				$project_data_to_export[] = array(
-					'name'  => 'Mjob ID',
-					'value' => $mjob_post->ID,
-				);
+			$project_data_to_export[] = array(
+				'name'  => 'Mjob ID',
+				'value' => $mjob_post->ID,
+			);
 
-				$project_data_to_export[] = array(
-					'name'  => 'Mjob Name',
-					'value' => '<a href="'.get_permalink().'">'.get_the_title().'</a>',
-				);
-				$project_data_to_export[] = array(
-					'name'  => 'Posted Date',
-					'value' => get_the_date(),
-				);
-				foreach ($metas as $key => $label) {
-					if( ! empty($mjob_post->$key) ){
-						$project_data_to_export[] = array(
-							'name'  => $label,
-							'value' => $mjob_post->$key,
-						);
-					}
+			$project_data_to_export[] = array(
+				'name'  => 'Mjob Name',
+				'value' => '<a href="' . get_permalink() . '">' . get_the_title() . '</a>',
+			);
+			$project_data_to_export[] = array(
+				'name'  => 'Posted Date',
+				'value' => get_the_date(),
+			);
+			foreach ($metas as $key => $label) {
+				if (!empty($mjob_post->$key)) {
+					$project_data_to_export[] = array(
+						'name'  => $label,
+						'value' => $mjob_post->$key,
+					);
 				}
-
-				// $project_data_to_export[] = array(
-				// 	'name'  => 'Total Reviews',
-				// 	'value' => $mjob_post->mjob_total_reviews
-				// );
-
-				$item_id = "mjob-{$post->ID}";
-				$data_to_export[] = array(
-					'group_id'    => 'mjobs',
-					'group_label' => __( 'List Mjob' ),
-					'item_id'     => $item_id,
-					'data'        => $project_data_to_export,
-				);
 			}
-			wp_reset_postdata();
+
+			// $project_data_to_export[] = array(
+			// 	'name'  => 'Total Reviews',
+			// 	'value' => $mjob_post->mjob_total_reviews
+			// );
+
+			$item_id = "mjob-{$post->ID}";
+			$data_to_export[] = array(
+				'group_id'    => 'mjobs',
+				'group_label' => __('List Mjob'),
+				'item_id'     => $item_id,
+				'data'        => $project_data_to_export,
+			);
 		}
-		$done = $found_posts < $number;
+		wp_reset_postdata();
+	}
+	$done = $found_posts < $number;
 
 	//}
 	return array(
 		'data' => $data_to_export,
 		'done' => $done,
 	);
-
 }
-function fre_personal_data_exporter( $email_address, $page = 1 ) {
+function fre_personal_data_exporter($email_address, $page = 1)
+{
 	$export_items = array();
-	$user = get_user_by( 'email', $email_address );
-	if ( $user && $user->ID ) {
+	$user = get_user_by('email', $email_address);
+	if ($user && $user->ID) {
 
 		// Plugins can add as many items in the item data array as they want
 		$data = array();
@@ -335,67 +342,67 @@ function fre_personal_data_exporter( $email_address, $page = 1 ) {
 
 		global $wp_query, $ae_post_factory, $post;
 		$profile_obj = $ae_post_factory->get('mjob_profile');
-		$profile_id = get_user_meta( $user->ID, 'user_profile_id', true );
+		$profile_id = get_user_meta($user->ID, 'user_profile_id', true);
 		$profile = get_post($profile_id);
-		$convert    = $profile_obj->convert( $profile );
+		$convert    = $profile_obj->convert($profile);
 
 		$description = !empty($convert->profile_description) ? $convert->profile_description : "";
 		$display_name = isset($user->display_name) ? $user->display_name : '';
 		$country_name = isset($convert->tax_input['country'][0]) ? $convert->tax_input['country'][0]->name : '';
 		$languages = isset($convert->tax_input['language']) ? $convert->tax_input['language'] : '';
 
-		if ( ! empty( $country_name ) ) {
+		if (!empty($country_name)) {
 			$data[] = array(
-				'name'  => __( 'Country:', 'enginethemes' ),
+				'name'  => __('Country:', 'enginethemes'),
 				'value' => $country_name
 			);
 		}
-		if ( ! empty( $languages) ) {
+		if (!empty($languages)) {
 			$langs = array();
-			if( ! empty($languages) ) {
-                foreach($languages as $language) {
-                	$langs[] = $language->name;
-                }
-            }
-            if( !empty( $langs ) ){
-            	$lns =  implode(",", $langs);
+			if (!empty($languages)) {
+				foreach ($languages as $language) {
+					$langs[] = $language->name;
+				}
+			}
+			if (!empty($langs)) {
+				$lns =  implode(",", $langs);
 				$data[] = array(
-					'name'  => __( 'Languages:', 'enginethemes' ),
+					'name'  => __('Languages:', 'enginethemes'),
 					'value' => $lns
 				);
 			}
 		}
 		$data[] = array(
-			'name'  => __( 'Profile ID', 'enginethemes' ),
+			'name'  => __('Profile ID', 'enginethemes'),
 			'value' => $profile_id
 		);
 		$data[] = array(
-			'name'  => __( 'URL', 'enginethemes' ),
-			'value' =>get_author_posts_url($user->ID)
+			'name'  => __('URL', 'enginethemes'),
+			'value' => get_author_posts_url($user->ID)
 		);
 		$data[] = array(
-			'name'  => __( 'Payment info:', 'enginethemes' ),
+			'name'  => __('Payment info:', 'enginethemes'),
 			'value' => $convert->payment_info
 		);
 		$data[] = array(
-			'name'  => __( 'Billing full name:', 'enginethemes' ),
+			'name'  => __('Billing full name:', 'enginethemes'),
 			'value' => $convert->billing_full_name
 		);
 		$data[] = array(
-			'name'  => __( 'Billing Full Address :', 'enginethemes' ),
+			'name'  => __('Billing Full Address :', 'enginethemes'),
 			'value' => $convert->billing_full_address
 		);
 		$data[] = array(
-			'name'  => __( 'Billing Country:', 'enginethemes' ),
+			'name'  => __('Billing Country:', 'enginethemes'),
 			'value' => $convert->billing_country
 		);
 		$data[] = array(
-			'name'  => __( 'Billing VAT:', 'enginethemes' ),
+			'name'  => __('Billing VAT:', 'enginethemes'),
 			'value' => $convert->billing_vat
 		);
 
 		$data[] = array(
-			'name'  => __( 'Overview:', 'enginethemes' ),
+			'name'  => __('Overview:', 'enginethemes'),
 			'value' => $description
 		);
 		$user_obj = mJobUser::getInstance();
@@ -412,31 +419,31 @@ function fre_personal_data_exporter( $email_address, $page = 1 ) {
 		// Paypal account data
 		$paypal_email = isset($user_data->payment_info['paypal']) ? $user_data->payment_info['paypal'] : '';
 		$data[] = array(
-			'name'  => __( 'Bank First Name:', 'enginethemes' ),
+			'name'  => __('Bank First Name:', 'enginethemes'),
 			'value' => $bank_first_name
 		);
 		$data[] = array(
-			'name'  => __( 'Bank Middle Name:', 'enginethemes' ),
+			'name'  => __('Bank Middle Name:', 'enginethemes'),
 			'value' => $bank_middle_name
 		);
 		$data[] = array(
-			'name'  => __( 'Bank Last Name:', 'enginethemes' ),
+			'name'  => __('Bank Last Name:', 'enginethemes'),
 			'value' => $bank_last_name
 		);
 		$data[] = array(
-			'name'  => __( 'Bank Name:', 'enginethemes' ),
+			'name'  => __('Bank Name:', 'enginethemes'),
 			'value' => $bank_name
 		);
 		$data[] = array(
-			'name'  => __( 'Bank Swift Name:', 'enginethemes' ),
+			'name'  => __('Bank Swift Name:', 'enginethemes'),
 			'value' => $bank_swift_code
 		);
 		$data[] = array(
-			'name'  => __( 'Bank Account No:', 'enginethemes' ),
+			'name'  => __('Bank Account No:', 'enginethemes'),
 			'value' => $bank_account_no
 		);
 		$data[] = array(
-			'name'  => __( 'PayPal Email:', 'enginethemes' ),
+			'name'  => __('PayPal Email:', 'enginethemes'),
 			'value' => $paypal_email
 		);
 
@@ -450,8 +457,6 @@ function fre_personal_data_exporter( $email_address, $page = 1 ) {
 			'item_id'     => $item_id,
 			'data'        => $data,
 		);
-
-
 	}
 	// Returns an array of exported items for this pass, but also a boolean whether this exporter is finished.
 	//If not it will be called again with $page increased by 1.

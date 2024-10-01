@@ -158,7 +158,6 @@
                 collection: historyCollection,
                 el: historyContainer,
                 onAfterLoadMore: function(result, res){
-                    //console.log(res);
                 }
             });
         }

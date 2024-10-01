@@ -1,26 +1,24 @@
 (function ($, Views, Models, Collections, AE) {
-  $(document).ready(function () {
-    Models.mJobConversation = Backbone.Model.extend({
-      action: "mjob_conversation_sync",
-    });
+  $(function () {
 
     /**
-     * CONVERSATION ITEM VIEW
+     * CONVERSATION LIST PAGE
      */
-    var conversationItem = Views.PostItem.extend({
-      tagName: "li",
-      className: "clearfix conversation-item",
-      template: _.template($("#conversation-item-loop").html()),
-    });
-
-    Views.ConversationList = Views.ListPost.extend({
-      tagName: "ul",
-      itemClass: "history-item",
-    });
-
-    var conversationContainer = $(".mjob_conversation_list_page");
+    let conversationContainer = $(".mjob_conversation_list_page");
     if (conversationContainer.length > 0) {
+      let conversationItem = Views.PostItem.extend({
+        tagName: "li",
+        className: "clearfix conversation-item",
+        template: _.template($("#conversation-item-loop").html()),
+      });
+
+      Views.ConversationList = Views.ListPost.extend({
+        tagName: "ul",
+        itemClass: "history-item",
+      });
+
       if (typeof conversationCollection === "undefined") {
+        var conversationCollection;
         if ($(".conversation_postdata").length > 0) {
           var conversation = JSON.parse($(".conversation_postdata").html());
           conversationCollection = new Collections.Message(conversation);
@@ -30,7 +28,7 @@
       }
 
       // Conversation list view
-      var conversationList = new Views.ConversationList({
+      new Views.ConversationList({
         itemView: conversationItem,
         collection: conversationCollection,
         el: conversationContainer.find(".list-conversation"),
@@ -40,53 +38,6 @@
       new Views.BlockControl({
         collection: conversationCollection,
         el: conversationContainer,
-      });
-    }
-
-    /**
-     * BLOCK CONTROL FOR MESSAGES LIST IN CONVERSATION DETAIL
-     */
-    var messageItem = Views.PostItem.extend({
-      tagName: "li",
-      className: "clearfix message-item",
-      template: _.template($("#message-item-loop").html()),
-    });
-
-    Views.MessageList = Views.ListPost.extend({
-      tagName: "ul",
-      itemView: messageItem,
-      itemClass: "message-item",
-      initialize: function (options) {
-        _.extend(this, options);
-        Views.ListPost.prototype.initialize.call(this, options);
-      },
-    });
-
-    var messageContainer = $(".conversation-form");
-    if (messageContainer.length > 0) {
-      if (typeof messageCollection === "undefined") {
-        if ($(".message_postdata").length > 0) {
-          var messages = JSON.parse($(".message_postdata").html());
-          messageCollection = new Collections.Message(messages);
-        } else {
-          messageCollection = new Collections.Message();
-        }
-      }
-
-      // Message list view
-      var messageList = new Views.MessageList({
-        itemView: messageItem,
-        collection: messageCollection,
-        el: messageContainer.find(".list-conversation"),
-        appendHtml: function (collectionView, itemView, index) {
-          collectionView.$el.prepend(itemView.el);
-        },
-      });
-
-      // Message block control
-      new Views.BlockControl({
-        collection: messageCollection,
-        el: messageContainer,
       });
     }
 
@@ -131,7 +82,7 @@
         if (typeof view.conversationForm === "undefined") {
           view.conversationForm = new Views.AE_Form({
             el: ".mjob-modal-conversation-form", // Wrapper of form
-            model: this.model,
+            model: view.model,
             rules: {
               conversation_content: "required",
             },
@@ -162,6 +113,12 @@
       },
     });
 
+    /**
+     * CONVERSATION ACTIONS: contact & mark as read
+     */
+    Models.mJobConversation = Backbone.Model.extend({
+      action: "mjob_conversation_sync",
+    });
     Views.Conversation = Backbone.View.extend({
       el: "body",
       events: {
@@ -178,8 +135,6 @@
         } else {
           this.user = new Models.mJobUser();
         }
-
-        this.model = new Models.Message();
         this.conversationObj = new Models.mJobConversation();
       },
       doContact: function (event) {
@@ -245,19 +200,38 @@
         });
       },
     });
-
     new Views.Conversation();
 
     /**
-     * CONVERSATION VIEW IN SINGLE
+     * SINGLE CONVERSATION VIEW
      */
+    let messageItem = Views.PostItem.extend({
+      tagName: "li",
+      className: "clearfix message-item",
+      template: _.template($("#message-item-loop").html()),
+    });
+    Views.MessageList = Views.ListPost.extend({
+      tagName: "ul",
+      itemView: messageItem,
+      itemClass: "message-item",
+      initialize: function (options) {
+        _.extend(this, options);
+        Views.ListPost.prototype.initialize.call(this, options);
+        // when collection changed, the view should automatically updated
+        if(undefined !== this.collection){
+          this.listenTo(this.collection, 'add change', this.render);
+        }
+      },
+    });
     Views.SingleConversation = Backbone.View.extend({
       el: ".conversation-form",
       events: {
-        "keypress #post_content": "sendMessage",
-        "click .mje-send-message": "sendMessageClick",
+        "keypress #post_content": "sendMessageType",
+        "click .mje-send-message": "sendMessage",
       },
       initialize: function () {
+        _.bindAll(this, 'updateLastReadTime', 'sendMessage');
+
         // Resize textarea
         autosize(this.$el.find("textarea"));
 
@@ -272,7 +246,6 @@
         }
 
         // Init list message collection and view
-        var messageContainer = $(".conversation-form");
         if (typeof this.messageCollection === "undefined") {
           if ($(".message_postdata").length > 0) {
             var messages = JSON.parse($(".message_postdata").html());
@@ -281,24 +254,38 @@
             this.messageCollection = new Collections.Message();
           }
         }
+
         // Message list view
         this.messageList = new Views.MessageList({
-          itemView: messageItem,
           collection: this.messageCollection,
-          el: messageContainer.find(".list-conversation"),
+          el: this.$el.find(".list-conversation"),
+        });
+        
+        // Message block control
+        new Views.BlockControl({
+          collection: this.messageCollection,
+          el: this.$el,
         });
 
         AE.pubsub.on("ae:form:submit:success", this.afterSubmitForm, this);
 
+        // setup last_read_time
+        this.updateLastReadTime();
+
         // Single message heartbeat
         var self = this;
         $(document).on("heartbeat-send", function (event, data) {
-          data.is_single_message = mje_heartbeat.is_single_message;
           data.conversation_id = $("#conversation_id").val();
+          if (null !== self.last_read_time){
+            data.last_read_time = self.last_read_time;
+          }
         });
         $(document).on("heartbeat-tick", function (event, data) {
-          if (data.hasOwnProperty('unread_messages') && data.unread_messages.hasOwnProperty('fetch_message') && data.unread_messages.fetch_message === true) {
-            self.fetchMessages();
+          if (data.hasOwnProperty('unread_messages') && Array.isArray(data.unread_messages) && data.unread_messages.length > 0) {
+            self.messageCollection.add(data.unread_messages);
+            AE.App.osConversation.osInstance.update(true);
+            AE.App.osConversation.scrollToBottom();
+            self.updateLastReadTime();
           }
         });
       },
@@ -326,93 +313,56 @@
           });
         }
       },
-      sendMessageClick: function (e) {
-        var view = this;
-        var $target = $("#post_content");
-        //if( e.keyCode == 13 && !e.shiftKey) {
-        var message = $target.val();
-        //custom code here
-        //allow the users to send attachments without text
-        if(message =='')
-        {
-            message=$('.item-name').text();
-            if(message.length > 0)
-            {
-              message='Attachment File';
-            }
+
+      updateLastReadTime: function(){
+        // setup the latest read message
+        let largestIdModel = this.messageCollection.max(function(model) {
+          return model.get("id");
+        });
+        // this return an object with 3 keys: date, timezone & timezone_type
+        this.last_read_time = (typeof largestIdModel.get === "function")
+        ? largestIdModel.get("post_date_gmt_obj")
+        : null
+      },
+
+      sendMessageType: function (e) {
+        if (e.keyCode == 13 && !e.shiftKey) {
+          this.sendMessage();
         }
-        //end custom code
-        var msgToCheck = view.cleanMessage(message);
+      },
+
+      sendMessage: function(){
+        var self = this;
+        var $target = $("#post_content");
+        var message = $target.val()
+
+        var msgToCheck = this.cleanMessage(message);
         if (msgToCheck != "") {
-          view.model.set("post_content", message);
-          view.model.save("", "", {
+          this.model.set("post_content", message);
+          this.model.save("", "", {
             beforeSend: function () {
-              view.blockUi.block(view.$el.find(".group-compose"));
-              $target.blur();
+              self.blockUi.block(self.$el.find(".group-compose"));
+              $target.trigger( "blur" );
+              AE.App.osConversation.osInstance.update(true);
+              AE.App.osConversation.scrollToBottom();
             },
-            success: function (status, response, xhr) {
+            success: function (model, response, opts) {
               if (response.success) {
-                view.fetchMessages();
-                view.unblockSubmitForm();
+                self.messageCollection.add(response.data);
+                self.unblockSubmitForm();
               } else {
                 AE.pubsub.trigger("ae:notification", {
                   notice_type: "error",
                   msg: response.msg,
                 });
-                view.blockUi.unblock();
+                self.blockUi.unblock();
               }
+              AE.App.osConversation.osInstance.update(true);
+              AE.App.osConversation.scrollToBottom();
             },
           });
         }
         return false;
-        //}
-      },
-      sendMessage: function (e) {
-        var view = this;
-        var $target = $(e.currentTarget);
-        if (e.keyCode == 13 && !e.shiftKey) {
-          var message = $target.val();
-          //custom code here
-        //allow the users to send attachments without text
-        if(message =='')
-        {
-            message=$('.item-name').text();
-            if(message.length > 0)
-            {
-              message='Attachment File';
-            }
-        }
-        //end custom code
-          var msgToCheck = view.cleanMessage(message);
-          if (msgToCheck != "") {
-            view.model.set("post_content", message);
-            view.model.save("", "", {
-              beforeSend: function () {
-                view.blockUi.block(view.$el.find(".group-compose"));
-                $target.blur();
-                var barDiv = $(".wrapper-list-conversation");
-                barDiv.mCustomScrollbar("update"); // 1.3.9.5
-                barDiv.mCustomScrollbar("scrollTo", "bottom");
-              },
-              success: function (status, response, xhr) {
-                if (response.success) {
-                  view.fetchMessages();
-                  view.unblockSubmitForm();
-                } else {
-                  AE.pubsub.trigger("ae:notification", {
-                    notice_type: "error",
-                    msg: response.msg,
-                  });
-                  view.blockUi.unblock();
-                }
-                var barDiv = $(".wrapper-list-conversation");
-                barDiv.mCustomScrollbar("update"); // 1.3.9.5
-                barDiv.mCustomScrollbar("scrollTo", "bottom");
-              },
-            });
-          }
-          return false;
-        }
       },
       cleanMessage: function (message) {
         message = message.replace(/\s+/g, "");
@@ -424,15 +374,15 @@
         var view = this;
         view.messageCollection.fetch({
           data: {
+            add: true,
             query: view.query,
             page: 1,
             paged: 1,
             paginate: true,
           },
           success: function () {
-            var barDiv = $(".wrapper-list-conversation");
-            barDiv.mCustomScrollbar("update"); // 1.3.9.5
-            barDiv.mCustomScrollbar("scrollTo", "bottom");
+            AE.App.osConversation.osInstance.update(true);
+            AE.App.osConversation.scrollToBottom();
           },
         });
       },
@@ -462,17 +412,15 @@
               paginate: true,
             },
             success: function () {
-              // Scroll to the newest message
-              $(".wrapper-list-conversation").mCustomScrollbar(
-                "scrollTo",
-                "bottom"
-              );
+              AE.App.osConversation.osInstance.update(true);
+              AE.App.osConversation.scrollToBottom();
             },
           });
         }
       },
     });
-
-    new Views.SingleConversation();
+    if ($(".conversation-form").length > 0 ) {
+      new Views.SingleConversation();
+    }
   });
 })(jQuery, window.AE.Views, window.AE.Models, window.AE.Collections, window.AE);

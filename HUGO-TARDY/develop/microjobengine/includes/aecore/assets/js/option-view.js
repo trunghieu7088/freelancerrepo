@@ -526,12 +526,10 @@
             try {
                 var successful = document.execCommand('copy')
                 var msg = successful ? 'successfully' : 'unsuccessfully'
-                    console.log('text coppied ' + msg);
                     var html = '<span class=" toast-success"><i data-icon="3" class="icon engine-menu-icon icon-3"></i>'+$success+'</span>';
                     $(html).appendTo('.et-warning').delay(5000).fadeOut('slow');
 
             } catch (err) {
-                console.log('Unable copy this field.');
                 //var html = '<span class="toast-error"><i data-icon="!" class="icon engine-menu-icon icon-!"></i>Unable copy Callback URL.</span>';
                // $(html).appendTo('.et-warning').delay(5000).fadeOut('slow');
 

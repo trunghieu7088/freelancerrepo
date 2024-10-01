@@ -33,7 +33,6 @@
             });
         },
         selectExtra: function(event) {
-            console.log('Update Extra Item.');
             var view = this;
             var commission = ae_globals.fee_order_buyer;
 			var fee_extra  = 0;

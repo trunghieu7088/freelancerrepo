@@ -30,7 +30,7 @@ abstract class  ET_PaymentVisitor
 		global $wp_rewrite;
 
 		$order_data = $this->_order->generate_data_to_pay();
-		$link	=	et_get_page_link('process-payment', array('order-id' => $order_data['ID'], 'ppipn' => 'engineipn1'));
+		$link	=	et_get_page_link('process-payment', array('order-id' => $order_data['ID']));
 		foreach ($this->_settings as $key => $value)
 			$this->_settings[$key] = $link;
 
@@ -109,13 +109,13 @@ class ET_PaypalVisitor extends ET_PaymentVisitor
 
 		$total		=	'&upload=1&amount=' . $order['total'];
 		$notify_url = 	add_query_arg('paypalListener', 'paypal_appengine_IPN', trailingslashit(home_url()));
-		$returnURL 	=	'&return=' . urlencode($url) . '&ppipn=ppappengineipn2';
+		$returnURL 	=	'&return=' . urlencode($url);
 		$notifyURL 	= '&notify_url=' . urlencode($notify_url);
 		$cancelURL 	=	'&cancel_return=' . urlencode("$cancel_url");
 
 		$currency		=	'&currency_code=' . $currencyCodeType;
 		$nvpstr         = $notifyURL . $returnURL . $cancelURL . $products . $total . $currency;
-		et_track_payment('returnURL: ' . $url . '&ppipn=ppappengineipn2');
+		et_track_payment('returnURL: ' . $url);
 		et_track_payment('notify_url: ' . $notify_url);
 
 		return 	array('url' => $payment->set_checkout($nvpstr, 'SIMPLEPAYPAL'), 'ACK' => true, 'extend' => false);
@@ -678,40 +678,5 @@ class ET_AuthorizeVisitor extends ET_PaymentVisitor
 				'payment_status'	=>  'error'
 			);
 		}
-	}
-}
-
-
-class ET_Payment_Factory
-{
-	function __construct()
-	{
-		// dont know what i can do here
-	}
-
-	public static function createPaymentVisitor($paymentType, $order, $paymentType_raw)
-	{
-
-		switch ($paymentType) {
-			case 'CASH':
-				$class	= 	new ET_CashVisitor($order);
-				break;
-			case 'GOOGLE_CHECKOUT':
-				$class	= 	new ET_GoogleVisitor($order);
-				break;
-			case 'PAYPAL':
-				$class	=	new ET_PaypalVisitor($order);
-				break;
-			case 'AUTHORIZE':
-				$class	=	new ET_AuthorizeVisitor($order);
-				break;
-			case '2CHECKOUT':
-				$class	=	new ET_2COVisitor($order);
-				break;
-			default:
-				$class	=	false;
-		}
-
-		return apply_filters('et_factory_build_payment_visitor', $class, $paymentType,  $order);
 	}
 }

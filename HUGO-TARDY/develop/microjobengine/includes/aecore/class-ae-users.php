@@ -299,7 +299,7 @@ class AE_Users
         $avatar = get_user_meta($user_id, 'et_avatar', true);
         if ($avatar != '') {
             $img = wp_get_attachment_image_src($avatar, 'thumbnail');
-            $img = $img[0];
+            $img = (is_array($img)) ? $img[0] : false;
 
             update_user_meta($user_id, 'et_avatar_url', $img);
 

@@ -4,8 +4,9 @@ class MJE_Checkout extends AE_Base
     public static $instance;
     public $accept_product_types;
 
-    public static function get_instance () {
-        if( is_null( self::$instance ) ) {
+    public static function get_instance()
+    {
+        if (is_null(self::$instance)) {
             self::$instance = new self();
         }
 
@@ -14,7 +15,7 @@ class MJE_Checkout extends AE_Base
 
     public function __construct()
     {
-        $this->add_ajax( 'mje_checkout_product', 'do_checkout');
+        $this->add_ajax('mje_checkout_product', 'do_checkout');
         $this->build_product_types();
     }
 
@@ -26,47 +27,48 @@ class MJE_Checkout extends AE_Base
      * @since 1.2
      * @author Tat Thien
      */
-    public function do_checkout() {
+    public function do_checkout()
+    {
         $request = $_REQUEST;
 
         /* Validate checkout action */
-        if( ! $this->validate_nonce() ) {
-            wp_send_json( array(
+        if (!$this->validate_nonce()) {
+            wp_send_json(array(
                 'success' => false,
-                'msg' => __( 'Invalid action!', 'enginethemes' )
-            ) );
+                'msg' => __('Invalid action!', 'enginethemes')
+            ));
         }
 
-        if( ! $this->validate_product_type( $request['p_type'] ) ) {
-            wp_send_json( array(
+        if (!$this->validate_product_type($request['p_type'])) {
+            wp_send_json(array(
                 'success' => false,
-                'msg' => __( 'Invalid type of product!', 'enginethemes' )
-            ) );
+                'msg' => __('Invalid type of product!', 'enginethemes')
+            ));
         }
 
-        if( ! $this->validate_total( $request['p_total'] ) ) {
-            wp_send_json( array(
+        if (!$this->validate_total($request['p_total'])) {
+            wp_send_json(array(
                 'success' => false,
-                'msg' => __( 'Invalid total price!', 'enginethemes' )
-            ) );
+                'msg' => __('Invalid total price!', 'enginethemes')
+            ));
         }
 
         $response = array();
 
-        switch ( $request['p_type'] ) {
+        switch ($request['p_type']) {
             case 'mjob_order':
                 $mjob_order_action =  MJE_MJob_Order_Action::get_instance();
-                $response = $mjob_order_action->sync( $request['p_data'] );
+                $response = $mjob_order_action->sync($request['p_data']);
 
                 break;
             default:
-                $response = apply_filters( 'mje_checkout_response_data', $request );
+                $response = apply_filters('mje_checkout_response_data', $request);
         }
 
-        $payment_resp = $this->setup_payment( $request, (object) $response['data'] );
+        $payment_resp = $this->setup_payment($request, (object) $response['data']);
 
         // Send response to client
-        wp_send_json( $payment_resp );
+        wp_send_json($payment_resp);
     }
 
     /**
@@ -80,17 +82,18 @@ class MJE_Checkout extends AE_Base
      * @category void
      * @author JACK BUI
      */
-    public function setup_payment( $checkout, $product ){
+    public function setup_payment($checkout, $product)
+    {
         et_track_payment('setup_payment');
         global $user_ID;
 
         $response = array(
-            'success'=> false,
-            'msg'=> __('Payment failed!', 'enginethemes')
+            'success' => false,
+            'msg' => __('Payment failed!', 'enginethemes')
         );
 
         $arg = apply_filters('ae_payment_links', array(
-            'return' => et_get_page_link('process-payment') ,
+            'return' => et_get_page_link('process-payment'),
             'cancel' => et_get_page_link('process-payment')
         ));
         et_track_payment('checkout:');
@@ -100,7 +103,7 @@ class MJE_Checkout extends AE_Base
         /**
          * factory create payment visitor
          */
-        $coupon_code = isset($checkout['coupon_code']) ? $checkout['coupon_code']: '';
+        $coupon_code = isset($checkout['coupon_code']) ? $checkout['coupon_code'] : '';
         $order_data = array(
             'payer'         => $user_ID,
             'total'         => '',
@@ -116,27 +119,29 @@ class MJE_Checkout extends AE_Base
         et_track_payment('order_data:');
         et_track_payment($order_data);
 
-        $order = new MJE_Order( $order_data );
-        $order->add_product( $product );
-        $order_data = $order->generate_data_to_pay();
+        $order = new MJE_Order($order_data);
+        $order_id = $order->add_product($product); // calculate price & create/update the order 
+
+        // $order_data = $order->generate_data_to_pay();
         $is_v2 = is_order_v2($payment_type);
-        if( !$is_v2 ){
-        // write session
+        if (!$is_v2) {
+            // write session
             et_track_payment('SAVE order_id to section: v1');
-            et_write_session('order_id', $order_data['ID']);
+            et_write_session('order_id', $order_id);
             et_write_session('process_type', 'buy');
         } else {
             et_track_payment('Is v2 version.');
         }
-        et_track_payment('Create visitor Object of payment_type : '.$payment_type);
-        $visitor = AE_Payment_Factory::createPaymentVisitor( strtoupper($payment_type), $order, $payment_type );
+        et_track_payment('Create visitor Object of payment_type : ' . $payment_type);
+
+        $visitor = AE_Payment_Factory::createPaymentVisitor(strtoupper($payment_type), $order, $payment_type);
 
         // setup visitor setting
-        $visitor->set_settings( $arg );
+        $visitor->set_settings($arg);
 
         // accept visitor process payment
         et_track_payment('Call order->accept()');
-        $nvp = $order->accept( $visitor );
+        $nvp = $order->accept($visitor);
         et_track_payment('result of accept == nvp: ');
 
 
@@ -150,7 +155,7 @@ class MJE_Checkout extends AE_Base
             $response = array(
                 'success' => false,
                 'paymentType' => $payment_type,
-                'msg' => ! empty( $nvp['msg'] ) ? $nvp['msg'] : __("Invalid payment gateway!", 'enginethemes')
+                'msg' => !empty($nvp['msg']) ? $nvp['msg'] : __("Invalid payment gateway!", 'enginethemes')
             );
         }
 
@@ -188,23 +193,22 @@ class MJE_Checkout extends AE_Base
      * @author  Dakachi
      *
      */
-    public static function process_payment( $payment_type, $data ) {
+    public static function process_payment($payment_type, $data)
+    {
         $payment_return = array(
             'ACK' => false
         );
-        if ( $payment_type ) {
+        if ($payment_type) {
             // check order id
-            if ( isset($data['order_id'] ) ) {
-                $order = new MJE_Order( $data['order_id'] );
+            if (isset($data['order_id'])) {
+                $order = new MJE_Order($data['order_id']);
             } else {
                 $order = new ET_NOPAYOrder();
             }
 
-
             // call a visitor process order base on payment type
-            et_track_payment('payment_type:'.$payment_type);
-            $visitor = AE_Payment_Factory::createPaymentVisitor( strtoupper($payment_type), $order, $payment_type );
-            $payment_return = $visitor->do_checkout( $order );
+            $visitor = AE_Payment_Factory::createPaymentVisitor(strtoupper($payment_type), $order, $payment_type);
+            $payment_return = $visitor->do_checkout($order);
 
             $data['order'] = $order;
             $data['payment_type'] = $payment_type;
@@ -215,8 +219,8 @@ class MJE_Checkout extends AE_Base
              * @param array $data -order : Order data, payment_type ...
              * @since 1.0
              */
-            $payment_return = apply_filters( 'mje_process_payment', $payment_return, $data );
-            if($payment_return){
+            $payment_return = apply_filters('mje_process_payment', $payment_return, $data);
+            if ($payment_return) {
                 $payment_return['order'] = $data['order'];
 
                 /**
@@ -225,8 +229,7 @@ class MJE_Checkout extends AE_Base
                  * @param array $data -order : Order data, payment_type ...
                  * @since 1.0
                  */
-                et_track_payment('call mje_after_process_payment hook');
-                do_action( 'mje_after_process_payment', $payment_return, $data );
+                do_action('mje_after_process_payment', $payment_return, $data);
             }
         }
         return $payment_return;
@@ -240,8 +243,9 @@ class MJE_Checkout extends AE_Base
      * @since 1.2
      * @author Tat Thien
      */
-    public function validate_nonce() {
-        if( ! de_check_ajax_referer( 'mje_checkout_action', 'p_nonce', false ) ) {
+    public function validate_nonce()
+    {
+        if (!de_check_ajax_referer('mje_checkout_action', 'p_nonce', false)) {
             return false;
         }
         return true;
@@ -255,8 +259,9 @@ class MJE_Checkout extends AE_Base
      * @since 1.2
      * @author Tat Thien
      */
-    public function validate_total( $total ) {
-        if( $total <= 0 ) {
+    public function validate_total($total)
+    {
+        if ($total <= 0) {
             return false;
         }
         return true;
@@ -270,8 +275,9 @@ class MJE_Checkout extends AE_Base
      * @since 1.2
      * @author Tat Thien
      */
-    public function validate_product_type( $product_type ) {
-        if( ! in_array( $product_type, $this->accept_product_types ) ) {
+    public function validate_product_type($product_type)
+    {
+        if (!in_array($product_type, $this->accept_product_types)) {
             return false;
         }
         return true;
@@ -285,8 +291,9 @@ class MJE_Checkout extends AE_Base
      * @since 1.2
      * @author Tat Thien
      */
-    public function build_product_types() {
-        $this->accept_product_types = apply_filters( 'mje_checkout_product_types',  array( 'mjob_order', 'mje_claims' ) );
+    public function build_product_types()
+    {
+        $this->accept_product_types = apply_filters('mje_checkout_product_types',  array('mjob_order', 'mje_claims'));
     }
 }
 

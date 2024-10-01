@@ -20,7 +20,6 @@
 			template: _.template($('#fre-credit-withdraw-loop').html()),
 			onItemBeforeRender: function() {
 				// before render view
-				// console.log('render');
 			},
 			onItemRendered: function() {
 				// after render view

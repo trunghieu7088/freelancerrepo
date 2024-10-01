@@ -60,7 +60,76 @@ function save_verification_status_seller($user_id)
         update_post_meta($user_profile_id,'manual_verify_option_status',$_POST['manual_verify_option_status']);
     }
 
+    //custom code 26th aug 2024
+    $user_mjob_post=array(
+                    'post_status'=>array('publish','pending'),
+                    'post_type'=>'mjob_post',
+                    'numberposts' => -1,
+                    'author'=>$user_id
+    );
+    $mjob_collection=get_posts($user_mjob_post);
+    if($mjob_collection)
+    {
+        foreach($mjob_collection as $mjob_item)
+        {
+            update_post_meta($mjob_item->ID,'manual_verify_option_status',$_POST['manual_verify_option_status']);
+        }
+    }
+    //end custom code
+
 }
+
+// custom code 26th aug 2024
+
+add_filter('mje_mjob_filter_query_args', 'filter_custom_mjob_verified_manually', 999);
+
+function filter_custom_mjob_verified_manually($query_args)
+{
+    $query = $_REQUEST['query'];
+    if(isset($query['verified']) && $query['verified']=='true')
+    {        
+        $jobs=get_manual_verified_mjobs();
+
+        if($jobs)
+        {
+            foreach($jobs as $job)
+            {
+                array_push($query_args['post__in'],$job);
+            }
+          
+        }        
+    } 
+
+    return $query_args;
+    
+}
+
+function get_manual_verified_mjobs()
+{
+    $jobs=array();
+    $verified_mjob_args=array(
+        'post_status'=>array('publish','pending'),
+        'post_type'=>'mjob_post',
+        'numberposts' => -1,    
+        'meta_query'     => array(
+            array(
+                'key'     => 'manual_verify_option_status',
+                'value'   => 'verified',
+                'compare' => '='
+            ),
+    ),    
+    );
+    $verified_jobs=get_posts($verified_mjob_args);
+    if($verified_jobs)
+    {
+        foreach($verified_jobs as $job_item)
+        {
+            $jobs[]=$job_item->ID;
+        }
+    }
+    return $jobs;
+}
+//end
 
 
 add_action('mje_mjob_item_before_rating','add_verified_label_to_verified_seller',999);

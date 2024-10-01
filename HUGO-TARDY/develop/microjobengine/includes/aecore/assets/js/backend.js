@@ -64,7 +64,6 @@
             });
             newView.bind('onCreateSuccess', function(model, abc) {
                 // create new view
-                //console.log(model);
                 var itemView = new Views.CategoryListItem({
                     model: model
                 });
@@ -235,8 +234,6 @@
             if(event.keyCode === 13) {
                 var val = $(event.currentTarget).val(),
                     view = this;
-                    console.log(val);
-                    console.log(view.$el.html());
                     view.$el.find('input.tax-name').eq(0).css('color', val);
                     view.$el.find('.cursor > span.flag').eq(0).css('background-color', val);
                     view.trigger('onChangeColor', val);
@@ -286,7 +283,6 @@
             view.$el.removeClass('colored');
             icon.attr('class', '');
             icon.attr('class', 'fa ' + val);
-            // console.log(val);
             view.trigger('onChangeIcon', val, panel);
         },
         /**
@@ -303,13 +299,11 @@
                 view.$el.removeClass('colored');
                 icon.attr('class', '');
                 icon.attr('class', 'fa ' + val);
-                // console.log(val);
                 view.trigger('onChangeIcon', val, panel);
             }
         },
 
         onChangeIcon: function(val, panel) {
-            // console.log(this.model);
             this.model.set('icon', val);
         },
         onChangeColor: function(val) {
@@ -572,7 +566,6 @@
             view.$el.removeClass('colored');
             icon.attr('class', '');
             icon.attr('class', 'fa ' + val);
-            // console.log(val);
             view.trigger('onChangeIcon', val, panel);
         },
         /**
@@ -589,14 +582,12 @@
                 view.$el.removeClass('colored');
                 icon.attr('class', '');
                 icon.attr('class', 'fa ' + val);
-                // console.log(val);
                 view.trigger('onChangeIcon', val, panel);
             }
         },
 
         onChangeIcon: function(val, panel) {
             this.model.set('icon', val);
-            console.log(this.model);
             if (typeof this.model.attributes.id == 'undefined') return false;
             var tempModel = new Models.Category({
                 id: this.model.get('id'),

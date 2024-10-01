@@ -2,7 +2,7 @@
  * Created by Jack Bui on 1/21/2016.
  */
 (function($, Models, Collections, Views) {
-    $(document).ready(function () {
+    $(function () {
         Views.Order = Backbone.View.extend({
             el: '.mjob-order-page',
             events: {
@@ -15,8 +15,6 @@
                 AE.pubsub.on('mje:update:checkout:subtotal', this.updateSubtotal, this);
                 AE.pubsub.on('mje:update:checkout:fee', this.updateFee, this);
                 AE.pubsub.on('mje:update:checkout:total', this.updateTotal, this);
-
-
 
                 AE.pubsub.on('mje:update:checkout:product:data', this.updateProductData, this);
 
@@ -191,7 +189,7 @@
                     },
                     success: function ( result, res, jqXHR ) {
                         if (res.success && res.data.ACK) {
-                          window.location.href = res.data.url;
+                            window.location.href = res.data.url;
                         } else if(res.form_generate){
                             $("body").append(res.form_generate);
                         } else {

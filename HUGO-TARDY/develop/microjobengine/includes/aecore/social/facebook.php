@@ -1,77 +1,97 @@
 <?php
 class ET_FaceAuth extends ET_SocialAuth
 {
+    private $isReady;
     private $fb_secret_key;
     protected $fb_app_id;
     protected $fb_token_url;
     protected $fb_exchange_token;
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct('facebook', 'et_facebook_id', array(
-            'title' => __('SIGN IN WITH FACEBOOK', 'enginethemes') ,
-            'content' => __("This seems to be your first time signing in using your Facebook account.If you already have an account, please log in using the form below to link it to your Facebook account. Otherwise, please enter an email address and a password on the form, and a username on the next page to create an account.You will only do this step ONCE. Next time, you'll get logged in right away.", 'enginethemes') ,
+            'title' => __('SIGN IN WITH FACEBOOK', 'enginethemes'),
+            'content' => __("This seems to be your first time signing in using your Facebook account.If you already have an account, please log in using the form below to link it to your Facebook account. Otherwise, please enter an email address and a password on the form, and a username on the next page to create an account.You will only do this step ONCE. Next time, you'll get logged in right away.", 'enginethemes'),
             'content_confirm' => __("Please provide a username to continue", 'enginethemes')
         ));
         //$this->add_action('init', 'auth_facebook');
+
+        $this->isReady = ae_get_option('facebook_login', false);
         $this->fb_app_id = ae_get_option('et_facebook_key', false);
         $this->fb_secret_key = ae_get_option('et_facebook_secret_key', false);
+
         $this->fb_token_url = 'https://graph.facebook.com/me';
         $this->fb_exchange_token = 'https://graph.facebook.com/oauth/access_token';
+
+        // add_action('wp_head', array($this, 'add_wp_head_facebook_login_script'), 10, 0);
         $this->add_action('wp_enqueue_scripts', 'add_scripts', 20);
         $this->add_ajax('et_facebook_auth', 'auth_facebook');
     }
-    public function add_scripts() {
-        //$this->add_script('facebook_auth', '//connect.facebook.net/en_US/all.js', array(), false, true);
+    public function isFacebookReady()
+    {
+        return ($this->isReady && !empty($this->fb_app_id) && !empty($this->fb_secret_key));
+    }
+
+    public function add_wp_head_facebook_login_script()
+    {
+        if (!$this->isFacebookReady())
+            return;
+?>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<?php
+    }
+
+    public function add_scripts()
+    {
         $this->add_script('facebook_auth', ae_get_url() . '/social/js/facebookauth.js', array(
             'jquery'
-        ) , false, true);
-        wp_localize_script('facebook_auth', 'facebook_auth', array(
-            'appID' => ae_get_option('et_facebook_key') ,
+        ), false, true);
+
+        wp_add_inline_script('facebook_auth', 'const facebook_auth = ' . json_encode(array(
+            'appID' => $this->fb_app_id,
             'auth_url' => home_url('?action=authentication')
-        ));
+        )), 'before');
     }
+
     // implement abstract method
-    protected function send_created_mail($user_id) {
+    protected function send_created_mail($user_id)
+    {
         do_action('et_after_register', $user_id);
     }
-    public function auth_facebook() {
+    public function auth_facebook()
+    {
         try {
             // turn on session
             if (!isset($_SESSION)) {
                 ob_start();
                 @session_start();
             }
-            $fb_appID = ae_get_option('et_facebook_key', false);
-            $fb_secret_key = ae_get_option('et_facebook_secret_key', false);
-            if ( !$this->fb_app_id || !$this->fb_secret_key ) {
+            if (!$this->isFacebookReady()) {
                 $resp = array(
                     'success' => false,
                     'msg' => __('Social login is invalid. Please contact administrator for help.', 'enginethemes')
                 );
                 wp_send_json($resp);
-                return;
             }
-            if( !isset( $_POST['fb_token'] ) || $_POST['fb_token'] == '' ){
-                   $resp = array(
+            if (!isset($_POST['fb_token']) || $_POST['fb_token'] == '') {
+                $resp = array(
                     'success' => false,
                     'msg' => __('Social login is invalid. Please contact administrator for help.', 'enginethemes')
                 );
                 wp_send_json($resp);
-                return;
             }
             /**
              * check user id with a access token
              */
             $token_url = $this->fb_token_url;
-            $token_url .= '?fields=id&access_token='.$_POST['fb_token'];
-            $check_userid = wp_remote_get( $token_url );
-            $check_userid = json_decode( $check_userid['body'] );
-            if( !isset( $check_userid->id ) ||  $check_userid->id == '' ){
+            $token_url .= '?fields=id&access_token=' . $_POST['fb_token'];
+            $check_userid = wp_remote_get($token_url);
+            $check_userid = json_decode($check_userid['body']);
+            if (!isset($check_userid->id) ||  $check_userid->id == '') {
                 $resp = array(
                     'success' => false,
                     'msg' => __('Social login is invalid. Please contact administrator for help.', 'enginethemes')
                 );
                 wp_send_json($resp);
-                return;
             }
             $check_userid = $check_userid->id;
             /**
@@ -80,31 +100,29 @@ class ET_FaceAuth extends ET_SocialAuth
              */
             $fb_exchange_token = $this->fb_exchange_token;
             $fb_exchange_token .= '?grant_type=fb_exchange_token&';
-            $fb_exchange_token .= 'client_id='.$this->fb_app_id.'&';
-            $fb_exchange_token .= 'client_secret='.$this->fb_secret_key.'&';
-            $fb_exchange_token .= 'fb_exchange_token='.$_POST['fb_token'];
+            $fb_exchange_token .= 'client_id=' . $this->fb_app_id . '&';
+            $fb_exchange_token .= 'client_secret=' . $this->fb_secret_key . '&';
+            $fb_exchange_token .= 'fb_exchange_token=' . $_POST['fb_token'];
             // $fb_app_token = wp_remote_get('https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id='.$this->fb_app_id.'&client_secret='.$this->fb_secret_key.'&fb_exchange_token=' . $_POST['fb_token']);
-            $fb_app_token = wp_remote_get( $fb_exchange_token );
-            if( !isset( $_POST['content'] ) || empty( $_POST['content'] ) ){
+            $fb_app_token = wp_remote_get($fb_exchange_token);
+            if (!isset($_POST['content']) || empty($_POST['content'])) {
                 $resp = array(
                     'success' => false,
                     'msg' => __('Social login is invalid. Please contact administrator for help.', 'enginethemes')
                 );
                 wp_send_json($resp);
-                return;
             }
             $data = $_POST['content'];
-            if( !isset( $data['id'] ) || $data['id'] == '' ){
+            if (!isset($data['id']) || $data['id'] == '') {
                 $resp = array(
                     'success' => false,
                     'msg' => __('Social login is invalid. Please contact administrator for help.', 'enginethemes')
                 );
                 wp_send_json($resp);
-                return;
             }
-            if ( isset($fb_app_token['body']) && $fb_app_token['body'] != '' ) {
-                $fb_app_token = json_decode( $fb_app_token['body'] );
-                $fb_token = isset( $fb_app_token->access_token ) ? $fb_app_token->access_token : '';
+            if (isset($fb_app_token['body']) && $fb_app_token['body'] != '') {
+                $fb_app_token = json_decode($fb_app_token['body']);
+                $fb_token = isset($fb_app_token->access_token) ? $fb_app_token->access_token : '';
                 if ($check_userid != $data['id'] || $fb_token == '') {
                     $fb_token = $fb_token['1'];
                     $resp = array(
@@ -112,7 +130,6 @@ class ET_FaceAuth extends ET_SocialAuth
                         'msg' => __('Please login by using your Facebook account again!', 'enginethemes')
                     );
                     wp_send_json($resp);
-                    return;
                 }
             } else {
                 $resp = array(
@@ -120,7 +137,6 @@ class ET_FaceAuth extends ET_SocialAuth
                     'msg' => __('Please login by using your Facebook account again!', 'enginethemes')
                 );
                 wp_send_json($resp);
-                return;
             }
             // find usser
             $return = array(
@@ -128,13 +144,13 @@ class ET_FaceAuth extends ET_SocialAuth
             );
             $user = $this->get_user($data['id']);
             // if user is already authenticated before
-            if ( $user ) {
+            if ($user) {
                 $result = $this->logged_user_in($data['id']);
                 $ae_user = AE_Users::get_instance();
                 $userdata = $ae_user->convert($user);
                 $nonce = array(
-                    'reply_thread' => wp_create_nonce('insert_reply') ,
-                    'upload_img' => wp_create_nonce('et_upload_images') ,
+                    'reply_thread' => wp_create_nonce('insert_reply'),
+                    'upload_img' => wp_create_nonce('et_upload_images'),
                 );
 
                 $return = array(
@@ -151,7 +167,7 @@ class ET_FaceAuth extends ET_SocialAuth
                 do_action('ae_facebook_connect_social', $data['id']);
 
                 // avatar
-                $ava_response = wp_remote_get('http://graph.facebook.com/' . $data['id'] . '/picture?type=large&redirect=false');
+                $ava_response = wp_remote_get('https://graph.facebook.com/' . $data['id'] . '/picture?type=large&redirect=false');
                 if (!is_wp_error($ava_response)) $ava_response = json_decode($ava_response['body']);
                 else $ava_response = false;
 
@@ -198,8 +214,7 @@ class ET_FaceAuth extends ET_SocialAuth
                 'redirect_url'  => apply_filters('ae_social_redirect_link', home_url()),
                 'data'      => $return
             );
-        }
-        catch(Exception $e) {
+        } catch (Exception $e) {
             $resp = array(
                 'success' => false,
                 'msg' => $e->getMessage()

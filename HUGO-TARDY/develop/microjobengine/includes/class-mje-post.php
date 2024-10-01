@@ -33,8 +33,7 @@ class MJE_Post extends AE_Posts
     public function __construct($post_type = '', $taxs = array(), $meta_data = array(), $localize = array())
     {
 
-        parent::__construct( $post_type, $taxs, $meta_data, $localize );
-
+        parent::__construct($post_type, $taxs, $meta_data, $localize);
     }
     /**
      * register post type
@@ -55,13 +54,13 @@ class MJE_Post extends AE_Posts
             'show_in_menu' => true,
             'query_var' => true,
             'rewrite' => array(
-                'slug' => ae_get_option($this->post_type.'_slug', $this->post_type)
-            ) ,
+                'slug' => ae_get_option($this->post_type . '_slug', $this->post_type)
+            ),
             'capability_type' => 'post',
             // 'capabilities' => array(
             //     'manage_options'
             // ) ,
-            'has_archive' => ae_get_option($this->post_type.'_archive', $this->post_type),
+            'has_archive' => ae_get_option($this->post_type . '_archive', $this->post_type),
             'hierarchical' => true,
             'menu_position' => null,
             'supports' => array(
@@ -75,14 +74,14 @@ class MJE_Post extends AE_Posts
             )
         );
         $args = wp_parse_args($args, $default);
-        if( in_array( $this->post_type, array('ae_message')  ) ){
+        if (in_array($this->post_type, array('ae_message'))) {
             $args['capabilities'] = array('manage_options');
         }
 
         register_post_type($this->post_type, $args);
         flush_rewrite_rules();
         global $ae_post_factory;
-        $ae_post_factory->set( $this->post_type, new MJE_Post( $this->post_type, $this->taxs, $this->meta ) );
+        $ae_post_factory->set($this->post_type, new MJE_Post($this->post_type, $this->taxs, $this->meta));
     }
     /**
      * Register taxonomy for post
@@ -94,8 +93,9 @@ class MJE_Post extends AE_Posts
      * @category void
      * @author JACK BUI
      */
-    public function register_taxonomy($tax = '', $post_type = array(), $labels = array(), $args = array()){
-        $args = wp_parse_args( $args, array(
+    public function register_taxonomy($tax = '', $post_type = array(), $labels = array(), $args = array())
+    {
+        $args = wp_parse_args($args, array(
             'labels' => $labels,
             'public' => true,
             'show_in_nav_menus' => true,
@@ -105,9 +105,9 @@ class MJE_Post extends AE_Posts
             'show_ui' => true,
             'query_var' => true,
             'rewrite' => array(
-                'slug' => ae_get_option($tax.'_slug', $tax) ,
-                'hierarchical' => ae_get_option($tax.'_hierarchical', false)
-            ) ,
+                'slug' => ae_get_option($tax . '_slug', $tax),
+                'hierarchical' => ae_get_option($tax . '_hierarchical', false)
+            ),
             'capabilities' => array(
                 'manage_terms',
                 'edit_terms',
@@ -115,7 +115,7 @@ class MJE_Post extends AE_Posts
                 'assign_terms'
             )
         ));
-        register_taxonomy($tax, $post_type , $args);
+        register_taxonomy($tax, $post_type, $args);
     }
 
     /**
@@ -126,7 +126,8 @@ class MJE_Post extends AE_Posts
      * @since 1.1.4
      * @author Tat Thien
      */
-    public function insert($args) {
+    public function insert($args)
+    {
         global $current_user, $user_ID;
 
         // strip tags
@@ -145,16 +146,16 @@ class MJE_Post extends AE_Posts
         ));
 
         // Only use for mjob_post
-        if( $this->post_type == 'mjob_post' ) {
+        if ($this->post_type == 'mjob_post') {
             /*if admin disable plan set status to pending or publish*/
             $pending = ae_get_option('use_pending', false);
-            $pending = apply_filters( 'use_pending', $pending, $this->post_type );
+            $pending = apply_filters('use_pending', $pending, $this->post_type);
             $disable_plan = ae_get_option('disable_plan', false);
 
             /*if admin disable plan set status to pending or publish*/
             if ($disable_plan) {
                 // Change Status Publish places that posted by Admin
-                if(is_super_admin()){
+                if (is_super_admin()) {
                     // Publish post
                     $args['post_status'] = 'publish';
                 } else {
@@ -181,11 +182,11 @@ class MJE_Post extends AE_Posts
 
         if (!isset($args['post_author']) || empty($args['post_author'])) $args['post_author'] = $current_user->ID;
 
-        if ( empty( $args['post_author'] ) ) return new WP_Error('missing_author', __('You must login to submit listing.', 'enginethemes'));
+        if (empty($args['post_author'])) return new WP_Error('missing_author', __('You must login to submit listing.', 'enginethemes'));
 
         // filter tax_input
         $args = $this->_filter_tax_input($args);
-        if(isset($args['post_content'])){
+        if (isset($args['post_content'])) {
             // filter post content strip invalid tag
             $args['post_content'] = $this->filter_content($args['post_content']);
         }
@@ -209,7 +210,8 @@ class MJE_Post extends AE_Posts
              */
             do_action('ae_insert_' . $this->post_type, $result, $args);
 
-            $result = (object)$args;
+            $inserted = get_post($result, ARRAY_A);
+            $result = (object) array_merge($args, $inserted);
 
             /**
              * do action ae_insert_post

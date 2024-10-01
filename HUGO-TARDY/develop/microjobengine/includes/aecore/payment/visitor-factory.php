@@ -10,14 +10,10 @@
  * @since  1.0
  * @author  Dakachi
  */
-class AE_Payment_Factory extends ET_Payment_Factory
+class AE_Payment_Factory
 {
     function __construct()
     {
-
-        // dont know what i can do here
-
-
     }
 
     public static function createPaymentVisitor($paymentType, $order, $paymentType_raw)
@@ -25,14 +21,9 @@ class AE_Payment_Factory extends ET_Payment_Factory
 
         switch ($paymentType) {
             case 'CASH':
-
                 // return cash visitor
                 $class = new ET_CashVisitor($order);
                 break;
-
-                // case 'GOOGLE_CHECKOUT':
-                //     $class = new ET_GoogleVisitor($order);
-                //     break;
 
             case 'PAYPAL':
                 $class = new ET_PaypalVisitor($order);

@@ -10,7 +10,7 @@ function is_order_v2($payment_type)
     return false;
 }
 
-function mje_add_extra_fee($subtotal)
+function mje_add_extra_fee($subtotal, $mjob_id)
 {
     /* Get extra services */
     $extras_ids = array();
@@ -19,7 +19,7 @@ function mje_add_extra_fee($subtotal)
     }
     if (!empty($extras_ids)) {
         foreach ($extras_ids as $key => $value) {
-            $extra = mje_extra_action()->get_extra_of_mjob($value, $product->ID);
+            $extra = mje_extra_action()->get_extra_of_mjob($value, $mjob_id);
             if ($extra) {
                 $subtotal += (float) $extra->et_budget;
             } else {
@@ -30,32 +30,31 @@ function mje_add_extra_fee($subtotal)
     return $subtotal;
 }
 
-function et_log($input, $file_store = '')
+function et_log($input, $comment = '', $file_store = '')
 {
     if (!ET_DEBUG) return;
+    $comment = !empty($comment) ? $comment . ": " : "";
     if (empty($file_store)) {
-        $file_store = WP_CONTENT_DIR . '/et_log.css';
+        $file_store = WP_CONTENT_DIR . '/et_log.log';
     }
-
     if (is_array($input) || is_object($input)) {
-        error_log(print_r($input, TRUE), 3, $file_store);
+        error_log($comment . print_r($input, TRUE), 3, $file_store);
     } else {
-        error_log($input . "\n", 3, $file_store);
+        error_log($comment . $input . "\n", 3, $file_store);
     }
 }
 
-function et_track_payment($input)
+function et_track_payment($input, $comment = "")
 {
     if (defined('TRACK_PAYMENT')  && TRACK_PAYMENT) {
         $file_store = WP_CONTENT_DIR . '/et_track_payment.log';
-
+        $comment = !empty($comment) ? $comment . ": " : "";
+        error_log(date('Y-m-d H:i:s', current_time('timestamp', 0)) . ' ' . $comment, 3, $file_store);
 
         if (is_array($input) || is_object($input)) {
-            error_log(date('Y-m-d H:i:s', current_time('timestamp', 0)) . ': ' . print_r($input, TRUE), 3, $file_store);
-            // fwrite($h,  var_export($input, true) );
-            // fwrite($h,". \n");
+            error_log(print_r($input, TRUE), 3, $file_store);
         } else {
-            error_log(date('Y-m-d H:i:s', current_time('timestamp', 0)) . ': ' . $input . "\n", 3, $file_store);
+            error_log($input . "\n", 3, $file_store);
         }
     }
 }
@@ -130,8 +129,6 @@ function mje_update_time_used_discount($code)
     if (null !== $post) {
 
         $id = $post->ID;
-        // et_log('Discount Post ID: '. $id);
-        // et_log('Discount code: '.$code);
         $time_used = (int) get_post_meta($id, 'time_used_discount', true);
         $update_time = $time_used + 1;
         update_post_meta($id, 'time_used_discount', $update_time);

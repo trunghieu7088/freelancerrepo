@@ -4,37 +4,11 @@ AE.Views.SocialAuth = Backbone.View.extend({
 	events: {
 		'submit #form_auth' 	: 'authenticate',
 		'submit #form_username' : 'confirm_username',
-		'click .gplus_login_btn' : 'gplusDoLogin',
-		'click .lkin' : 'lkinDoLogin'
 	},
 	initialize: function(){
 		var view = this;
 		view.user_pass = ''; // some time cookie can not save user_pass so has to re-call it again by this variable.
 		this.blockUi = new AE.Views.BlockUi();
-	},
-	gplusDoLogin: function (){
-		var view = this;
-		$.ajax({
-			url : ae_globals.ajaxURL,
-			type : "get",
-			data :{
-				action: "ae_gplus_auth",
-			},
-			beforeSend: function() {
-                view.blockUi.block('.gplus');
-            },
-			success:function(resp){
-				if( resp.success ){
-					window.location.href = resp.redirect;
-				}
-				else{
-					AE.pubsub.trigger('ae:notification', {
-						msg: resp.msg,
-						notice_type: 'error',
-					});
-				}
-			}
-		});
 	},
 	lkinDoLogin: function(e){
 		var view = this;
@@ -69,6 +43,9 @@ AE.Views.SocialAuth = Backbone.View.extend({
 		var params = {
 			url: 	ae_globals.ajaxURL,
 			type: 	'post',
+			xhrFields: {
+			  withCredentials: true // Send session cookies
+			},
 			data: {
 				action: ae_auth.action_auth,
 				content: form.serializeObject(),
@@ -117,15 +94,13 @@ AE.Views.SocialAuth = Backbone.View.extend({
 		event.preventDefault();
 		var form = $(event.currentTarget);
 		var view = this;
-		var obj = form.serializeObject();
-		console.log('check view.user_pass:');
-		console.log(view.user_pass);
-		console.log('confirm_username form:');
-		console.log(obj);
 
 		var params = {
 			url: 	ae_globals.ajaxURL,
 			type: 	'post',
+			xhrFields: {
+			  withCredentials: true // Send session cookies
+			},
 			data: {
 				action: ae_auth.action_confirm,
 				content: form.serializeObject(),
@@ -137,7 +112,6 @@ AE.Views.SocialAuth = Backbone.View.extend({
 				view.blockUi.block(button);
 			},
 			success: function(resp){
-				//console.log(resp);
 				if ( resp.success == true ){
 					AE.pubsub.trigger('ae:notification', {
 						msg: resp.msg,
@@ -162,7 +136,7 @@ AE.Views.SocialAuth = Backbone.View.extend({
 	}
 });
 
-$(document).ready(function(){
-	var view = new AE.Views.SocialAuth();
+$(function(){
+	new AE.Views.SocialAuth();
 });
 })(jQuery);

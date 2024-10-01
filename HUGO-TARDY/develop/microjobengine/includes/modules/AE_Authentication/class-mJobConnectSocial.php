@@ -5,8 +5,9 @@ class mJobConnectSocial extends AE_Base
     /**
      * Get instance method
      */
-    public static function getInstance() {
-        if(!self::$instance) {
+    public static function getInstance()
+    {
+        if (!self::$instance) {
             self::$instance = new self();
         }
 
@@ -16,10 +17,10 @@ class mJobConnectSocial extends AE_Base
     /**
      * Constructor of class
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->add_action('ae_facebook_connect_social', 'mJobConnectFacebook');
         $this->add_action('ae_google_connect_social', 'mJobConnectGoogle');
-        $this->add_action('ae_twitter_connect_social', 'mJobConnectTwitter');
 
         $this->add_filter('ae_social_redirect_link', 'mJobConnectSocialRedirectLink');
     }
@@ -33,7 +34,8 @@ class mJobConnectSocial extends AE_Base
      * @category Connect Social
      * @author Tat Thien
      */
-    public function mJobConnectFacebook($social_id) {
+    public function mJobConnectFacebook($social_id)
+    {
         $this->mJobUpdateUserSocialID('et_facebook_id', $social_id);
     }
 
@@ -46,7 +48,8 @@ class mJobConnectSocial extends AE_Base
      * @category Connect Social
      * @author Tat Thien
      */
-    public function mJobConnectGoogle($social_id) {
+    public function mJobConnectGoogle($social_id)
+    {
         $this->mJobUpdateUserSocialID('et_google_id', $social_id);
     }
 
@@ -59,7 +62,8 @@ class mJobConnectSocial extends AE_Base
      * @category Connect Social
      * @author Tat Thien
      */
-    public function mJobConnectTwitter($social_id) {
+    public function mJobConnectTwitter($social_id)
+    {
         $this->mJobUpdateUserSocialID('et_twitter_id', $social_id);
     }
 
@@ -73,11 +77,12 @@ class mJobConnectSocial extends AE_Base
      * @category Connect Social
      * @author Tat Thien
      */
-    public function mJobUpdateUserSocialID($meta_key, $social_id) {
+    public function mJobUpdateUserSocialID($meta_key, $social_id)
+    {
         global $current_user;
-        if(!empty($social_id) && !empty($current_user->ID) && mje_is_user_active($current_user->ID)) {
+        if (!empty($social_id) && !empty($current_user->ID) && mje_is_user_active($current_user->ID)) {
             update_user_meta($current_user->ID, $meta_key, $social_id);
-            if($meta_key == 'et_facebook_id') {
+            if ($meta_key == 'et_facebook_id') {
                 $resp = array(
                     'success'   => true,
                     'data'      => array(
@@ -101,7 +106,8 @@ class mJobConnectSocial extends AE_Base
      * @category void
      * @author Tat Thien
      */
-    public function mJobConnectSocialRedirectLink($url) {
+    public function mJobConnectSocialRedirectLink($url)
+    {
         $url = et_get_page_link('dashboard');
         return $url;
     }

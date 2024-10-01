@@ -1,5 +1,6 @@
 <?php
-class MJE_MJob_Order_Delivery_Action extends MJE_Post_Action{
+class MJE_MJob_Order_Delivery_Action extends MJE_Post_Action
+{
     public static $instance;
     public $mail = '';
     /**
@@ -17,14 +18,15 @@ class MJE_MJob_Order_Delivery_Action extends MJE_Post_Action{
      * the constructor of this class
      *
      */
-    public  function __construct($post_type = 'order_delivery'){
+    public  function __construct($post_type = 'order_delivery')
+    {
         parent::__construct($post_type);
         $this->add_ajax('ae-fetch-order_delivery', 'fetch_post');
         $this->add_ajax('ae-order_delivery-sync', 'sync_delivery');
         $this->add_filter('ae_convert_order_delivery', 'convert');
         $this->ruler = array(
-            'post_content',
-            'post_parent'
+            'post_content' => 'required',
+            'post_parent' => 'required',
         );
 
         $this->mail = MJE_Mailing::get_instance();
@@ -39,39 +41,40 @@ class MJE_MJob_Order_Delivery_Action extends MJE_Post_Action{
      * @category void
      * @author JACK BUI
      */
-    public function sync_delivery(){
+    public function sync_delivery()
+    {
         global $user_ID, $ae_post_factory;
         $request = $_POST;
 
-        $response = $this->validatePost( $request );
-        if( !$response['success'] ){
-            wp_send_json( $response );
+        $response = $this->validatePost($request);
+        if (!$response['success']) {
+            wp_send_json($response);
             exit;
         }
-        $request['post_title'] = sprintf( __( 'Delivery for: %s', 'enginethemes' ), $response['order_title'] );
-        $order = mje_mjob_action()->get_mjob( $request['post_parent'] );
+        $request['post_title'] = sprintf(__('Delivery for: %s', 'enginethemes'), $response['order_title']);
+        $order = mje_mjob_action()->get_mjob($request['post_parent']);
         $request['post_status'] = 'publish';
-        $response = $this->sync_post( $request );
-        if( $response['success'] ){
+        $response = $this->sync_post($request);
+        if ($response['success']) {
             //Update total delivery order user total
-            if( $data = $response['data'] ) {
-                $this->add_user_number_delivery_order( $data->post_author );
+            if ($data = $response['data']) {
+                $this->add_user_number_delivery_order($data->post_author);
             }
 
             $my_post = array(
                 'ID' => $response['data']->post_parent,
-                'post_status'=> 'delivery',
+                'post_status' => 'delivery',
             );
-            wp_update_post( $my_post );
-            $post_date = get_the_time( 'Y-m-d H:i:s', $response['data']->ID );
-            update_post_meta( $response['data']->post_parent, 'order_delivery_day', $post_date );
-            update_post_meta( $response['data']->post_parent, 'order_countdown_delivery', $request['order_countdown_delivery'] );
+            wp_update_post($my_post);
+            $post_date = get_the_time('Y-m-d H:i:s', $response['data']->ID);
+            update_post_meta($response['data']->post_parent, 'order_delivery_day', $post_date);
+            update_post_meta($response['data']->post_parent, 'order_countdown_delivery', $request['order_countdown_delivery']);
 
             // Create change log
-            $change_log_id = mje_add_mjob_order_changelog( $response['data']->post_parent, $response['data']->post_author, 'delivery' );
+            $change_log_id = mje_add_mjob_order_changelog($response['data']->post_parent, $response['data']->post_author, 'delivery');
 
             // Send email order delivery
-            if($response['data']->post_status == 'publish') {
+            if ($response['data']->post_status == 'publish') {
                 $this->mail->delivery_order($response['data'], $post_date);
             }
 
@@ -82,7 +85,7 @@ class MJE_MJob_Order_Delivery_Action extends MJE_Post_Action{
              * @since 1.3
              * @author Tat Thien
              */
-            do_action( 'mje_delivered_mjob_order', $response['data']->post_parent );
+            do_action('mje_delivered_mjob_order', $response['data']->post_parent);
         }
         wp_send_json($response);
     }
@@ -92,8 +95,9 @@ class MJE_MJob_Order_Delivery_Action extends MJE_Post_Action{
      * @param $user_id
      * @author: Dang Bui
      */
-    private function add_user_number_delivery_order($user_id) {
-        $mjob_delivery = (int) get_user_meta($user_id,'mjob_delivery_order', true);
+    private function add_user_number_delivery_order($user_id)
+    {
+        $mjob_delivery = (int) get_user_meta($user_id, 'mjob_delivery_order', true);
         $mjob_delivery = $mjob_delivery + 1;
         return update_user_meta($user_id, 'mjob_delivery_order', $mjob_delivery);
     }
@@ -108,27 +112,22 @@ class MJE_MJob_Order_Delivery_Action extends MJE_Post_Action{
      * @category void
      * @author JACK BUI
      */
-    public function convert( $result ){
+    public function convert($result)
+    {
         global $user_ID;
-        $result->author_name = get_the_author_meta( 'display_name', $result->post_author );
-        $order = get_post( $result->post_parent );
+        $result->author_name = get_the_author_meta('display_name', $result->post_author);
+        $order = get_post($result->post_parent);
         $result->order_author = '';
-        if( $order ){
+        if ($order) {
             $result->order_author = $order->post_author;
         }
         if (current_user_can('manage_options') || $result->post_author == $user_ID || $result->order_author == $user_ID) {
-            $children = get_children(array(
+            $result->et_carousels = get_children(array(
                 'numberposts' => 15,
                 'order' => 'ASC',
                 'post_parent' => $result->ID,
                 'post_type' => 'attachment'
             ));
-
-            $result->et_carousels = array();
-
-            foreach ($children as $key => $value) {
-                $result->et_carousels[] = $value;
-            }
         }
         return $result;
     }
@@ -142,24 +141,25 @@ class MJE_MJob_Order_Delivery_Action extends MJE_Post_Action{
      * @category void
      * @author JACK BUI
      */
-    public function validatePost($data){
+    public function validatePost($data)
+    {
         $result = array(
-            'success'=> false,
-            'msg'=> __('Failed!', 'enginethemes')
+            'success' => false,
+            'msg' => __('Failed!', 'enginethemes')
         );
-        if( isset($data['post_parent']) ){
+        if (isset($data['post_parent'])) {
             $order = get_post($data['post_parent']);
-            if( $order ){
+            if ($order) {
                 $args = array(
-                    'post_type'=> 'order_delivery',
-                    'post_parent'=> $data['post_parent']
+                    'post_type' => 'order_delivery',
+                    'post_parent' => $data['post_parent']
                 );
                 $q = new WP_Query($args);
-                if( $q->found_posts == 0 ){
+                if ($q->found_posts == 0) {
                     return array(
-                        'success'=> true,
-                        'msg'=> __('Success!', 'enginethemes'),
-                        'order_title'=> $order->post_title
+                        'success' => true,
+                        'msg' => __('Success!', 'enginethemes'),
+                        'order_title' => $order->post_title
                     );
                 }
             }

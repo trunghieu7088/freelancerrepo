@@ -5,18 +5,12 @@ Template Name: Moving Post Request page
 ?>
 <?php
 get_header();
-if(!is_user_logged_in())
-{
-    wp_redirect(site_url('identification'));
-}
-
-$is_defined_role=get_role_by_user_id(get_current_user_id());
 $admin_data=AdminData::get_instance();
 ?>
 <div class="moving_post_request_wrapper">
     <div class="container">                
         <div class="post-request-section">
-            <?php if($is_defined_role=='customer'): ?>
+     
             <p class="post-request-title"><?php _e('Post a request', 'moving_platform'); ?></p>            
 
                 <form id="post-request-form" action="" method="POST">                    
@@ -155,12 +149,8 @@ $admin_data=AdminData::get_instance();
 
                     <div class="post-request-form-group">
                         <button type="submit" class="request-btn-submit-form"><?php  _e('Submit','moving_platform');?></button>
-                    </div>
-                    
-                </form>    
-            <?php else: ?>
-                <h3 class="notify-text-post-request"><?php _e('Only the customer can post moving request','moving_platform'); ?></h3>
-            <?php endif; ?>              
+                    </div>                    
+                </form>                
         </div>
         
     </div>

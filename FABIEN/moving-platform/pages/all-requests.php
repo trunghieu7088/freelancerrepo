@@ -59,7 +59,7 @@ $moving_request_collection=$moving_instance->get_moving_requests($current_page,$
 
 ?>
 <div class="container all-requests-wrapper">
-    <?php if($current_user_role=='service_provider' || $admin_view): ?>
+    <?php if($current_user_role=='um_custom_role_1' || $admin_view): ?>
     <!-- shopping bag icon -->
     <div class="shopping-bag-area">
         <a class="shopping-bag-icon" href="<?php echo site_url('checkout-requests') ?>"><i class="fa fa-shopping-bag"></i>
@@ -170,11 +170,11 @@ $moving_request_collection=$moving_instance->get_moving_requests($current_page,$
                 <?php if($current_user_role): ?>
                     
                         <div class="on-off-wrapper">
-                            <?php if($current_user_role=='customer'): ?>
-                                <span class="only-text"><?php _e('Only My Request','moving_platform'); ?></span>                    
-                            <?php endif; ?>
+                            <?php //if($current_user_role=='customer'): ?>
+                              <!--  <span class="only-text"><?php _e('Only My Request','moving_platform'); ?></span>  -->                  
+                            <?php //endif; ?>
 
-                            <?php if($current_user_role=='service_provider'): ?>
+                            <?php if($current_user_role=='um_custom_role_1'): ?>
                                 <span class="only-text"><?php _e('Only My Paid list','moving_platform'); ?></span>                    
                             <?php endif; ?>
 
@@ -282,7 +282,7 @@ $moving_request_collection=$moving_instance->get_moving_requests($current_page,$
                                 <!-- show contact method if the user has paid or the user is request owner-->
                                 <span class="detail-information"><?php echo $request_item->contact_method; ?></span> 
                             <?php else: ?>
-                                <?php if($current_user_role=='service_provider'): ?>
+                                <?php if($current_user_role=='um_custom_role_1'): ?>
                                     <span class="detail-information not-paid" data-contact-id="<?php echo $request_item->ID ?>"></span>                
                                     <!--use data contact id to show contact method if user pay successfully --> 
 
@@ -323,12 +323,12 @@ $moving_request_collection=$moving_instance->get_moving_requests($current_page,$
                 </p>
                 <!-- end contact method (important thing) -->
 
-                <div class="request-posted-author">
+               <!-- <div class="request-posted-author">
                     <a href="<?php echo $request_item->author_profile_url ?>" class="request-owner-name" target="_blank">
                         <img src="<?php echo $request_item->author_avatar ?>"> 
                         <span class="author-name"><?php _e('Owner:','moving_platform') ?> <strong><?php echo $request_item->author_name ?></strong></span>                     
                     </a>                                       
-                </div>
+                </div> -->
             </div>
             <!-- gallery fancybox -->
                 <div class="image-gallery-group">                    

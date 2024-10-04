@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Moving Platform\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 10:11+0000\n"
-"PO-Revision-Date: 2024-09-12 10:12+0000\n"
+"POT-Creation-Date: 2024-10-03 15:42+0000\n"
+"PO-Revision-Date: 2024-10-03 15:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -15,40 +15,188 @@ msgstr ""
 "X-Loco-Version: 2.6.11; wp-6.6.2\n"
 "X-Domain: moving_platform"
 
-#: pages/moving_post_request_page.php:57
+#: includes/class-moving-platform-main.php:203
+msgid " Please enter a valid expiration date."
+msgstr ""
+
+#: pages/checkout-requests.php:71
+msgid "Add more item"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:776 pages/all-requests.php:299
+msgid "Add to cart"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:740
+msgid "Added the item to cart."
+msgstr ""
+
+#: includes/class-payment-handler.php:106
+#: includes/class-payment-handler.php:246
+msgid "An error occurred while creating the payment intent. Please try again."
+msgstr ""
+
+#: pages/moving_post_request_page.php:75
 msgid "Arrival Address"
 msgstr ""
 
-#: pages/moving_post_request_page.php:41
+#: pages/moving_post_request_page.php:45
 msgid "Arrival Date"
 msgstr ""
 
-#: pages/moving_post_request_page.php:65
+#: pages/all-requests.php:119
+msgid "Arrival Date Filter"
+msgstr ""
+
+#: pages/moving_post_request_page.php:87
+msgid "Arrival Postal code"
+msgstr ""
+
+#: pages/all-requests.php:266
+msgid "Arrival:"
+msgstr ""
+
+#: pages/checkout-requests.php:55
+msgid "Arrival: "
+msgstr ""
+
+#: includes/class-moving-platform-main.php:164
+msgid "As a customer, you can post moving requests."
+msgstr ""
+
+#: includes/class-moving-platform-main.php:172
+msgid ""
+"As a service provider, you can access the contact information for posted "
+"moving requests."
+msgstr ""
+
+#: includes/class-bulk-import.php:97
+msgid "Available Files"
+msgstr ""
+
+#: pages/all-requests.php:396 pages/checkout-requests.php:97
+msgid "Billing name"
+msgstr ""
+
+#: pages/checkout-requests.php:125
+msgid "Browse list to add item"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:174
+msgid "Browse the list."
+msgstr ""
+
+#: pages/all-requests.php:250
+msgid "Budget"
+msgstr ""
+
+#: pages/moving_post_request_page.php:95
 msgid "Budget (€)"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:102
+#: pages/all-requests.php:88
+msgid "Budget Filter"
+msgstr ""
+
+#: pages/all-requests.php:87
+msgid "Budget Filter (€)"
+msgstr ""
+
+#: pages/all-requests.php:394 pages/checkout-requests.php:114
+msgid "Checkout"
+msgstr ""
+
+#: pages/all-requests.php:164
+msgid "Clear filters"
+msgstr ""
+
+#: pages/all-requests.php:421
+msgid "Close"
+msgstr ""
+
+#: pages/all-requests.php:419
+msgid "Confirm Payment"
+msgstr ""
+
+#: pages/moving_post_request_page.php:98
+msgid "Contact method (e.g., Phone number, Email, Telegram, WhatsApp, etc.)."
+msgstr ""
+
+#: pages/all-requests.php:395
+msgid "Contact of"
+msgstr ""
+
+#: pages/all-requests.php:276
+msgid "Contact:"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:402
+msgid "Created moving request successfully"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:149 pages/all-requests.php:251
 msgid "Customer"
 msgstr ""
 
-#: pages/moving_post_request_page.php:49
+#: pages/moving_post_request_page.php:53
 msgid "Departure Address"
 msgstr ""
 
-#: pages/moving_post_request_page.php:38
+#: pages/moving_post_request_page.php:42
 msgid "Departure Date"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:261
+#: pages/all-requests.php:112
+msgid "Departure Date Filter"
+msgstr ""
+
+#: pages/moving_post_request_page.php:65
+msgid "Departure Postal code"
+msgstr ""
+
+#: pages/all-requests.php:259
+msgid "Departure:"
+msgstr ""
+
+#: pages/checkout-requests.php:53
+msgid "Departure: "
+msgstr ""
+
+#: includes/class-moving-platform-main.php:408
+msgid "Failed to create request"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:328
 msgid "Failed to delete file"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:255
+#: includes/class-bulk-import.php:240
+msgid "Failed to delete file."
+msgstr ""
+
+#: includes/class-payment-handler.php:201
+msgid "Failed to send payment !"
+msgstr ""
+
+#: includes/class-bulk-import.php:231
+#: includes/class-moving-platform-main.php:322
 msgid "File has been deleted."
 msgstr ""
 
-#: pages/moving_post_request_page.php:30
+#: includes/class-moving-platform-main.php:195
+msgid "files"
+msgstr ""
+
+#: pages/moving_post_request_page.php:34
 msgid "First Name"
+msgstr ""
+
+#: includes/class-admin-actions.php:55
+msgid "Hide"
+msgstr ""
+
+#: includes/class-admin-actions.php:36
+msgid "Hide this request with the below users"
 msgstr ""
 
 #. URI of the plugin
@@ -59,7 +207,7 @@ msgstr ""
 msgid "https://hieubinh.com/"
 msgstr ""
 
-#: pages/moving_post_request_page.php:114
+#: pages/moving_post_request_page.php:144
 msgid "I accept the"
 msgstr ""
 
@@ -67,82 +215,257 @@ msgstr ""
 msgid "Integrating moving platform to your site"
 msgstr ""
 
-#: pages/moving_post_request_page.php:27
+#: includes/class-moving-platform-main.php:755
+msgid "Item has been already added."
+msgstr ""
+
+#: pages/checkout-requests.php:36
+msgid "Item List"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:792
+msgid "Item not in cart."
+msgstr ""
+
+#: pages/all-requests.php:80
+msgid "Keyword"
+msgstr ""
+
+#: pages/moving_post_request_page.php:31
 msgid "Last Name"
+msgstr ""
+
+#: pages/all-requests.php:103
+msgid "Latest"
+msgstr ""
+
+#: pages/all-requests.php:319
+msgid "Login"
 msgstr ""
 
 #. Name of the plugin
 msgid "Moving Platform"
 msgstr ""
 
-#: pages/moving_post_request_page.php:68
-msgid "Note or Contact method (optional)"
+#: pages/all-requests.php:244
+msgid "My Request"
 msgstr ""
 
-#: pages/moving_post_request_page.php:126
-msgid "Only the customer can post moving request"
+#: pages/all-requests.php:362
+msgid "Next"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:138
+#: pages/checkout-requests.php:125
+msgid "No items in cart."
+msgstr ""
+
+#: includes/class-moving-platform-main.php:627
+#: includes/class-moving-platform-main.php:646
+msgid "None"
+msgstr ""
+
+#: pages/checkout-requests.php:89
+msgid "Number of items"
+msgstr ""
+
+#: pages/all-requests.php:104
+msgid "Oldest"
+msgstr ""
+
+#: pages/all-requests.php:178
+msgid "Only My Paid list"
+msgstr ""
+
+#: pages/all-requests.php:174
+msgid "Only My Request"
+msgstr ""
+
+#: pages/all-requests.php:429
+msgid "Only the service provider can see the request list"
+msgstr ""
+
+#: pages/all-requests.php:329
+msgid "Owner:"
+msgstr ""
+
+#: pages/all-requests.php:230
+msgid "Paid"
+msgstr ""
+
+#: includes/class-email-feature.php:61
+msgid "Paid list"
+msgstr ""
+
+#: pages/checkout-requests.php:78
+msgid "Payment info"
+msgstr ""
+
+#: pages/all-requests.php:239
+msgid "Pending"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:199
 msgid "Please accept term of service to submit"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:88
+#: includes/class-moving-platform-main.php:135
 msgid "Please choose your role"
 msgstr ""
 
-#: pages/moving_post_request_page.php:20
+#: includes/class-moving-platform-main.php:202
+msgid "Please enter a valid card number"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:204
+msgid "Please enter a valid CVC."
+msgstr ""
+
+#: pages/moving_post_request_page.php:14
 msgid "Post a request"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:101
+#: includes/class-moving-platform-main.php:166
+msgid "Post request."
+msgstr ""
+
+#: pages/checkout-requests.php:53 pages/checkout-requests.php:55
+msgid "Postal code:"
+msgstr ""
+
+#: pages/all-requests.php:260 pages/all-requests.php:267
+msgid "Postal code: "
+msgstr ""
+
+#: pages/all-requests.php:249
+msgid "Posted"
+msgstr ""
+
+#: pages/all-requests.php:361
+msgid "Previous"
+msgstr ""
+
+#: pages/checkout-requests.php:39
+msgid "Price"
+msgstr ""
+
+#: pages/all-requests.php:395
+msgid "Price: "
+msgstr ""
+
+#: includes/class-moving-platform-main.php:741 pages/all-requests.php:295
+msgid "Remove from cart"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:773
+msgid "Removed item successfully"
+msgstr ""
+
+#: pages/moving_post_request_page.php:22
+msgid "Request Title"
+msgstr ""
+
+#: pages/all-requests.php:195
+msgid "Requests found"
+msgstr "Requests found edited"
+
+#: pages/all-requests.php:162
+msgid "Search"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:205
+msgid "Sending Payment !!"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:148
 msgid "Service Provider"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:132
+#: includes/class-moving-platform-main.php:191
 msgid "Something went wrong! Please refresh !"
 msgstr ""
 
-#: pages/moving_post_request_page.php:121
+#: pages/all-requests.php:102
+msgid "Sort"
+msgstr ""
+
+#: pages/moving_post_request_page.php:151
 msgid "Submit"
 msgstr ""
 
-#: pages/moving_post_request_page.php:114
+#: pages/moving_post_request_page.php:144
 msgid "term of service"
+msgstr ""
+
+#: pages/all-requests.php:308
+msgid "The contact method is hidden"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:158
+msgid ""
+"The customer can only post the requests. The service provider can only "
+"purchase contact information"
+msgstr ""
+
+#: includes/class-payment-handler.php:192
+msgid "The payment has been completed successfully !"
 msgstr ""
 
 #. Author of the plugin
 msgid "Thien Vu"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:136
+#: includes/class-moving-platform-main.php:197
 msgid "This field is required"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:137
+#: includes/class-moving-platform-main.php:607
+msgid "This moving request has no description"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:198
 msgid "This must be a number"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:163
+#: pages/checkout-requests.php:93
+msgid "Total Price"
+msgstr ""
+
+#: includes/class-admin-actions.php:41 includes/class-admin-actions.php:42
+msgid "Type to search and ban user"
+msgstr ""
+
+#: pages/all-requests.php:150
+msgid "Type to search arrival cities"
+msgstr ""
+
+#: pages/moving_post_request_page.php:60 pages/moving_post_request_page.php:82
+msgid "Type to search cities"
+msgstr ""
+
+#: pages/all-requests.php:132
+msgid "Type to search depart cities"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:244
 msgid "Updated role successfully"
 msgstr ""
 
-#: includes/class-moving-platform-main.php:135
+#: includes/class-admin-actions.php:61
+msgid "Updated successfully !"
+msgstr ""
+
+#: includes/class-moving-platform-main.php:196
 msgid "Uploading files "
 msgstr ""
 
-#: includes/class-moving-platform-main.php:117
-msgid "You are customer"
-msgstr ""
-
-#: includes/class-moving-platform-main.php:121
-msgid "You are service provider"
-msgstr ""
-
-#: includes/class-moving-platform-main.php:134
+#: includes/class-moving-platform-main.php:194
 msgid "You could only upload "
 msgstr ""
 
-#: includes/class-moving-platform-main.php:92
+#: includes/class-moving-platform-main.php:139
 msgid "You have choosen the role"
+msgstr ""
+
+#: pages/checkout-requests.php:25
+msgid "Your cart"
 msgstr ""

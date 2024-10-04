@@ -20,6 +20,10 @@ class Import_Feature
 	    add_filter('cron_schedules',array($this,'processing_excel_file_schedules') , 999);
         add_action('wp_ajax_delete_import_excel_file',array($this,'delete_import_excel_file_action'));
         add_action('admin_head',array($this,'set_up_info_js_admin'),1);
+
+        //custom import directly
+        add_action('import_city_from_excel',array($this,'import_city_from_excel_action'),999);
+
 	}
     
     
@@ -133,6 +137,61 @@ class Import_Feature
         }
     }
 
+    function import_city_from_excel_action($url_file)
+    {
+        require ('phpexcel/vendor/autoload.php');
+        $spreadsheet = new Spreadsheet();
+
+        $inputFileType = 'Xlsx';
+        $filename = $url_file;
+
+        $file = file_get_contents($filename);        
+        $inputFileName = 'dataimport.xlsx';
+        file_put_contents($inputFileName, $file);
+
+        $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+        $reader->setReadDataOnly(true);
+        $spreadsheet = $reader->load($inputFileName);
+
+        $worksheet = $spreadsheet->getActiveSheet();
+
+        $worksheetItems=$worksheet->toArray();
+
+        $newsheet=array_slice($worksheetItems,1);
+
+        $labelArray=array('name','code','address','postal');
+        
+        foreach($newsheet as $key => $value)
+        {                                 
+            $value=array_filter($value);            
+            if(is_array($value) && count($value)==4)
+            {
+                $newValue=array_combine($labelArray,$value);
+                try
+                {
+                    $added_term=wp_insert_term(ucwords($newValue['name']),'city');  
+
+                }
+                catch(Exception $e)
+                {
+                    echo 'Message: ' .$e->getMessage();
+                }                                
+                if(is_wp_error($added_term))
+                {
+                    echo $added_term->get_error_message();
+                }
+                if($added_term && !is_wp_error($added_term))
+                {
+                    update_term_meta($added_term['term_id'],'code_commune',$newValue['code']);
+                    update_term_meta($added_term['term_id'],'detail_address',$newValue['address']);
+                    update_term_meta($added_term['term_id'],'postal_code',$newValue['postal']);
+                }  
+            }
+        }
+        
+
+    }
+
     function upload_excel_bulk_import_action()
     {
         if ( ! function_exists( 'wp_handle_upload' ) ) 
@@ -159,7 +218,7 @@ class Import_Feature
                 'post_status'    => 'inherit'
             );
 
-            $attach_id = wp_insert_attachment($attachment, $uploaded_file['name']);    
+            $attach_id = wp_insert_attachment($attachment, $uploadedfile['name']);    
             if($attach_id)
             {
                 $current_list_files=get_option('list_file_bulk_import');           
@@ -170,12 +229,12 @@ class Import_Feature
                 $current_list_files[]=array('attach_id'=>$attach_id,'file_url'=>$movefile['url'],'status'=>'none');
                 update_option('list_file_bulk_import',$current_list_files);    
             }
-                            
-            wp_redirect( $_SERVER['HTTP_REFERER'].'&Addsuccess=true' );
+            do_action('import_city_from_excel',$movefile['url']);
+            //wp_redirect( $_SERVER['HTTP_REFERER'].'&Addsuccess=true' );
         } 
         else 
         {   
-           wp_redirect( $_SERVER['HTTP_REFERER'].'&Addsuccess=false' );
+           //wp_redirect( $_SERVER['HTTP_REFERER'].'&Addsuccess=false' );
         }
       
         exit();
@@ -244,6 +303,7 @@ class Import_Feature
         wp_send_json($response);
         die();
     }
+
     function run_imported_excel_files_action()
     {
           require ('phpexcel/vendor/autoload.php');

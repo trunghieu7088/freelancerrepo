@@ -47,9 +47,10 @@
             var stripe_elements = stripe_info.elements();
            // var custom_card = stripe_elements.create('card');
 
+           
            //init card elements
             var cardNumber = stripe_elements.create('cardNumber',{
-                placeholder: 'Card Number: 1234 1234 1234 1234' // Custom placeholder
+                placeholder: 'Card Number: 1234 1234 1234 1234', // Custom placeholder               
             });
             var cardExpiry = stripe_elements.create('cardExpiry');
             var cardCvc = stripe_elements.create('cardCvc');

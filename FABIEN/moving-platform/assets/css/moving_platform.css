@@ -19,6 +19,7 @@
 {
     margin-bottom: 20px;
 }
+
 @media (max-width: 490px) {
     .post-request-form-group .second_item_form
     {
@@ -121,34 +122,7 @@
     padding:20px 15px;    
     font-size:16px !important;
 }
-.ts-dropdown [data-select-dropdown] .dropdown-toggle {
-    display: inline-block;
-    background: transparent;
-    border: none;
-}
 
-.ts-control {
-    background: #fff;
-    position: relative;
-    font-size:14px !important;
-}
-/*
-.ts-control::after {
-    content: "▼"; 
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    font-size: 12px;
-    color: #333;
-}
-*/
-
-.ts-dropdown [data-selectable].option
-{
-    font-size: 14px !important;
-}
 
 .choosing-dropdown
 {
@@ -191,7 +165,7 @@
     position:fixed;
     bottom:30%;
     right:10%;   
-    z-index:9999;        
+    z-index:999;        
 }
 .shopping-bag-icon
 {
@@ -761,14 +735,17 @@ input:checked + .custom-slider-toggle:before {
   .cardNum
   {
     flex:8;
+    padding:15px;    
   }
   .cardExpiry
   {
     flex:1;
+    padding:15px;
   }
   .cardCVC
   {
     flex:1;
+    padding:15px;
   }
   @media (max-width: 490px) {
     .stripe-card-elements-container
@@ -1040,6 +1017,9 @@ input:checked + .custom-slider-toggle:before {
 {
     margin-top:20px;
     border-radius: 5px;
+    color:#333 !important;
+    padding: 15px 15px !important;
+    border:1px solid #dddddd !important;
 }
 .multiple-checkot-stripe-card-container
 {
@@ -1051,7 +1031,7 @@ input:checked + .custom-slider-toggle:before {
     width: 100%;
     border:1px solid #dddddd;
     border-radius: 5px;
-    padding:10px 10px;
+    padding:15px 15px !important;
 }
 .m-checkout-btn
 {
@@ -1086,3 +1066,24 @@ input:checked + .custom-slider-toggle:before {
     color: #FF0000;
 }
 /* end checkout page*/
+
+/* fix bug 3rd 10th 2024 to match with the style of the customer site */
+
+
+.post-request-fields .ts-control
+{
+    padding:22px 10px !important;
+}
+
+.stripe-payment-fields
+{
+    padding: 15px 15px !important;
+    color:#333 !important;
+    font-size:16px;
+    border:1px solid #dddddd !important;
+}
+.stripe-card-elements-container input[type='text']
+{   
+    padding: 15px 15px !important;
+}
+/* end */

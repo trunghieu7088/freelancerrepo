@@ -165,7 +165,8 @@
         submitHandler: function(form) 
         {
             let image_attachment_ids=image_collection_ids.map(item => item.attach_id);
-            var moving_formData = $(form).serialize()+"&image_attachment_ids="+image_attachment_ids;
+            var request_description_content = tinyMCE.get('request_description').getContent();
+            var moving_formData = $(form).serialize()+"&image_attachment_ids="+image_attachment_ids+"&request_description_content="+encodeURIComponent(request_description_content);
             $.ajax({
                 type: "post",
                 url: moving_ajaxURL,

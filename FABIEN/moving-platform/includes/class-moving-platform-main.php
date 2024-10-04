@@ -19,9 +19,9 @@ class Moving_Platform_Main
         add_action('wp_head',array($this, 'set_up_info_frontend' ),10);
         
         add_action('wp_ajax_moving_save_role',array($this,'moving_save_role_action'),99);
-        add_action('wp_ajax_request_image_uploader',array($this,'request_image_uploader_action'),99);
+        add_action('wp_ajax_nopriv_request_image_uploader',array($this,'request_image_uploader_action'),99);
         add_action('wp_ajax_delete_image_on_server',array($this,'delete_image_on_server_action'),99);
-        add_action('wp_ajax_submit_moving_request',array($this,'submit_moving_request_action'),99);
+        add_action('wp_ajax_nopriv_submit_moving_request',array($this,'submit_moving_request_action'),99);
 
         //change title by value from admin dashboard
         add_filter('document_title_parts', array($this, 'set_up_title' ),999);        
@@ -116,7 +116,8 @@ class Moving_Platform_Main
     {
         $role_info=get_role('author'); //get capabilities of author
         add_role('customer','Customer',$role_info->capabilities );
-        add_role('service_provider','Service Provider',$role_info->capabilities );
+        add_role('um_custom_role_1','Service Provider',$role_info->capabilities );
+        //need to re-check all service_provider and replace
     }
 
     //generate shortcode choosing roles for profile section
@@ -144,7 +145,7 @@ class Moving_Platform_Main
                 <input type="hidden" name="action" value="moving_save_role">
                 <div class="form-role-item choosing-dropdown">
                     <select class="moving-role-selector" name="role_type" id="select-role" autocomplete="off">                     
-                        <option value="service_provider"><?php _e('Service Provider','moving_platform'); ?></option>
+                        <option value="um_custom_role_1"><?php _e('Service Provider','moving_platform'); ?></option>
                         <option value="customer"><?php _e('Customer','moving_platform'); ?></option>
                     </select>
                 </div>
@@ -166,7 +167,7 @@ class Moving_Platform_Main
                     </p>                      
                 <?php endif; ?>
 
-                <?php if($is_defined_role=='service_provider'): ?>
+                <?php if($is_defined_role=='um_custom_role_1'): ?>
                     <p class="defined-role-text">
                         <?php _e('As a service provider, you can access the contact information for posted moving requests.','moving_platform'); ?>
                         <br>
@@ -256,14 +257,14 @@ class Moving_Platform_Main
 
     function request_image_uploader_action()
     {
-        if(!is_user_logged_in())
+      /*  if(!is_user_logged_in())
         {
             die();
-        }
+        } */
 
         if (!check_ajax_referer('request_image_uploader_nonce', $_POST['_ajax_nonce'])) {
             die();
-        }
+        } 
 
         if (!function_exists('wp_handle_upload')) {
             require_once(ABSPATH . 'wp-admin/includes/file.php');
@@ -334,9 +335,10 @@ class Moving_Platform_Main
 
     function submit_moving_request_action()
     {
-        if (!is_user_logged_in()) {
+        //allow guest user to submit
+       /* if (!is_user_logged_in()) {
             die();
-        }
+        } */
         if (!wp_verify_nonce($_POST['submit_moving_request_nonce'],'submit_moving_request_nonce')) {
             die('something went wrong');
         } 
@@ -345,10 +347,15 @@ class Moving_Platform_Main
 
         $moving_request=array(
                         'post_title'=>sanitize_text_field($request_title),
-                        'post_content'=>wp_strip_all_tags($request_description),
+                        'post_content'=>wp_strip_all_tags($request_description_content),
                         'post_status'=> $admin_data->getValue('moving_request_status'), //set status base on the status from admin dashboard
-                        'post_type'=>'moving_request',
+                        'post_type'=>'moving_request',                       
         );
+        //set post author =0 if non-logged user
+        if(!is_user_logged_in())
+        {
+            $moving_request['post_author']=0;
+        }
         $inserted_request=wp_insert_post($moving_request);
         if($inserted_request && !is_wp_error($inserted_request))
         {
@@ -452,7 +459,7 @@ class Moving_Platform_Main
                 $request_args['author']=get_current_user_id();
             }
             //handle my paid list for SERVICE PROVIDER
-            if($current_user_role=='service_provider')
+            if($current_user_role=='um_custom_role_1')
             {
                 $paid_list=get_paid_list_by_user_id(get_current_user_id());
                 $request_args['post__in']=$paid_list;
@@ -842,9 +849,9 @@ function get_role_by_user_id($user_id)
         {
            return 'customer';
         }
-        if(in_array('service_provider',$user_info->roles))
+        if(in_array('um_custom_role_1',$user_info->roles))
         {
-           return 'service_provider';
+           return 'um_custom_role_1';
         }
     }
   
@@ -856,7 +863,7 @@ function get_all_term_by_name($term_name)
     $terms = get_terms(array(
         'taxonomy' => $term_name,
         'hide_empty' => false,
-        'number' => 250,    
+        //'number' => 250,    
     ));
     return $terms;
 }

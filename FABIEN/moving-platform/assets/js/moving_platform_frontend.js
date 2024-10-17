@@ -16,13 +16,51 @@
             var city_selector_arrival =  new TomSelect("#city_selector_arrival",{
                     create: false,
                     maxItems:1,
+                    maxOptions: 50,
                     sortField: {
                         field: "text",
                         direction: "asc"
                     },
+                    valueField: 'term_id',  
+                    labelField: 'name',  
+                    searchField: 'name',
+                    load: function(query, callback) {
+                        if (query.length < 3) return callback(); // Không có từ khóa tìm kiếm, không tải dữ liệu
+                        fetch(moving_ajaxURL + '?action=search_cities&query_search=' + encodeURIComponent(query))
+                            .then(response => response.json())
+                            .then(json => {
+                                callback(json); // Nạp dữ liệu dựa trên tìm kiếm
+                            }).catch(() => {
+                                callback(); // Trong trường hợp lỗi, không trả về dữ liệu
+                            });
+                    },
+                    render: {
+                        option: function(item, escape) {
+                            return `<div>${escape(item.name)}</div>`;
+                        },
+                        item: function(item, escape) {
+                            return `<div>${escape(item.name)}</div>`;
+                        }
+                    },
+                 
                     onChange: function(value){
                        $("#city_selector_arrival").focus();
-                    },       
+                       var selectedItem = city_selector_arrival.options[value];
+                       
+                       if (selectedItem && selectedItem.postal_code) {
+                          
+                           $("#postal_code_arrival").val(selectedItem.postal_code);
+                       }
+                       else
+                       {
+                            if(selectedItem && selectedItem.postal)
+                            {
+                                $("#postal_code_arrival").val(selectedItem.postal);
+                            }
+                            
+                       }
+                    },     
+
                 });
          }
         
@@ -31,12 +69,48 @@
                 var city_selector_depart= new TomSelect("#city_selector_depart",{
                         create: false,
                         maxItems:1,
+                        maxOptions: 50,
                         sortField: {
                             field: "text",
                             direction: "asc"
                         },
+                        valueField: 'term_id',  
+                        labelField: 'name',  
+                        searchField: 'name',
+                        load: function(query, callback) {
+                            if (query.length < 3) return callback(); // Không có từ khóa tìm kiếm, không tải dữ liệu
+                            fetch(moving_ajaxURL + '?action=search_cities&query_search=' + encodeURIComponent(query))
+                                .then(response => response.json())
+                                .then(json => {
+                                    callback(json); // Nạp dữ liệu dựa trên tìm kiếm
+                                }).catch(() => {
+                                    callback(); // Trong trường hợp lỗi, không trả về dữ liệu
+                                });
+                        },
+                        render: {
+                            option: function(item, escape) {
+                                return `<div>${escape(item.name)}</div>`;
+                            },
+                            item: function(item, escape) {
+                                return `<div>${escape(item.name)}</div>`;
+                            }
+                        },
                         onChange: function(value){
                            $("#city_selector_depart").focus();
+                           var selectedItem = city_selector_depart.options[value];
+                       
+                           if (selectedItem && selectedItem.postal_code) {
+                              
+                               $("#postal_code_depart").val(selectedItem.postal_code);
+                           }
+                           else
+                           {
+                                if(selectedItem && selectedItem.postal)
+                                {
+                                    $("#postal_code_depart").val(selectedItem.postal);
+                                }
+                                
+                           }
                         },
 
                     });
@@ -46,7 +120,7 @@
         {
                     var sort_filter= new TomSelect("#sort-filter",{
                             create: false,
-                            maxItems:1,
+                            maxItems:1,                            
                             sortField: {
                                 field: "text",
                                 direction: "asc"
@@ -76,7 +150,7 @@
                         });
             }
        
-             $('#city_selector_depart').on('change', function() {
+           /*  $('#city_selector_depart').on('change', function() {
                 let selected_depart = $(this).find('option:selected');
                 let postal_depart = selected_depart.attr('data-postal');
                 $("#postal_code_depart").val(postal_depart);
@@ -86,7 +160,7 @@
                 let selected_arrival= $(this).find('option:selected');
                 let postal_arrival = selected_arrival.attr('data-postal');
                 $("#postal_code_arrival").val(postal_arrival);
-             });
+             }); */
               
        let post_request_validator= $("#post-request-form").validate({
         ignore: "",
@@ -101,6 +175,7 @@
             contact_method: "required",
             postal_code_depart: "required",
             postal_code_arrival: "required",
+            email_notification: "required",
             budget:
             {
                 required: true,
@@ -137,6 +212,7 @@
             postal_code_depart: {
                 required: required_validation_message
             },
+            
 
             budget:
             {
@@ -145,6 +221,9 @@
             }, 
             contact_method: {
                 required: required_validation_message,
+            },
+            email_notification: {
+                required: required_validation_message
             },
 
             accept_tos: {

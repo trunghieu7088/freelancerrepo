@@ -1072,7 +1072,7 @@ input:checked + .custom-slider-toggle:before {
 
 .post-request-fields .ts-control
 {
-    padding:22px 10px !important;
+    padding:10px 10px !important;
 }
 
 .stripe-payment-fields

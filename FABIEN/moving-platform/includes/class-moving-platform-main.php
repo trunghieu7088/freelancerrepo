@@ -23,8 +23,11 @@ class Moving_Platform_Main
         add_action('wp_ajax_delete_image_on_server',array($this,'delete_image_on_server_action'),99);
         add_action('wp_ajax_nopriv_submit_moving_request',array($this,'submit_moving_request_action'),99);
 
+        add_action('wp_ajax_nopriv_search_cities',array($this,'search_cities_action'),99);
+
         //change title by value from admin dashboard
-        add_filter('document_title_parts', array($this, 'set_up_title' ),999);        
+        //add_filter('document_title_parts', array($this, 'set_up_title' ),999);        
+      
 
         //simple cart system
         //init session
@@ -32,6 +35,12 @@ class Moving_Platform_Main
         add_action('wp_ajax_add_request_cart',array($this,'add_request_to_cart_action'),99);
         add_action('wp_ajax_remove_request_cart',array($this,'remove_request_to_cart_action'),99);
         
+        //init option for add custom value to cities in admin dashboard
+        add_action( 'city_add_form_fields', array($this,'add_cities_custom_value_form'),999 );   
+        add_action( 'city_edit_form_fields', array($this,'edit_cities_custom_value_form'),999 ); 
+        
+        add_action( 'created_city', array($this,'save_custom_value_city'));
+        add_action('edited_city', array($this,'updated_custom_value_city'), 999, 1);
         
 	}
 
@@ -42,6 +51,92 @@ class Moving_Platform_Main
         }
         return self::$instance;
     }
+
+    function add_cities_custom_value_form()
+    {
+        ?>
+        <div class="form-field">
+
+            <label for="postal_code">Code Postal</label>
+            <input type="text" id="postal_code" name="postal_code">
+
+            <label for="detail_address">Adresse</label>
+            <input type="text" id="detail_address" name="detail_address">
+
+            <label for="code_commune">Code Commune</label>
+            <input type="text" id="code_commune" name="code_commune">
+
+        </div>
+        <?php
+    }
+
+    function edit_cities_custom_value_form($term)
+    {
+        $code_commune=get_term_meta($term->term_id,'code_commune',true) ? : '';
+        $postal_code=get_term_meta($term->term_id,'postal_code',true) ? : '';
+        $detail_address=get_term_meta($term->term_id,'detail_address',true) ? : '';
+        ?>
+        <tr class="form-field">                    
+            <th scope="row" valign="top"><label for="postal_code">Code Postal</label></th>
+            <td>
+            <input type="text" id="postal_code" name="postal_code" value="<?php echo $postal_code ?>">
+            </td>            
+        </tr>
+
+        <tr class="form-field"> 
+            <th scope="row" valign="top"><label for="detail_address">Adresse</label></th>            
+            <td>
+                <input type="text" id="detail_address" name="detail_address" value="<?php echo $detail_address ?>">
+            </td>
+        </tr>
+
+        <tr class="form-field"> 
+            <th scope="row" valign="top"><label for="code_commune">Code Commune</label></th>            
+            <td>
+                <input type="text" id="code_commune" name="code_commune" value="<?php echo $code_commune ?>">
+            </td>
+        </tr>                        
+
+        </div>
+        <?php
+    }
+
+    function save_custom_value_city($term_id)
+    {   
+        if(isset($_POST['postal_code']) && !empty($_POST['postal_code']))
+        {
+            update_term_meta( $term_id, 'postal_code',$_POST['postal_code']);
+        }
+
+        if(isset($_POST['code_commune']) && !empty($_POST['code_commune']))
+        {
+            update_term_meta( $term_id, 'code_commune',$_POST['code_commune']);
+        }
+
+        if(isset($_POST['detail_address']) && !empty($_POST['detail_address']))
+        {
+            update_term_meta( $term_id, 'detail_address',$_POST['detail_address']);
+        }
+    }
+
+    function updated_custom_value_city($term_id)
+    {
+        if(isset($_POST['postal_code']) && !empty($_POST['postal_code']))
+        {
+            update_term_meta( $term_id, 'postal_code',$_POST['postal_code']);
+        }
+
+        if(isset($_POST['code_commune']) && !empty($_POST['code_commune']))
+        {
+            update_term_meta( $term_id, 'code_commune',$_POST['code_commune']);
+        }
+
+        if(isset($_POST['detail_address']) && !empty($_POST['detail_address']))
+        {
+            update_term_meta( $term_id, 'detail_address',$_POST['detail_address']);
+        }
+    }
+
 
     //generate moving request custom post type
     function register_post_type_moving_request()
@@ -207,24 +302,24 @@ class Moving_Platform_Main
         ?>
         <script src="https://js.stripe.com/v3/"></script>
         <script type="text/javascript">
-            let stripe_public_key='<?php echo $stripe_public_key; ?>';            
+            let stripe_public_key="<?php echo $stripe_public_key; ?>";            
 
             const moving_request_price=<?php echo $moving_request_price; ?>;
-            let moving_ajaxURL='<?php echo $ajax_url; ?>'; 
-            let error_ajax_message='<?php echo $error_ajax_message; ?>';   
-            let message_upload='<?php echo $message_upload; ?>';   
-            let message_upload_file='<?php echo $message_upload_file; ?>';   
-            let message_uploading='<?php echo $message_uploading; ?>';   
-            let required_validation_message='<?php echo $required_validation_message; ?>';   
-            let number_type_validation='<?php echo $number_type_validation; ?>';   
-            let accept_tos_message='<?php echo $accept_tos_message; ?>';   
+            let moving_ajaxURL="<?php echo $ajax_url; ?>"; 
+            let error_ajax_message="<?php echo $error_ajax_message; ?>";   
+            let message_upload="<?php echo $message_upload; ?>";   
+            let message_upload_file="<?php echo $message_upload_file; ?>";   
+            let message_uploading="<?php echo $message_uploading; ?>";   
+            let required_validation_message="<?php echo $required_validation_message; ?>";   
+            let number_type_validation="<?php echo $number_type_validation; ?>";   
+            let accept_tos_message="<?php echo $accept_tos_message; ?>";   
             let max_file_upload_request_form=<?php echo $max_files_upload; ?>;   
 
              //stripe error message
-            let card_invalid_error='<?php echo $card_invalid; ?>'; 
-            let expiry_invalid_error='<?php echo $expiry_invalid; ?>'; 
-            let cvc_invalid_error='<?php echo $cvc_invalid; ?>'; 
-            let sending_payment='<?php echo $sending_payment; ?>'; 
+            let card_invalid_error="<?php echo $card_invalid; ?>"; 
+            let expiry_invalid_error="<?php echo $expiry_invalid; ?>"; 
+            let cvc_invalid_error="<?php echo $cvc_invalid; ?>"; 
+            let sending_payment="<?php echo $sending_payment; ?>"; 
 
 
         </script>
@@ -375,8 +470,11 @@ class Moving_Platform_Main
            update_post_meta($inserted_request,'postal_code_depart',$postal_code_depart);
            update_post_meta($inserted_request,'postal_code_arrival',$postal_code_arrival);
 
-           update_post_meta($inserted_request,'contact_method',$contact_method);
+           update_post_meta($inserted_request,'phone_number',$contact_method);
+           update_post_meta($inserted_request,'email_notification',$email_notification);
+           update_post_meta($inserted_request,'contact_method',$contact_method.' | '.$email_notification);
            update_post_meta($inserted_request,'budget',$budget);
+          
 
            //update city
            update_post_meta($inserted_request,'departure_city_id',$city_selector_depart);
@@ -699,6 +797,8 @@ class Moving_Platform_Main
         return $title_parts;
     }
 
+   
+
     //use this function for budget filter
     function extract_min_max($input) {
         // Check if the string contains comparison operators and extract them
@@ -810,6 +910,31 @@ class Moving_Platform_Main
         }
         return false;
     }
+
+    function search_cities_action()
+    {
+        $term_collection=[];
+        extract($_POST); 
+        $search_args = array(
+            'taxonomy'   => 'city',       
+            'name__like' => $query_search,  
+            'hide_empty' => false,         
+        );
+        $cities = get_terms($search_args);
+        if($cities && !is_wp_error($cities))
+        {
+            foreach ($cities as $city) 
+            {
+                $postal_code = get_term_meta($city->term_id, 'postal_code', true);
+                $city->postal_code = $postal_code ? $postal_code : '';
+                $term_collection[] = $city;
+            }
+            //$term_collection=$cities;
+        }
+        $data['term_collection']=$term_collection;
+        wp_send_json($data);
+        die();
+    }
    
 }
 
@@ -863,7 +988,7 @@ function get_all_term_by_name($term_name)
     $terms = get_terms(array(
         'taxonomy' => $term_name,
         'hide_empty' => false,
-        //'number' => 250,    
+        'number' => 50,    
     ));
     return $terms;
 }
@@ -912,3 +1037,5 @@ function check_ban_user($user_id,$request_id)
     }
     return false;
 }
+
+    

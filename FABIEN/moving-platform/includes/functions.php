@@ -30,3 +30,28 @@ function custom_load_Stripe_sdk()
 {    
     require_once MOVING_PLATFORM_PATH . '/includes/stripe/vendor/autoload.php';    
 }
+
+
+add_filter('pre_get_document_title', 'function_change_document_title',999);
+
+function function_change_document_title($title) {
+    $admin_data=AdminData::get_instance();
+
+    if(is_page_template('moving_post_request_page.php'))
+    {
+        $title = $admin_data->getValue('post_request_page_title');
+    }       
+    
+    if(is_page_template('all-requests.php'))
+    {
+        $title = $admin_data->getValue('all_request_page_title');
+    }   
+    
+    if(is_page_template('checkout-requests.php'))
+    {
+        $title = $admin_data->getValue('checkout_page_title');
+    }  
+    
+    return $title;
+}
+

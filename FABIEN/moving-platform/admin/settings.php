@@ -37,15 +37,20 @@ function moving_platform_settings()
         Field::make( 'separator', 'crb_separator_1', __( 'Email sent to admin when new request submitted
 ' ) ),
         Field::make('text', 'notify_admin_new_request_subject', __('Title'))->set_default_value('A new request has been submitted'),
-        Field::make( 'textarea', 'notify_admin_new_request_content', __( 'Content' ) )->set_default_value('A new request has been submitted [request_info]'),
+        Field::make( 'textarea', 'notify_admin_new_request_content', __( 'Content' ) )->set_rows( 20 )->set_default_value('A new request has been submitted [request_content]'),
         
+        Field::make( 'separator', 'crb_separator_4', __( 'Email sent to customer to confirm their submitted request
+        ' ) ),
+        Field::make('text', 'notify_customer_confirm_request_subject', __('Title'))->set_default_value('Your request has been submitted'),
+        Field::make( 'textarea', 'notify_customer_confirm_request_content', __( 'Content' ) )->set_rows( 20 )->set_default_value('Your request has been submitted [request_content]'),                
+
         Field::make( 'separator', 'crb_separator_2', __( 'Email sent to the movers when they purchased contact method successfully' ) ),
         Field::make('text', 'confirm_new_order_subject', __('Title'))->set_default_value('Your payment has been completed [payment_id]'),
-        Field::make( 'textarea', 'confirm_new_order_content', __( 'Content' ) )->set_default_value('Your payment has ben completed. You can visit the paid list [paid_list]'),
+        Field::make( 'textarea', 'confirm_new_order_content', __( 'Content' ) )->set_rows( 20 )->set_default_value('Your payment has ben completed. You can visit the paid list [paid_list]'),
 
         Field::make( 'separator', 'crb_separator_3', __( 'Email sent to the admin when there is a new payment.' ) ),
         Field::make('text', 'notify_admin_new_order_subject', __('Title'))->set_default_value('Notify about new payment [payment_id]'),                 
-        Field::make('text', 'notify_admin_new_order_content', __('Title'))->set_default_value('A new payment has been sent to you [Payment_info].'),                 
+        Field::make('textarea', 'notify_admin_new_order_content', __('Content'))->set_rows( 20 )->set_default_value('A new payment has been sent to you [Payment_info].'),                 
     ));
 }
 
@@ -96,7 +101,11 @@ function create_admin_settings_value_instance()
 
                 //email settings                
                 'notify_admin_new_request_subject'=> carbon_get_theme_option('notify_admin_new_request_subject') ?: 'A new request has been submitted',
-                'notify_admin_new_request_content'=> carbon_get_theme_option('notify_admin_new_request_content') ?: 'A new request has been submitted [request_title]',
+                'notify_admin_new_request_content'=> carbon_get_theme_option('notify_admin_new_request_content') ?: 'A new request has been submitted [request_content]',
+
+                'notify_customer_confirm_request_subject'=> carbon_get_theme_option('notify_customer_confirm_request_subject') ?: 'Your Request has been submitted',
+                'notify_customer_confirm_request_content'=> carbon_get_theme_option('notify_customer_confirm_request_content') ?: 'Your requrest has been submitted [request_content]',
+
 
                 'confirm_new_order_subject'=> carbon_get_theme_option('confirm_new_order_subject') ?: 'Your payment has been completed [payment_id]',
                 'confirm_new_order_content'=> carbon_get_theme_option('confirm_new_order_content') ?: 'Your payment has ben completed. You can visit the paid list [paid_list]',

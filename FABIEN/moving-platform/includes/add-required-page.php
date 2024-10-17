@@ -23,6 +23,17 @@ function register_custom_page_template($template)
     return $template;
 }
 
+//include template for edit page editor
+function register_template_for_page_editor($templates) {
+    // Add multiple custom templates to the list
+    $templates['all-requests.php'] = 'All Requests Template';
+    $templates['checkout-requests.php'] = 'Checkout Template';
+    $templates['moving_post_request_page.php'] = 'Post Request Template';
+    
+    return $templates;
+}
+add_filter('theme_page_templates', 'register_template_for_page_editor',99);
+
 //function to create page automatically
 function custom_check_and_create_page($page_template,$page_slug)
 {

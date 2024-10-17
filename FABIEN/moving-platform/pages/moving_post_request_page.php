@@ -94,8 +94,11 @@ $admin_data=AdminData::get_instance();
                             <div class="col-md-2 col-lg-2 col-sm-12 post-request-fields">
                                 <input type="text" name="budget" id="budget" value="" placeholder="<?php _e('Budget (€)', 'moving_platform'); ?>">
                             </div>
-                            <div class="col-md-10 col-lg-10 col-sm-12 post-request-fields">
-                                <input type="text" class="second_item_form" name="contact_method" id="contact_method" value="" placeholder="<?php _e('Contact method (e.g., Phone number, Email, Telegram, WhatsApp, etc.).', 'moving_platform'); ?>">
+                            <div class="col-md-5 col-lg-5 col-sm-12 post-request-fields">
+                                <input type="text" name="contact_method" id="contact_method" value="" placeholder="<?php _e('Phone number', 'moving_platform'); ?>">
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-sm-12 post-request-fields">
+                                <input type="text" class="second_item_form" name="email_notification" id="email_notification" value="" placeholder="<?php _e('Email Address', 'moving_platform'); ?>">
                             </div>
                         </div>
                     </div>

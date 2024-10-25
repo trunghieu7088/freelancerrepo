@@ -20,7 +20,7 @@ class Moving_Platform_Main
         
         add_action('wp_ajax_moving_save_role',array($this,'moving_save_role_action'),99);
         add_action('wp_ajax_nopriv_request_image_uploader',array($this,'request_image_uploader_action'),99);
-        add_action('wp_ajax_delete_image_on_server',array($this,'delete_image_on_server_action'),99);
+        add_action('wp_ajax_nopriv_delete_image_on_server',array($this,'delete_image_on_server_action'),99);
         add_action('wp_ajax_nopriv_submit_moving_request',array($this,'submit_moving_request_action'),99);
 
         add_action('wp_ajax_nopriv_search_cities',array($this,'search_cities_action'),99);

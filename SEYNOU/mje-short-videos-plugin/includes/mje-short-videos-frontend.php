@@ -41,56 +41,56 @@ class MJE_Short_Videos_Frontend
         }
 
         if (isset($_FILES['file']) && isset($_POST['chunk']) && isset($_POST['chunks'])) 
-    {
-        $file = $_FILES['file'];
-        $chunk = intval($_POST['chunk']);
-        $chunks = intval($_POST['chunks']);
-
-        $upload_dir = wp_upload_dir();
-        //$targetDir = $upload_dir['path'] . '/';
-        $targetDir = str_replace('\\', '/', $upload_dir['path']).'/';
-        $targetFile = $targetDir . sanitize_file_name($_REQUEST['custom_file_name']);  
-
-         // Append the chunk number to the target file     
-        $targetFileChunked = $targetFile.'_part' . $chunk;
-        if (move_uploaded_file($file['tmp_name'], $targetFileChunked)) 
         {
-            if ($chunk == $chunks - 1) {
-                // All chunks have been uploaded, combine them
-                $combinedFile = $targetFile;
-                for ($i = 0; $i < $chunks; $i++) {
-                    $chunkedFile = $targetFile . '_part' . $i;
-                    file_put_contents($combinedFile, file_get_contents($chunkedFile), FILE_APPEND);
-                    // Delete the chunked file
-                    unlink($chunkedFile);
-                }                               
-                $attachment = array(
-                    'guid'           => $upload_dir['url'].'/'.sanitize_file_name($_REQUEST['custom_file_name']),
-                    'post_mime_type' => $_REQUEST['custom_file_type'],
-                    'post_title'     =>  sanitize_file_name($_REQUEST['custom_file_name']),
-                    'post_content'   => 'attached Video for service',
-                    'post_status'    => 'inherit'
-                );
-                
-                
-                $attach_id = wp_insert_attachment($attachment, $_REQUEST['custom_file_name']);                                         
-                
-                if ($attach_id) {
-                    update_post_meta($attach_id, '_wp_attached_file', str_replace(site_url() . '/wp-content/uploads/', '', $upload_dir['url'].'/'.sanitize_file_name($_REQUEST['custom_file_name'])));                    
-                    update_post_meta($attach_id,'custom_attachment_type',$file_type);                                        
-                    update_post_meta($attach_id,'is_temp_short_video','true');
-                                          
-                    $response = array(
-                        'success' => true,
-                        'message' => 'File uploaded successfully.',
-                        'attach_id' => $attach_id,
+            $file = $_FILES['file'];
+            $chunk = intval($_POST['chunk']);
+            $chunks = intval($_POST['chunks']);
+
+            $upload_dir = wp_upload_dir();
+            //$targetDir = $upload_dir['path'] . '/';
+            $targetDir = str_replace('\\', '/', $upload_dir['path']).'/';
+            $targetFile = $targetDir . sanitize_file_name($_REQUEST['custom_file_name']);  
+
+            // Append the chunk number to the target file     
+            $targetFileChunked = $targetFile.'_part' . $chunk;
+            if (move_uploaded_file($file['tmp_name'], $targetFileChunked)) 
+            {
+                if ($chunk == $chunks - 1) {
+                    // All chunks have been uploaded, combine them
+                    $combinedFile = $targetFile;
+                    for ($i = 0; $i < $chunks; $i++) {
+                        $chunkedFile = $targetFile . '_part' . $i;
+                        file_put_contents($combinedFile, file_get_contents($chunkedFile), FILE_APPEND);
+                        // Delete the chunked file
+                        unlink($chunkedFile);
+                    }                               
+                    $attachment = array(
+                        'guid'           => $upload_dir['url'].'/'.sanitize_file_name($_REQUEST['custom_file_name']),
+                        'post_mime_type' => $_REQUEST['custom_file_type'],
+                        'post_title'     =>  sanitize_file_name($_REQUEST['custom_file_name']),
+                        'post_content'   => 'attached Video for service',
+                        'post_status'    => 'inherit'
                     );
-                    wp_send_json($response);
+                    
+                    
+                    $attach_id = wp_insert_attachment($attachment, $_REQUEST['custom_file_name']);                                         
+                    
+                    if ($attach_id) {
+                        update_post_meta($attach_id, '_wp_attached_file', str_replace(site_url() . '/wp-content/uploads/', '', $upload_dir['url'].'/'.sanitize_file_name($_REQUEST['custom_file_name'])));                    
+                        update_post_meta($attach_id,'custom_attachment_type',$file_type);                                        
+                        update_post_meta($attach_id,'is_temp_short_video','true');
+                                            
+                        $response = array(
+                            'success' => true,
+                            'message' => 'File uploaded successfully.',
+                            'attach_id' => $attach_id,
+                        );
+                        wp_send_json($response);
                 }
 
+                }
             }
         }
-    }
 
     }
 
@@ -125,7 +125,8 @@ class MJE_Short_Videos_Frontend
                 
         if(!empty($short_video) && !empty($short_video['url']))
         {           
-        ?>        
+        ?>       
+            <div class="video-area-description">
             <button id="show-big-player-mjob-btn" data-video-type="<?php echo $short_video['type']; ?>"  data-toggle="modal" class="btn btn-info" data-target="#mjob-player-big-modal"><i class="fa fa-play"></i> Show Video</button>
             <div class="modal fade mjob-player-big" id="mjob-player-big-modal" role="dialog">
                 <div class="modal-dialog">
@@ -138,12 +139,17 @@ class MJE_Short_Videos_Frontend
                     <?php endif; ?>   
 
                     <?php if($short_video['type']=='youtube'): ?>
+                        <?php                         
+                        $youtube_src_mjob='https://www.youtube.com/embed/'.$short_video['url'].'?autoplay=0&mute=0&loop=1&color=white&controls=0&playsinline=1&rel=0&enablejsapi=1&playlist='.$short_video['url'];
+                        ?>
                         <div class="modal-content mjob-youtube-big-content">                    
                                 <iframe 
                                 id="yt-mjob-big-player"
                                 class="mjob-modal-youtube-player" 
-                                src="https://www.youtube.com/embed/$short_video['url']?autoplay=1&mute=0&loop=1&color=white&controls=0&playsinline=1&rel=0&enablejsapi=1&playlist=-tuklP5EQ_U" title="YouTube video player" frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                src="<?php echo $youtube_src_mjob; ?>" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" 
                                     >
                                 </iframe>                                                                   
                         </div>
@@ -151,7 +157,8 @@ class MJE_Short_Videos_Frontend
 
                 </div>
             </div>
-            <?php  
+            </div> 
+            <?php              
             
         }     
     }
@@ -268,11 +275,23 @@ class MJE_Short_Videos_Frontend
 
                                 <!-- youtube player -->
                                 <?php if($video_item->videoType == 'youtube'): ?> 
-                                    <?php 
-                                        $youtube_src='https://www.youtube.com/embed/'.$video_item->videoInfo->url.'?autoplay=0&mute=0&loop=1&color=white&controls=0&playsinline=1&rel=0&enablejsapi=1&playlist='.$video_item->videoInfo->url;
-                                    ?>                                   
-                                    <iframe class="mje-short-video-embed-iframe yt-short-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" src="<?php echo $youtube_src; ?>">
-                                    </iframe>
+                                    <div class="yt-video-player-container">                                    
+                                        <?php 
+                                            $youtube_src='https://www.youtube.com/embed/'.$video_item->videoInfo->url.'?autoplay=0&mute=0&loop=1&color=white&controls=0&playsinline=1&rel=0&enablejsapi=1&playlist='.$video_item->videoInfo->url;
+                                        ?>                                   
+                                        <iframe  style="border-radius:10px;" data-short-video-id="<?php echo $video_item->ID; ?>" class="mje-short-video-embed-iframe yt-short-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" src="<?php echo $youtube_src; ?>">
+                                        </iframe>
+                                        <div class="open-btn-area"><button data-video-info="<?php echo htmlspecialchars(json_encode($video_item), ENT_QUOTES, 'UTF-8'); ?>" type="button" class="open-yt-btn">Open</button></div>
+                                        <!-- content for big modal ( not display , use js clone this elements) -->
+                                        <div id="yt-short-video-serviceList-<?php echo $video_item->ID; ?>" style="display:none;">
+                                            <?php foreach($video_item->serviceList as $service_item): ?>
+                                                <div class="video-mjob-section">
+                                                    <a href="<?php echo $service_item['service_link']; ?>" class="video-service-link"><?php echo $service_item['service_title']; ?></a>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <!-- end content big modal -->
+                                    </div>
                                     
                                 <?php endif; ?>
 
@@ -352,6 +371,70 @@ class MJE_Short_Videos_Frontend
                                 
         </div>
         <!-- end modal full screen -->
+
+        <!-- YT modal full screen -->
+        <div class="modal fade video-player-big" id="yt-video-player-big-modal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content video-player-big-content">
+                    <!-- video section -->
+                    <div class="video-media-section">
+                        <iframe 
+                                data-youtube-id=""
+                                data-video-url=""
+                                id="yt-big-player-video-list"
+                                class="list-modal-youtube-player" 
+                                src="https://www.youtube.com/embed/WZM3VtPiUyo?autoplay=0&mute=0&loop=1&color=white&controls=0&playsinline=1&rel=0&enablejsapi=1&playlist=WZM3VtPiUyo" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"                                 
+                            >
+                        </iframe>     
+                    </div>
+
+                    <!-- info section -->
+                    <div class="video-info-section">
+                        <div class="video-owner-profile">
+                            <div class="video-owner-info">
+                                <a id="yt-video-owner-profile-wrap-link" href="#">
+                                    <img id="yt-video-owner-avatar" src="">
+                                    <div class="video-owner-name-rate">
+                                        <span id="yt-video-owner-name"></span> 
+                                        <div id="yt-video-owner-score" class="video-rate-it star" data-score="1"></div>
+                                    </div>                                    
+                                </a>
+                                
+                            </div>
+                            <div class="video-owner-viewpf">
+                                <a href="#" class="video-viewpf-btn" id="yt-video-owner-viewpf-btn">
+                                    <?php _e('View Profile','mje_short_video'); ?>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="video-extra-info">
+                            <div class="video-owner-lang-location">
+                                <span><i class="fa fa-map-marker"></i> <span id="yt-video-owner-location"></span></span>
+                                <span><i class="fa fa-globe"></i> <span id="yt-video-owner-language"></span></span>                            
+                            </div>
+                            <div class="video-owner-bio" id="yt-video-caption-content">                                                                                            
+                                
+                            </div>
+                        </div>
+
+                        <!-- service_list section -->
+                        <div id="yt-serviceListSection">
+
+                        </div>
+                        <!-- end service_list section -->
+
+                    </div>     
+
+                </div>
+            </div>
+                    
+        </div>
+        <!-- end YT modal full screen -->
+
         <?php
         }
         return ob_get_clean();      

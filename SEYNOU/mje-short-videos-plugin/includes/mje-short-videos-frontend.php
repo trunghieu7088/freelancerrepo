@@ -256,12 +256,14 @@ class MJE_Short_Videos_Frontend
                     <div class="swiper-wrapper">                      
 
                         <?php foreach($short_video_collection['video_list'] as $video_item): ?>                         
-                            <div class="col-md-3 col-lg-3 col-sm-12 swiper-slide <?php if($video_item->videoType=='upload') echo 'mje-short-video-local-item'; else echo 'mje-short-video-item'; ?>">                               
+                            <div data-swiperb-item="<?php echo $video_item->ID; ?>" class="col-md-3 col-lg-3 col-sm-12 swiper-slide loading-skeleton-wrapper <?php if($video_item->videoType=='upload') echo 'mje-short-video-local-item'; else echo 'mje-short-video-item'; ?>">                               
                                 <!-- local player -->
-                                <?php if($video_item->videoType == 'upload'): ?>                                    
-                                    <video data-plyr-config="<?php echo htmlspecialchars(json_encode($video_item), ENT_QUOTES, 'UTF-8'); ?>" data-video-src="<?php echo $video_item->videoInfo->url; ?>" class="local-item-video-player" disablepictureinpicture playsinline>
-                                        <source src="<?php echo $video_item->videoInfo->url; ?>" type="<?php echo $video_item->videoInfo->mime_type; ?>" />    
-                                    </video>
+                                <?php if($video_item->videoType == 'upload'): ?>  
+                                    
+                                        <video data-video-item="<?php echo $video_item->ID; ?>" data-plyr-config="<?php echo htmlspecialchars(json_encode($video_item), ENT_QUOTES, 'UTF-8'); ?>" data-video-src="<?php echo $video_item->videoInfo->url; ?>" class="local-item-video-player" disablepictureinpicture playsinline>
+                                            <source src="<?php echo $video_item->videoInfo->url; ?>" type="<?php echo $video_item->videoInfo->mime_type; ?>" />    
+                                        </video>
+                                        <div class="open-box-info-area"><button type="button" data-box-item="<?php echo $video_item->ID; ?>" class="open-boxinfo-local-video open-box-info">Open</button></div>                        
                                      <!-- content for big modal ( not display , use js clone this elements) -->
                                     <div id="short-video-serviceList-<?php echo $video_item->ID; ?>" style="display:none;">
                                         <?php foreach($video_item->serviceList as $service_item): ?>
@@ -279,9 +281,9 @@ class MJE_Short_Videos_Frontend
                                         <?php 
                                             $youtube_src='https://www.youtube.com/embed/'.$video_item->videoInfo->url.'?autoplay=0&mute=0&loop=1&color=white&controls=0&playsinline=1&rel=0&enablejsapi=1&playlist='.$video_item->videoInfo->url;
                                         ?>                                   
-                                        <iframe  style="border-radius:10px;" data-short-video-id="<?php echo $video_item->ID; ?>" class="mje-short-video-embed-iframe yt-short-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" src="<?php echo $youtube_src; ?>">
+                                        <iframe data-swiperb-item="<?php echo $video_item->ID; ?>" style="border-radius:10px;" data-short-video-id="<?php echo $video_item->ID; ?>" class="mje-short-video-embed-iframe yt-short-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" src="<?php echo $youtube_src; ?>">
                                         </iframe>
-                                        <div class="open-btn-area"><button data-video-info="<?php echo htmlspecialchars(json_encode($video_item), ENT_QUOTES, 'UTF-8'); ?>" type="button" class="open-yt-btn">Open</button></div>
+                                        <div class="open-btn-area"><button data-video-info="<?php echo htmlspecialchars(json_encode($video_item), ENT_QUOTES, 'UTF-8'); ?>" type="button" data-box-item="<?php echo $video_item->ID; ?>" class="open-yt-btn">Open</button></div>
                                         <!-- content for big modal ( not display , use js clone this elements) -->
                                         <div id="yt-short-video-serviceList-<?php echo $video_item->ID; ?>" style="display:none;">
                                             <?php foreach($video_item->serviceList as $service_item): ?>
@@ -294,7 +296,57 @@ class MJE_Short_Videos_Frontend
                                     </div>
                                     
                                 <?php endif; ?>
+                               <div class="loading-frame"></div>  
 
+                               <!-- info box content for mobile view -->      
+                               <div data-info-box="<?php echo $video_item->ID; ?>" class="video-info-box">
+                                    <div class="video-info-box-content">
+                                        
+                                            <div class="video-owner-profile">
+                                                <div class="video-owner-info">
+                                                    <a href="<?php echo $video_item->ownerProfileURL; ?>">
+                                                        <img class="mobile-box-avatar" src="<?php echo $video_item->ownerAvatarURL; ?>">
+                                                        <div class="video-owner-name-rate">
+                                                            <span class="mobile-box-ownername"><?php echo $video_item->ownerName; ?></span> 
+                                                            <div class="video-rate-it star" data-score="<?php echo $video_item->ownerRating; ?>"></div>
+                                                        </div>                                    
+                                                    </a>
+                                                    
+                                                </div>
+                                                <div class="video-owner-viewpf">
+                                                    <a href="<?php echo $video_item->ownerProfileURL; ?>" class="video-viewpf-btn" id="video-owner-viewpf-btn">
+                                                        <?php _e('Profile','mje_short_video'); ?>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="video-extra-info">
+                                                <div class="video-owner-lang-location">
+                                                    <span><i class="fa fa-map-marker"></i> <?php echo $video_item->ownerLocation; ?></span>
+                                                    <span><i class="fa fa-globe"></i> <?php echo $video_item->ownerLanguage; ?></span>                            
+                                                </div>
+                                                <div class="video-owner-bio" id="video-caption-content">                                                                                            
+                                                    <?php echo $video_item->videoCaption; ?>
+                                                </div>
+                                            </div>
+
+                                            <!-- service_list section -->
+                                            <div class="mobileview-list-service">
+                                                    <?php foreach($video_item->serviceList as $service_item): ?>
+                                                        <div class="video-mjob-section">
+                                                            <a href="<?php echo $service_item['service_link']; ?>" class="video-service-link"><?php echo $service_item['service_title']; ?></a>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                            </div>
+                                            <div class="close-mobile-box-info">
+                                                <button data-close-box="<?php echo $video_item->ID; ?>" class="close-box-info-btn close-box-js" type="button">Close</button>
+                                            </div>
+                                            <!-- end service_list section -->
+                                        
+
+                                    </div>
+                               </div>             
+                               <!-- end info box content for mobile view -->      
                             </div>
                         <?php endforeach; ?>
                      

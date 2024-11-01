@@ -3,10 +3,8 @@ class MJE_Short_Videos_Backend
 {
     public static $instance;
 
-    function __construct(){        
-		       
+    function __construct(){        		       
 		$this->init_hook();     
-
 	}
 
     function init_hook()
@@ -18,9 +16,66 @@ class MJE_Short_Videos_Backend
 
         //show video player to edit mjob form
         add_filter('ae_convert_mjob_post',array($this,'show_video_player_edit_mjob_form'),99,1);
-
         add_action('ae_update_mjob_post',array($this,'update_short_video_mjob'),999,2);
 
+        //automatic cleaning video files system ( the videos dont belong to any service or post)
+        add_filter('cron_schedules', array($this,'delete_trash_video_files_schedules'), 99);
+        add_action('init', array($this,'schedule_delete_trash_video_task'),999);
+        add_action('collect_delete_trash_video', array($this,'collect_delete_trash_video_action'),999);        
+
+    }
+
+    function delete_trash_video_files_schedules($schedules)
+    {
+         // Add a new custom cron schedule named 'daily'
+            $schedules['daily_midnight'] = array(
+             'interval' => 24 * 60 * 60, // 24 hours in seconds           
+            'display' => 'Once Daily at 12 PM',
+        );
+        return $schedules;
+    }
+
+    function schedule_delete_trash_video_task()
+    {
+        if (!wp_next_scheduled('collect_delete_trash_video')) {
+            wp_schedule_event(strtotime('12:00 PM'), 'daily_midnight', 'collect_delete_trash_video');
+           //wp_schedule_event(time(), 'daily_midnight', 'collect_delete_trash_video');
+        }
+    }
+
+    function collect_delete_trash_video_action()
+    {
+        global $post;
+    
+        $args_attachment = array(
+            'post_type' => 'attachment', 
+            'post_status' =>'inherit',             
+            'posts_per_page' => -1, 
+            'meta_query'=> array(            
+                array(
+                    'key' => 'is_temp_short_video',
+                    'compare' => 'EXISTS', 
+                ),        
+            ),
+            'date_query' => array(
+                array(
+                    'column' => 'post_date', 
+                    'before' => '1 day ago',
+                ),
+            ),
+        );
+    
+        $query = new WP_Query($args_attachment);
+        if ($query->have_posts()) 
+        {            
+            while ($query->have_posts())
+            {
+                $query->the_post();     
+                wp_delete_attachment($post->ID,true);
+            }
+            wp_reset_postdata();      
+        }        
+    
     }
 
     function register_post_type_short_video()

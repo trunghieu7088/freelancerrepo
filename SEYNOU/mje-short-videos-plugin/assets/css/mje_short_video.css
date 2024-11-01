@@ -32,19 +32,19 @@
 {
     position:absolute;
     z-index: 99999;
-    bottom:5px;
-    left:10px;    
+    bottom:20px;
+    left:20px;    
     width:50px;
     height:50px;
 }
 .open-yt-btn
 {
     border:1px solid #d3d3d3 !important; 
-    font-size:12px;
+    font-size:14px;
     text-transform: uppercase;
     border-radius: 5px;
     background-color: transparent;
-    padding:5px;
+    padding:5px 10px;
     color:#ffffff;
 }
 /* end open youtube modal btn */
@@ -330,10 +330,15 @@
 .mjob-player-big-content
 {
     width:460px;
-    height:640px;  
-         
+    height:640px;      
 }
 
+.mjob-big-dialog
+{
+    padding:0 !important;
+    display: flex;
+    justify-content: center;
+}
 @media (max-width: 1200px) {
     .mjob-player-big-content
 {
@@ -341,6 +346,16 @@
     height:620px;       
 }
 }
+/* mobile responsive */
+@media (max-width: 480px) {
+    .mjob-player-big-content
+{
+    width:340px;
+    height:569px;       
+}
+}
+/* end mobile responsive */
+
 .mjob-modal-video-player
 {
     width:100%;
@@ -396,8 +411,8 @@
     background-size: 200% 100%;
     width:290px;
     height: 640px;
-    top:0px !important;
-    left:0px !important;
+    top:0px;
+    left:0px ;
     animation: 1.5s shine linear infinite;    
     border:1px solid #d3d3d3;
 }
@@ -473,9 +488,9 @@
 }
 .open-box-info-area
 {
-    display:none;
+   /* display:none; */
 }
-@media (max-width: 1024px) {
+
 
 .video-info-box-content
 {
@@ -502,7 +517,7 @@
     font-size:14px;
     text-transform: uppercase;
     padding:10px;    
-    margin-top:100px !important;
+    margin-top:90px !important;
 }
 .mobile-box-avatar
 {
@@ -523,7 +538,7 @@
     position:absolute;
     z-index: 99999;
     bottom:20px;
-    left:30px;    
+    left:35px;    
     width:50px;
     height:50px;
 }
@@ -539,5 +554,53 @@
     
 }
 
+@media (max-width: 490px) {
+    .open-box-info-area
+    {
+        left:45px !important;    
+    }
+    /* loading frame responsive*/
+    .loading-frame
+    {
+        left:25px;
+        width:340px;
+        height:569px;  
+
+    }
+    /* end loading frame responsive */
 }
+
+@media (min-width: 500px) and (max-width: 810px) {
+    .loading-frame
+    {
+        left:0px;
+        height:640px; 
+        width:370px;      
+    }
+}
+
 /* end mobile responsive */
+
+/* mjob edit form */
+#mjob-edit-video-area
+{
+    
+}
+.mjob-edit-video-player-area
+{
+    margin:15px 0px 10px 0px;
+    width:240px;
+    height:427px;
+}
+.mjob-edit-video-player
+{
+    width:100% !important;
+    height:100% !important;    
+    
+}
+.remove-video-player-area
+{
+    display:block;
+    margin:20px 0px 0px 0px;
+}
+/* end mjob edit form */

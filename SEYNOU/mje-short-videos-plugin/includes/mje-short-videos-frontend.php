@@ -129,7 +129,7 @@ class MJE_Short_Videos_Frontend
             <div class="video-area-description">
             <button id="show-big-player-mjob-btn" data-video-type="<?php echo $short_video['type']; ?>"  data-toggle="modal" class="btn btn-info" data-target="#mjob-player-big-modal"><i class="fa fa-play"></i> Show Video</button>
             <div class="modal fade mjob-player-big" id="mjob-player-big-modal" role="dialog">
-                <div class="modal-dialog">
+                <div class="modal-dialog mjob-big-dialog">
                     <?php if($short_video['type']=='upload'): ?>
                         <div class="modal-content mjob-player-big-content">                        
                                 <video id="mjob-modal-video-player" class="mjob-modal-video-player" disablepictureinpicture playsinline>
@@ -263,7 +263,7 @@ class MJE_Short_Videos_Frontend
                                         <video data-video-item="<?php echo $video_item->ID; ?>" data-plyr-config="<?php echo htmlspecialchars(json_encode($video_item), ENT_QUOTES, 'UTF-8'); ?>" data-video-src="<?php echo $video_item->videoInfo->url; ?>" class="local-item-video-player" disablepictureinpicture playsinline>
                                             <source src="<?php echo $video_item->videoInfo->url; ?>" type="<?php echo $video_item->videoInfo->mime_type; ?>" />    
                                         </video>
-                                        <div class="open-box-info-area"><button type="button" data-box-item="<?php echo $video_item->ID; ?>" class="open-boxinfo-local-video open-box-info">Open</button></div>                        
+                                        <div class="open-box-info-area"><button type="button" data-box-item="<?php echo $video_item->ID; ?>" class="open-boxinfo-local-video open-box-info">Info</button></div>                        
                                      <!-- content for big modal ( not display , use js clone this elements) -->
                                     <div id="short-video-serviceList-<?php echo $video_item->ID; ?>" style="display:none;">
                                         <?php foreach($video_item->serviceList as $service_item): ?>
@@ -283,7 +283,7 @@ class MJE_Short_Videos_Frontend
                                         ?>                                   
                                         <iframe data-swiperb-item="<?php echo $video_item->ID; ?>" style="border-radius:10px;" data-short-video-id="<?php echo $video_item->ID; ?>" class="mje-short-video-embed-iframe yt-short-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" src="<?php echo $youtube_src; ?>">
                                         </iframe>
-                                        <div class="open-btn-area"><button data-video-info="<?php echo htmlspecialchars(json_encode($video_item), ENT_QUOTES, 'UTF-8'); ?>" type="button" data-box-item="<?php echo $video_item->ID; ?>" class="open-yt-btn">Open</button></div>
+                                        <div class="open-btn-area"><button data-video-info="<?php echo htmlspecialchars(json_encode($video_item), ENT_QUOTES, 'UTF-8'); ?>" type="button" data-box-item="<?php echo $video_item->ID; ?>" class="open-yt-btn">Info</button></div>
                                         <!-- content for big modal ( not display , use js clone this elements) -->
                                         <div id="yt-short-video-serviceList-<?php echo $video_item->ID; ?>" style="display:none;">
                                             <?php foreach($video_item->serviceList as $service_item): ?>
@@ -314,7 +314,7 @@ class MJE_Short_Videos_Frontend
                                                     
                                                 </div>
                                                 <div class="video-owner-viewpf">
-                                                    <a href="<?php echo $video_item->ownerProfileURL; ?>" class="video-viewpf-btn" id="video-owner-viewpf-btn">
+                                                    <a href="<?php echo $video_item->ownerProfileURL; ?>" class="video-viewpf-btn">
                                                         <?php _e('Profile','mje_short_video'); ?>
                                                     </a>
                                                 </div>
@@ -325,7 +325,7 @@ class MJE_Short_Videos_Frontend
                                                     <span><i class="fa fa-map-marker"></i> <?php echo $video_item->ownerLocation; ?></span>
                                                     <span><i class="fa fa-globe"></i> <?php echo $video_item->ownerLanguage; ?></span>                            
                                                 </div>
-                                                <div class="video-owner-bio" id="video-caption-content">                                                                                            
+                                                <div class="video-owner-bio">                                                                                            
                                                     <?php echo $video_item->videoCaption; ?>
                                                 </div>
                                             </div>

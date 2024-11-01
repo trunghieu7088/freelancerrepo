@@ -27,7 +27,8 @@ function get_short_video_mjob($mjob_id)
         {
             $url=get_post_meta($short_video_id,'youtube_video_id',true);            
         }
-        $short_video=array('type'=>$type,'url'=>$url,'mime_type'=>$mime_type);        
+        $video_caption=get_post_field('post_title',$short_video_id);        
+        $short_video=array('type'=>$type,'url'=>$url,'mime_type'=>$mime_type,'video_id'=>$short_video_id,'video_caption'=>$video_caption);        
     }
     return $short_video;
 }

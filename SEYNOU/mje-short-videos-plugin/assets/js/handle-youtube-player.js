@@ -207,6 +207,7 @@
           spaceBetween: 0,                        
           speed:200,                    
           loop: false,
+        
           autoplay:
           {
             enabled: false,
@@ -279,17 +280,29 @@
 
         //hide or show next / prev buttons when slide change
         short_videos_slider.on('slideChange', function () {         
-          toggleNavigationButtons();             
+          toggleNavigationButtons();    
+          
         });
+
+        //close the info box when change slide ( only mobile)
+        short_videos_slider.on('beforeTransitionStart', function () {  
+
+          if($(window).width() < 1024)         
+            {              
+                let slide_box=short_videos_slider.slides[short_videos_slider.activeIndex].attributes['data-swiperb-item'].value;
+                $("[data-info-box='"+ slide_box+"']").css('display','none'); 
+            }
+        });
+        
              
         toggleNavigationButtons();
       
       //auto trigger pop-up after 2 seconds when page finished loading
         if($(".video-area-description").length > 0)
         {
-          setTimeout(function(){ 
-              $("#mjob-player-big-modal").modal('show');
-           }, 2500);
+          const autoTriggerPlayer=setTimeout(function(){           
+              $("#mjob-player-big-modal").modal('show');                                      
+           }, 1000);
         }
 
         //turn off loading effect after 2 seconds
@@ -297,7 +310,7 @@
           {
             setTimeout(function(){ 
                 $(".loading-frame").css('display','none');
-             }, 2000);
+             }, 1000);
           }
 
         $('.video-rate-it ').raty({
@@ -332,7 +345,7 @@
         {
           //init video player ( local video ) for video list on desktop / laptop view
               localVideoPlayers.forEach(function (playerElement) {
-                  const localPlayer = new Plyr(playerElement,{ controls: false, muted: false});
+                  const localPlayer = new Plyr(playerElement,{ controls: false, muted: false, clickToPlay: false});
                   
                   localPlayer.on('mouseenter',function(){               
                     localPlayer.play();
@@ -353,7 +366,7 @@
                   $("#video-owner-location").text(localPlayer.config.ownerLocation);
                   $("#video-owner-language").text(localPlayer.config.ownerLanguage);
                   $("#video-caption-content").html(localPlayer.config.videoCaption);
-
+                  
                   //re-load rating score
                   $('.video-rate-it ').raty({
                     readOnly: true,
@@ -396,15 +409,19 @@
           });
 
           //adding play event when onclick ( mobile view)
-          customPlayers.forEach(function(player) {
-            player.on('click', function() {
-                if (player.playing) {
-                    player.pause();  // Dừng video nếu đang phát
-                } else {
-                    player.play();   // Phát video nếu đang dừng
-                }
+          if($(window).width < 1024 && customPlayers)
+          {
+            customPlayers.forEach(function(player) {
+              player.on('click', function() {
+                  if (player.playing) {
+                      player.pause();  // Dừng video nếu đang phát
+                  } else {
+                      player.play();   // Phát video nếu đang dừng
+                  }
+              });
             });
-          });
+          }
+        
 
           //handling slide change for mobile view 
           short_videos_slider.on('slideChange', function () {      
@@ -711,9 +728,34 @@
                 $("[data-info-box='"+open_box+"']").slideDown(); 
               });
                
-
           }
-       
+
+          if(viewportWidth > 1024)
+          {
+            $('.open-box-info').click(function(){              
+              $("[data-video-item='"+ $(this).attr('data-box-item')+"']").trigger('click'); 
+                                      
+            });
+          }
+          
+          /* edit mjob form */
+          $(document).on('click','#remove-video-player',function(){            
+              $("#mjob-video-edit-wrapper").fadeOut();
+              $("#undo-video-player").fadeIn();
+              $(this).fadeOut();
+              $("#remove-current-video").val('remove');
+              $("#current_video_caption").fadeOut();
+          });
+
+          $(document).on('click','#undo-video-player',function(){            
+            $("#mjob-video-edit-wrapper").fadeIn();
+            $("#remove-video-player").fadeIn();
+            $(this).fadeOut();
+            $("#remove-current-video").val('');
+            $("#current_video_caption").fadeIn();
+          });
+
+          /* end edit mjob form */
 
     })
 })(jQuery);

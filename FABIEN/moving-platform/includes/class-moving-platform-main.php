@@ -211,7 +211,7 @@ class Moving_Platform_Main
     {
         $role_info=get_role('author'); //get capabilities of author
         add_role('customer','Customer',$role_info->capabilities );
-        add_role('um_custom_role_1','Service Provider',$role_info->capabilities );
+        add_role('um_custom_role_1','Service Provider real',$role_info->capabilities );
         //need to re-check all service_provider and replace
     }
 
@@ -473,7 +473,7 @@ class Moving_Platform_Main
            update_post_meta($inserted_request,'phone_number',$contact_method);
            update_post_meta($inserted_request,'email_notification',$email_notification);
            update_post_meta($inserted_request,'contact_method',$contact_method.' | '.$email_notification);
-           update_post_meta($inserted_request,'budget',$budget);
+           //update_post_meta($inserted_request,'budget',$budget);
           
 
            //update city
@@ -705,7 +705,7 @@ class Moving_Platform_Main
             $request->convert_description=__('This moving request has no description','moving_platform');
         }
        
-        $request->moving_budget=number_format(get_post_meta($request->ID,'budget',true));
+        //$request->moving_budget=number_format(get_post_meta($request->ID,'budget',true));
         
         //departure
         $depature_date=get_post_meta($request->ID,'departure_date',true);

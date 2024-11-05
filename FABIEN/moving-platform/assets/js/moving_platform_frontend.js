@@ -135,7 +135,7 @@
 
        
 
-        if($("#budget-search-filter").length > 0)
+     /*   if($("#budget-search-filter").length > 0)
             {
                      var budget_filter = new TomSelect("#budget-search-filter",{
                             create: false,   
@@ -148,7 +148,7 @@
                                $("#budget-search-filter").focus();
                             },
                         });
-            }
+            } */
        
            /*  $('#city_selector_depart').on('change', function() {
                 let selected_depart = $(this).find('option:selected');
@@ -176,11 +176,11 @@
             postal_code_depart: "required",
             postal_code_arrival: "required",
             email_notification: "required",
-            budget:
+          /*  budget:
             {
                 required: true,
                 number: true,
-            }, 
+            }, */
             accept_tos: "required",
 
         },
@@ -214,11 +214,11 @@
             },
             
 
-            budget:
+         /*   budget:
             {
                 required: required_validation_message,
                 number: number_type_validation,
-            }, 
+            }, */
             contact_method: {
                 required: required_validation_message,
             },
@@ -457,7 +457,7 @@
             let arrival_city_query='';
             let departure_city_query='';
 
-            let budget_filter_query='';
+           // let budget_filter_query='';
             let only_mine='';    
             let sort_by_query='';
             
@@ -475,7 +475,7 @@
         $("#departure_date").val('');
 
         $("#search").val('');
-        budget_filter.clear();
+      //  budget_filter.clear();
 
         //cities filters
         city_selector_depart.clear();
@@ -521,7 +521,7 @@
            arrival_city_query='&city_arrival='+$("#city_selector_arrival").val();
            departure_city_query='&city_depart='+$("#city_selector_depart").val();
 
-           budget_filter_query='&budget_filter='+budget_filter.getValue();
+          // budget_filter_query='&budget_filter='+budget_filter.getValue();
            sort_by_query='&sort_by='+sort_filter.getValue();
 
            /* if($("#only_mine").is(":checked"))
@@ -538,7 +538,7 @@
            search_redirect_url=$("#search_link").val()+search_query
            +arrival_date_query+departure_date_query
            +arrival_city_query+departure_city_query
-           +budget_filter_query+only_mine+sort_by_query;
+         //  +budget_filter_query+only_mine+sort_by_query;
 
            window.location.href=search_redirect_url;
 

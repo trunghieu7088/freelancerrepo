@@ -12,6 +12,8 @@ class Email_Feature
 
         add_action('custom_hook_after_insert_request',array($this,'send_noti_email_to_admin'),99,1);        
         add_action('custom_hook_after_insert_payment',array($this,'send_noti_email_payment_provider_admin'),99,1);
+
+        add_action('custom_hook_after_insert_request',array($this,'send_noti_email_to_movers'),100,1);        
         
 	}
 
@@ -88,6 +90,11 @@ class Email_Feature
 
         $request->last_name=get_post_meta($request->ID,'last_name',true);
         $request->first_name=get_post_meta($request->ID,'first_name',true);
+        
+        //created date
+        $formatted_date = date('Y-M-d', strtotime($request->post_date));
+        $request->created_date=$formatted_date;
+
         //departure
         $depature_date=get_post_meta($request->ID,'departure_date',true);
         $departure_date_instance = DateTime::createFromFormat('Y-m-d', $depature_date);
@@ -137,6 +144,7 @@ class Email_Feature
 
         $subject=$admin_data->getValue('confirm_new_order_subject');
         $content=$admin_data->getValue('confirm_new_order_content');
+        
         $paid_list='<a href="'.site_url('/all-requests/?mine=yes').'">'.__('Paid list','moving_platform').'</a>';
 
         $subject=str_ireplace('[payment_id]','#'.$payment_item->ID,$subject);
@@ -149,14 +157,43 @@ class Email_Feature
         $subject_admin=$admin_data->getValue('notify_admin_new_order_subject');
         $content_admin=$admin_data->getValue('notify_admin_new_order_content');
 
-        $payment_info=get_post_meta($payment_item->ID,'budget',true).'€';
+        //$payment_info=get_post_meta($payment_item->ID,'budget',true).'€';
 
         $subject_admin=str_ireplace('[payment_id]','#'.$payment_item->ID,$subject_admin);
 
-        $content_admin=str_ireplace('[payment_price]',$payment_info,$content_admin);
+        //$content_admin=str_ireplace('[payment_price]',$payment_info,$content_admin);
 
         $this->custom_send_email( get_bloginfo('admin_email'),$subject_admin,$content_admin);
     }   
+
+    //send emails to all movers when there is a new request
+    function send_noti_email_to_movers($request_id)
+    {
+        $request_item=get_post($request_id);
+        $admin_data=AdminData::get_instance();
+        
+        $converted_request=$this->get_info_request($request_item);
+        $subject=$admin_data->getValue('notify_movers_request_subject');        
+        $content=nl2br($admin_data->getValue('notify_movers_request_content'));
+
+        $content=str_ireplace('[created_date]',$converted_request->created_date,$content);
+        $content=str_ireplace('[arrival_date]',$converted_request->arrival_date,$content);
+        $content=str_ireplace('[departure_date]',$converted_request->departure_date,$content);
+
+        $login_url='<a href="'.site_url('/identification/').'">'.'login'.'</a>';
+        $content=str_ireplace('[login]',$login_url,$content);
+
+        $movers_args = array(
+            'role'    => 'um_custom_role_1',                     
+        );
+        $movers_query = new WP_User_Query($movers_args);
+        if ( ! empty($movers_query->get_results()) ) {
+            foreach ( $movers_query->get_results() as $mover ) {
+                $this->custom_send_email($mover->user_email,$subject,$content);
+            }
+        }
+      
+    }
 
 }
 

@@ -44,6 +44,11 @@ function moving_platform_settings()
         Field::make('text', 'notify_customer_confirm_request_subject', __('Title'))->set_default_value('Your request has been submitted'),
         Field::make( 'textarea', 'notify_customer_confirm_request_content', __( 'Content' ) )->set_rows( 20 )->set_default_value('Your request has been submitted [request_content]'),                
 
+        Field::make( 'separator', 'crb_separator_5', __( 'Email sent to the movers when there is new request' ) ),
+        Field::make('text', 'notify_movers_request_subject', __('Title'))->set_default_value('There is a new request'),
+        Field::make( 'textarea', 'notify_movers_request_content', __( 'Content' ) )->set_rows( 20 )->set_default_value('There is a new request [request_content]'),                
+
+        
         Field::make( 'separator', 'crb_separator_2', __( 'Email sent to the movers when they purchased contact method successfully' ) ),
         Field::make('text', 'confirm_new_order_subject', __('Title'))->set_default_value('Your payment has been completed [payment_id]'),
         Field::make( 'textarea', 'confirm_new_order_content', __( 'Content' ) )->set_rows( 20 )->set_default_value('Your payment has ben completed. You can visit the paid list [paid_list]'),
@@ -105,6 +110,10 @@ function create_admin_settings_value_instance()
 
                 'notify_customer_confirm_request_subject'=> carbon_get_theme_option('notify_customer_confirm_request_subject') ?: 'Your Request has been submitted',
                 'notify_customer_confirm_request_content'=> carbon_get_theme_option('notify_customer_confirm_request_content') ?: 'Your requrest has been submitted [request_content]',
+
+                //send emails to all movers (service provider) about the new requests
+                'notify_movers_request_subject'=> carbon_get_theme_option('notify_movers_request_subject') ?: 'There is a new request',
+                'notify_movers_request_content'=> carbon_get_theme_option('notify_movers_request_content') ?: 'There is a new request [request_content]',
 
 
                 'confirm_new_order_subject'=> carbon_get_theme_option('confirm_new_order_subject') ?: 'Your payment has been completed [payment_id]',

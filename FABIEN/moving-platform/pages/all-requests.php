@@ -74,14 +74,15 @@ $moving_request_collection=$moving_instance->get_moving_requests($current_page,$
             <!-- use to move out when the users choose value from tom select -->
             <input type="hidden" id="hidden-focus">
 
-            <div class="col-md-6 col-lg-6 col-sm-12">
+            <div class="col-md-9 col-lg-9 col-sm-12">
                 <div class="search-bar-fields">
                     <i class="search-bar-icon fa fa-search"></i>
                     <input class="search-bar-input" type="text" id="search" name="search" value="<?php echo $search_string; ?>" placeholder="<?php _e('Keyword','moving_platform'); ?>">
                 </div>
             </div>
 
-            <div class="col-md-3 col-lg-3 col-sm-12">
+            <!-- hide budget filter because the customer want 4th Nov 2024-->
+           <!-- <div class="col-md-3 col-lg-3 col-sm-12"> 
                 <div class="search-bar-fields">
                     <i class="search-bar-icon fa-solid fa-coins"></i>
                     <select class="budget-search-filter" id="budget-search-filter" placeholder="<?php _e('Budget Filter (€)','moving_platform'); ?>" autocomplete="off">
@@ -94,7 +95,8 @@ $moving_request_collection=$moving_instance->get_moving_requests($current_page,$
                                             
                     </select>
                 </div>
-            </div>
+            </div>-->
+            
 
             <div class="col-md-3 col-lg-3 col-sm-12">
                 <div class="search-bar-fields">
@@ -247,7 +249,7 @@ $moving_request_collection=$moving_instance->get_moving_requests($current_page,$
             </p>
             <div class="basic-info-group">
                 <span class="info-item"><i class="fa fa-clock"></i><?php _e('Posted','moving_platform') ?> <strong><?php echo $request_item->human_readable_published ?></strong></span>
-                <span class="info-item"><i class="fa-solid fa-coins"></i><?php _e('Budget','moving_platform') ?> <strong><?php echo $request_item->moving_budget ?> €</strong></span>
+               <!-- <span class="info-item"><i class="fa-solid fa-coins"></i><?php _e('Budget','moving_platform') ?> <strong><?php echo $request_item->moving_budget ?> €</strong></span> -->
                 <span class="info-item"><i class="fa fa-user"></i><?php _e('Customer','moving_platform') ?> <strong><?php echo $request_item->last_name.' '.$request_item->first_name ?> </strong></span>
             </div>
             <div class="moving-request-description">
@@ -287,7 +289,7 @@ $moving_request_collection=$moving_instance->get_moving_requests($current_page,$
                                     <!--use data contact id to show contact method if user pay successfully --> 
 
                                     <a href="#" class="pay-btn-fake"></a>   <!--only display on mobile to break line -->    
-                                    <a href="#" class="pay-btn pay-now" data-pay-item-title="<?php echo $request_item->post_title; ?>" data-pay-item="<?php echo $request_item->ID; ?>">Buy</a> 
+                                    <a href="#" class="pay-btn pay-now" data-pay-item-title="<?php echo $request_item->post_title; ?>" data-pay-item="<?php echo $request_item->ID; ?>">Acheter</a> 
                                     <a href="#" data-action-cart="<?php echo $request_item->ID; ?>" class="pay-btn <?php if($is_added_cart) echo 'remove-from-cart'; else echo 'add-to-cart'; ?>">                                        
                                         <?php 
                                         if($is_added_cart)
